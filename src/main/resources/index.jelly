@@ -1,0 +1,3 @@
+<div>
+    Plugin creating JIRA filter URL based on commit messages containing JIRA ticket keys in the GIT history
+</div>

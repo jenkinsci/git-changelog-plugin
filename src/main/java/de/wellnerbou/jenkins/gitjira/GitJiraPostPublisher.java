@@ -4,6 +4,7 @@ import de.wellnerbou.gitjira.app.AppArgs;
 import de.wellnerbou.gitjira.app.GitJira;
 import de.wellnerbou.gitjira.model.Changelog;
 import hudson.AbortException;
+import hudson.EnvVars;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
@@ -24,12 +25,16 @@ public class GitJiraPostPublisher extends Publisher {
 	public final String jirabaseurl;
 	public final String jiraprefix;
 	public final String outputfile;
+	public final String toRev;
+	public final String fromRev;
 
 	@DataBoundConstructor
-	public GitJiraPostPublisher(final String jirabaseurl, final String jiraprefix, final String outputfile) {
+	public GitJiraPostPublisher(final String jirabaseurl, final String jiraprefix, final String outputfile, final String fromRev, final String toRev) {
 		this.jirabaseurl = jirabaseurl;
 		this.jiraprefix = jiraprefix;
 		this.outputfile = outputfile;
+		this.fromRev = fromRev;
+		this.toRev = toRev;
 	}
 
 	@Override
@@ -44,10 +49,18 @@ public class GitJiraPostPublisher extends Publisher {
 			throw new AbortException("no workspace for " + build);
 		}
 
+		final EnvVars env = build.getEnvironment(listener);
 		AppArgs appArgs = new AppArgs();
-		appArgs.setJiraBaseUrl(jirabaseurl);
-		appArgs.setJiraProjectPrefixes(jiraprefix);
+		appArgs.setJiraBaseUrl(env.expand(jirabaseurl));
+		appArgs.setJiraProjectPrefixes(env.expand(jiraprefix));
 		appArgs.setRepo(workspace.getRemote());
+
+		if(fromRev != null && fromRev.length() > 0) {
+			appArgs.setFromRev(env.expand(fromRev));
+		}
+		if(toRev != null && toRev.length() > 0) {
+			appArgs.setToRev(env.expand(toRev));
+		}
 
 		PrintStream printStream = listener.getLogger();
 		if(outputfile != null && outputfile.length() > 0) {
