@@ -50,9 +50,9 @@
      -->
 
     <scm>
-        <connection>scm:git:git://github.com/paulwellnerbou/git-log-jira-jenkins-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:paulwellnerbou/git-log-jira-jenkins-plugin.git</developerConnection>
-        <url>http://github.com/paulwellnerbou/git-log-jira-jenkins-plugin</url>
+        <connection>scm:git:git://github.com/paulwellnerbou/git-jira-log-jenkins-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:paulwellnerbou/git-jira-log-jenkins-plugin.git</developerConnection>
+        <url>http://github.com/paulwellnerbou/git-jira-log-jenkins-plugin</url>
     </scm>
 
     <repositories>
