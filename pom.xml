@@ -11,8 +11,8 @@
     </parent>
 
     <groupId>de.wbou.jenkins</groupId>
-    <artifactId>git-jira-log-jenkins-plugin</artifactId>
-    <version>1.0</version>
+    <artifactId>git-jira-log</artifactId>
+    <version>1.1-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
     <name>Git JIRA Log</name>
