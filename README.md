@@ -3,7 +3,7 @@ Git JIRA Log Jenkins Plugin
 
 Jenkins plugin creating automatically the JIRA filter URL based on the tickets found in the git log
 
-Usage
+# Usage
 -----
 
 You can use this plugin either as a post-build action which will produce a file containing the jira filter and some informative lines,
@@ -22,7 +22,7 @@ If you leave the file input empty, the information will be logged into the jenki
 
 ![](/doc/imgs/git-jira-log-post-build-action-console.png)
 
-If you specify a filename, you can use other plugins like [HTML Plublisher Plugin](https://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin)
+If you specify a filename, you can use other plugins like [HTML Publisher Plugin](https://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin)
 to save the files as jenkins report.
 
 ## Using as Token Macro Replacement Provider
@@ -32,3 +32,16 @@ this macro in any plugin supporting token macro replacements, this will be repla
 
 The [Email-ext plugin](https://wiki.jenkins-ci.org/display/JENKINS/Email-ext+plugin) supports token macros, so you can include this URL
 in an automatically sent email.
+
+# Development
+
+This plugin can be built and started with maven and Jenkins' hpi plugin:
+
+```
+mvn clean install
+./run.sh
+```
+
+The run scripts opens a debug port on 8000.
+
+The functionality is implemented in [git-jira-log](https://github.com/paulwellnerbou/git-jira-log). Pull requests are welcome!
