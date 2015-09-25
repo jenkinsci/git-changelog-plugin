@@ -72,6 +72,12 @@
 	</pluginRepositories>
 
 	<dependencies>
+        <!-- git-jira-log depends on Guava 18, jenkins depends on Guava 11, 14 is a working comprise -->
+        <dependency>
+            <artifactId>guava</artifactId>
+            <groupId>com.google.guava</groupId>
+            <version>14.0</version>
+        </dependency>
 		<dependency>
 			<groupId>de.wellnerbou</groupId>
 			<artifactId>git-jira-log</artifactId>
