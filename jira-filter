@@ -1,7 +1,0 @@
-No revs given, searching automatically for latest released tags...
-Found toRev tag fazcore-6.26.1
-Found fromRev tag fazcore-6.26.0
------
-Jira-Tickets mentioned in commits between fazcore-6.26.0 and fazcore-6.26.1:
-http://jira.faz.net/issues/?jql=key%20in%20(FTK-2863)
------
