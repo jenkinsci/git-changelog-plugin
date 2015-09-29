@@ -11,12 +11,12 @@
 	</parent>
 
 	<groupId>de.wellnerbou.jenkins</groupId>
-	<artifactId>git-jira-log</artifactId>
+	<artifactId>git-changelog</artifactId>
 	<version>1.1-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 
-	<name>Git JIRA Log</name>
-	<description>Plugin creating JIRA filter based on GIT history</description>
+	<name>Git Changlog</name>
+	<description>Plugin creating changelogs based on Git's history between two tags or revisions</description>
 
 	<build>
 		<plugins>
@@ -47,9 +47,9 @@
 		<url>http://github.com/jenkinsci/${project.artifactId}-plugin</url> </scm> -->
 
 	<scm>
-		<connection>scm:git:git://github.com/paulwellnerbou/git-jira-log-jenkins-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:paulwellnerbou/git-jira-log-jenkins-plugin.git</developerConnection>
-		<url>http://github.com/paulwellnerbou/git-jira-log-jenkins-plugin</url>
+		<connection>scm:git:git://github.com/paulwellnerbou/git-changelog-jenkins-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:paulwellnerbou/git-changelog-jenkins-plugin.git</developerConnection>
+		<url>http://github.com/paulwellnerbou/git-changelog-jenkins-plugin</url>
 	</scm>
 
 	<repositories>
@@ -72,7 +72,7 @@
 	</pluginRepositories>
 
 	<dependencies>
-        <!-- git-jira-log depends on Guava 18, jenkins depends on Guava 11, 14 is a working comprise -->
+        <!-- git-changelog depends on Guava 18, jenkins depends on Guava 11, 14 is a working comprise -->
         <dependency>
             <artifactId>guava</artifactId>
             <groupId>com.google.guava</groupId>
@@ -80,8 +80,8 @@
         </dependency>
 		<dependency>
 			<groupId>de.wellnerbou</groupId>
-			<artifactId>git-jira-log</artifactId>
-			<version>1.0</version>
+			<artifactId>git-changelog</artifactId>
+			<version>2.0</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>guava</artifactId>

@@ -1,7 +1,11 @@
-Git JIRA Log Jenkins Plugin
+Git Changelog Jenkins Plugin
 ===========================
 
-Jenkins plugin creating automatically the JIRA filter URL based on the tickets found in the git log
+Jenkins plugin to extract a changelog out of commit messages between two GIT revisions. This changelog can be postprocessed and converted
+to either an human readable git changelog listing all commits, or a JIRA filter URL.
+It implements basically the features of [git-changelog](https://github.com/paulwellnerbou/git-changelog).
+
+
 
 ## Usage
 
@@ -10,6 +14,9 @@ or you can use it providing replacement text for the [Token Macro Plugin](https:
 emails, for example.
 
 ### Using a Post-build Action
+
+The following documentation explains to set up the JIRA Filter post-build action. Using the basic changelog post-build action
+is even easier, as it does not need any further configuration.
 
 On any jenkins project using Git as Source Code Management, add "Publish JIRA Filter" Post-build Action. A form with a few
 input fields appears where you can configure the behaviour. Just below the input fields their meaning and default behaviour is
@@ -26,8 +33,9 @@ to save the files as jenkins report.
 
 ### Using as Token Macro Replacement Provider
 
-Having installed this plugin, automatically following macro for replacement is provided: <code>$GITLOGJIRAFILTER</code>. If you use
-this macro in any plugin supporting token macro replacements, this will be replaced with the URL to your JIRA installation.
+Having installed this plugin, automatically following macros for replacement are provided: <code>$GITLOGJIRAFILTER</code> and <code>$GITCHANGELOG</code>.
+
+If you use these macros in any plugin supporting token macro replacements, this will be replaced with either the Jira URL or the changelog.
 
 The [Email-ext plugin](https://wiki.jenkins-ci.org/display/JENKINS/Email-ext+plugin) supports token macros, so you can include this URL
 in an automatically sent email.
@@ -43,4 +51,4 @@ mvn clean install
 
 The run scripts opens a debug port on 8000.
 
-The functionality is implemented in [git-jira-log](https://github.com/paulwellnerbou/git-jira-log). Pull requests are welcome!
+The functionality is implemented in [git-changelog](https://github.com/paulwellnerbou/git-changelog). Pull requests are welcome!

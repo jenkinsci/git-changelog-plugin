@@ -1,8 +1,9 @@
-package de.wellnerbou.jenkins.gitjira;
+package de.wellnerbou.jenkins.gitchangelog.publish;
 
-import de.wellnerbou.gitjira.app.AppArgs;
-import de.wellnerbou.gitjira.app.GitJira;
-import de.wellnerbou.gitjira.model.Changelog;
+import de.wellnerbou.gitchangelog.app.AppArgs;
+import de.wellnerbou.gitchangelog.app.GitChangelog;
+import de.wellnerbou.gitchangelog.model.Changelog;
+import de.wellnerbou.gitchangelog.processors.jira.JiraFilterChangelogProcessor;
 import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.Extension;
@@ -20,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 
-public class GitJiraPostPublisher extends Publisher {
+public class GitLogJiraFilterPostPublisher extends Publisher {
 
 	public final String jirabaseurl;
 	public final String jiraprefix;
@@ -29,7 +30,7 @@ public class GitJiraPostPublisher extends Publisher {
 	public final String fromRev;
 
 	@DataBoundConstructor
-	public GitJiraPostPublisher(final String jirabaseurl, final String jiraprefix, final String outputfile, final String fromRev, final String toRev) {
+	public GitLogJiraFilterPostPublisher(final String jirabaseurl, final String jiraprefix, final String outputfile, final String fromRev, final String toRev) {
 		this.jirabaseurl = jirabaseurl;
 		this.jiraprefix = jiraprefix;
 		this.outputfile = outputfile;
@@ -51,8 +52,10 @@ public class GitJiraPostPublisher extends Publisher {
 
 		final EnvVars env = build.getEnvironment(listener);
 		AppArgs appArgs = new AppArgs();
-		appArgs.setJiraBaseUrl(env.expand(jirabaseurl));
-		appArgs.setJiraProjectPrefixes(env.expand(jiraprefix));
+		final JiraFilterChangelogProcessor jiraFilterChangelogProcessor = new JiraFilterChangelogProcessor();
+		jiraFilterChangelogProcessor.setJiraBaseUrl(env.expand(jirabaseurl));
+		jiraFilterChangelogProcessor.setJiraProjectPrefixes(env.expand(jiraprefix));
+		appArgs.setChangelogProcessor(jiraFilterChangelogProcessor);
 		appArgs.setRepo(workspace.getRemote());
 
 		if(fromRev != null && fromRev.length() > 0) {
@@ -65,18 +68,17 @@ public class GitJiraPostPublisher extends Publisher {
 		PrintStream printStream = listener.getLogger();
 		if(outputfile != null && outputfile.length() > 0) {
 			final File file = new File(outputfile);
-			listener.getLogger().println("Saving git-jira-log output to file "+file.getAbsolutePath()+".");
+			listener.getLogger().println("Saving git changelog output to file "+file.getAbsolutePath()+".");
 			printStream = new PrintStream(file);
 		}
 
-		GitJira gitJira = new GitJira(appArgs, printStream);
-		final Changelog changelog = gitJira.changelog();
-		gitJira.jiraFilterUrl(changelog.getTickets());
+		GitChangelog gitChangelog = new GitChangelog(appArgs, printStream);
+		final Changelog changelog = gitChangelog.changelog();
+		gitChangelog.print(changelog);
 
 		if(outputfile != null && outputfile.length() > 0) {
 			printStream.close();
 		}
-
 		return true;
 	}
 
