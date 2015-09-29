@@ -1,0 +1,11 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:bh="/lib/health">
+    <f:entry title="Base revision (fromRev)" description="Tag or Branch rev which will be taken as base. The log will then be calculated between this revision and the revision given in toRev. If this field is empty, the latest tag will be searched and used instead." field="fromRev">
+        <f:textbox />
+    </f:entry>
+    <f:entry title="Branch/Latest revision (toRev)" description="Branch rev which will be taken as toRev. The log will then be calculated between fromRev and this revision. If nothing is given, the two latest tags will be searched and compared with each other as fromRev and toRev." field="toRev">
+        <f:textbox />
+    </f:entry>
+    <f:entry title="Output file" description="File to save output with link to JIRA filter. If left empty, it will just output to Jenkins' build log." field="outputfile">
+        <f:textbox />
+    </f:entry>
+</j:jelly>
