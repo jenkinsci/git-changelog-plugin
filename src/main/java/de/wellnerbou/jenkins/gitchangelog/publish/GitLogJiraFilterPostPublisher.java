@@ -1,8 +1,6 @@
 package de.wellnerbou.jenkins.gitchangelog.publish;
 
 import de.wellnerbou.gitchangelog.app.AppArgs;
-import de.wellnerbou.gitchangelog.app.GitChangelog;
-import de.wellnerbou.gitchangelog.model.Changelog;
 import de.wellnerbou.gitchangelog.processors.jira.JiraFilterChangelogProcessor;
 import hudson.AbortException;
 import hudson.EnvVars;
@@ -16,15 +14,12 @@ import hudson.remoting.Callable;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
-import jenkins.security.MasterToSlaveCallable;
-import org.jenkinsci.remoting.RoleChecker;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.InetAddress;
 
 public class GitLogJiraFilterPostPublisher extends Publisher {
 
@@ -53,13 +48,7 @@ public class GitLogJiraFilterPostPublisher extends Publisher {
 		final AppArgs appArgs = createAppArgs(build, build.getEnvironment(listener));
 		final PrintStream printStream = decideForPrintStream(listener);
 
-		Callable<String, IOException> task = new MasterToSlaveCallable<String, IOException>() {
-			public String call() throws IOException {
-				final GitChangelog gitChangelog = new GitChangelog(appArgs, printStream);
-				final Changelog changelog = gitChangelog.changelog();
-				return gitChangelog.print(changelog);
-			}
-		};
+		final Callable<String, IOException> task = new GitChangelogMasterToSlaveCallable(appArgs, printStream);
 		build.getWorkspace().act(task);
 		closePrintStreamIfWrittenToFile(printStream);
 
@@ -131,4 +120,5 @@ public class GitLogJiraFilterPostPublisher extends Publisher {
 			return true;
 		}
 	}
+
 }
