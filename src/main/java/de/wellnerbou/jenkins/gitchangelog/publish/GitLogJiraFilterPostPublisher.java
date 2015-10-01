@@ -12,14 +12,19 @@ import hudson.Launcher;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.BuildListener;
+import hudson.remoting.Callable;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
+import jenkins.security.MasterToSlaveCallable;
+import org.jenkinsci.remoting.RoleChecker;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.InetAddress;
 
 public class GitLogJiraFilterPostPublisher extends Publisher {
 
@@ -45,22 +50,50 @@ public class GitLogJiraFilterPostPublisher extends Publisher {
 
 	@Override
 	public boolean perform(final AbstractBuild<?, ?> build, final Launcher launcher, final BuildListener listener) throws InterruptedException, IOException {
-		final FilePath workspace = build.getWorkspace();
-		if (workspace == null) {
+		final AppArgs appArgs = createAppArgs(build, build.getEnvironment(listener));
+		final PrintStream printStream = decideForPrintStream(listener);
+
+		Callable<String, IOException> task = new MasterToSlaveCallable<String, IOException>() {
+			public String call() throws IOException {
+				final GitChangelog gitChangelog = new GitChangelog(appArgs, printStream);
+				final Changelog changelog = gitChangelog.changelog();
+				return gitChangelog.print(changelog);
+			}
+		};
+		build.getWorkspace().act(task);
+		closePrintStreamIfWrittenToFile(printStream);
+
+		return true;
+	}
+
+	private void closePrintStreamIfWrittenToFile(final PrintStream printStream) {
+		if (shouldWriteToFile()) {
+			printStream.close();
+		}
+	}
+
+	private boolean shouldWriteToFile() {
+		return outputfile != null && outputfile.length() > 0;
+	}
+
+	private PrintStream decideForPrintStream(final BuildListener listener) throws FileNotFoundException {
+		PrintStream printStream = listener.getLogger();
+		if (shouldWriteToFile()) {
+			final File file = new File(outputfile);
+			listener.getLogger().println("Saving git changelog output to file " + file.getAbsolutePath() + ".");
+			printStream = new PrintStream(file);
+		}
+		return printStream;
+	}
+
+	private AppArgs createAppArgs(final AbstractBuild<?, ?> build, final EnvVars env) throws AbortException {
+		if (build.getWorkspace() == null) {
 			throw new AbortException("no workspace for " + build);
 		}
-
-		final EnvVars env = build.getEnvironment(listener);
 		AppArgs appArgs = new AppArgs();
-		final JiraFilterChangelogProcessor jiraFilterChangelogProcessor = new JiraFilterChangelogProcessor();
-		jiraFilterChangelogProcessor.setJiraBaseUrl(env.expand(jirabaseurl));
-		jiraFilterChangelogProcessor.setJiraProjectPrefixes(env.expand(jiraprefix));
+		final JiraFilterChangelogProcessor jiraFilterChangelogProcessor = createChangelogProcessor(env);
 		appArgs.setChangelogProcessor(jiraFilterChangelogProcessor);
-		appArgs.setRepo(workspace.getRemote());
-		listener.getLogger().println("I am on machinge "+System.getenv("HOSTNAME"));
-		listener.getLogger().println("Using workspace " + workspace.getRemote() + " as git repository.");
-		final File file1 = new File(workspace.getRemote());
-		listener.getLogger().println("File " + file1.getAbsolutePath() + " exists: " + file1.exists());
+		appArgs.setRepo(build.getWorkspace().getRemote());
 
 		if (fromRev != null && fromRev.length() > 0) {
 			appArgs.setFromRev(env.expand(fromRev));
@@ -68,22 +101,21 @@ public class GitLogJiraFilterPostPublisher extends Publisher {
 		if (toRev != null && toRev.length() > 0) {
 			appArgs.setToRev(env.expand(toRev));
 		}
+		return appArgs;
+	}
 
-		PrintStream printStream = listener.getLogger();
-		if (outputfile != null && outputfile.length() > 0) {
-			final File file = new File(outputfile);
-			listener.getLogger().println("Saving git changelog output to file " + file.getAbsolutePath() + ".");
-			printStream = new PrintStream(file);
-		}
+	private void logLocation(final BuildListener listener, final FilePath workspace) {
+		listener.getLogger().println("I am on machine "+System.getenv("HOSTNAME"));
+		listener.getLogger().println("Using workspace " + workspace.getRemote() + " as git repository.");
+		final File file1 = new File(workspace.getRemote());
+		listener.getLogger().println("File " + file1.getAbsolutePath() + " exists: " + file1.exists());
+	}
 
-		GitChangelog gitChangelog = new GitChangelog(appArgs, printStream);
-		final Changelog changelog = gitChangelog.changelog();
-		gitChangelog.print(changelog);
-
-		if (outputfile != null && outputfile.length() > 0) {
-			printStream.close();
-		}
-		return true;
+	private JiraFilterChangelogProcessor createChangelogProcessor(final EnvVars env) {
+		final JiraFilterChangelogProcessor jiraFilterChangelogProcessor = new JiraFilterChangelogProcessor();
+		jiraFilterChangelogProcessor.setJiraBaseUrl(env.expand(jirabaseurl));
+		jiraFilterChangelogProcessor.setJiraProjectPrefixes(env.expand(jiraprefix));
+		return jiraFilterChangelogProcessor;
 	}
 
 	@Extension
