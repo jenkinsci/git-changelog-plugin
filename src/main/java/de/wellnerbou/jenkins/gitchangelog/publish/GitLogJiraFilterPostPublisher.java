@@ -57,7 +57,10 @@ public class GitLogJiraFilterPostPublisher extends Publisher {
 		jiraFilterChangelogProcessor.setJiraProjectPrefixes(env.expand(jiraprefix));
 		appArgs.setChangelogProcessor(jiraFilterChangelogProcessor);
 		appArgs.setRepo(workspace.getRemote());
+		listener.getLogger().println("I am on machinge "+System.getenv("HOSTNAME"));
 		listener.getLogger().println("Using workspace " + workspace.getRemote() + " as git repository.");
+		final File file1 = new File(workspace.getRemote());
+		listener.getLogger().println("File " + file1.getAbsolutePath() + " exists: " + file1.exists());
 
 		if (fromRev != null && fromRev.length() > 0) {
 			appArgs.setFromRev(env.expand(fromRev));
