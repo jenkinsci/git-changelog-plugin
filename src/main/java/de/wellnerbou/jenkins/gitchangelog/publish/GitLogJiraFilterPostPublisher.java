@@ -57,18 +57,19 @@ public class GitLogJiraFilterPostPublisher extends Publisher {
 		jiraFilterChangelogProcessor.setJiraProjectPrefixes(env.expand(jiraprefix));
 		appArgs.setChangelogProcessor(jiraFilterChangelogProcessor);
 		appArgs.setRepo(workspace.getRemote());
+		listener.getLogger().println("Using workspace " + workspace.getRemote() + " as git repository.");
 
-		if(fromRev != null && fromRev.length() > 0) {
+		if (fromRev != null && fromRev.length() > 0) {
 			appArgs.setFromRev(env.expand(fromRev));
 		}
-		if(toRev != null && toRev.length() > 0) {
+		if (toRev != null && toRev.length() > 0) {
 			appArgs.setToRev(env.expand(toRev));
 		}
 
 		PrintStream printStream = listener.getLogger();
-		if(outputfile != null && outputfile.length() > 0) {
+		if (outputfile != null && outputfile.length() > 0) {
 			final File file = new File(outputfile);
-			listener.getLogger().println("Saving git changelog output to file "+file.getAbsolutePath()+".");
+			listener.getLogger().println("Saving git changelog output to file " + file.getAbsolutePath() + ".");
 			printStream = new PrintStream(file);
 		}
 
@@ -76,7 +77,7 @@ public class GitLogJiraFilterPostPublisher extends Publisher {
 		final Changelog changelog = gitChangelog.changelog();
 		gitChangelog.print(changelog);
 
-		if(outputfile != null && outputfile.length() > 0) {
+		if (outputfile != null && outputfile.length() > 0) {
 			printStream.close();
 		}
 		return true;

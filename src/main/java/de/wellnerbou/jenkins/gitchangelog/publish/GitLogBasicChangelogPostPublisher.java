@@ -5,7 +5,6 @@ import de.wellnerbou.gitchangelog.app.GitChangelog;
 import de.wellnerbou.gitchangelog.model.Changelog;
 import de.wellnerbou.gitchangelog.processors.ChangelogProcessor;
 import de.wellnerbou.gitchangelog.processors.basic.BasicChangelogProcessor;
-import de.wellnerbou.gitchangelog.processors.jira.JiraFilterChangelogProcessor;
 import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.Extension;
