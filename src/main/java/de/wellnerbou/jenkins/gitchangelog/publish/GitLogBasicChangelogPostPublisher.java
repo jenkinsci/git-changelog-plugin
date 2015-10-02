@@ -1,14 +1,8 @@
 package de.wellnerbou.jenkins.gitchangelog.publish;
 
-import de.wellnerbou.gitchangelog.app.AppArgs;
-import de.wellnerbou.gitchangelog.app.GitChangelog;
-import de.wellnerbou.gitchangelog.model.Changelog;
 import de.wellnerbou.gitchangelog.processors.ChangelogProcessor;
 import de.wellnerbou.gitchangelog.processors.basic.BasicChangelogProcessor;
-import hudson.AbortException;
-import hudson.EnvVars;
 import hudson.Extension;
-import hudson.FilePath;
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
@@ -18,9 +12,7 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import org.kohsuke.stapler.DataBoundConstructor;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 
 public class GitLogBasicChangelogPostPublisher extends Publisher {
 
@@ -42,39 +34,18 @@ public class GitLogBasicChangelogPostPublisher extends Publisher {
 
 	@Override
 	public boolean perform(final AbstractBuild<?, ?> build, final Launcher launcher, final BuildListener listener) throws InterruptedException, IOException {
-		final FilePath workspace = build.getWorkspace();
-		if (workspace == null) {
-			throw new AbortException("no workspace for " + build);
-		}
-
-		final EnvVars env = build.getEnvironment(listener);
-		AppArgs appArgs = new AppArgs();
-		final ChangelogProcessor changelogProcessor = new BasicChangelogProcessor();
-		appArgs.setChangelogProcessor(changelogProcessor);
-		appArgs.setRepo(workspace.getRemote());
-
-		if(fromRev != null && fromRev.length() > 0) {
-			appArgs.setFromRev(env.expand(fromRev));
-		}
-		if(toRev != null && toRev.length() > 0) {
-			appArgs.setToRev(env.expand(toRev));
-		}
-
-		PrintStream printStream = listener.getLogger();
-		if(outputfile != null && outputfile.length() > 0) {
-			final File file = new File(outputfile);
-			listener.getLogger().println("Saving git changelog output to file "+file.getAbsolutePath()+".");
-			printStream = new PrintStream(file);
-		}
-
-		GitChangelog gitChangelog = new GitChangelog(appArgs, printStream);
-		final Changelog changelog = gitChangelog.changelog();
-		gitChangelog.print(changelog);
-
-		if(outputfile != null && outputfile.length() > 0) {
-			printStream.close();
-		}
+		final GitLogGenericPostPublishPerformer performer = new GitLogGenericPostPublishPerformerBuilder()
+				.setChangelogProcessor(createChangelogProcessor())
+				.withFromRev(fromRev)
+				.withToRev(toRev)
+				.writeTofile(outputfile)
+				.build();
+		performer.perform(build, listener);
 		return true;
+	}
+
+	private ChangelogProcessor createChangelogProcessor() {
+		return new BasicChangelogProcessor();
 	}
 
 	@Extension
