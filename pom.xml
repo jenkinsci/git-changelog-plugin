@@ -20,7 +20,7 @@
 
     <ciManagement>
         <system>Jenkins</system>
-        <url>https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/<</url>
+        <url>https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/</url>
     </ciManagement>
 
     <issueManagement>
