@@ -31,7 +31,7 @@ to save the files as jenkins report.
 
 ### Using as Token Macro Replacement Provider
 
-Having installed this plugin, automatically following macros for replacement are provided: <code>GITCHANGELOGJIRA</code> and <code>GITCHANGELOG</code>.
+Having installed the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin) plugin (which will be the case, as it is a dependency of this plugin), following macros for replacement are provided: <code>GITCHANGELOGJIRA</code> and <code>GITCHANGELOG</code>.
 
 If you use these macros in any plugin supporting token macro replacements, this will be replaced with either the Jira URL or the changelog.
 

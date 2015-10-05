@@ -17,6 +17,7 @@
 
     <name>Git Changelog</name>
     <description>Plugin creating changelogs based on Git's history between two tags or revisions</description>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin</url>
 
     <build>
         <plugins>
@@ -40,6 +41,7 @@
 
     <developers>
         <developer>
+            <id>paulwellnerbou</id>
             <name>Paul Wellner Bou</name>
             <email>paul@wellnerbou.de</email>
             <url>http://paul.wellnerbou.de</url>
@@ -110,6 +112,7 @@
     <profiles>
         <profile>
             <id>with-email-ext</id>
+            <!-- The email-ext plugin is a good way to test the token macro replacements. -->
             <dependencies>
                 <dependency>
                     <groupId>org.jenkins-ci.plugins</groupId>
