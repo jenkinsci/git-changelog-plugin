@@ -18,6 +18,17 @@
     <description>Plugin creating changelogs based on Git's history between two tags or revisions</description>
     <url>https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin</url>
 
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/<</url>
+    </ciManagement>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://issues.jenkins-ci.org/</url>
+        <!-- All issues for this plugin: https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20component%20%3D%20git-changelog-plugin -->
+    </issueManagement>
+
     <build>
         <plugins>
             <plugin>
