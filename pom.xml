@@ -1,115 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.jenkins-ci.plugins</groupId>
-		<artifactId>plugin</artifactId>
-		<version>1.609.3</version>
-		<relativePath />
-	</parent>
+    <parent>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>plugin</artifactId>
+        <version>1.609.3</version>
+        <relativePath/>
+    </parent>
 
-	<groupId>de.wellnerbou.jenkins</groupId>
-	<artifactId>git-changelog</artifactId>
-	<version>1.1-SNAPSHOT</version>
-	<packaging>hpi</packaging>
+    <groupId>de.wellnerbou.jenkins</groupId>
+    <artifactId>git-changelog</artifactId>
+    <version>1.1-SNAPSHOT</version>
+    <packaging>hpi</packaging>
 
-	<name>Git Changelog</name>
-	<description>Plugin creating changelogs based on Git's history between two tags or revisions</description>
+    <name>Git Changelog</name>
+    <description>Plugin creating changelogs based on Git's history between two tags or revisions</description>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
             </plugin>
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 
-	<licenses>
-		<license>
-			<name>MIT License</name>
-			<url>http://opensource.org/licenses/MIT</url>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 
-	<developers>
-		<developer>
-			<name>Paul Wellner Bou</name>
-			<email>paul@wellnerbou.de</email>
-			<url>http://paul.wellnerbou.de</url>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Paul Wellner Bou</name>
+            <email>paul@wellnerbou.de</email>
+            <url>http://paul.wellnerbou.de</url>
+        </developer>
+    </developers>
 
-	<!-- Assuming you want to host on @jenkinsci: <scm> <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection> 
-		<developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection> 
-		<url>http://github.com/jenkinsci/${project.artifactId}-plugin</url> </scm> -->
+    <scm>
+        <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
+        <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    </scm>
 
-	<scm>
-		<connection>scm:git:git://github.com/paulwellnerbou/git-changelog-jenkins-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:paulwellnerbou/git-changelog-jenkins-plugin.git</developerConnection>
-		<url>http://github.com/paulwellnerbou/git-changelog-jenkins-plugin</url>
-	</scm>
+    <repositories>
+        <repository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </repository>
+        <repository>
+            <id>bintray-paulwellnerbou-maven</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/paulwellnerbou/maven</url>
+        </repository>
+    </repositories>
 
-	<repositories>
-		<repository>
-			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
-		</repository>
-		<repository>
-			<id>bintray-paulwellnerbou-maven</id>
-			<name>bintray</name>
-			<url>http://dl.bintray.com/paulwellnerbou/maven</url>
-		</repository>
-	</repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
-		</pluginRepository>
-	</pluginRepositories>
-
-	<dependencies>
+    <dependencies>
         <!-- git-changelog depends on Guava 18, jenkins depends on Guava 11, 14 is a working comprise -->
         <dependency>
             <artifactId>guava</artifactId>
             <groupId>com.google.guava</groupId>
             <version>14.0</version>
         </dependency>
-		<dependency>
-			<groupId>de.wellnerbou</groupId>
-			<artifactId>git-changelog</artifactId>
-			<version>2.2</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>guava</artifactId>
-					<groupId>com.google.guava</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jenkins-ci.plugins</groupId>
-			<artifactId>token-macro</artifactId>
-			<version>1.10</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jenkins-ci.plugins</groupId>
-			<artifactId>git</artifactId>
-			<version>2.3.5</version>
-		</dependency>
+        <dependency>
+            <groupId>de.wellnerbou</groupId>
+            <artifactId>git-changelog</artifactId>
+            <version>2.2</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>token-macro</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>git</artifactId>
+            <version>2.3.5</version>
+        </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>2.1.0</version>
             <scope>test</scope>
         </dependency>
-	</dependencies>
+    </dependencies>
 
     <profiles>
         <profile>
