@@ -56,14 +56,19 @@
             <email>paul@wellnerbou.de</email>
             <url>http://paul.wellnerbou.de</url>
         </developer>
+        <developer>
+            <id>tomasbjerre</id>
+            <name>Tomas Bjerre</name>
+            <email>tomas.bjerre85@gmail.com</email>
+        </developer>
     </developers>
 
     <scm>
         <connection>scm:git:https://github.com/jenkinsci/git-changelog-plugin.git</connection>
         <developerConnection>scm:git:https://github.com/jenkinsci/git-changelog-plugin.git</developerConnection>
         <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <repositories>
         <repository>
@@ -101,6 +106,22 @@
                     <groupId>com.google.guava</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>se.bjurr.gitchangelog</groupId>
+            <artifactId>git-changelog-lib</artifactId>
+            <version>1.18</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+           <groupId>org.jenkins-ci.main</groupId>
+           <artifactId>maven-plugin</artifactId>
+           <version>2.9</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
