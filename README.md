@@ -1,4 +1,4 @@
-Git Changelog Jenkins Plugin
+Git Changelog Jenkins Plugin [![Build Status](https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/badge/icon)](https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/)
 ===========================
 
 Jenkins plugin to extract a changelog out of commit messages between two GIT revisions. This changelog can be postprocessed and converted
