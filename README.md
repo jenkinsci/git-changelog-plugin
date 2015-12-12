@@ -3,16 +3,29 @@ Git Changelog Jenkins Plugin
 
 Jenkins plugin to extract a changelog out of commit messages between two GIT revisions. This changelog can be postprocessed and converted
 to either an human readable git changelog listing all commits, or a JIRA filter URL.
+
 It implements basically the features of [git-changelog](https://github.com/paulwellnerbou/git-changelog) and [git-changelog-lib](https://github.com/tomasbjerre/git-changelog-lib).
+
+The plugin is also documented in the [Jenkins wiki](https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin).
 
 ## Usage
 
-You can use this plugin either as a post-build action which will produce a file containing the jira filter and some informative lines,
-or you can use it providing replacement text for the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin), to send
+You can use this plugin either
+* As a post-build action
+ * To crate a summary on Jenkins job containing changelog or releasenotes.
+ * To create a file in workspace containing changelog or releasenotes.
+ * To create a MediaWiki page containing changelog or releasenotes.
+ * To produce a file containing the jira filter and some informative lines.
+* To provide replacement text for the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin), to send
 emails, for example.
+
+This is also documented in [Jenkins wiki](https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin).
 
 ### Using a Post-build Action
 
+When the plugin is installed, it will add some new post build actions in Jenkins job configuration.
+
+#### Jira Filter
 The following documentation explains to set up the JIRA Filter post-build action. Using the basic changelog post-build action
 is even easier, as it does not need any further configuration.
 
