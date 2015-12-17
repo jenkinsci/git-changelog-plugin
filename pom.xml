@@ -11,7 +11,7 @@
 
     <groupId>de.wellnerbou.jenkins</groupId>
     <artifactId>git-changelog</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.4-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
     <name>Git Changelog</name>
