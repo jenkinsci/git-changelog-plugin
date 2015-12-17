@@ -2,7 +2,6 @@ package org.jenkinsci.plugins.gitchangelog;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.createNewConfig;
-import hudson.maven.AbstractMavenProject;
 import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
@@ -106,7 +105,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
 
  @Override
  public boolean isApplicable(@SuppressWarnings("rawtypes") final Class<? extends AbstractProject> jobType) {
-  return !AbstractMavenProject.class.isAssignableFrom(jobType);
+  return true;
  }
 
  /**
