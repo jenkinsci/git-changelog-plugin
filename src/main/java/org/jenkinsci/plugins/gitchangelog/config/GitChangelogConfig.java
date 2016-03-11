@@ -410,13 +410,13 @@ public class GitChangelogConfig implements Serializable {
     + showSummaryTemplateContent + ", fromType=" + fromType + ", fromReference=" + fromReference + ", toType=" + toType
     + ", toReference=" + toReference + ", dateFormat=" + dateFormat + ", timeZone=" + timeZone
     + ", ignoreCommitsIfMessageMatches=" + ignoreCommitsIfMessageMatches + ", useJira=" + useJira + ", jiraServer="
-    + jiraServer + ", jiraIssuePattern=" + jiraIssuePattern + ", jiraUsername=" + jiraUsername + ", jiraPassword="
-    + jiraPassword + ", useGitHub=" + useGitHub + ", gitHubApi=" + gitHubApi + ", gitHubIssuePattern="
+    + jiraServer + ", jiraIssuePattern=" + jiraIssuePattern + ", jiraUsername=" + jiraUsername
+    + ", jiraPassword=****, useGitHub=" + useGitHub + ", gitHubApi=" + gitHubApi + ", gitHubIssuePattern="
     + gitHubIssuePattern + ", noIssueName=" + noIssueName + ", untaggedName=" + untaggedName + ", useReadableTagName="
     + useReadableTagName + ", readableTagName=" + readableTagName + ", useMediaWiki=" + useMediaWiki
-    + ", mediaWikiUsername=" + mediaWikiUsername + ", mediaWikiPassword=" + mediaWikiPassword + ", mediaWikiTitle="
-    + mediaWikiTitle + ", mediaWikiUrl=" + mediaWikiUrl + ", useFile=" + useFile + ", file=" + file + ", customIssues="
-    + customIssues + ", showSummary=" + showSummary + "]";
+    + ", mediaWikiUsername=" + mediaWikiUsername + ", mediaWikiPassword=***, mediaWikiTitle=" + mediaWikiTitle
+    + ", mediaWikiUrl=" + mediaWikiUrl + ", useFile=" + useFile + ", file=" + file + ", customIssues=" + customIssues
+    + ", showSummary=" + showSummary + "]";
  }
 
 }
