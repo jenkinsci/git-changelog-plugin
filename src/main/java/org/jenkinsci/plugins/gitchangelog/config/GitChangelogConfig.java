@@ -1,8 +1,11 @@
 package org.jenkinsci.plugins.gitchangelog.config;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GitChangelogConfig {
+public class GitChangelogConfig implements Serializable {
+
+ private static final long serialVersionUID = -6715117454282183132L;
  private boolean useConfigFile;
  private String configFile;
 
@@ -393,4 +396,27 @@ public class GitChangelogConfig {
  public boolean showSummary() {
   return showSummary;
  }
+
+ @Override
+ public String toString() {
+  return "GitChangelogConfig [useConfigFile=" + useConfigFile + ", configFile=" + configFile
+    + ", createFileUseTemplateFile=" + createFileUseTemplateFile + ", createFileTemplateFile=" + createFileTemplateFile
+    + ", createFileUseTemplateContent=" + createFileUseTemplateContent + ", createFileTemplateContent="
+    + createFileTemplateContent + ", mediaWikiUseTemplateFile=" + mediaWikiUseTemplateFile + ", mediaWikiTemplateFile="
+    + mediaWikiTemplateFile + ", mediaWikiUseTemplateContent=" + mediaWikiUseTemplateContent
+    + ", mediaWikiTemplateContent=" + mediaWikiTemplateContent + ", showSummaryUseTemplateFile="
+    + showSummaryUseTemplateFile + ", showSummaryTemplateFile=" + showSummaryTemplateFile
+    + ", showSummaryUseTemplateContent=" + showSummaryUseTemplateContent + ", showSummaryTemplateContent="
+    + showSummaryTemplateContent + ", fromType=" + fromType + ", fromReference=" + fromReference + ", toType=" + toType
+    + ", toReference=" + toReference + ", dateFormat=" + dateFormat + ", timeZone=" + timeZone
+    + ", ignoreCommitsIfMessageMatches=" + ignoreCommitsIfMessageMatches + ", useJira=" + useJira + ", jiraServer="
+    + jiraServer + ", jiraIssuePattern=" + jiraIssuePattern + ", jiraUsername=" + jiraUsername + ", jiraPassword="
+    + jiraPassword + ", useGitHub=" + useGitHub + ", gitHubApi=" + gitHubApi + ", gitHubIssuePattern="
+    + gitHubIssuePattern + ", noIssueName=" + noIssueName + ", untaggedName=" + untaggedName + ", useReadableTagName="
+    + useReadableTagName + ", readableTagName=" + readableTagName + ", useMediaWiki=" + useMediaWiki
+    + ", mediaWikiUsername=" + mediaWikiUsername + ", mediaWikiPassword=" + mediaWikiPassword + ", mediaWikiTitle="
+    + mediaWikiTitle + ", mediaWikiUrl=" + mediaWikiUrl + ", useFile=" + useFile + ", file=" + file + ", customIssues="
+    + customIssues + ", showSummary=" + showSummary + "]";
+ }
+
 }

@@ -1,6 +1,9 @@
 package org.jenkinsci.plugins.gitchangelog.config;
 
-public class CustomIssue {
+import java.io.Serializable;
+
+public class CustomIssue implements Serializable {
+ private static final long serialVersionUID = -6202256680695752956L;
  private String name;
  private String pattern;
  private String link;
