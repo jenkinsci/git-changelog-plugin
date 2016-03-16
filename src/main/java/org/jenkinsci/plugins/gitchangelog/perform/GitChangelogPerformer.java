@@ -67,6 +67,7 @@ public class GitChangelogPerformer {
   c.setUseGitHub(config.isUseGitHub());
   c.setGitHubApi(environment.expand(config.getGitHubApi()));
   c.setGitHubIssuePattern(environment.expand(config.getGitHubIssuePattern()));
+  c.setGitHubToken(environment.expand(config.getGitHubToken()));
 
   c.setNoIssueName(environment.expand(config.getNoIssueName()));
   c.setUntaggedName(environment.expand(config.getUntaggedName()));

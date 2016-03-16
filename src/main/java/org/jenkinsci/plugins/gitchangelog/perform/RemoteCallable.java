@@ -75,7 +75,8 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
    if (config.isUseGitHub()) {
     gitChangelogApiBuilder //
       .withGitHubApi(config.getGitHubApi()) //
-      .withGitHubIssuePattern(config.getGitHubIssuePattern());
+      .withGitHubIssuePattern(config.getGitHubIssuePattern()) //
+      .withGitHubToken(config.getGitHubToken());
    }
 
    if (config.isUseReadableTagName() && !isNullOrEmpty(config.getReadableTagName())) {

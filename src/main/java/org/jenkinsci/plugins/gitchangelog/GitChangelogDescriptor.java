@@ -57,6 +57,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
   c.setUseGitHub(formData.getBoolean("useGitHub"));
   c.setGitHubApi(formData.getString("gitHubApi"));
   c.setGitHubIssuePattern(formData.getString("gitHubIssuePattern"));
+  c.setGitHubToken(formData.getString("gitHubToken"));
 
   c.setNoIssueName(formData.getString("noIssueName"));
   c.setUntaggedName(formData.getString("untaggedName"));

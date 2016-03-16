@@ -39,6 +39,7 @@ public class GitChangelogConfig implements Serializable {
  private boolean useGitHub;
  private String gitHubApi;
  private String gitHubIssuePattern;
+ private String gitHubToken;
  private String noIssueName;
  private String untaggedName;
  private boolean useReadableTagName;
@@ -55,6 +56,14 @@ public class GitChangelogConfig implements Serializable {
 
  public String getCreateFileTemplateContent() {
   return createFileTemplateContent;
+ }
+
+ public void setGitHubToken(String gitHubToken) {
+  this.gitHubToken = gitHubToken;
+ }
+
+ public String getGitHubToken() {
+  return gitHubToken;
  }
 
  public String getCreateFileTemplateFile() {

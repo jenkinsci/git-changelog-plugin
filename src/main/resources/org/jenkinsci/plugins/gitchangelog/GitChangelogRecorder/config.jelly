@@ -243,10 +243,10 @@
         <f:entry title="Password">
           <f:password name="jiraPassword" value="${config.jiraPassword}"/>
         </f:entry>
-        <f:description>
-         With Jira credentials you can have the {{title}} variable populated with title from Jira issues.
-        </f:description>
       </f:optionalBlock>
+      <f:description>
+       With Jira credentials you can have the {{title}} variable populated with title from Jira issues.
+      </f:description>
     </table>
   </f:block>
 </f:section>
@@ -260,6 +260,12 @@
         </f:entry>
         <f:description>
           Something like: https://api.github.com/repos/REPO/PROJECT
+        </f:description>
+        <f:entry title="GitHub Token">
+          <f:textbox name="gitHubToken" value="${config.gitHubToken}"/>
+        </f:entry>
+        <f:description>
+          This will allow more requests on the API. You can get a token with curl like this: curl -u 'yourgithubuser' -d '{"note":"Git Changelog Lib"}' https://api.github.com/authorizations
         </f:description>
 
         <f:entry title="Issue pattern">
