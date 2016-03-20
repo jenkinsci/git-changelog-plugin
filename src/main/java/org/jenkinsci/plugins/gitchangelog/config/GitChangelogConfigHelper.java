@@ -43,8 +43,8 @@ public class GitChangelogConfigHelper {
   config.setUntaggedName(DEFAULT_UNTAGGED_NAME);
 
   List<CustomIssue> customIssues = newArrayList();
-  customIssues.add(new CustomIssue("", "", ""));
-  customIssues.add(new CustomIssue("", "", ""));
+  customIssues.add(new CustomIssue("", "", "", ""));
+  customIssues.add(new CustomIssue("", "", "", ""));
   config.setCustomIssues(customIssues);
   return config;
  }

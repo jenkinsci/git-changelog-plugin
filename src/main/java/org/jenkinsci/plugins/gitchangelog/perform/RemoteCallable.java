@@ -61,6 +61,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
      .withDateFormat(config.getDateFormat()) //
      .withIgnoreCommitsWithMesssage(config.getIgnoreCommitsIfMessageMatches()) //
      .withNoIssueName(config.getNoIssueName()) //
+     .withIgnoreCommitsWithoutIssue(config.isIgnoreCommitsWithoutIssue())//
      .withTimeZone(config.getTimeZone()) //
      .withUntaggedName(config.getUntaggedName());
 
@@ -105,7 +106,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
    for (CustomIssue ci : config.getCustomIssues()) {
     if (!isNullOrEmpty(ci.getName()) && !isNullOrEmpty(ci.getPattern())) {
-     gitChangelogApiBuilder.withCustomIssue(ci.getName(), ci.getPattern(), ci.getLink());
+     gitChangelogApiBuilder.withCustomIssue(ci.getName(), ci.getPattern(), ci.getLink(), ci.getTitle());
     }
    }
 

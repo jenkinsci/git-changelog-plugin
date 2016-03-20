@@ -70,6 +70,7 @@ public class GitChangelogPerformer {
   c.setGitHubToken(environment.expand(config.getGitHubToken()));
 
   c.setNoIssueName(environment.expand(config.getNoIssueName()));
+  c.setIgnoreCommitsWithoutIssue(config.isIgnoreCommitsWithoutIssue());
   c.setUntaggedName(environment.expand(config.getUntaggedName()));
   c.setUseReadableTagName(config.isUseReadableTagName());
   c.setReadableTagName(environment.expand(config.getReadableTagName()));
@@ -102,7 +103,8 @@ public class GitChangelogPerformer {
    expandedCi.add(new CustomIssue(//
      environment.expand(ci.getName()),//
      environment.expand(ci.getPattern()),//
-     environment.expand(ci.getLink())));
+     environment.expand(ci.getLink()),//
+     environment.expand(ci.getTitle())));
   }
   c.setCustomIssues(expandedCi);
   return c;

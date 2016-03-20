@@ -53,6 +53,7 @@ public class GitChangelogConfig implements Serializable {
  private String file;
  private List<CustomIssue> customIssues;
  private boolean showSummary;
+ private boolean ignoreCommitsWithoutIssue;
 
  public String getCreateFileTemplateContent() {
   return createFileTemplateContent;
@@ -404,6 +405,14 @@ public class GitChangelogConfig implements Serializable {
 
  public boolean showSummary() {
   return showSummary;
+ }
+
+ public void setIgnoreCommitsWithoutIssue(boolean ignoreCommitsWithoutIssue) {
+  this.ignoreCommitsWithoutIssue = ignoreCommitsWithoutIssue;
+ }
+
+ public boolean isIgnoreCommitsWithoutIssue() {
+  return ignoreCommitsWithoutIssue;
  }
 
  @Override

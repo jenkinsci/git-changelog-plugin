@@ -7,11 +7,13 @@ public class CustomIssue implements Serializable {
  private String name;
  private String pattern;
  private String link;
+ private final String title;
 
- public CustomIssue(String name, String pattern, String link) {
+ public CustomIssue(String name, String pattern, String link, String title) {
   this.name = name;
   this.pattern = pattern;
   this.link = link;
+  this.title = title;
  }
 
  public void setLink(String link) {
@@ -36,5 +38,9 @@ public class CustomIssue implements Serializable {
 
  public String getPattern() {
   return pattern;
+ }
+
+ public String getTitle() {
+  return title;
  }
 }
