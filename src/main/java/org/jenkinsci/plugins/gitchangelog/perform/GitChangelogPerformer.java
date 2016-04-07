@@ -75,6 +75,9 @@ public class GitChangelogPerformer {
   c.setUseReadableTagName(config.isUseReadableTagName());
   c.setReadableTagName(environment.expand(config.getReadableTagName()));
 
+  c.setUseIgnoreTagsIfNameMatches(config.isUseIgnoreTagsIfNameMatches());
+  c.setIgnoreTagsIfNameMatches(environment.expand(config.getIgnoreTagsIfNameMatches()));
+
   c.setUseMediaWiki(config.isUseMediaWiki());
   c.setMediaWikiUsername(environment.expand(config.getMediaWikiUsername()));
   c.setMediaWikiPassword(environment.expand(config.getMediaWikiPassword()));

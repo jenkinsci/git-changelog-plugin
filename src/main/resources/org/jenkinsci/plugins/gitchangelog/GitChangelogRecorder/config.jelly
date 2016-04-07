@@ -81,6 +81,20 @@
     </table>
   </f:block>
 
+  <f:block>
+    <table>
+      <f:optionalBlock checked="${config.useIgnoreTagsIfNameMatches}" name="useIgnoreTagsIfNameMatches" title="Use a regular expression to ignore tags" inline="true">
+        <f:entry title="Pattern">
+          <f:textbox name="ignoreTagsIfNameMatches" value="${config.ignoreTagsIfNameMatches}"/>
+          <f:description>
+           A regular expression applied to tag name to ignore any tag matching.<br/>
+           Example: tag named /refs/tags/1.0-rc1 can be ignored with .*rc1${dollar}.
+          </f:description>
+        </f:entry>
+      </f:optionalBlock>
+    </table>
+  </f:block>
+
   <f:entry title="Date format">
     <f:textbox name="dateFormat" value="${config.dateFormat}"/>
   </f:entry>

@@ -84,6 +84,10 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
     gitChangelogApiBuilder.withReadableTagName(config.getReadableTagName());
    }
 
+   if (config.isUseIgnoreTagsIfNameMatches() && !isNullOrEmpty(config.getIgnoreTagsIfNameMatches())) {
+    gitChangelogApiBuilder.withIgnoreTagsIfNameMatches(config.getIgnoreTagsIfNameMatches());
+   }
+
    if (isNullOrEmpty(config.getFromType()) || FROMTYPE.valueOf(config.getFromType()) == firstCommit) {
     gitChangelogApiBuilder.withFromCommit(firstCommit.getReference());
    } else if (FROMTYPE.valueOf(config.getFromType()) == ref && !isNullOrEmpty(config.getFromReference())) {

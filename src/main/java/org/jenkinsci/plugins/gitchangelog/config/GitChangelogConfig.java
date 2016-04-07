@@ -54,6 +54,8 @@ public class GitChangelogConfig implements Serializable {
  private List<CustomIssue> customIssues;
  private boolean showSummary;
  private boolean ignoreCommitsWithoutIssue;
+ private boolean useIgnoreTagsIfNameMatches;
+ private String ignoreTagsIfNameMatches;
 
  public String getCreateFileTemplateContent() {
   return createFileTemplateContent;
@@ -413,6 +415,22 @@ public class GitChangelogConfig implements Serializable {
 
  public boolean isIgnoreCommitsWithoutIssue() {
   return ignoreCommitsWithoutIssue;
+ }
+
+ public void setIgnoreTagsIfNameMatches(String ignoreTagsIfNameMatches) {
+  this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
+ }
+
+ public String getIgnoreTagsIfNameMatches() {
+  return ignoreTagsIfNameMatches;
+ }
+
+ public void setUseIgnoreTagsIfNameMatches(boolean useIgnoreTagsIfNameMatches) {
+  this.useIgnoreTagsIfNameMatches = useIgnoreTagsIfNameMatches;
+ }
+
+ public boolean isUseIgnoreTagsIfNameMatches() {
+  return useIgnoreTagsIfNameMatches;
  }
 
  @Override

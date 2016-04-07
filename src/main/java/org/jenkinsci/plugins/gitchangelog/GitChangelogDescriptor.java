@@ -47,6 +47,8 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
   c.setDateFormat(formData.getString("dateFormat"));
   c.setTimeZone(formData.getString("timeZone"));
   c.setIgnoreCommitsIfMessageMatches(formData.getString("ignoreCommitsIfMessageMatches"));
+  c.setUseIgnoreTagsIfNameMatches(formData.getBoolean("useIgnoreTagsIfNameMatches"));
+  c.setIgnoreTagsIfNameMatches(formData.getString("ignoreTagsIfNameMatches"));
 
   c.setUseJira(formData.getBoolean("useJira"));
   c.setJiraServer(formData.getString("jiraServer"));
