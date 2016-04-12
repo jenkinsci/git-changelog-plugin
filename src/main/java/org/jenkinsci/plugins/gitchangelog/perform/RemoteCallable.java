@@ -18,6 +18,7 @@ import java.net.URISyntaxException;
 
 import jenkins.security.MasterToSlaveCallable;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE;
@@ -154,7 +155,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
     write(gitChangelogApiBuilder.render(), toFile, UTF_8);
    }
   } catch (Exception e) {
-   logString.append(e.getMessage());
+   logString.append(ExceptionUtils.getStackTrace(e));
   }
   remoteResult.setLog(logString.toString());
   return remoteResult;
