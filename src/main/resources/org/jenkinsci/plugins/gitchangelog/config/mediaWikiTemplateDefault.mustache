@@ -21,8 +21,11 @@ Changelog of Git Changelog.
    {{#commits}}
 [https://github.com/tomasbjerre/git-changelog-lib/commit/{{hash}} {{hash}}] {{authorName}} {{commitTime}}
 
-{{{message}}}
+'''{{{messageTitle}}}'''
 
+{{#messageBodyItems}}
+ * {{.}} 
+{{/messageBodyItems}}
 
   {{/commits}}
 
