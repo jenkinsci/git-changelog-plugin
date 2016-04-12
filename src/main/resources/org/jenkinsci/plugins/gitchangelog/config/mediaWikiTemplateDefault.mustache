@@ -1,0 +1,30 @@
+__NOTOC__
+
+= Git Changelog changelog =
+Changelog of Git Changelog.
+
+{{#tags}}
+== {{name}} ==
+ {{#issues}}
+  {{#hasIssue}}
+   {{#hasLink}}
+=== {{name}} [{{link}} {{issue}}] {{title}} ===
+   {{/hasLink}}
+   {{^hasLink}}
+=== {{name}} {{issue}} {{title}} ===
+   {{/hasLink}}
+  {{/hasIssue}}
+  {{^hasIssue}}
+=== {{name}} ===
+  {{/hasIssue}}
+
+   {{#commits}}
+[https://github.com/tomasbjerre/git-changelog-lib/commit/{{hash}} {{hash}}] {{authorName}} {{commitTime}}
+
+{{{message}}}
+
+
+  {{/commits}}
+
+ {{/issues}}
+{{/tags}}
