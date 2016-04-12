@@ -11,7 +11,7 @@
 
     <groupId>de.wellnerbou.jenkins</groupId>
     <artifactId>git-changelog</artifactId>
-    <version>1.19</version>
+    <version>1.20-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
     <name>Git Changelog</name>
@@ -67,7 +67,7 @@
         <connection>scm:git:https://github.com/jenkinsci/git-changelog-plugin.git</connection>
         <developerConnection>scm:git:https://github.com/jenkinsci/git-changelog-plugin.git</developerConnection>
         <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
-        <tag>git-changelog-1.19</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>
