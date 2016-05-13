@@ -30,9 +30,13 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
  private static final long serialVersionUID = -2489061314794088231L;
  private final String workspacePath;
+ private String path = new String();
+
+
  private final GitChangelogConfig config;
 
  public RemoteCallable(String workspacePath, GitChangelogConfig config) {
+  
   this.workspacePath = workspacePath;
   this.config = config;
  }
@@ -46,9 +50,16 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
  public RemoteResult call() throws IOException {
   RemoteResult remoteResult = new RemoteResult();
   StringBuilder logString = new StringBuilder();
+   path = workspacePath;
+   
+   if (config.isUseSubDirectory()){
+      path = workspacePath + "/" + config.getSubDirectory();
+  } 
+     
+ 
   try {
-   GitChangelogApi gitChangelogApiBuilder = gitChangelogApiBuilder()//
-     .withFromRepo(workspacePath);
+   GitChangelogApi gitChangelogApiBuilder = gitChangelogApiBuilder()//      
+     .withFromRepo(path);
 
    if (config.isUseConfigFile() && !isNullOrEmpty(config.getConfigFile())) {
     try {
@@ -150,9 +161,11 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
      gitChangelogApiBuilder.withTemplateContent(config.getCreateFileTemplateContent());
     }
     logString.append("Creating changelog " + config.toFile());
-    File toFile = new File(workspacePath + "/" + config.toFile());
-    new File(toFile.getParent()).mkdirs();
-    write(gitChangelogApiBuilder.render(), toFile, UTF_8);
+
+        File toFile = new File(workspacePath + "/" + config.toFile());
+        new File(toFile.getParent()).mkdirs();
+        write(gitChangelogApiBuilder.render(), toFile, UTF_8);    
+    
    }
   } catch (Exception e) {
    logString.append(ExceptionUtils.getStackTrace(e));

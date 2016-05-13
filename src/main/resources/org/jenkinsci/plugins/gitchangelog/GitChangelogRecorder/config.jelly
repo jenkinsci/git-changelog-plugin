@@ -54,6 +54,15 @@
     </f:description>
   </f:entry>
 
+<f:optionalBlock checked="${config.useSubDirectory}" name="useSubDirectory" title="Use a subdirectory relative to the workspace" inline="true">
+        <f:entry title="SubDirectory">
+          <f:textbox name="subDirectory" value="${config.subDirectory}"/>
+        </f:entry>
+      </f:optionalBlock>
+      <f:description>
+       If you have checked out the source code to a subdirectory configure it here. Relative to workspace.
+      </f:description>
+
   <f:block>
     <table>
       <f:optionalBlock checked="${config.useConfigFile}" name="useConfigFile" title="Use a configuration file from workspace" inline="true">
