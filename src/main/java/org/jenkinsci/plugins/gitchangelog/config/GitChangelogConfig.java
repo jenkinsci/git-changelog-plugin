@@ -6,103 +6,249 @@ import java.util.List;
 public class GitChangelogConfig implements Serializable {
 
  private static final long serialVersionUID = -6715117454282183132L;
- private boolean useConfigFile;
  private String configFile;
-
- private boolean createFileUseTemplateFile;
+ private String createFileTemplateContent;
  private String createFileTemplateFile;
  private boolean createFileUseTemplateContent;
- private String createFileTemplateContent;
-
- private boolean mediaWikiUseTemplateFile;
- private String mediaWikiTemplateFile;
- private boolean mediaWikiUseTemplateContent;
- private String mediaWikiTemplateContent;
-
- private boolean showSummaryUseTemplateFile;
- private String showSummaryTemplateFile;
- private boolean showSummaryUseTemplateContent;
- private String showSummaryTemplateContent;
- 
- private String subDirectory;
- private boolean useSubDirectory;
- private String fromType;
- private String fromReference;
- private String toType;
- private String toReference;
+ private boolean createFileUseTemplateFile;
+ private List<CustomIssue> customIssues;
  private String dateFormat;
- private String timeZone;
- private String ignoreCommitsIfMessageMatches;
- private boolean useJira;
- private String jiraServer;
- private String jiraIssuePattern;
- private String jiraUsername;
- private String jiraPassword;
- private boolean useGitHub;
+ private String file;
+ private String fromReference;
+ private String fromType;
  private String gitHubApi;
  private String gitHubIssuePattern;
  private String gitHubToken;
- private String noIssueName;
- private String untaggedName;
- private boolean useReadableTagName;
- private String readableTagName;
- private boolean useMediaWiki;
- private String mediaWikiUsername;
+ private String ignoreCommitsIfMessageMatches;
+ private boolean ignoreCommitsWithoutIssue;
+ private String ignoreTagsIfNameMatches;
+ private String jiraIssuePattern;
+ private String jiraPassword;
+ private String jiraServer;
+ private String jiraUsername;
  private String mediaWikiPassword;
+ private String mediaWikiTemplateContent;
+ private String mediaWikiTemplateFile;
  private String mediaWikiTitle;
  private String mediaWikiUrl;
- private boolean useFile;
- private String file;
- private List<CustomIssue> customIssues;
+ private String mediaWikiUsername;
+ private boolean mediaWikiUseTemplateContent;
+ private boolean mediaWikiUseTemplateFile;
+ private String noIssueName;
+ private String readableTagName;
  private boolean showSummary;
- private boolean ignoreCommitsWithoutIssue;
+ private String showSummaryTemplateContent;
+ private String showSummaryTemplateFile;
+ private boolean showSummaryUseTemplateContent;
+ private boolean showSummaryUseTemplateFile;
+ private String subDirectory;
+ private String timeZone;
+ private String toReference;
+ private String toType;
+ private String untaggedName;
+ private boolean useConfigFile;
+ private boolean useFile;
+ private boolean useGitHub;
  private boolean useIgnoreTagsIfNameMatches;
- private String ignoreTagsIfNameMatches;
- 
+ private boolean useJira;
+ private boolean useMediaWiki;
+ private boolean useReadableTagName;
+ private boolean useSubDirectory;
+
+ public String getConfigFile() {
+  return this.configFile;
+ }
 
  public String getCreateFileTemplateContent() {
-  return createFileTemplateContent;
- }
-
- public void setGitHubToken(String gitHubToken) {
-  this.gitHubToken = gitHubToken;
- }
-
- public String getGitHubToken() {
-  return gitHubToken;
+  return this.createFileTemplateContent;
  }
 
  public String getCreateFileTemplateFile() {
-  return createFileTemplateFile;
+  return this.createFileTemplateFile;
+ }
+
+ public List<CustomIssue> getCustomIssues() {
+  return this.customIssues;
+ }
+
+ public String getDateFormat() {
+  return this.dateFormat;
+ }
+
+ public String getFile() {
+  return this.file;
+ }
+
+ public String getFromReference() {
+  return this.fromReference;
+ }
+
+ public String getFromType() {
+  return this.fromType;
+ }
+
+ public String getGitHubApi() {
+  return this.gitHubApi;
+ }
+
+ public String getGitHubIssuePattern() {
+  return this.gitHubIssuePattern;
+ }
+
+ public String getGitHubToken() {
+  return this.gitHubToken;
+ }
+
+ public String getIgnoreCommitsIfMessageMatches() {
+  return this.ignoreCommitsIfMessageMatches;
+ }
+
+ public String getIgnoreTagsIfNameMatches() {
+  return this.ignoreTagsIfNameMatches;
+ }
+
+ public String getJiraIssuePattern() {
+  return this.jiraIssuePattern;
+ }
+
+ public String getJiraPassword() {
+  return this.jiraPassword;
+ }
+
+ public String getJiraServer() {
+  return this.jiraServer;
+ }
+
+ public String getJiraUsername() {
+  return this.jiraUsername;
+ }
+
+ public String getMediaWikiPassword() {
+  return this.mediaWikiPassword;
+ }
+
+ public String getMediaWikiTemplateContent() {
+  return this.mediaWikiTemplateContent;
+ }
+
+ public String getMediaWikiTemplateFile() {
+  return this.mediaWikiTemplateFile;
+ }
+
+ public String getMediaWikiTitle() {
+  return this.mediaWikiTitle;
+ }
+
+ public String getMediaWikiUrl() {
+  return this.mediaWikiUrl;
+ }
+
+ public String getMediaWikiUsername() {
+  return this.mediaWikiUsername;
+ }
+
+ public String getNoIssueName() {
+  return this.noIssueName;
+ }
+
+ public String getReadableTagName() {
+  return this.readableTagName;
  }
 
  public String getShowSummaryTemplateContent() {
-  return showSummaryTemplateContent;
+  return this.showSummaryTemplateContent;
  }
 
  public String getShowSummaryTemplateFile() {
-  return showSummaryTemplateFile;
+  return this.showSummaryTemplateFile;
+ }
+
+ public String getSubDirectory() {
+  return this.subDirectory;
+ }
+
+ public String getTimeZone() {
+  return this.timeZone;
+ }
+
+ public String getToReference() {
+  return this.toReference;
+ }
+
+ public String getToType() {
+  return this.toType;
+ }
+
+ public String getUntaggedName() {
+  return this.untaggedName;
  }
 
  public boolean isCreateFileUseTemplateContent() {
-  return createFileUseTemplateContent;
+  return this.createFileUseTemplateContent;
  }
 
- 
  public boolean isCreateFileUseTemplateFile() {
-  return createFileUseTemplateFile;
+  return this.createFileUseTemplateFile;
+ }
+
+ public boolean isIgnoreCommitsWithoutIssue() {
+  return this.ignoreCommitsWithoutIssue;
+ }
+
+ public boolean isMediaWikiUseTemplateContent() {
+  return this.mediaWikiUseTemplateContent;
+ }
+
+ public boolean isMediaWikiUseTemplateFile() {
+  return this.mediaWikiUseTemplateFile;
  }
 
  public boolean isShowSummary() {
-  return showSummary;
+  return this.showSummary;
  }
 
  public boolean isShowSummaryUseTemplateContent() {
-  return showSummaryUseTemplateContent;
+  return this.showSummaryUseTemplateContent;
  }
 
  public boolean isShowSummaryUseTemplateFile() {
-  return showSummaryUseTemplateFile;
+  return this.showSummaryUseTemplateFile;
+ }
+
+ public boolean isUseConfigFile() {
+  return this.useConfigFile;
+ }
+
+ public boolean isUseFile() {
+  return this.useFile;
+ }
+
+ public boolean isUseGitHub() {
+  return this.useGitHub;
+ }
+
+ public boolean isUseIgnoreTagsIfNameMatches() {
+  return this.useIgnoreTagsIfNameMatches;
+ }
+
+ public boolean isUseJira() {
+  return this.useJira;
+ }
+
+ public boolean isUseMediaWiki() {
+  return this.useMediaWiki;
+ }
+
+ public boolean isUseReadableTagName() {
+  return this.useReadableTagName;
+ }
+
+ public boolean isUseSubDirectory() {
+  return this.useSubDirectory;
+ }
+
+ public void setConfigFile(String configFile) {
+  this.configFile = configFile;
  }
 
  public void setCreateFileTemplateContent(String createFileTemplateContent) {
@@ -121,6 +267,110 @@ public class GitChangelogConfig implements Serializable {
   this.createFileUseTemplateFile = createFileUseTemplateFile;
  }
 
+ public void setCustomIssues(List<CustomIssue> customIssues) {
+  this.customIssues = customIssues;
+ }
+
+ public void setDateFormat(String dateFormat) {
+  this.dateFormat = dateFormat;
+ }
+
+ public void setFile(String file) {
+  this.file = file;
+ }
+
+ public void setFromReference(String fromReference) {
+  this.fromReference = fromReference;
+ }
+
+ public void setFromType(String fromType) {
+  this.fromType = fromType;
+ }
+
+ public void setGitHubApi(String gitHubApi) {
+  this.gitHubApi = gitHubApi;
+ }
+
+ public void setGitHubIssuePattern(String gitHubIssuePattern) {
+  this.gitHubIssuePattern = gitHubIssuePattern;
+ }
+
+ public void setGitHubToken(String gitHubToken) {
+  this.gitHubToken = gitHubToken;
+ }
+
+ public void setIgnoreCommitsIfMessageMatches(String ignoreCommitsIfMessageMatches) {
+  this.ignoreCommitsIfMessageMatches = ignoreCommitsIfMessageMatches;
+ }
+
+ public void setIgnoreCommitsWithoutIssue(boolean ignoreCommitsWithoutIssue) {
+  this.ignoreCommitsWithoutIssue = ignoreCommitsWithoutIssue;
+ }
+
+ public void setIgnoreTagsIfNameMatches(String ignoreTagsIfNameMatches) {
+  this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
+ }
+
+ public void setJiraIssuePattern(String jiraIssuePattern) {
+  this.jiraIssuePattern = jiraIssuePattern;
+ }
+
+ public void setJiraPassword(String jiraPassword) {
+  this.jiraPassword = jiraPassword;
+ }
+
+ public void setJiraServer(String jiraServer) {
+  this.jiraServer = jiraServer;
+ }
+
+ public void setJiraUsername(String jiraUsername) {
+  this.jiraUsername = jiraUsername;
+ }
+
+ public void setMediaWikiPassword(String mediaWikiPassword) {
+  this.mediaWikiPassword = mediaWikiPassword;
+ }
+
+ public void setMediaWikiTemplateContent(String mediaWikiTemplateContent) {
+  this.mediaWikiTemplateContent = mediaWikiTemplateContent;
+ }
+
+ public void setMediaWikiTemplateFile(String mediaWikiTemplateFile) {
+  this.mediaWikiTemplateFile = mediaWikiTemplateFile;
+ }
+
+ public void setMediaWikiTitle(String mediaWikiTitle) {
+  this.mediaWikiTitle = mediaWikiTitle;
+ }
+
+ public void setMediaWikiUrl(String mediaWikiUrl) {
+  this.mediaWikiUrl = mediaWikiUrl;
+ }
+
+ public void setMediaWikiUsername(String mediaWikiUsername) {
+  this.mediaWikiUsername = mediaWikiUsername;
+ }
+
+ public void setMediaWikiUseTemplateContent(boolean mediaWikiUseTemplateContent) {
+  this.mediaWikiUseTemplateContent = mediaWikiUseTemplateContent;
+ }
+
+ public void setMediaWikiUseTemplateFile(boolean mediaWikiUseTemplateFile) {
+  this.mediaWikiUseTemplateFile = mediaWikiUseTemplateFile;
+ }
+
+ public void setNoIssueName(String noIssueName) {
+  this.noIssueName = noIssueName;
+ }
+
+ public void setReadableTagName(String readableTagName) {
+  this.readableTagName = readableTagName;
+ }
+
+ public void setShowSummary(boolean showSummary) {
+  this.showSummary = showSummary;
+ }
+
  public void setShowSummaryTemplateContent(String showSummaryTemplateContent) {
   this.showSummaryTemplateContent = showSummaryTemplateContent;
  }
@@ -137,342 +387,89 @@ public class GitChangelogConfig implements Serializable {
   this.showSummaryUseTemplateFile = showSummaryUseTemplateFile;
  }
 
- public String getMediaWikiTemplateContent() {
-  return mediaWikiTemplateContent;
- }
-
- public String getMediaWikiTemplateFile() {
-  return mediaWikiTemplateFile;
- }
-
- public boolean isMediaWikiUseTemplateContent() {
-  return mediaWikiUseTemplateContent;
- }
-
- public boolean isMediaWikiUseTemplateFile() {
-  return mediaWikiUseTemplateFile;
- }
-
- public void setMediaWikiTemplateContent(String mediaWikiTemplateContent) {
-  this.mediaWikiTemplateContent = mediaWikiTemplateContent;
- }
-
- public void setMediaWikiTemplateFile(String mediaWikiTemplateFile) {
-  this.mediaWikiTemplateFile = mediaWikiTemplateFile;
- }
-
- public void setMediaWikiUseTemplateContent(boolean mediaWikiUseTemplateContent) {
-  this.mediaWikiUseTemplateContent = mediaWikiUseTemplateContent;
- }
-
- public void setMediaWikiUseTemplateFile(boolean mediaWikiUseTemplateFile) {
-  this.mediaWikiUseTemplateFile = mediaWikiUseTemplateFile;
- }
-
- public void setShowSummary(boolean showSummary) {
-  this.showSummary = showSummary;
- }
-
- public String getJiraPassword() {
-  return jiraPassword;
- }
-
- public String getJiraUsername() {
-  return jiraUsername;
- }
-
- public boolean isUseGitHub() {
-  return useGitHub;
- }
-
- public boolean isUseJira() {
-  return useJira;
- }
-
- public String getGitHubApi() {
-  return gitHubApi;
- }
-
- public void setGitHubApi(String gitHubApi) {
-  this.gitHubApi = gitHubApi;
- }
-
- public void setJiraPassword(String jiraPassword) {
-  this.jiraPassword = jiraPassword;
- }
-
- public void setJiraUsername(String jiraUsername) {
-  this.jiraUsername = jiraUsername;
- }
-
- public void setUseGitHub(boolean useGithub) {
-  this.useGitHub = useGithub;
- }
-
-  public boolean isUseFile() {
-  return useFile;
- }
-
- public void setUseFile(boolean useFile) {
-  this.useFile = useFile;
- }
-
- public void setFile(String file) {
-  this.file = file;
- }
-
- public String toFile() {
-  return file;
- }
- 
- public boolean isUseSubDirectory() {
-  return useSubDirectory;
- }
- 
- public void setUseSubDirectory(boolean useSubDirectory) {
-  this.useSubDirectory = useSubDirectory;
- } 
- 
- public String getSubDirectory() {
-  return subDirectory;
- }
- 
  public void setSubDirectory(String subDirectory) {
   this.subDirectory = subDirectory;
- }
-
- public void setUseJira(boolean useJira) {
-  this.useJira = useJira;
- }
-
- public String getFile() {
-  return file;
- }
-
- public void setMediaWikiPassword(String mediaWikiPassword) {
-  this.mediaWikiPassword = mediaWikiPassword;
- }
-
- public void setMediaWikiTitle(String mediaWikiTitle) {
-  this.mediaWikiTitle = mediaWikiTitle;
- }
-
- public void setMediaWikiUrl(String mediaWikiUrl) {
-  this.mediaWikiUrl = mediaWikiUrl;
- }
-
- public void setMediaWikiUsername(String mediaWikiUsername) {
-  this.mediaWikiUsername = mediaWikiUsername;
- }
-
- public void setUseMediaWiki(boolean useMediaWiki) {
-  this.useMediaWiki = useMediaWiki;
- }
-
- public String getMediaWikiPassword() {
-  return mediaWikiPassword;
- }
-
- public String getMediaWikiTitle() {
-  return mediaWikiTitle;
- }
-
- public String getMediaWikiUrl() {
-  return mediaWikiUrl;
- }
-
- public String getMediaWikiUsername() {
-  return mediaWikiUsername;
- }
-
- public boolean isUseMediaWiki() {
-  return useMediaWiki;
- }
-
- public boolean isUseConfigFile() {
-  return useConfigFile;
- }
-
- public void setUseConfigFile(boolean useConfigFile) {
-  this.useConfigFile = useConfigFile;
- }
-
- public String getConfigFile() {
-  return configFile;
- }
-
- public void setConfigFile(String configFile) {
-  this.configFile = configFile;
- }
-
- public String getFromType() {
-  return fromType;
- }
-
- public void setFromType(String fromType) {
-  this.fromType = fromType;
- }
-
- public String getFromReference() {
-  return fromReference;
- }
-
- public void setFromReference(String fromReference) {
-  this.fromReference = fromReference;
- }
- 
- public String getToType() {
-  return toType;
- }
-
- public void setToType(String toType) {
-  this.toType = toType;
- }
-
- public String getToReference() {
-  return toReference;
- }
-
- public void setToReference(String toReference) {
-  this.toReference = toReference;
- }
-
- public String getDateFormat() {
-  return dateFormat;
- }
-
- public void setDateFormat(String dateFormat) {
-  this.dateFormat = dateFormat;
- }
-
- public String getTimeZone() {
-  return timeZone;
  }
 
  public void setTimeZone(String timeZone) {
   this.timeZone = timeZone;
  }
 
- public String getIgnoreCommitsIfMessageMatches() {
-  return ignoreCommitsIfMessageMatches;
+ public void setToReference(String toReference) {
+  this.toReference = toReference;
  }
 
- public void setIgnoreCommitsIfMessageMatches(String ignoreCommitsIfMessageMatches) {
-  this.ignoreCommitsIfMessageMatches = ignoreCommitsIfMessageMatches;
- }
-
- public String getJiraServer() {
-  return jiraServer;
- }
-
- public void setJiraServer(String jiraServer) {
-  this.jiraServer = jiraServer;
- }
-
- public String getJiraIssuePattern() {
-  return jiraIssuePattern;
- }
-
- public void setJiraIssuePattern(String jiraIssuePattern) {
-  this.jiraIssuePattern = jiraIssuePattern;
- }
-
- public String getNoIssueName() {
-  return noIssueName;
- }
-
- public void setNoIssueName(String noIssueName) {
-  this.noIssueName = noIssueName;
- }
-
- public String getUntaggedName() {
-  return untaggedName;
+ public void setToType(String toType) {
+  this.toType = toType;
  }
 
  public void setUntaggedName(String untaggedName) {
   this.untaggedName = untaggedName;
  }
 
- public boolean isUseReadableTagName() {
-  return useReadableTagName;
+ public void setUseConfigFile(boolean useConfigFile) {
+  this.useConfigFile = useConfigFile;
  }
 
- public void setUseReadableTagName(boolean useReadableTagName) {
-  this.useReadableTagName = useReadableTagName;
+ public void setUseFile(boolean useFile) {
+  this.useFile = useFile;
  }
 
- public String getReadableTagName() {
-  return readableTagName;
- }
-
- public void setReadableTagName(String readableTagName) {
-  this.readableTagName = readableTagName;
- }
-
- public List<CustomIssue> getCustomIssues() {
-  return customIssues;
- }
-
- public void setCustomIssues(List<CustomIssue> customIssues) {
-  this.customIssues = customIssues;
- }
- 
- public void setGitHubIssuePattern(String gitHubIssuePattern) {
-  this.gitHubIssuePattern = gitHubIssuePattern;
- }
-
- public String getGitHubIssuePattern() {
-  return gitHubIssuePattern;
- }
-
- public boolean showSummary() {
-  return showSummary;
- }
-
- public void setIgnoreCommitsWithoutIssue(boolean ignoreCommitsWithoutIssue) {
-  this.ignoreCommitsWithoutIssue = ignoreCommitsWithoutIssue;
- }
-
- public boolean isIgnoreCommitsWithoutIssue() {
-  return ignoreCommitsWithoutIssue;
- }
-
- public void setIgnoreTagsIfNameMatches(String ignoreTagsIfNameMatches) {
-  this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
- }
-
- public String getIgnoreTagsIfNameMatches() {
-  return ignoreTagsIfNameMatches;
+ public void setUseGitHub(boolean useGithub) {
+  this.useGitHub = useGithub;
  }
 
  public void setUseIgnoreTagsIfNameMatches(boolean useIgnoreTagsIfNameMatches) {
   this.useIgnoreTagsIfNameMatches = useIgnoreTagsIfNameMatches;
  }
 
- public boolean isUseIgnoreTagsIfNameMatches() {
-  return useIgnoreTagsIfNameMatches;
+ public void setUseJira(boolean useJira) {
+  this.useJira = useJira;
+ }
+
+ public void setUseMediaWiki(boolean useMediaWiki) {
+  this.useMediaWiki = useMediaWiki;
+ }
+
+ public void setUseReadableTagName(boolean useReadableTagName) {
+  this.useReadableTagName = useReadableTagName;
+ }
+
+ public void setUseSubDirectory(boolean useSubDirectory) {
+  this.useSubDirectory = useSubDirectory;
+ }
+
+ public boolean showSummary() {
+  return this.showSummary;
+ }
+
+ public String toFile() {
+  return this.file;
  }
 
  @Override
  public String toString() {
-  return "GitChangelogConfig [useConfigFile=" + useConfigFile + ", configFile=" + configFile
-    + ", createFileUseTemplateFile=" + createFileUseTemplateFile + ", createFileTemplateFile=" + createFileTemplateFile
-    + ", createFileUseTemplateContent=" + createFileUseTemplateContent + ", createFileTemplateContent="
-    + createFileTemplateContent + ", mediaWikiUseTemplateFile=" + mediaWikiUseTemplateFile + ", mediaWikiTemplateFile="
-    + mediaWikiTemplateFile + ", mediaWikiUseTemplateContent=" + mediaWikiUseTemplateContent
-    + ", mediaWikiTemplateContent=" + mediaWikiTemplateContent + ", showSummaryUseTemplateFile="
-    + showSummaryUseTemplateFile + ", showSummaryTemplateFile=" + showSummaryTemplateFile
-    + ", showSummaryUseTemplateContent=" + showSummaryUseTemplateContent + ", showSummaryTemplateContent="
-    + showSummaryTemplateContent + ", fromType=" + fromType + ", fromReference=" + fromReference + ", toType=" + toType
-    + ", toReference=" + toReference + ", isSubDirectory=" + useSubDirectory + ", subDirectory=" + subDirectory + ", dateFormat=" + dateFormat + ", timeZone=" + timeZone
-    + ", ignoreCommitsIfMessageMatches=" + ignoreCommitsIfMessageMatches + ", useJira=" + useJira + ", jiraServer="
-    + jiraServer + ", jiraIssuePattern=" + jiraIssuePattern + ", jiraUsername=" + jiraUsername
-    + ", jiraPassword=****, useGitHub=" + useGitHub + ", gitHubApi=" + gitHubApi + ", gitHubIssuePattern="
-    + gitHubIssuePattern + ", noIssueName=" + noIssueName + ", untaggedName=" + untaggedName + ", useReadableTagName="
-    + useReadableTagName + ", readableTagName=" + readableTagName + ", useMediaWiki=" + useMediaWiki
-    + ", mediaWikiUsername=" + mediaWikiUsername + ", mediaWikiPassword=***, mediaWikiTitle=" + mediaWikiTitle
-    + ", mediaWikiUrl=" + mediaWikiUrl + ", useFile=" + useFile + ", file=" + file + ", customIssues=" + customIssues
-    + ", showSummary=" + showSummary + "]";
+  return "GitChangelogConfig [useConfigFile=" + this.useConfigFile + ", configFile=" + this.configFile
+    + ", createFileUseTemplateFile=" + this.createFileUseTemplateFile + ", createFileTemplateFile="
+    + this.createFileTemplateFile + ", createFileUseTemplateContent=" + this.createFileUseTemplateContent
+    + ", createFileTemplateContent=" + this.createFileTemplateContent + ", mediaWikiUseTemplateFile="
+    + this.mediaWikiUseTemplateFile + ", mediaWikiTemplateFile=" + this.mediaWikiTemplateFile
+    + ", mediaWikiUseTemplateContent=" + this.mediaWikiUseTemplateContent + ", mediaWikiTemplateContent="
+    + this.mediaWikiTemplateContent + ", showSummaryUseTemplateFile=" + this.showSummaryUseTemplateFile
+    + ", showSummaryTemplateFile=" + this.showSummaryTemplateFile + ", showSummaryUseTemplateContent="
+    + this.showSummaryUseTemplateContent + ", showSummaryTemplateContent=" + this.showSummaryTemplateContent
+    + ", fromType=" + this.fromType + ", fromReference=" + this.fromReference + ", toType=" + this.toType
+    + ", toReference=" + this.toReference + ", isSubDirectory=" + this.useSubDirectory + ", subDirectory="
+    + this.subDirectory + ", dateFormat=" + this.dateFormat + ", timeZone=" + this.timeZone
+    + ", ignoreCommitsIfMessageMatches=" + this.ignoreCommitsIfMessageMatches + ", useJira=" + this.useJira
+    + ", jiraServer=" + this.jiraServer + ", jiraIssuePattern=" + this.jiraIssuePattern + ", jiraUsername="
+    + this.jiraUsername + ", jiraPassword=****, useGitHub=" + this.useGitHub + ", gitHubApi=" + this.gitHubApi
+    + ", gitHubIssuePattern=" + this.gitHubIssuePattern + ", noIssueName=" + this.noIssueName + ", untaggedName="
+    + this.untaggedName + ", useReadableTagName=" + this.useReadableTagName + ", readableTagName="
+    + this.readableTagName + ", useMediaWiki=" + this.useMediaWiki + ", mediaWikiUsername=" + this.mediaWikiUsername
+    + ", mediaWikiPassword=***, mediaWikiTitle=" + this.mediaWikiTitle + ", mediaWikiUrl=" + this.mediaWikiUrl
+    + ", useFile=" + this.useFile + ", file=" + this.file + ", customIssues=" + this.customIssues + ", showSummary="
+    + this.showSummary + "]";
  }
 
 }

@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class CustomIssue implements Serializable {
  private static final long serialVersionUID = -6202256680695752956L;
+ private String link;
  private String name;
  private String pattern;
- private String link;
  private final String title;
 
  public CustomIssue(String name, String pattern, String link, String title) {
@@ -14,6 +14,22 @@ public class CustomIssue implements Serializable {
   this.pattern = pattern;
   this.link = link;
   this.title = title;
+ }
+
+ public String getLink() {
+  return this.link;
+ }
+
+ public String getName() {
+  return this.name;
+ }
+
+ public String getPattern() {
+  return this.pattern;
+ }
+
+ public String getTitle() {
+  return this.title;
  }
 
  public void setLink(String link) {
@@ -26,21 +42,5 @@ public class CustomIssue implements Serializable {
 
  public void setPattern(String pattern) {
   this.pattern = pattern;
- }
-
- public String getLink() {
-  return link;
- }
-
- public String getName() {
-  return name;
- }
-
- public String getPattern() {
-  return pattern;
- }
-
- public String getTitle() {
-  return title;
  }
 }

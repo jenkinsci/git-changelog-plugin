@@ -29,148 +29,147 @@ import se.bjurr.gitchangelog.api.GitChangelogApi;
 public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOException> implements Serializable {
 
  private static final long serialVersionUID = -2489061314794088231L;
- private final String workspacePath;
+ private final GitChangelogConfig config;
  private String path = new String();
 
-
- private final GitChangelogConfig config;
+ private final String workspacePath;
 
  public RemoteCallable(String workspacePath, GitChangelogConfig config) {
-  
+
   this.workspacePath = workspacePath;
   this.config = config;
- }
-
- @Override
- public void checkRoles(RoleChecker checker) throws SecurityException {
-
  }
 
  @Override
  public RemoteResult call() throws IOException {
   RemoteResult remoteResult = new RemoteResult();
   StringBuilder logString = new StringBuilder();
-   path = workspacePath;
-   
-   if (config.isUseSubDirectory()){
-      path = workspacePath + "/" + config.getSubDirectory();
-  } 
-     
- 
-  try {
-   GitChangelogApi gitChangelogApiBuilder = gitChangelogApiBuilder()//      
-     .withFromRepo(path);
+  this.path = this.workspacePath;
 
-   if (config.isUseConfigFile() && !isNullOrEmpty(config.getConfigFile())) {
+  if (this.config.isUseSubDirectory()) {
+   this.path = this.workspacePath + "/" + this.config.getSubDirectory();
+  }
+
+  try {
+   GitChangelogApi gitChangelogApiBuilder = gitChangelogApiBuilder()//
+     .withFromRepo(this.path);
+
+   if (this.config.isUseConfigFile() && !isNullOrEmpty(this.config.getConfigFile())) {
     try {
-     gitChangelogApiBuilder.withSettings(getResource(workspacePath + "/" + config.getConfigFile()).toURI().toURL());
+     gitChangelogApiBuilder.withSettings(getResource(this.workspacePath + "/" + this.config.getConfigFile()).toURI()
+       .toURL());
     } catch (URISyntaxException e) {
      propagate(e);
     }
    }
 
    gitChangelogApiBuilder //
-     .withDateFormat(config.getDateFormat()) //
-     .withIgnoreCommitsWithMesssage(config.getIgnoreCommitsIfMessageMatches()) //
-     .withNoIssueName(config.getNoIssueName()) //
-     .withIgnoreCommitsWithoutIssue(config.isIgnoreCommitsWithoutIssue())//
-     .withTimeZone(config.getTimeZone()) //
-     .withUntaggedName(config.getUntaggedName());
+     .withDateFormat(this.config.getDateFormat()) //
+     .withIgnoreCommitsWithMesssage(this.config.getIgnoreCommitsIfMessageMatches()) //
+     .withNoIssueName(this.config.getNoIssueName()) //
+     .withIgnoreCommitsWithoutIssue(this.config.isIgnoreCommitsWithoutIssue())//
+     .withTimeZone(this.config.getTimeZone()) //
+     .withUntaggedName(this.config.getUntaggedName());
 
-   if (config.isUseJira()) {
+   if (this.config.isUseJira()) {
     gitChangelogApiBuilder //
-      .withJiraServer(config.getJiraServer()) //
-      .withJiraIssuePattern(config.getJiraIssuePattern()) //
-      .withJiraUsername(config.getJiraUsername()) //
-      .withJiraPassword(config.getJiraPassword());
+      .withJiraServer(this.config.getJiraServer()) //
+      .withJiraIssuePattern(this.config.getJiraIssuePattern()) //
+      .withJiraUsername(this.config.getJiraUsername()) //
+      .withJiraPassword(this.config.getJiraPassword());
    }
 
-   if (config.isUseGitHub()) {
+   if (this.config.isUseGitHub()) {
     gitChangelogApiBuilder //
-      .withGitHubApi(config.getGitHubApi()) //
-      .withGitHubIssuePattern(config.getGitHubIssuePattern()) //
-      .withGitHubToken(config.getGitHubToken());
+      .withGitHubApi(this.config.getGitHubApi()) //
+      .withGitHubIssuePattern(this.config.getGitHubIssuePattern()) //
+      .withGitHubToken(this.config.getGitHubToken());
    }
 
-   if (config.isUseReadableTagName() && !isNullOrEmpty(config.getReadableTagName())) {
-    gitChangelogApiBuilder.withReadableTagName(config.getReadableTagName());
+   if (this.config.isUseReadableTagName() && !isNullOrEmpty(this.config.getReadableTagName())) {
+    gitChangelogApiBuilder.withReadableTagName(this.config.getReadableTagName());
    }
 
-   if (config.isUseIgnoreTagsIfNameMatches() && !isNullOrEmpty(config.getIgnoreTagsIfNameMatches())) {
-    gitChangelogApiBuilder.withIgnoreTagsIfNameMatches(config.getIgnoreTagsIfNameMatches());
+   if (this.config.isUseIgnoreTagsIfNameMatches() && !isNullOrEmpty(this.config.getIgnoreTagsIfNameMatches())) {
+    gitChangelogApiBuilder.withIgnoreTagsIfNameMatches(this.config.getIgnoreTagsIfNameMatches());
    }
 
-   if (isNullOrEmpty(config.getFromType()) || FROMTYPE.valueOf(config.getFromType()) == firstCommit) {
+   if (isNullOrEmpty(this.config.getFromType()) || FROMTYPE.valueOf(this.config.getFromType()) == firstCommit) {
     gitChangelogApiBuilder.withFromCommit(firstCommit.getReference());
-   } else if (FROMTYPE.valueOf(config.getFromType()) == ref && !isNullOrEmpty(config.getFromReference())) {
-    gitChangelogApiBuilder.withFromRef(config.getFromReference());
-   } else if (FROMTYPE.valueOf(config.getFromType()) == commit && !isNullOrEmpty(config.getFromReference())) {
-    gitChangelogApiBuilder.withFromCommit(config.getFromReference());
+   } else if (FROMTYPE.valueOf(this.config.getFromType()) == ref && !isNullOrEmpty(this.config.getFromReference())) {
+    gitChangelogApiBuilder.withFromRef(this.config.getFromReference());
+   } else if (FROMTYPE.valueOf(this.config.getFromType()) == commit && !isNullOrEmpty(this.config.getFromReference())) {
+    gitChangelogApiBuilder.withFromCommit(this.config.getFromReference());
    } else {
     gitChangelogApiBuilder.withFromRef(firstCommit.getReference());
    }
 
-   if (isNullOrEmpty(config.getToType()) || FROMTYPE.valueOf(config.getToType()) == master) {
+   if (isNullOrEmpty(this.config.getToType()) || FROMTYPE.valueOf(this.config.getToType()) == master) {
     gitChangelogApiBuilder.withToRef(master.getReference());
-   } else if (FROMTYPE.valueOf(config.getToType()) == ref && !isNullOrEmpty(config.getToReference())) {
-    gitChangelogApiBuilder.withToRef(config.getToReference());
-   } else if (FROMTYPE.valueOf(config.getToType()) == commit && !isNullOrEmpty(config.getToReference())) {
-    gitChangelogApiBuilder.withToCommit(config.getToReference());
+   } else if (FROMTYPE.valueOf(this.config.getToType()) == ref && !isNullOrEmpty(this.config.getToReference())) {
+    gitChangelogApiBuilder.withToRef(this.config.getToReference());
+   } else if (FROMTYPE.valueOf(this.config.getToType()) == commit && !isNullOrEmpty(this.config.getToReference())) {
+    gitChangelogApiBuilder.withToCommit(this.config.getToReference());
    } else {
     gitChangelogApiBuilder.withToRef(firstCommit.getReference());
    }
 
-   for (CustomIssue ci : config.getCustomIssues()) {
+   for (CustomIssue ci : this.config.getCustomIssues()) {
     if (!isNullOrEmpty(ci.getName()) && !isNullOrEmpty(ci.getPattern())) {
      gitChangelogApiBuilder.withCustomIssue(ci.getName(), ci.getPattern(), ci.getLink(), ci.getTitle());
     }
    }
 
-   if (config.showSummary()) {
-    if (config.isShowSummaryUseTemplateFile() && !isNullOrEmpty(config.getShowSummaryTemplateFile())) {
-     gitChangelogApiBuilder.withTemplatePath(workspacePath + "/" + config.getShowSummaryTemplateFile());
+   if (this.config.showSummary()) {
+    if (this.config.isShowSummaryUseTemplateFile() && !isNullOrEmpty(this.config.getShowSummaryTemplateFile())) {
+     gitChangelogApiBuilder.withTemplatePath(this.workspacePath + "/" + this.config.getShowSummaryTemplateFile());
     }
-    if (config.isShowSummaryUseTemplateContent() && !isNullOrEmpty(config.getShowSummaryTemplateContent())) {
-     gitChangelogApiBuilder.withTemplateContent(config.getShowSummaryTemplateContent());
+    if (this.config.isShowSummaryUseTemplateContent() && !isNullOrEmpty(this.config.getShowSummaryTemplateContent())) {
+     gitChangelogApiBuilder.withTemplateContent(this.config.getShowSummaryTemplateContent());
     }
     remoteResult.setSummary(gitChangelogApiBuilder.render());
    }
 
-   if (config.isUseMediaWiki()) {
-    if (config.isMediaWikiUseTemplateFile() && !isNullOrEmpty(config.getMediaWikiTemplateFile())) {
-     gitChangelogApiBuilder.withTemplatePath(workspacePath + "/" + config.getMediaWikiTemplateFile());
+   if (this.config.isUseMediaWiki()) {
+    if (this.config.isMediaWikiUseTemplateFile() && !isNullOrEmpty(this.config.getMediaWikiTemplateFile())) {
+     gitChangelogApiBuilder.withTemplatePath(this.workspacePath + "/" + this.config.getMediaWikiTemplateFile());
     }
-    if (config.isMediaWikiUseTemplateContent() && !isNullOrEmpty(config.getMediaWikiTemplateContent())) {
-     gitChangelogApiBuilder.withTemplateContent(config.getMediaWikiTemplateContent());
+    if (this.config.isMediaWikiUseTemplateContent() && !isNullOrEmpty(this.config.getMediaWikiTemplateContent())) {
+     gitChangelogApiBuilder.withTemplateContent(this.config.getMediaWikiTemplateContent());
     }
-    String mediaWikiFullUrl = config.getMediaWikiUrl() + "/index.php/" + config.getMediaWikiTitle();
+    String mediaWikiFullUrl = this.config.getMediaWikiUrl() + "/index.php/" + this.config.getMediaWikiTitle();
     logString.append("Posting changelog to " + mediaWikiFullUrl);
     gitChangelogApiBuilder.toMediaWiki(//
-      config.getMediaWikiUsername(), //
-      config.getMediaWikiPassword(),//
-      config.getMediaWikiUrl(), //
-      config.getMediaWikiTitle());
-    remoteResult.setLeftSide(config.getMediaWikiTitle(), mediaWikiFullUrl);
+      this.config.getMediaWikiUsername(), //
+      this.config.getMediaWikiPassword(),//
+      this.config.getMediaWikiUrl(), //
+      this.config.getMediaWikiTitle());
+    remoteResult.setLeftSide(this.config.getMediaWikiTitle(), mediaWikiFullUrl);
    }
 
-   if (config.isUseFile()) {
-    if (config.isCreateFileUseTemplateFile() && !isNullOrEmpty(config.getCreateFileTemplateFile())) {
-     gitChangelogApiBuilder.withTemplatePath(workspacePath + "/" + config.getCreateFileTemplateFile());
+   if (this.config.isUseFile()) {
+    if (this.config.isCreateFileUseTemplateFile() && !isNullOrEmpty(this.config.getCreateFileTemplateFile())) {
+     gitChangelogApiBuilder.withTemplatePath(this.workspacePath + "/" + this.config.getCreateFileTemplateFile());
     }
-    if (config.isCreateFileUseTemplateContent() && !isNullOrEmpty(config.getCreateFileTemplateContent())) {
-     gitChangelogApiBuilder.withTemplateContent(config.getCreateFileTemplateContent());
+    if (this.config.isCreateFileUseTemplateContent() && !isNullOrEmpty(this.config.getCreateFileTemplateContent())) {
+     gitChangelogApiBuilder.withTemplateContent(this.config.getCreateFileTemplateContent());
     }
-    logString.append("Creating changelog " + config.toFile());
+    logString.append("Creating changelog " + this.config.toFile());
 
-        File toFile = new File(workspacePath + "/" + config.toFile());
-        new File(toFile.getParent()).mkdirs();
-        write(gitChangelogApiBuilder.render(), toFile, UTF_8);    
-    
+    File toFile = new File(this.workspacePath + "/" + this.config.toFile());
+    new File(toFile.getParent()).mkdirs();
+    write(gitChangelogApiBuilder.render(), toFile, UTF_8);
+
    }
   } catch (Exception e) {
    logString.append(ExceptionUtils.getStackTrace(e));
   }
   remoteResult.setLog(logString.toString());
   return remoteResult;
+ }
+
+ @Override
+ public void checkRoles(RoleChecker checker) throws SecurityException {
+
  }
 }

@@ -21,11 +21,11 @@ public class GitChangelogRecorder extends Recorder {
  public static final BuildStepDescriptor<Publisher> DESCRIPTOR = new GitChangelogDescriptor();
  private GitChangelogConfig config;
 
- @Override
- public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
-   throws InterruptedException, IOException {
-  performerPerform(config, build, listener);
-  return TRUE;
+ public GitChangelogRecorder() {
+ }
+
+ public GitChangelogConfig getConfig() {
+  return this.config;
  }
 
  @Override
@@ -33,19 +33,19 @@ public class GitChangelogRecorder extends Recorder {
   return DESCRIPTOR;
  }
 
- public GitChangelogRecorder() {
- }
-
  @Override
  public BuildStepMonitor getRequiredMonitorService() {
   return NONE;
  }
 
- public void setConfig(GitChangelogConfig config) {
-  this.config = config;
+ @Override
+ public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
+   throws InterruptedException, IOException {
+  performerPerform(this.config, build, listener);
+  return TRUE;
  }
 
- public GitChangelogConfig getConfig() {
-  return config;
+ public void setConfig(GitChangelogConfig config) {
+  this.config = config;
  }
 }

@@ -5,17 +5,25 @@ import java.io.Serializable;
 public class RemoteResult implements Serializable {
 
  private static final long serialVersionUID = 8363216067945804103L;
- private String log;
  private String leftSideTitle;
  private String leftSideUrl;
+ private String log;
  private String summary;
 
- public void setLog(String log) {
-  this.log = log;
+ public String getLeftSideTitle() {
+  return this.leftSideTitle;
+ }
+
+ public String getLeftSideUrl() {
+  return this.leftSideUrl;
  }
 
  public String getLog() {
-  return log;
+  return this.log;
+ }
+
+ public String getSummary() {
+  return this.summary;
  }
 
  public void setLeftSide(String leftSideTitle, String leftSideUrl) {
@@ -23,19 +31,11 @@ public class RemoteResult implements Serializable {
   this.leftSideUrl = leftSideUrl;
  }
 
- public String getLeftSideTitle() {
-  return leftSideTitle;
- }
-
- public String getLeftSideUrl() {
-  return leftSideUrl;
+ public void setLog(String log) {
+  this.log = log;
  }
 
  public void setSummary(String summary) {
   this.summary = summary;
- }
-
- public String getSummary() {
-  return summary;
  }
 }

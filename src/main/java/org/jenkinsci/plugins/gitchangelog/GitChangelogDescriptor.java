@@ -20,7 +20,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
  public GitChangelogDescriptor() {
   super(GitChangelogRecorder.class);
   load();
-  if (config == null) {
+  if (this.config == null) {
    this.config = createNewConfig();
   }
  }
@@ -33,6 +33,18 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
  @Override
  public String getHelpFile() {
   return super.getHelpFile();
+ }
+
+ /**
+  * Create new blank configuration. Used when job is created.
+  */
+ public GitChangelogConfig getNewConfig() {
+  return createNewConfig();
+ }
+
+ @Override
+ public boolean isApplicable(@SuppressWarnings("rawtypes") final Class<? extends AbstractProject> jobType) {
+  return true;
  }
 
  @Override
@@ -108,17 +120,5 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
   GitChangelogRecorder publisher = new GitChangelogRecorder();
   publisher.setConfig(c);
   return publisher;
- }
-
- @Override
- public boolean isApplicable(@SuppressWarnings("rawtypes") final Class<? extends AbstractProject> jobType) {
-  return true;
- }
-
- /**
-  * Create new blank configuration. Used when job is created.
-  */
- public GitChangelogConfig getNewConfig() {
-  return createNewConfig();
  }
 }

@@ -21,10 +21,8 @@ import java.util.logging.Logger;
 import com.google.common.io.CharStreams;
 
 public class GitChangelogConfigHelper {
- private static Logger logger = Logger.getLogger(GitChangelogConfigHelper.class.getName());
-
  public enum FROMTYPE {
-  ref(null), commit(null), firstCommit(ZERO_COMMIT), master("master");
+  commit(null), firstCommit(ZERO_COMMIT), master("master"), ref(null);
   private final String reference;
 
   FROMTYPE(String ref) {
@@ -32,9 +30,11 @@ public class GitChangelogConfigHelper {
   }
 
   public String getReference() {
-   return reference;
+   return this.reference;
   }
  }
+
+ private static Logger logger = Logger.getLogger(GitChangelogConfigHelper.class.getName());
 
  public static GitChangelogConfig createNewConfig() {
   GitChangelogConfig config = new GitChangelogConfig();
@@ -57,7 +57,7 @@ public class GitChangelogConfigHelper {
   customIssues.add(new CustomIssue("", "", "", ""));
   customIssues.add(new CustomIssue("", "", "", ""));
   config.setCustomIssues(customIssues);
-  
+
   return config;
  }
 

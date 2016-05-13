@@ -13,9 +13,9 @@ public class GitChangelogSummaryDecorator implements Action {
   this.text = text;
  }
 
- @Exported
- public String getText() {
-  return text;
+ @Override
+ public String getDisplayName() {
+  return null;
  }
 
  @Override
@@ -23,9 +23,9 @@ public class GitChangelogSummaryDecorator implements Action {
   return null;
  }
 
- @Override
- public String getDisplayName() {
-  return null;
+ @Exported
+ public String getText() {
+  return this.text;
  }
 
  @Override

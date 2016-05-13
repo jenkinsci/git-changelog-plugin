@@ -15,14 +15,9 @@ public class GitChangelogLeftsideBuildDecorator implements BuildBadgeAction {
   this.url = url;
  }
 
- @Exported
- public String getText() {
-  return text;
- }
-
- @Exported
- public String getUrl() {
-  return url;
+ @Override
+ public String getDisplayName() {
+  return null;
  }
 
  @Override
@@ -30,9 +25,14 @@ public class GitChangelogLeftsideBuildDecorator implements BuildBadgeAction {
   return null;
  }
 
- @Override
- public String getDisplayName() {
-  return null;
+ @Exported
+ public String getText() {
+  return this.text;
+ }
+
+ @Exported
+ public String getUrl() {
+  return this.url;
  }
 
  @Override
