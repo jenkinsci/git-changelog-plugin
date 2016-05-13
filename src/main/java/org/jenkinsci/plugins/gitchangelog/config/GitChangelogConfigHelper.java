@@ -40,6 +40,7 @@ public class GitChangelogConfigHelper {
   GitChangelogConfig config = new GitChangelogConfig();
   config.setConfigFile(DEFAULT_FILE);
   config.setDateFormat(DEFAULT_DATEFORMAT);
+  config.setSubDirectory("");
   config.setFile("CHANGELOG.html");
   config.setIgnoreCommitsIfMessageMatches(DEFAULT_IGNORE_COMMITS_REGEXP);
   config.setJiraIssuePattern(DEFAULT_JIRA_ISSUE_PATTEN);
@@ -48,7 +49,6 @@ public class GitChangelogConfigHelper {
   config.setReadableTagName(DEFAULT_READABLE_TAG_NAME);
   config.setTimeZone(DEFAULT_TIMEZONE);
   config.setUntaggedName(DEFAULT_UNTAGGED_NAME);
-
   config.setCreateFileTemplateContent(getResourceAsString("fileTemplateDefault.mustache"));
   config.setShowSummaryTemplateContent(getResourceAsString("summaryTemplateDefault.mustache"));
   config.setMediaWikiTemplateContent(getResourceAsString("mediaWikiTemplateDefault.mustache"));
@@ -57,6 +57,7 @@ public class GitChangelogConfigHelper {
   customIssues.add(new CustomIssue("", "", "", ""));
   customIssues.add(new CustomIssue("", "", "", ""));
   config.setCustomIssues(customIssues);
+  
   return config;
  }
 

@@ -5,15 +5,11 @@ import de.wellnerbou.gitchangelog.app.GitChangelogArgs;
 import de.wellnerbou.gitchangelog.model.Changelog;
 import jenkins.security.MasterToSlaveCallable;
 import org.apache.commons.lang.CharEncoding;
-import org.apache.commons.lang.CharSet;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
-import java.io.StringWriter;
-import java.nio.charset.Charset;
 
 public class GitChangelogMasterToSlaveCallable extends MasterToSlaveCallable<String, IOException> implements Serializable {
 	private final GitChangelogArgs gitChangelogArgs;

@@ -43,6 +43,8 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
   c.setFromType(formData.getString("fromType"));
   c.setFromReference(formData.getString("fromReference"));
   c.setToType(formData.getString("toType"));
+  c.setUseSubDirectory(formData.getBoolean("useSubDirectory"));
+  c.setSubDirectory(formData.getString("subDirectory"));
   c.setToReference(formData.getString("toReference"));
   c.setDateFormat(formData.getString("dateFormat"));
   c.setTimeZone(formData.getString("timeZone"));

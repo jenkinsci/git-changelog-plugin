@@ -23,7 +23,9 @@ public class GitChangelogConfig implements Serializable {
  private String showSummaryTemplateFile;
  private boolean showSummaryUseTemplateContent;
  private String showSummaryTemplateContent;
-
+ 
+ private String subDirectory;
+ private boolean useSubDirectory;
  private String fromType;
  private String fromReference;
  private String toType;
@@ -56,6 +58,7 @@ public class GitChangelogConfig implements Serializable {
  private boolean ignoreCommitsWithoutIssue;
  private boolean useIgnoreTagsIfNameMatches;
  private String ignoreTagsIfNameMatches;
+ 
 
  public String getCreateFileTemplateContent() {
   return createFileTemplateContent;
@@ -85,6 +88,7 @@ public class GitChangelogConfig implements Serializable {
   return createFileUseTemplateContent;
  }
 
+ 
  public boolean isCreateFileUseTemplateFile() {
   return createFileUseTemplateFile;
  }
@@ -205,6 +209,38 @@ public class GitChangelogConfig implements Serializable {
   this.useGitHub = useGithub;
  }
 
+  public boolean isUseFile() {
+  return useFile;
+ }
+
+ public void setUseFile(boolean useFile) {
+  this.useFile = useFile;
+ }
+
+ public void setFile(String file) {
+  this.file = file;
+ }
+
+ public String toFile() {
+  return file;
+ }
+ 
+ public boolean isUseSubDirectory() {
+  return useSubDirectory;
+ }
+ 
+ public void setUseSubDirectory(boolean useSubDirectory) {
+  this.useSubDirectory = useSubDirectory;
+ } 
+ 
+ public String getSubDirectory() {
+  return subDirectory;
+ }
+ 
+ public void setSubDirectory(String subDirectory) {
+  this.subDirectory = subDirectory;
+ }
+
  public void setUseJira(boolean useJira) {
   this.useJira = useJira;
  }
@@ -284,7 +320,7 @@ public class GitChangelogConfig implements Serializable {
  public void setFromReference(String fromReference) {
   this.fromReference = fromReference;
  }
-
+ 
  public String getToType() {
   return toType;
  }
@@ -380,23 +416,7 @@ public class GitChangelogConfig implements Serializable {
  public void setCustomIssues(List<CustomIssue> customIssues) {
   this.customIssues = customIssues;
  }
-
- public boolean isUseFile() {
-  return useFile;
- }
-
- public void setUseFile(boolean useFile) {
-  this.useFile = useFile;
- }
-
- public void setFile(String file) {
-  this.file = file;
- }
-
- public String toFile() {
-  return file;
- }
-
+ 
  public void setGitHubIssuePattern(String gitHubIssuePattern) {
   this.gitHubIssuePattern = gitHubIssuePattern;
  }
@@ -444,7 +464,7 @@ public class GitChangelogConfig implements Serializable {
     + showSummaryUseTemplateFile + ", showSummaryTemplateFile=" + showSummaryTemplateFile
     + ", showSummaryUseTemplateContent=" + showSummaryUseTemplateContent + ", showSummaryTemplateContent="
     + showSummaryTemplateContent + ", fromType=" + fromType + ", fromReference=" + fromReference + ", toType=" + toType
-    + ", toReference=" + toReference + ", dateFormat=" + dateFormat + ", timeZone=" + timeZone
+    + ", toReference=" + toReference + ", isSubDirectory=" + useSubDirectory + ", subDirectory=" + subDirectory + ", dateFormat=" + dateFormat + ", timeZone=" + timeZone
     + ", ignoreCommitsIfMessageMatches=" + ignoreCommitsIfMessageMatches + ", useJira=" + useJira + ", jiraServer="
     + jiraServer + ", jiraIssuePattern=" + jiraIssuePattern + ", jiraUsername=" + jiraUsername
     + ", jiraPassword=****, useGitHub=" + useGitHub + ", gitHubApi=" + gitHubApi + ", gitHubIssuePattern="

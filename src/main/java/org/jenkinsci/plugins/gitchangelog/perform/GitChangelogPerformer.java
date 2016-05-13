@@ -54,6 +54,8 @@ public class GitChangelogPerformer {
   c.setFromReference(environment.expand(config.getFromReference()));
   c.setToType(environment.expand(config.getToType()));
   c.setToReference(environment.expand(config.getToReference()));
+  c.setUseSubDirectory(config.isUseSubDirectory());
+  c.setSubDirectory(environment.expand(config.getSubDirectory()));
   c.setDateFormat(environment.expand(config.getDateFormat()));
   c.setTimeZone(environment.expand(config.getTimeZone()));
   c.setIgnoreCommitsIfMessageMatches(environment.expand(config.getIgnoreCommitsIfMessageMatches()));
