@@ -3,6 +3,8 @@ package org.jenkinsci.plugins.gitchangelog.config;
 import java.io.Serializable;
 import java.util.List;
 
+import org.kohsuke.stapler.DataBoundConstructor;
+
 public class GitChangelogConfig implements Serializable {
 
  private static final long serialVersionUID = -6715117454282183132L;
@@ -54,6 +56,73 @@ public class GitChangelogConfig implements Serializable {
  private boolean useMediaWiki;
  private boolean useReadableTagName;
  private boolean useSubDirectory;
+
+ public GitChangelogConfig() {
+
+ }
+
+ @DataBoundConstructor
+ public GitChangelogConfig(String configFile, String createFileTemplateContent, String createFileTemplateFile,
+   boolean createFileUseTemplateContent, boolean createFileUseTemplateFile, List<CustomIssue> customIssues,
+   String dateFormat, String file, String fromReference, String fromType, String gitHubApi, String gitHubIssuePattern,
+   String gitHubToken, String ignoreCommitsIfMessageMatches, boolean ignoreCommitsWithoutIssue,
+   String ignoreTagsIfNameMatches, String jiraIssuePattern, String jiraPassword, String jiraServer,
+   String jiraUsername, String mediaWikiPassword, String mediaWikiTemplateContent, String mediaWikiTemplateFile,
+   String mediaWikiTitle, String mediaWikiUrl, String mediaWikiUsername, boolean mediaWikiUseTemplateContent,
+   boolean mediaWikiUseTemplateFile, String noIssueName, String readableTagName, boolean showSummary,
+   String showSummaryTemplateContent, String showSummaryTemplateFile, boolean showSummaryUseTemplateContent,
+   boolean showSummaryUseTemplateFile, String subDirectory, String timeZone, String toReference, String toType,
+   String untaggedName, boolean useConfigFile, boolean useFile, boolean useGitHub, boolean useIgnoreTagsIfNameMatches,
+   boolean useJira, boolean useMediaWiki, boolean useReadableTagName, boolean useSubDirectory) {
+  this.configFile = configFile;
+  this.createFileTemplateContent = createFileTemplateContent;
+  this.createFileTemplateFile = createFileTemplateFile;
+  this.createFileUseTemplateContent = createFileUseTemplateContent;
+  this.createFileUseTemplateFile = createFileUseTemplateFile;
+  this.customIssues = customIssues;
+  this.dateFormat = dateFormat;
+  this.file = file;
+  this.fromReference = fromReference;
+  this.fromType = fromType;
+  this.gitHubApi = gitHubApi;
+  this.gitHubIssuePattern = gitHubIssuePattern;
+  this.gitHubToken = gitHubToken;
+  this.ignoreCommitsIfMessageMatches = ignoreCommitsIfMessageMatches;
+  this.ignoreCommitsWithoutIssue = ignoreCommitsWithoutIssue;
+  this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
+  this.jiraIssuePattern = jiraIssuePattern;
+  this.jiraPassword = jiraPassword;
+  this.jiraServer = jiraServer;
+  this.jiraUsername = jiraUsername;
+  this.mediaWikiPassword = mediaWikiPassword;
+  this.mediaWikiTemplateContent = mediaWikiTemplateContent;
+  this.mediaWikiTemplateFile = mediaWikiTemplateFile;
+  this.mediaWikiTitle = mediaWikiTitle;
+  this.mediaWikiUrl = mediaWikiUrl;
+  this.mediaWikiUsername = mediaWikiUsername;
+  this.mediaWikiUseTemplateContent = mediaWikiUseTemplateContent;
+  this.mediaWikiUseTemplateFile = mediaWikiUseTemplateFile;
+  this.noIssueName = noIssueName;
+  this.readableTagName = readableTagName;
+  this.showSummary = showSummary;
+  this.showSummaryTemplateContent = showSummaryTemplateContent;
+  this.showSummaryTemplateFile = showSummaryTemplateFile;
+  this.showSummaryUseTemplateContent = showSummaryUseTemplateContent;
+  this.showSummaryUseTemplateFile = showSummaryUseTemplateFile;
+  this.subDirectory = subDirectory;
+  this.timeZone = timeZone;
+  this.toReference = toReference;
+  this.toType = toType;
+  this.untaggedName = untaggedName;
+  this.useConfigFile = useConfigFile;
+  this.useFile = useFile;
+  this.useGitHub = useGitHub;
+  this.useIgnoreTagsIfNameMatches = useIgnoreTagsIfNameMatches;
+  this.useJira = useJira;
+  this.useMediaWiki = useMediaWiki;
+  this.useReadableTagName = useReadableTagName;
+  this.useSubDirectory = useSubDirectory;
+ }
 
  public String getConfigFile() {
   return this.configFile;

@@ -1,12 +1,12 @@
 package org.jenkinsci.plugins.gitchangelog;
 
 import static hudson.tasks.BuildStepMonitor.NONE;
-import static java.lang.Boolean.TRUE;
 import static org.jenkinsci.plugins.gitchangelog.perform.GitChangelogPerformer.performerPerform;
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.BuildListener;
-import hudson.model.AbstractBuild;
+import hudson.model.TaskListener;
+import hudson.model.Run;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
@@ -14,14 +14,22 @@ import hudson.tasks.Recorder;
 
 import java.io.IOException;
 
-import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
+import jenkins.tasks.SimpleBuildStep;
 
-public class GitChangelogRecorder extends Recorder {
+import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
+import org.kohsuke.stapler.DataBoundConstructor;
+
+public class GitChangelogRecorder extends Recorder implements SimpleBuildStep {
  @Extension
  public static final BuildStepDescriptor<Publisher> DESCRIPTOR = new GitChangelogDescriptor();
  private GitChangelogConfig config;
 
  public GitChangelogRecorder() {
+ }
+
+ @DataBoundConstructor
+ public GitChangelogRecorder(GitChangelogConfig config) {
+  this.config = config;
  }
 
  public GitChangelogConfig getConfig() {
@@ -39,10 +47,9 @@ public class GitChangelogRecorder extends Recorder {
  }
 
  @Override
- public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
+ public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener)
    throws InterruptedException, IOException {
-  performerPerform(this.config, build, listener);
-  return TRUE;
+  performerPerform(this.config, build, listener, workspace);
  }
 
  public void setConfig(GitChangelogConfig config) {

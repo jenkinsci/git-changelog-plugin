@@ -6,8 +6,9 @@ import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 import static org.jenkinsci.plugins.gitchangelog.GitChangelogLogger.doLog;
 import hudson.EnvVars;
-import hudson.model.BuildListener;
-import hudson.model.AbstractBuild;
+import hudson.FilePath;
+import hudson.model.TaskListener;
+import hudson.model.Run;
 
 import java.util.List;
 
@@ -16,16 +17,16 @@ import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 
 public class GitChangelogPerformer {
 
- public static void performerPerform(final GitChangelogConfig configUnexpanded, final AbstractBuild<?, ?> build,
-   final BuildListener listener) {
+ public static void performerPerform(final GitChangelogConfig configUnexpanded, final Run<?, ?> build,
+   final TaskListener listener, FilePath workspace) {
   try {
    EnvVars env = build.getEnvironment(listener);
    final GitChangelogConfig config = expand(configUnexpanded, env);
    listener.getLogger().println("---");
    listener.getLogger().println("--- Git Changelog ---");
    listener.getLogger().println("---");
-   RemoteCallable remoteTask = new RemoteCallable(build.getWorkspace().getRemote(), config);
-   RemoteResult remoteResult = build.getWorkspace().act(remoteTask);
+   RemoteCallable remoteTask = new RemoteCallable(workspace.getRemote(), config);
+   RemoteResult remoteResult = workspace.act(remoteTask);
    if (!isNullOrEmpty(remoteResult.getLeftSideTitle())) {
     build.addAction(new GitChangelogLeftsideBuildDecorator(remoteResult.getLeftSideTitle(), remoteResult
       .getLeftSideUrl()));
