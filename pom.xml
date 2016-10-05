@@ -29,6 +29,18 @@
         <!-- All issues for this plugin: https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20component%20%3D%20git-changelog-plugin -->
     </issueManagement>
 
+    <distributionManagement>
+        <repository>
+	    <uniqueVersion>false</uniqueVersion>
+                <id>maven.jenkins-ci.org</id>
+                <url>https://repo.jenkins-ci.org/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
