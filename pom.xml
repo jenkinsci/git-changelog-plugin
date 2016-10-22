@@ -122,7 +122,7 @@
         <dependency>
             <groupId>se.bjurr.gitchangelog</groupId>
             <artifactId>git-changelog-lib</artifactId>
-            <version>1.57</version>
+            <version>1.58</version>
             <exclusions>
                 <exclusion>
                     <artifactId>guava</artifactId>
