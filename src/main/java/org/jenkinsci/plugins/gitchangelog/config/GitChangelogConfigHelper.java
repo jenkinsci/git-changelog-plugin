@@ -22,7 +22,7 @@ import com.google.common.io.CharStreams;
 
 public class GitChangelogConfigHelper {
  public enum FROMTYPE {
-  commit(null), firstCommit(ZERO_COMMIT), master("master"), ref(null);
+  commit("commit"), firstCommit(ZERO_COMMIT), master("master"), ref("ref");
   private final String reference;
 
   FROMTYPE(String ref) {
