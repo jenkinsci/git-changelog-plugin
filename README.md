@@ -21,6 +21,85 @@ emails, for example.
 
 This is also documented in [Jenkins wiki](https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin).
 
+### Job DSL
+
+The `fromType` and `toType` can be:
+ * commit, in combination with the actual commit hash.
+ * firstCommit, will refer to the first commit in repo.
+ * ref, in combination with a branch, or tag.
+ * master, will refer to the master branch.
+
+Here is a sample job DSL.
+
+```
+job('example') {
+ scm {
+  git('https://github.com/tomasbjerre/pull-request-notifier-for-stash.git')
+ }
+ publishers {
+  gitChangelogRecorder {
+   config {
+    configFile("")
+    createFileTemplateContent("")
+    createFileTemplateFile("")
+    createFileUseTemplateContent(false)
+    createFileUseTemplateFile(false)
+    customIssues {
+     customIssue {
+      name("")
+      pattern("")
+      link("")
+      title("")
+     }
+    }
+    dateFormat("")
+    file("")
+    fromReference("252fc9355a0fd19e06f04ec21446a0afa070d80b")
+    fromType("commit")
+    gitHubApi("")
+    gitHubIssuePattern("")
+    gitHubToken("")
+    ignoreCommitsIfMessageMatches("")
+    ignoreCommitsWithoutIssue(false)
+    ignoreTagsIfNameMatches("")
+    jiraIssuePattern("")
+    jiraPassword("")
+    jiraServer("")
+    jiraUsername("")
+    mediaWikiPassword("")
+    mediaWikiTemplateContent("")
+    mediaWikiTemplateFile("")
+    mediaWikiTitle("")
+    mediaWikiUrl("")
+    mediaWikiUsername("")
+    mediaWikiUseTemplateContent(false)
+    mediaWikiUseTemplateFile(false)
+    noIssueName("")
+    readableTagName("")
+    showSummary(true)
+    showSummaryTemplateContent("template here")
+    showSummaryTemplateFile("")
+    showSummaryUseTemplateContent(true)
+    showSummaryUseTemplateFile(false)
+    subDirectory("")
+    timeZone("")
+    toReference("250ec4d56be6f3a5e9bda9f24b540479dd7cec47")
+    toType("commit")
+    untaggedName("")
+    useConfigFile(false)
+    useFile(false)
+    useGitHub(false)
+    useIgnoreTagsIfNameMatches(false)
+    useJira(false)
+    useMediaWiki(false)
+    useReadableTagName(false)
+    useSubDirectory(false)
+   }
+  }
+ }
+}
+```
+
 ### Using a Post-build Action
 
 When the plugin is installed, it will add some new post build actions in Jenkins job configuration.
