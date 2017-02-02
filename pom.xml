@@ -1,170 +1,224 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.jenkins-ci.plugins</groupId>
-        <artifactId>plugin</artifactId>
-        <version>1.609.3</version>
-        <relativePath />
-    </parent>
+	<parent>
+		<groupId>org.jenkins-ci.plugins</groupId>
+		<artifactId>plugin</artifactId>
+		<version>1.609.3</version>
+		<relativePath />
+	</parent>
 
-    <groupId>de.wellnerbou.jenkins</groupId>
-    <artifactId>git-changelog</artifactId>
-    <version>1.42-SNAPSHOT</version>
-    <packaging>hpi</packaging>
+	<groupId>de.wellnerbou.jenkins</groupId>
+	<artifactId>git-changelog</artifactId>
+	<version>1.42-SNAPSHOT</version>
+	<packaging>hpi</packaging>
 
-    <name>Git Changelog</name>
-    <description>Plugin creating changelogs based on Git's history between two tags or revisions</description>
-    <url>https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin</url>
+	<name>Git Changelog</name>
+	<description>Plugin creating changelogs based on Git's history between two tags or revisions</description>
+	<url>https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin</url>
 
-    <ciManagement>
-        <system>Jenkins</system>
-        <url>https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/</url>
-    </ciManagement>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/</url>
+	</ciManagement>
 
-    <issueManagement>
-        <system>Jira</system>
-        <url>https://issues.jenkins-ci.org/</url>
-        <!-- All issues for this plugin: https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20component%20%3D%20git-changelog-plugin -->
-    </issueManagement>
+	<issueManagement>
+		<system>Jira</system>
+		<url>https://issues.jenkins-ci.org/</url>
+		<!-- All issues for this plugin: https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20component%20%3D%20git-changelog-plugin -->
+	</issueManagement>
 
-    <distributionManagement>
-        <repository>
-	    <uniqueVersion>false</uniqueVersion>
-                <id>maven.jenkins-ci.org</id>
-                <url>https://repo.jenkins-ci.org/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>maven.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>maven.jenkins-ci.org</id>
+			<url>https://repo.jenkins-ci.org/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>maven.jenkins-ci.org</id>
+			<url>https://repo.jenkins-ci.org/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>se.bjurr.gitchangelog</groupId>
+				<artifactId>git-changelog-maven-plugin</artifactId>
+				<version>1.38</version>
+				<executions>
+					<execution>
+						<id>GenerateGitChangelog</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>git-changelog</goal>
+						</goals>
+						<configuration>
+							<readableTagName>-([^-]+?)$</readableTagName>
+							<gitHubApi>https://api.github.com/repos/jenkinsci/git-changelog-plugin</gitHubApi>
+							<gitHubToken>${GITHUB_OAUTH2TOKEN}</gitHubToken>
+							<gitHubIssuePattern>#([0-9]*)</gitHubIssuePattern>
+							<filePath>CHANGELOG.md</filePath>
+							<templateContent>
+        <![CDATA[
+# Git Changelog Plugin Changelog
+Changelog of Git Changelog Plugin.
+{{#tags}}
+## {{name}}
+ {{#issues}}
+  {{#hasIssue}}
+   {{#hasLink}}
+### {{name}} [{{issue}}]({{link}}) {{title}}
+   {{/hasLink}}
+   {{^hasLink}}
+### {{name}} {{issue}} {{title}}
+   {{/hasLink}}
+  {{/hasIssue}}
+  {{^hasIssue}}
+### {{name}}
+  {{/hasIssue}}
+  {{#commits}}
+**{{{messageTitle}}}**
+{{#messageBodyItems}}
+ * {{.}} 
+{{/messageBodyItems}}
 
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>http://opensource.org/licenses/MIT</url>
-        </license>
-    </licenses>
+[{{hash}}](https://github.com/jenkinsci/git-changelog-plugin/commit/{{hash}}) {{authorName}} *{{commitTime}}*
 
-    <developers>
-        <developer>
-            <id>paulwellnerbou</id>
-            <name>Paul Wellner Bou</name>
-            <email>paul@wellnerbou.de</email>
-            <url>http://paul.wellnerbou.de</url>
-        </developer>
-        <developer>
-            <id>tomasbjerre</id>
-            <name>Tomas Bjerre</name>
-            <email>tomas.bjerre85@gmail.com</email>
-        </developer>
-    </developers>
+  {{/commits}}
+ {{/issues}}
+{{/tags}}
+]]>
+							</templateContent>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
-    <scm>
-        <connection>scm:git:https://github.com/jenkinsci/git-changelog-plugin.git</connection>
-        <developerConnection>scm:git:https://github.com/jenkinsci/git-changelog-plugin.git</developerConnection>
-        <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
-        <tag>HEAD</tag>
-    </scm>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://opensource.org/licenses/MIT</url>
+		</license>
+	</licenses>
 
-    <repositories>
-        <repository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </repository>
-        <repository>
-            <id>bintray-paulwellnerbou-maven</id>
-            <name>bintray</name>
-            <url>http://dl.bintray.com/paulwellnerbou/maven</url>
-        </repository>
-    </repositories>
+	<developers>
+		<developer>
+			<id>paulwellnerbou</id>
+			<name>Paul Wellner Bou</name>
+			<email>paul@wellnerbou.de</email>
+			<url>http://paul.wellnerbou.de</url>
+		</developer>
+		<developer>
+			<id>tomasbjerre</id>
+			<name>Tomas Bjerre</name>
+			<email>tomas.bjerre85@gmail.com</email>
+		</developer>
+	</developers>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </pluginRepository>
-    </pluginRepositories>
+	<scm>
+		<connection>scm:git:https://github.com/jenkinsci/git-changelog-plugin.git</connection>
+		<developerConnection>scm:git:https://github.com/jenkinsci/git-changelog-plugin.git</developerConnection>
+		<url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+		<tag>HEAD</tag>
+	</scm>
 
-    <dependencies>
-        <!-- git-changelog depends on Guava 18, jenkins depends on Guava 11, 14 is a working compromise -->
-        <dependency>
-            <artifactId>guava</artifactId>
-            <groupId>com.google.guava</groupId>
-            <version>14.0</version>
-        </dependency>
-        <dependency>
-            <groupId>de.wellnerbou</groupId>
-            <artifactId>git-changelog</artifactId>
-            <version>2.3</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>se.bjurr.gitchangelog</groupId>
-            <artifactId>git-changelog-lib</artifactId>
-            <version>1.58</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-           <groupId>org.jenkins-ci.main</groupId>
-           <artifactId>maven-plugin</artifactId>
-           <version>2.9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>token-macro</artifactId>
-            <version>1.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>git</artifactId>
-            <version>2.3.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>2.1.0</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+	<repositories>
+		<repository>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
+		</repository>
+		<repository>
+			<id>bintray-paulwellnerbou-maven</id>
+			<name>bintray</name>
+			<url>http://dl.bintray.com/paulwellnerbou/maven</url>
+		</repository>
+	</repositories>
 
-    <profiles>
-        <profile>
-            <id>with-email-ext</id>
-            <!-- The email-ext plugin is a good way to test the token macro replacements. -->
-            <dependencies>
-                <dependency>
-                    <groupId>org.jenkins-ci.plugins</groupId>
-                    <artifactId>email-ext</artifactId>
-                    <version>2.40.5</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<!-- git-changelog depends on Guava 18, jenkins depends on Guava 11, 14 
+			is a working compromise -->
+		<dependency>
+			<artifactId>guava</artifactId>
+			<groupId>com.google.guava</groupId>
+			<version>14.0</version>
+		</dependency>
+		<dependency>
+			<groupId>de.wellnerbou</groupId>
+			<artifactId>git-changelog</artifactId>
+			<version>2.3</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>se.bjurr.gitchangelog</groupId>
+			<artifactId>git-changelog-lib</artifactId>
+			<version>1.58</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jenkins-ci.main</groupId>
+			<artifactId>maven-plugin</artifactId>
+			<version>2.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>token-macro</artifactId>
+			<version>1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>git</artifactId>
+			<version>2.3.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>2.1.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>with-email-ext</id>
+			<!-- The email-ext plugin is a good way to test the token macro replacements. -->
+			<dependencies>
+				<dependency>
+					<groupId>org.jenkins-ci.plugins</groupId>
+					<artifactId>email-ext</artifactId>
+					<version>2.40.5</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 
 </project>
