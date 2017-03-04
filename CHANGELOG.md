@@ -2,9 +2,13 @@
 Changelog of Git Changelog Plugin.
 ## Unreleased
 ### No issue
+**Jenkinsfile and building with new plugin parent**
+
+[c68158b452b66db](https://github.com/jenkinsci/git-changelog-plugin/commit/c68158b452b66db) Tomas Bjerre *2017-03-04 23:17:04*
+
 **Adding changelog**
 
-[06f887e17e75da6](https://github.com/jenkinsci/git-changelog-plugin/commit/06f887e17e75da6) Tomas Bjerre *2017-02-02 06:04:07*
+[74b7f34abf558e1](https://github.com/jenkinsci/git-changelog-plugin/commit/74b7f34abf558e1) Tomas Bjerre *2017-02-02 06:08:22*
 
 **Adding example job DSL**
 
