@@ -7,24 +7,22 @@ import hudson.Extension;
 @Extension
 public class GitLogJiraFilterTokenMacro extends GitLogTokenMacro {
 
-	public static final String GITLOGJIRAFILTER = "GITCHANGELOGJIRA";
+  public static final String GITLOGJIRAFILTER = "GITCHANGELOGJIRA";
 
-	@Parameter
-	public String jirabaseurl;
+  @Parameter public String jirabaseurl;
 
-	@Parameter
-	public String projects;
+  @Parameter public String projects;
 
-	@Override
-	protected ChangelogProcessor createChangelogProcessor() {
-		JiraFilterChangelogProcessor jiraFilterChangelogProcessor = new JiraFilterChangelogProcessor();
-		jiraFilterChangelogProcessor.setJiraBaseUrl(jirabaseurl);
-		jiraFilterChangelogProcessor.setJiraProjectPrefixes(projects);
-		return jiraFilterChangelogProcessor;
-	}
+  @Override
+  protected ChangelogProcessor createChangelogProcessor() {
+    JiraFilterChangelogProcessor jiraFilterChangelogProcessor = new JiraFilterChangelogProcessor();
+    jiraFilterChangelogProcessor.setJiraBaseUrl(jirabaseurl);
+    jiraFilterChangelogProcessor.setJiraProjectPrefixes(projects);
+    return jiraFilterChangelogProcessor;
+  }
 
-	@Override
-	public boolean acceptsMacroName(final String macroName) {
-		return GITLOGJIRAFILTER.equals(macroName);
-	}
+  @Override
+  public boolean acceptsMacroName(final String macroName) {
+    return GITLOGJIRAFILTER.equals(macroName);
+  }
 }

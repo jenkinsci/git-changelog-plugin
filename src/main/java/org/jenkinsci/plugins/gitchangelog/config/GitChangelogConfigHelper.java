@@ -21,52 +21,56 @@ import java.util.logging.Logger;
 import com.google.common.io.CharStreams;
 
 public class GitChangelogConfigHelper {
- public enum FROMTYPE {
-  commit("commit"), firstCommit(ZERO_COMMIT), master("master"), ref("ref");
-  private final String reference;
+  public enum FROMTYPE {
+    commit("commit"),
+    firstCommit(ZERO_COMMIT),
+    master("master"),
+    ref("ref");
+    private final String reference;
 
-  FROMTYPE(String ref) {
-   this.reference = ref;
+    FROMTYPE(String ref) {
+      this.reference = ref;
+    }
+
+    public String getReference() {
+      return this.reference;
+    }
   }
 
-  public String getReference() {
-   return this.reference;
+  private static Logger logger = Logger.getLogger(GitChangelogConfigHelper.class.getName());
+
+  public static GitChangelogConfig createNewConfig() {
+    GitChangelogConfig config = new GitChangelogConfig();
+    config.setConfigFile(DEFAULT_FILE);
+    config.setDateFormat(DEFAULT_DATEFORMAT);
+    config.setSubDirectory("");
+    config.setFile("CHANGELOG.html");
+    config.setIgnoreCommitsIfMessageMatches(DEFAULT_IGNORE_COMMITS_REGEXP);
+    config.setJiraIssuePattern(DEFAULT_JIRA_ISSUE_PATTEN);
+    config.setGitHubIssuePattern(DEFAULT_GITHUB_ISSUE_PATTERN);
+    config.setNoIssueName(DEFAULT_NO_ISSUE_NAME);
+    config.setReadableTagName(DEFAULT_READABLE_TAG_NAME);
+    config.setTimeZone(DEFAULT_TIMEZONE);
+    config.setUntaggedName(DEFAULT_UNTAGGED_NAME);
+    config.setCreateFileTemplateContent(getResourceAsString("fileTemplateDefault.mustache"));
+    config.setShowSummaryTemplateContent(getResourceAsString("summaryTemplateDefault.mustache"));
+    config.setMediaWikiTemplateContent(getResourceAsString("mediaWikiTemplateDefault.mustache"));
+
+    List<CustomIssue> customIssues = newArrayList();
+    customIssues.add(new CustomIssue("", "", "", ""));
+    customIssues.add(new CustomIssue("", "", "", ""));
+    config.setCustomIssues(customIssues);
+
+    return config;
   }
- }
 
- private static Logger logger = Logger.getLogger(GitChangelogConfigHelper.class.getName());
-
- public static GitChangelogConfig createNewConfig() {
-  GitChangelogConfig config = new GitChangelogConfig();
-  config.setConfigFile(DEFAULT_FILE);
-  config.setDateFormat(DEFAULT_DATEFORMAT);
-  config.setSubDirectory("");
-  config.setFile("CHANGELOG.html");
-  config.setIgnoreCommitsIfMessageMatches(DEFAULT_IGNORE_COMMITS_REGEXP);
-  config.setJiraIssuePattern(DEFAULT_JIRA_ISSUE_PATTEN);
-  config.setGitHubIssuePattern(DEFAULT_GITHUB_ISSUE_PATTERN);
-  config.setNoIssueName(DEFAULT_NO_ISSUE_NAME);
-  config.setReadableTagName(DEFAULT_READABLE_TAG_NAME);
-  config.setTimeZone(DEFAULT_TIMEZONE);
-  config.setUntaggedName(DEFAULT_UNTAGGED_NAME);
-  config.setCreateFileTemplateContent(getResourceAsString("fileTemplateDefault.mustache"));
-  config.setShowSummaryTemplateContent(getResourceAsString("summaryTemplateDefault.mustache"));
-  config.setMediaWikiTemplateContent(getResourceAsString("mediaWikiTemplateDefault.mustache"));
-
-  List<CustomIssue> customIssues = newArrayList();
-  customIssues.add(new CustomIssue("", "", "", ""));
-  customIssues.add(new CustomIssue("", "", "", ""));
-  config.setCustomIssues(customIssues);
-
-  return config;
- }
-
- private static String getResourceAsString(String filename) {
-  try {
-   return CharStreams.toString(new InputStreamReader(GitChangelogConfigHelper.class.getResourceAsStream(filename)));
-  } catch (IOException e) {
-   logger.log(SEVERE, "", e);
-   return "";
+  private static String getResourceAsString(String filename) {
+    try {
+      return CharStreams.toString(
+          new InputStreamReader(GitChangelogConfigHelper.class.getResourceAsStream(filename)));
+    } catch (IOException e) {
+      logger.log(SEVERE, "", e);
+      return "";
+    }
   }
- }
 }

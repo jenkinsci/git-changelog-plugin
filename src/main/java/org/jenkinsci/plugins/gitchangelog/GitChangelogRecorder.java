@@ -20,39 +20,39 @@ import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class GitChangelogRecorder extends Recorder implements SimpleBuildStep {
- @Extension
- public static final BuildStepDescriptor<Publisher> DESCRIPTOR = new GitChangelogDescriptor();
- private GitChangelogConfig config;
+  @Extension
+  public static final BuildStepDescriptor<Publisher> DESCRIPTOR = new GitChangelogDescriptor();
 
- public GitChangelogRecorder() {
- }
+  private GitChangelogConfig config;
 
- @DataBoundConstructor
- public GitChangelogRecorder(GitChangelogConfig config) {
-  this.config = config;
- }
+  public GitChangelogRecorder() {}
 
- public GitChangelogConfig getConfig() {
-  return this.config;
- }
+  @DataBoundConstructor
+  public GitChangelogRecorder(GitChangelogConfig config) {
+    this.config = config;
+  }
 
- @Override
- public BuildStepDescriptor<Publisher> getDescriptor() {
-  return DESCRIPTOR;
- }
+  public GitChangelogConfig getConfig() {
+    return this.config;
+  }
 
- @Override
- public BuildStepMonitor getRequiredMonitorService() {
-  return NONE;
- }
+  @Override
+  public BuildStepDescriptor<Publisher> getDescriptor() {
+    return DESCRIPTOR;
+  }
 
- @Override
- public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener)
-   throws InterruptedException, IOException {
-  performerPerform(this.config, build, listener, workspace);
- }
+  @Override
+  public BuildStepMonitor getRequiredMonitorService() {
+    return NONE;
+  }
 
- public void setConfig(GitChangelogConfig config) {
-  this.config = config;
- }
+  @Override
+  public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener)
+      throws InterruptedException, IOException {
+    performerPerform(this.config, build, listener, workspace);
+  }
+
+  public void setConfig(GitChangelogConfig config) {
+    this.config = config;
+  }
 }

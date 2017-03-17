@@ -4,7 +4,7 @@ Changelog of Git Changelog Plugin.
 ### No issue
 **Jenkinsfile and building with new plugin parent**
 
-[c68158b452b66db](https://github.com/jenkinsci/git-changelog-plugin/commit/c68158b452b66db) Tomas Bjerre *2017-03-04 23:17:04*
+[3c3c013b8806032](https://github.com/jenkinsci/git-changelog-plugin/commit/3c3c013b8806032) Tomas Bjerre *2017-03-08 05:28:14*
 
 **Adding changelog**
 
