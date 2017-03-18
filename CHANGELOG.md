@@ -2,6 +2,17 @@
 Changelog of Git Changelog Plugin.
 ## Unreleased
 ### No issue
+**Git Changelog Lib 1.58 -> 1.64**
+ * Jira issueType and labels 
+ * GitHub labels 
+ * 10 seconds timeout to GitHub 
+
+[a144eec188d4e14](https://github.com/jenkinsci/git-changelog-plugin/commit/a144eec188d4e14) Tomas Bjerre *2017-03-18 09:16:31*
+
+**Google java code standard**
+
+[3aae4ffc9df122a](https://github.com/jenkinsci/git-changelog-plugin/commit/3aae4ffc9df122a) Tomas Bjerre *2017-03-17 16:24:33*
+
 **Jenkinsfile and building with new plugin parent**
 
 [3c3c013b8806032](https://github.com/jenkinsci/git-changelog-plugin/commit/3c3c013b8806032) Tomas Bjerre *2017-03-08 05:28:14*
