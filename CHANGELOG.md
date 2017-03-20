@@ -7,7 +7,7 @@ Changelog of Git Changelog Plugin.
  * GitHub labels 
  * 10 seconds timeout to GitHub 
 
-[a144eec188d4e14](https://github.com/jenkinsci/git-changelog-plugin/commit/a144eec188d4e14) Tomas Bjerre *2017-03-18 09:16:31*
+[e6208cf70e5dffa](https://github.com/jenkinsci/git-changelog-plugin/commit/e6208cf70e5dffa) Tomas Bjerre *2017-03-18 09:26:26*
 
 **Google java code standard**
 
