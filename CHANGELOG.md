@@ -1,5 +1,17 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## Unreleased
+### No issue
+**doc**
+
+[a3c3dc1d74991ce](https://github.com/jenkinsci/git-changelog-plugin/commit/a3c3dc1d74991ce) Tomas Bjerre *2017-03-26 10:11:08*
+
+## 1.47
+### No issue
+**Using Credentials for Jira, GitHub and GitLab**
+
+[41f0c725b8360dc](https://github.com/jenkinsci/git-changelog-plugin/commit/41f0c725b8360dc) Tomas Bjerre *2017-03-26 10:08:53*
+
 ## 1.46
 ### No issue
 **GitLab integration**
