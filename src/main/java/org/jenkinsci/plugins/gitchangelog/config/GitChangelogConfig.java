@@ -32,6 +32,8 @@ public class GitChangelogConfig implements Serializable {
   private String jiraPassword;
   private String jiraServer;
   private String jiraUsername;
+  private String jiraUsernamePasswordCredentialsId;
+  private boolean useJiraUsernamePasswordCredentialsId;
   private String mediaWikiPassword;
   private String mediaWikiTemplateContent;
   private String mediaWikiTemplateFile;
@@ -60,6 +62,10 @@ public class GitChangelogConfig implements Serializable {
   private boolean useMediaWiki;
   private boolean useReadableTagName;
   private boolean useSubDirectory;
+  private String gitHubApiTokenCredentialsId;
+  private boolean useGitHubApiTokenCredentials;
+  private boolean useGitLabApiTokenCredentials;
+  private String gitLabApiTokenCredentialsId;
 
   public GitChangelogConfig() {}
 
@@ -89,6 +95,8 @@ public class GitChangelogConfig implements Serializable {
       String jiraPassword,
       String jiraServer,
       String jiraUsername,
+      String jiraUsernamePasswordCredentialsId,
+      boolean useJiraUsernamePasswordCredentialsId,
       String mediaWikiPassword,
       String mediaWikiTemplateContent,
       String mediaWikiTemplateFile,
@@ -116,7 +124,11 @@ public class GitChangelogConfig implements Serializable {
       boolean useJira,
       boolean useMediaWiki,
       boolean useReadableTagName,
-      boolean useSubDirectory) {
+      boolean useSubDirectory,
+      String gitHubApiTokenCredentialsId,
+      String gitLabApiTokenCredentialsId,
+      boolean useGitLabApiTokenCredentials,
+      boolean useGitHubApiTokenCredentials) {
     this.configFile = configFile;
     this.createFileTemplateContent = createFileTemplateContent;
     this.createFileTemplateFile = createFileTemplateFile;
@@ -141,6 +153,8 @@ public class GitChangelogConfig implements Serializable {
     this.jiraPassword = jiraPassword;
     this.jiraServer = jiraServer;
     this.jiraUsername = jiraUsername;
+    this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
+    this.useJiraUsernamePasswordCredentialsId = useJiraUsernamePasswordCredentialsId;
     this.mediaWikiPassword = mediaWikiPassword;
     this.mediaWikiTemplateContent = mediaWikiTemplateContent;
     this.mediaWikiTemplateFile = mediaWikiTemplateFile;
@@ -169,6 +183,10 @@ public class GitChangelogConfig implements Serializable {
     this.useMediaWiki = useMediaWiki;
     this.useReadableTagName = useReadableTagName;
     this.useSubDirectory = useSubDirectory;
+    this.gitHubApiTokenCredentialsId = gitHubApiTokenCredentialsId;
+    this.useGitHubApiTokenCredentials = useGitHubApiTokenCredentials;
+    this.useGitLabApiTokenCredentials = useGitLabApiTokenCredentials;
+    this.gitLabApiTokenCredentialsId = gitLabApiTokenCredentialsId;
   }
 
   public String getConfigFile() {
@@ -595,6 +613,55 @@ public class GitChangelogConfig implements Serializable {
     return this.file;
   }
 
+  public String getGitHubApiTokenCredentialsId() {
+    return gitHubApiTokenCredentialsId;
+  }
+
+  public boolean isUseGitHubApiTokenCredentials() {
+    return useGitHubApiTokenCredentials;
+  }
+
+  public boolean isUseGitLabApiTokenCredentials() {
+    return useGitLabApiTokenCredentials;
+  }
+
+  public String getGitLabApiTokenCredentialsId() {
+    return gitLabApiTokenCredentialsId;
+  }
+
+  public void setGitHubApiTokenCredentialsId(String gitHubApiTokenCredentialsId) {
+    this.gitHubApiTokenCredentialsId = gitHubApiTokenCredentialsId;
+  }
+
+  public void setGitLabApiTokenCredentialsId(String gitLabApiTokenCredentialsId) {
+    this.gitLabApiTokenCredentialsId = gitLabApiTokenCredentialsId;
+  }
+
+  public void setUseGitHubApiTokenCredentials(boolean useGitHubApiTokenCredentials) {
+    this.useGitHubApiTokenCredentials = useGitHubApiTokenCredentials;
+  }
+
+  public void setUseGitLabApiTokenCredentials(boolean useGitLabApiTokenCredentials) {
+    this.useGitLabApiTokenCredentials = useGitLabApiTokenCredentials;
+  }
+
+  public void setJiraUsernamePasswordCredentialsId(String jiraUsernamePasswordCredentialsId) {
+    this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
+  }
+
+  public void setUseJiraUsernamePasswordCredentialsId(
+      boolean useJiraUsernamePasswordCredentialsId) {
+    this.useJiraUsernamePasswordCredentialsId = useJiraUsernamePasswordCredentialsId;
+  }
+
+  public boolean isUseJiraUsernamePasswordCredentialsId() {
+    return useJiraUsernamePasswordCredentialsId;
+  }
+
+  public String getJiraUsernamePasswordCredentialsId() {
+    return jiraUsernamePasswordCredentialsId;
+  }
+
   @Override
   public String toString() {
     return "GitChangelogConfig [configFile="
@@ -629,6 +696,8 @@ public class GitChangelogConfig implements Serializable {
         + gitLabProjectName
         + ", gitLabToken="
         + gitLabToken
+        + ", useGitLab="
+        + useGitLab
         + ", ignoreCommitsIfMessageMatches="
         + ignoreCommitsIfMessageMatches
         + ", ignoreCommitsWithoutIssue="
@@ -643,6 +712,10 @@ public class GitChangelogConfig implements Serializable {
         + jiraServer
         + ", jiraUsername="
         + jiraUsername
+        + ", jiraUsernamePasswordCredentialsId="
+        + jiraUsernamePasswordCredentialsId
+        + ", useJiraUsernamePasswordCredentialsId="
+        + useJiraUsernamePasswordCredentialsId
         + ", mediaWikiPassword="
         + mediaWikiPassword
         + ", mediaWikiTemplateContent="
@@ -699,6 +772,14 @@ public class GitChangelogConfig implements Serializable {
         + useReadableTagName
         + ", useSubDirectory="
         + useSubDirectory
+        + ", gitHubApiTokenCredentialsId="
+        + gitHubApiTokenCredentialsId
+        + ", useGitHubApiTokenCredentials="
+        + useGitHubApiTokenCredentials
+        + ", useGitLabApiTokenCredentials="
+        + useGitLabApiTokenCredentials
+        + ", gitLabApiTokenCredentialsId="
+        + gitLabApiTokenCredentialsId
         + "]";
   }
 }

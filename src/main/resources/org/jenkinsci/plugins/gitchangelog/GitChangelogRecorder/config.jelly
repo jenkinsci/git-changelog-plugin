@@ -5,7 +5,8 @@
   xmlns:f="/lib/form"
   xmlns:l="/lib/layout"
   xmlns:st="jelly:stapler"
-  xmlns:t="/lib/hudson">
+  xmlns:t="/lib/hudson"
+  xmlns:c="/lib/credentials">
 
   <j:set var="dollar" value="$"/>
 
@@ -266,6 +267,12 @@
         <f:description>
          Leave blank to use default.
         </f:description>
+
+        <f:optionalBlock checked="${config.useJiraUsernamePasswordCredentialsId}" name="useJiraUsernamePasswordCredentialsId" title="Use API token credentials" inline="true">
+          <f:entry title="API token Credential" field="jiraUsernamePasswordCredentialsId">
+            <c:select default="${config.jiraUsernamePasswordCredentialsId}" />
+          </f:entry>
+        </f:optionalBlock>
         
         <f:entry title="Username">
           <f:textbox name="jiraUsername" value="${config.jiraUsername}"/>
@@ -291,6 +298,12 @@
         <f:description>
           Something like: https://api.github.com/repos/REPO/PROJECT
         </f:description>
+
+        <f:optionalBlock checked="${config.useGitHubApiTokenCredentials}" name="useGitHubApiTokenCredentials" title="Use API token credentials" inline="true">
+          <f:entry title="API token Credential" field="gitHubApiTokenCredentialsId">
+            <c:select default="${config.gitHubApiTokenCredentialsId}" />
+          </f:entry>
+        </f:optionalBlock>
         <f:entry title="GitHub Token">
           <f:textbox name="gitHubToken" value="${config.gitHubToken}"/>
         </f:entry>
@@ -325,12 +338,19 @@
         <f:description>
           In https://gitlab.com/tomas.bjerre85/violations-test, that would be violations-test.
         </f:description>
+
+        <f:optionalBlock checked="${config.useGitLabApiTokenCredentials}" name="useGitLabApiTokenCredentials" title="Use API token credentials" inline="true">
+          <f:entry title="API token Credential" field="gitLabApiTokenCredentialsId">
+            <c:select default="${config.gitLabApiTokenCredentialsId}" />
+          </f:entry>
+        </f:optionalBlock>
         <f:entry title="GitLab Token">
           <f:textbox name="gitLabToken" value="${config.gitLabToken}"/>
         </f:entry>
         <f:description>
          You can create one in the project settings.
         </f:description>
+
       </f:optionalBlock>
       <f:description>
        With GitLab specified you can have the {{title}} variable populated with title from GitLab issues.

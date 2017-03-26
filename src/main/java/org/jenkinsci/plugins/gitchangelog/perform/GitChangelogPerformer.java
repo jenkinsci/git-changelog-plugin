@@ -5,11 +5,15 @@ import static com.google.common.collect.Lists.newArrayList;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 import static org.jenkinsci.plugins.gitchangelog.GitChangelogLogger.doLog;
+import static org.jenkinsci.plugins.gitchangelog.config.CredentialsHelper.findSecretString;
+import static org.jenkinsci.plugins.gitchangelog.config.CredentialsHelper.findSecretUsernamePassword;
 
 import java.util.List;
 
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
+
+import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
 
 import hudson.EnvVars;
 import hudson.FilePath;
@@ -29,6 +33,9 @@ public class GitChangelogPerformer {
       listener.getLogger().println("---");
       listener.getLogger().println("--- Git Changelog ---");
       listener.getLogger().println("---");
+
+      setApiTokenCredentials(config, listener);
+
       RemoteCallable remoteTask = new RemoteCallable(workspace.getRemote(), config);
       RemoteResult remoteResult = workspace.act(remoteTask);
       if (!isNullOrEmpty(remoteResult.getLeftSideTitle())) {
@@ -46,6 +53,26 @@ public class GitChangelogPerformer {
     }
   }
 
+  private static void setApiTokenCredentials(
+      final GitChangelogConfig configExpanded, final TaskListener listener) {
+    if (configExpanded.isUseGitHubApiTokenCredentials()) {
+      final String getApiTokenCredentialsId = configExpanded.getGitHubApiTokenCredentialsId();
+      String token = findSecretString(getApiTokenCredentialsId).orNull();
+      configExpanded.setGitHubToken(token);
+    }
+    if (configExpanded.isUseGitLabApiTokenCredentials()) {
+      final String getApiTokenCredentialsId = configExpanded.getGitLabApiTokenCredentialsId();
+      String token = findSecretString(getApiTokenCredentialsId).orNull();
+      configExpanded.setGitLabToken(token);
+    }
+    if (configExpanded.isUseJiraUsernamePasswordCredentialsId()) {
+      final String getApiTokenCredentialsId = configExpanded.getJiraUsernamePasswordCredentialsId();
+      StandardUsernamePasswordCredentials token =
+          findSecretUsernamePassword(getApiTokenCredentialsId).orNull();
+      configExpanded.setJiraUsername(token.getUsername());
+      configExpanded.setJiraPassword(token.getPassword().getPlainText());
+    }
+  }
   /** Makes sure any Jenkins variable, used in the configuration fields, are evaluated. */
   private static GitChangelogConfig expand(GitChangelogConfig config, EnvVars environment) {
     GitChangelogConfig c = new GitChangelogConfig();
@@ -68,16 +95,23 @@ public class GitChangelogPerformer {
     c.setJiraIssuePattern(environment.expand(config.getJiraIssuePattern()));
     c.setJiraUsername(environment.expand(config.getJiraUsername()));
     c.setJiraPassword(environment.expand(config.getJiraPassword()));
+    c.setUseJiraUsernamePasswordCredentialsId(config.isUseJiraUsernamePasswordCredentialsId());
+    c.setJiraUsernamePasswordCredentialsId(
+        environment.expand(config.getJiraUsernamePasswordCredentialsId()));
 
     c.setUseGitHub(config.isUseGitHub());
     c.setGitHubApi(environment.expand(config.getGitHubApi()));
     c.setGitHubIssuePattern(environment.expand(config.getGitHubIssuePattern()));
     c.setGitHubToken(environment.expand(config.getGitHubToken()));
+    c.setGitHubApiTokenCredentialsId(environment.expand(config.getGitHubApiTokenCredentialsId()));
+    c.setUseGitHubApiTokenCredentials(config.isUseGitHubApiTokenCredentials());
 
     c.setUseGitLab(config.isUseGitLab());
     c.setGitLabServer(environment.expand(config.getGitLabServer()));
     c.setGitLabProjectName(environment.expand(config.getGitLabProjectName()));
     c.setGitLabToken(environment.expand(config.getGitLabToken()));
+    c.setGitLabApiTokenCredentialsId(environment.expand(config.getGitLabApiTokenCredentialsId()));
+    c.setUseGitLabApiTokenCredentials(config.isUseGitLabApiTokenCredentials());
 
     c.setNoIssueName(environment.expand(config.getNoIssueName()));
     c.setIgnoreCommitsWithoutIssue(config.isIgnoreCommitsWithoutIssue());

@@ -5,6 +5,7 @@ import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper
 
 import java.util.ArrayList;
 
+import org.jenkinsci.plugins.gitchangelog.config.CredentialsHelper;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.kohsuke.stapler.StaplerRequest;
@@ -12,6 +13,7 @@ import org.kohsuke.stapler.StaplerRequest;
 import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
+import hudson.util.ListBoxModel;
 import net.sf.json.JSONObject;
 
 public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher> {
@@ -23,6 +25,18 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     if (this.config == null) {
       this.config = createNewConfig();
     }
+  }
+
+  public ListBoxModel doFillGitHubApiTokenCredentialsIdItems() {
+    return CredentialsHelper.doFillApiTokenCredentialsIdItems();
+  }
+
+  public ListBoxModel doFillGitLabApiTokenCredentialsIdItems() {
+    return CredentialsHelper.doFillApiTokenCredentialsIdItems();
+  }
+
+  public ListBoxModel doFillJiraUsernamePasswordCredentialsIdItems() {
+    return CredentialsHelper.doFillUserNamePasswordCredentialsIdItems();
   }
 
   @Override
@@ -69,16 +83,23 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setJiraIssuePattern(formData.getString("jiraIssuePattern"));
     c.setJiraUsername(formData.getString("jiraUsername"));
     c.setJiraPassword(formData.getString("jiraPassword"));
+    c.setUseJiraUsernamePasswordCredentialsId(
+        formData.getBoolean("useJiraUsernamePasswordCredentialsId"));
+    c.setJiraUsernamePasswordCredentialsId(formData.getString("jiraUsernamePasswordCredentialsId"));
 
     c.setUseGitHub(formData.getBoolean("useGitHub"));
     c.setGitHubApi(formData.getString("gitHubApi"));
     c.setGitHubIssuePattern(formData.getString("gitHubIssuePattern"));
     c.setGitHubToken(formData.getString("gitHubToken"));
+    c.setUseGitHubApiTokenCredentials(formData.getBoolean("useGitHubApiTokenCredentials"));
+    c.setGitHubApiTokenCredentialsId(formData.getString("gitHubApiTokenCredentialsId"));
 
     c.setUseGitLab(formData.getBoolean("useGitLab"));
     c.setGitLabServer(formData.getString("gitLabServer"));
     c.setGitLabProjectName(formData.getString("gitLabProjectName"));
     c.setGitLabToken(formData.getString("gitLabToken"));
+    c.setUseGitLabApiTokenCredentials(formData.getBoolean("useGitLabApiTokenCredentials"));
+    c.setGitLabApiTokenCredentialsId(formData.getString("gitLabApiTokenCredentialsId"));
 
     c.setNoIssueName(formData.getString("noIssueName"));
     c.setIgnoreCommitsWithoutIssue(formData.getBoolean("ignoreCommitsWithoutIssue"));

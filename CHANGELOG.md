@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 1.46
+### No issue
+**GitLab integration**
+
+[f796401c6db7e54](https://github.com/jenkinsci/git-changelog-plugin/commit/f796401c6db7e54) Tomas Bjerre *2017-03-26 06:24:32*
+
 ## 1.43
 ### No issue
 **Fix Jira labels**
