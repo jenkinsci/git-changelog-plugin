@@ -2,17 +2,17 @@ package org.jenkinsci.plugins.gitchangelog;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.createNewConfig;
-import hudson.model.AbstractProject;
-import hudson.tasks.BuildStepDescriptor;
-import hudson.tasks.Publisher;
 
 import java.util.ArrayList;
-
-import net.sf.json.JSONObject;
 
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.kohsuke.stapler.StaplerRequest;
+
+import hudson.model.AbstractProject;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.Publisher;
+import net.sf.json.JSONObject;
 
 public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher> {
   private GitChangelogConfig config;
@@ -74,6 +74,11 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setGitHubApi(formData.getString("gitHubApi"));
     c.setGitHubIssuePattern(formData.getString("gitHubIssuePattern"));
     c.setGitHubToken(formData.getString("gitHubToken"));
+
+    c.setUseGitLab(formData.getBoolean("useGitLab"));
+    c.setGitLabServer(formData.getString("gitLabServer"));
+    c.setGitLabProjectName(formData.getString("gitLabProjectName"));
+    c.setGitLabToken(formData.getString("gitLabToken"));
 
     c.setNoIssueName(formData.getString("noIssueName"));
     c.setIgnoreCommitsWithoutIssue(formData.getBoolean("ignoreCommitsWithoutIssue"));

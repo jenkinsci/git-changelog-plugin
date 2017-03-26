@@ -309,6 +309,36 @@
   </f:block>
 </f:section>
 
+<f:section title="GitLab">
+  <f:block>
+    <table>
+      <f:optionalBlock checked="${config.useGitLab}" name="useGitLab" title="Use GitLab" inline="true">
+        <f:entry title="GitLab Server">
+          <f:textbox name="gitLabServer" value="${config.gitLabServer}"/>
+        </f:entry>
+        <f:description>
+          Example: https://gitlab.com/
+        </f:description>
+        <f:entry title="GitLab Project Name">
+          <f:textbox name="gitLabProjectName" value="${config.gitLabProjectName}"/>
+        </f:entry>
+        <f:description>
+          In https://gitlab.com/tomas.bjerre85/violations-test, that would be violations-test.
+        </f:description>
+        <f:entry title="GitLab Token">
+          <f:textbox name="gitLabToken" value="${config.gitLabToken}"/>
+        </f:entry>
+        <f:description>
+         You can create one in the project settings.
+        </f:description>
+      </f:optionalBlock>
+      <f:description>
+       With GitLab specified you can have the {{title}} variable populated with title from GitLab issues.
+      </f:description>
+    </table>
+  </f:block>
+</f:section>
+
 <f:section title="Custom issues">
   <f:entry title="Custom issues">
    <table>

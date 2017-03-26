@@ -1,6 +1,12 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
-## Unreleased
+## 1.43
+### No issue
+**Fix Jira labels**
+
+[c279a303781cfb6](https://github.com/jenkinsci/git-changelog-plugin/commit/c279a303781cfb6) Tomas Bjerre *2017-03-20 18:21:47*
+
+## 1.42
 ### No issue
 **Git Changelog Lib 1.58 -> 1.64**
  * Jira issueType and labels 

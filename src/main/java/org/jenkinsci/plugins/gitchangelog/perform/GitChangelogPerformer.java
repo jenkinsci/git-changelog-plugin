@@ -5,15 +5,16 @@ import static com.google.common.collect.Lists.newArrayList;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 import static org.jenkinsci.plugins.gitchangelog.GitChangelogLogger.doLog;
-import hudson.EnvVars;
-import hudson.FilePath;
-import hudson.model.TaskListener;
-import hudson.model.Run;
 
 import java.util.List;
 
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
+
+import hudson.EnvVars;
+import hudson.FilePath;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 
 public class GitChangelogPerformer {
 
@@ -72,6 +73,11 @@ public class GitChangelogPerformer {
     c.setGitHubApi(environment.expand(config.getGitHubApi()));
     c.setGitHubIssuePattern(environment.expand(config.getGitHubIssuePattern()));
     c.setGitHubToken(environment.expand(config.getGitHubToken()));
+
+    c.setUseGitLab(config.isUseGitLab());
+    c.setGitLabServer(environment.expand(config.getGitLabServer()));
+    c.setGitLabProjectName(environment.expand(config.getGitLabProjectName()));
+    c.setGitLabToken(environment.expand(config.getGitLabToken()));
 
     c.setNoIssueName(environment.expand(config.getNoIssueName()));
     c.setIgnoreCommitsWithoutIssue(config.isIgnoreCommitsWithoutIssue());

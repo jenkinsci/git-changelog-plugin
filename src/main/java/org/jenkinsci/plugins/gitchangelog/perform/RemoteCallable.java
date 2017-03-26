@@ -16,14 +16,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 
-import jenkins.security.MasterToSlaveCallable;
-
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE;
 import org.jenkinsci.remoting.RoleChecker;
 
+import jenkins.security.MasterToSlaveCallable;
 import se.bjurr.gitchangelog.api.GitChangelogApi;
 
 public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOException>
@@ -86,6 +85,13 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
             .withGitHubApi(this.config.getGitHubApi()) //
             .withGitHubIssuePattern(this.config.getGitHubIssuePattern()) //
             .withGitHubToken(this.config.getGitHubToken());
+      }
+
+      if (this.config.isUseGitLab()) {
+        gitChangelogApiBuilder //
+            .withGitLabServer(this.config.getGitLabServer()) //
+            .withGitLabProjectName(this.config.getGitLabProjectName()) //
+            .withGitLabToken(this.config.getGitLabToken());
       }
 
       if (this.config.isUseReadableTagName() && !isNullOrEmpty(this.config.getReadableTagName())) {

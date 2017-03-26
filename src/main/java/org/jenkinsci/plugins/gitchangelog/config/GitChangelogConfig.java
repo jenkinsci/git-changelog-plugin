@@ -21,6 +21,10 @@ public class GitChangelogConfig implements Serializable {
   private String gitHubApi;
   private String gitHubIssuePattern;
   private String gitHubToken;
+  private String gitLabServer;
+  private String gitLabProjectName;
+  private String gitLabToken;
+  private boolean useGitLab;
   private String ignoreCommitsIfMessageMatches;
   private boolean ignoreCommitsWithoutIssue;
   private String ignoreTagsIfNameMatches;
@@ -74,6 +78,10 @@ public class GitChangelogConfig implements Serializable {
       String gitHubApi,
       String gitHubIssuePattern,
       String gitHubToken,
+      boolean useGitLab,
+      String gitLabServer,
+      String gitLabProjectName,
+      String gitLabToken,
       String ignoreCommitsIfMessageMatches,
       boolean ignoreCommitsWithoutIssue,
       String ignoreTagsIfNameMatches,
@@ -122,6 +130,10 @@ public class GitChangelogConfig implements Serializable {
     this.gitHubApi = gitHubApi;
     this.gitHubIssuePattern = gitHubIssuePattern;
     this.gitHubToken = gitHubToken;
+    this.useGitLab = useGitLab;
+    this.gitLabProjectName = gitLabProjectName;
+    this.gitLabServer = gitLabServer;
+    this.gitLabToken = gitLabToken;
     this.ignoreCommitsIfMessageMatches = ignoreCommitsIfMessageMatches;
     this.ignoreCommitsWithoutIssue = ignoreCommitsWithoutIssue;
     this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
@@ -403,6 +415,38 @@ public class GitChangelogConfig implements Serializable {
     this.gitHubToken = gitHubToken;
   }
 
+  public void setGitLabProjectName(String gitLabProjectName) {
+    this.gitLabProjectName = gitLabProjectName;
+  }
+
+  public void setGitLabServer(String gitLabServer) {
+    this.gitLabServer = gitLabServer;
+  }
+
+  public void setGitLabToken(String gitLabToken) {
+    this.gitLabToken = gitLabToken;
+  }
+
+  public boolean isUseGitLab() {
+    return useGitLab;
+  }
+
+  public String getGitLabProjectName() {
+    return gitLabProjectName;
+  }
+
+  public String getGitLabServer() {
+    return gitLabServer;
+  }
+
+  public String getGitLabToken() {
+    return gitLabToken;
+  }
+
+  public void setUseGitLab(boolean useGitLab) {
+    this.useGitLab = useGitLab;
+  }
+
   public void setIgnoreCommitsIfMessageMatches(String ignoreCommitsIfMessageMatches) {
     this.ignoreCommitsIfMessageMatches = ignoreCommitsIfMessageMatches;
   }
@@ -553,90 +597,108 @@ public class GitChangelogConfig implements Serializable {
 
   @Override
   public String toString() {
-    return "GitChangelogConfig [useConfigFile="
-        + this.useConfigFile
-        + ", configFile="
-        + this.configFile
-        + ", createFileUseTemplateFile="
-        + this.createFileUseTemplateFile
-        + ", createFileTemplateFile="
-        + this.createFileTemplateFile
-        + ", createFileUseTemplateContent="
-        + this.createFileUseTemplateContent
+    return "GitChangelogConfig [configFile="
+        + configFile
         + ", createFileTemplateContent="
-        + this.createFileTemplateContent
-        + ", mediaWikiUseTemplateFile="
-        + this.mediaWikiUseTemplateFile
-        + ", mediaWikiTemplateFile="
-        + this.mediaWikiTemplateFile
-        + ", mediaWikiUseTemplateContent="
-        + this.mediaWikiUseTemplateContent
-        + ", mediaWikiTemplateContent="
-        + this.mediaWikiTemplateContent
-        + ", showSummaryUseTemplateFile="
-        + this.showSummaryUseTemplateFile
-        + ", showSummaryTemplateFile="
-        + this.showSummaryTemplateFile
-        + ", showSummaryUseTemplateContent="
-        + this.showSummaryUseTemplateContent
-        + ", showSummaryTemplateContent="
-        + this.showSummaryTemplateContent
-        + ", fromType="
-        + this.fromType
-        + ", fromReference="
-        + this.fromReference
-        + ", toType="
-        + this.toType
-        + ", toReference="
-        + this.toReference
-        + ", isSubDirectory="
-        + this.useSubDirectory
-        + ", subDirectory="
-        + this.subDirectory
-        + ", dateFormat="
-        + this.dateFormat
-        + ", timeZone="
-        + this.timeZone
-        + ", ignoreCommitsIfMessageMatches="
-        + this.ignoreCommitsIfMessageMatches
-        + ", useJira="
-        + this.useJira
-        + ", jiraServer="
-        + this.jiraServer
-        + ", jiraIssuePattern="
-        + this.jiraIssuePattern
-        + ", jiraUsername="
-        + this.jiraUsername
-        + ", jiraPassword=****, useGitHub="
-        + this.useGitHub
-        + ", gitHubApi="
-        + this.gitHubApi
-        + ", gitHubIssuePattern="
-        + this.gitHubIssuePattern
-        + ", noIssueName="
-        + this.noIssueName
-        + ", untaggedName="
-        + this.untaggedName
-        + ", useReadableTagName="
-        + this.useReadableTagName
-        + ", readableTagName="
-        + this.readableTagName
-        + ", useMediaWiki="
-        + this.useMediaWiki
-        + ", mediaWikiUsername="
-        + this.mediaWikiUsername
-        + ", mediaWikiPassword=***, mediaWikiTitle="
-        + this.mediaWikiTitle
-        + ", mediaWikiUrl="
-        + this.mediaWikiUrl
-        + ", useFile="
-        + this.useFile
-        + ", file="
-        + this.file
+        + createFileTemplateContent
+        + ", createFileTemplateFile="
+        + createFileTemplateFile
+        + ", createFileUseTemplateContent="
+        + createFileUseTemplateContent
+        + ", createFileUseTemplateFile="
+        + createFileUseTemplateFile
         + ", customIssues="
-        + this.customIssues
+        + customIssues
+        + ", dateFormat="
+        + dateFormat
+        + ", file="
+        + file
+        + ", fromReference="
+        + fromReference
+        + ", fromType="
+        + fromType
+        + ", gitHubApi="
+        + gitHubApi
+        + ", gitHubIssuePattern="
+        + gitHubIssuePattern
+        + ", gitHubToken="
+        + gitHubToken
+        + ", gitLabServer="
+        + gitLabServer
+        + ", gitLabProjectName="
+        + gitLabProjectName
+        + ", gitLabToken="
+        + gitLabToken
+        + ", ignoreCommitsIfMessageMatches="
+        + ignoreCommitsIfMessageMatches
+        + ", ignoreCommitsWithoutIssue="
+        + ignoreCommitsWithoutIssue
+        + ", ignoreTagsIfNameMatches="
+        + ignoreTagsIfNameMatches
+        + ", jiraIssuePattern="
+        + jiraIssuePattern
+        + ", jiraPassword="
+        + jiraPassword
+        + ", jiraServer="
+        + jiraServer
+        + ", jiraUsername="
+        + jiraUsername
+        + ", mediaWikiPassword="
+        + mediaWikiPassword
+        + ", mediaWikiTemplateContent="
+        + mediaWikiTemplateContent
+        + ", mediaWikiTemplateFile="
+        + mediaWikiTemplateFile
+        + ", mediaWikiTitle="
+        + mediaWikiTitle
+        + ", mediaWikiUrl="
+        + mediaWikiUrl
+        + ", mediaWikiUsername="
+        + mediaWikiUsername
+        + ", mediaWikiUseTemplateContent="
+        + mediaWikiUseTemplateContent
+        + ", mediaWikiUseTemplateFile="
+        + mediaWikiUseTemplateFile
+        + ", noIssueName="
+        + noIssueName
+        + ", readableTagName="
+        + readableTagName
         + ", showSummary="
-        + this.showSummary
+        + showSummary
+        + ", showSummaryTemplateContent="
+        + showSummaryTemplateContent
+        + ", showSummaryTemplateFile="
+        + showSummaryTemplateFile
+        + ", showSummaryUseTemplateContent="
+        + showSummaryUseTemplateContent
+        + ", showSummaryUseTemplateFile="
+        + showSummaryUseTemplateFile
+        + ", subDirectory="
+        + subDirectory
+        + ", timeZone="
+        + timeZone
+        + ", toReference="
+        + toReference
+        + ", toType="
+        + toType
+        + ", untaggedName="
+        + untaggedName
+        + ", useConfigFile="
+        + useConfigFile
+        + ", useFile="
+        + useFile
+        + ", useGitHub="
+        + useGitHub
+        + ", useIgnoreTagsIfNameMatches="
+        + useIgnoreTagsIfNameMatches
+        + ", useJira="
+        + useJira
+        + ", useMediaWiki="
+        + useMediaWiki
+        + ", useReadableTagName="
+        + useReadableTagName
+        + ", useSubDirectory="
+        + useSubDirectory
         + "]";
   }
 }
