@@ -1,10 +1,15 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
 ## Unreleased
+### GitHub [#11](https://github.com/jenkinsci/git-changelog-plugin/issues/11) Html incorrectly rendered in summary on job page
+**Not escaping HTML in symmary #11**
+
+[ae945dcab7a55da](https://github.com/jenkinsci/git-changelog-plugin/commit/ae945dcab7a55da) Tomas Bjerre *2017-03-29 15:12:01*
+
 ### No issue
 **doc**
 
-[a3c3dc1d74991ce](https://github.com/jenkinsci/git-changelog-plugin/commit/a3c3dc1d74991ce) Tomas Bjerre *2017-03-26 10:11:08*
+[a2c4e7b2e984cef](https://github.com/jenkinsci/git-changelog-plugin/commit/a2c4e7b2e984cef) Tomas Bjerre *2017-03-26 10:11:32*
 
 ## 1.47
 ### No issue
