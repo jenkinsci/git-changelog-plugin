@@ -4,7 +4,7 @@ Changelog of Git Changelog Plugin.
 ### GitHub [#11](https://github.com/jenkinsci/git-changelog-plugin/issues/11) Html incorrectly rendered in summary on job page
 **Not escaping HTML in symmary #11**
 
-[ae945dcab7a55da](https://github.com/jenkinsci/git-changelog-plugin/commit/ae945dcab7a55da) Tomas Bjerre *2017-03-29 15:12:01*
+[aa01ee84af485a7](https://github.com/jenkinsci/git-changelog-plugin/commit/aa01ee84af485a7) Tomas Bjerre *2017-03-29 15:15:21*
 
 ### No issue
 **doc**
