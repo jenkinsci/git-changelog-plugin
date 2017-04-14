@@ -1,6 +1,12 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
-## Unreleased
+## 1.49
+### No issue
+**tag time added to tag model**
+
+[c4d45a1b4b4d3a6](https://github.com/jenkinsci/git-changelog-plugin/commit/c4d45a1b4b4d3a6) Tomas Bjerre *2017-04-14 09:25:24*
+
+## 1.48
 ### GitHub [#11](https://github.com/jenkinsci/git-changelog-plugin/issues/11) Html incorrectly rendered in summary on job page
 **Not escaping HTML in symmary #11**
 
