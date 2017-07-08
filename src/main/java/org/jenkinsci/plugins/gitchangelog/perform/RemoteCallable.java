@@ -16,13 +16,14 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 
+import jenkins.security.MasterToSlaveCallable;
+
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE;
 import org.jenkinsci.remoting.RoleChecker;
 
-import jenkins.security.MasterToSlaveCallable;
 import se.bjurr.gitchangelog.api.GitChangelogApi;
 
 public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOException>
@@ -66,7 +67,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
       gitChangelogApiBuilder //
           .withDateFormat(this.config.getDateFormat()) //
-          .withIgnoreCommitsWithMesssage(this.config.getIgnoreCommitsIfMessageMatches()) //
+          .withIgnoreCommitsWithMessage(this.config.getIgnoreCommitsIfMessageMatches()) //
           .withNoIssueName(this.config.getNoIssueName()) //
           .withIgnoreCommitsWithoutIssue(this.config.isIgnoreCommitsWithoutIssue()) //
           .withTimeZone(this.config.getTimeZone()) //

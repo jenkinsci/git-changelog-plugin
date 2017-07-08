@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## Unreleased
+### No issue
+**doc**
+
+[916703810a8e6fb](https://github.com/jenkinsci/git-changelog-plugin/commit/916703810a8e6fb) Tomas Bjerre *2017-04-14 09:28:13*
+
 ## 1.49
 ### No issue
 **tag time added to tag model**
