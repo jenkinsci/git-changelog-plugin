@@ -135,11 +135,8 @@ in an automatically sent email.
 This plugin can be built and started with maven and Jenkins' hpi plugin:
 
 ```
-mvn clean install
 ./run.sh
 ```
-
-The run scripts opens a debug port on 8000.
 
 The functionality is implemented in [git-changelog](https://github.com/paulwellnerbou/git-changelog) and [git-changelog-lib](https://github.com/tomasbjerre/git-changelog-lib). Pull requests are welcome!
 

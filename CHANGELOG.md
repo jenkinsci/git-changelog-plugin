@@ -2,6 +2,10 @@
 Changelog of Git Changelog Plugin.
 ## Unreleased
 ### No issue
+**git-changelog-lib 1.69**
+
+[00112d32b80626e](https://github.com/jenkinsci/git-changelog-plugin/commit/00112d32b80626e) Tomas Bjerre *2017-07-08 08:06:15*
+
 **doc**
 
 [916703810a8e6fb](https://github.com/jenkinsci/git-changelog-plugin/commit/916703810a8e6fb) Tomas Bjerre *2017-04-14 09:28:13*
