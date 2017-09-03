@@ -2,19 +2,19 @@ package org.jenkinsci.plugins.gitchangelog;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.createNewConfig;
+import hudson.model.AbstractProject;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.Publisher;
+import hudson.util.ListBoxModel;
 
 import java.util.ArrayList;
+
+import net.sf.json.JSONObject;
 
 import org.jenkinsci.plugins.gitchangelog.config.CredentialsHelper;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.kohsuke.stapler.StaplerRequest;
-
-import hudson.model.AbstractProject;
-import hudson.tasks.BuildStepDescriptor;
-import hudson.tasks.Publisher;
-import hudson.util.ListBoxModel;
-import net.sf.json.JSONObject;
 
 public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher> {
   private GitChangelogConfig config;
@@ -63,7 +63,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
   @Override
   public Publisher newInstance(StaplerRequest req, JSONObject formData)
       throws hudson.model.Descriptor.FormException {
-    GitChangelogConfig c = new GitChangelogConfig();
+    final GitChangelogConfig c = new GitChangelogConfig();
     c.setUseConfigFile(formData.getBoolean("useConfigFile"));
     c.setConfigFile(formData.getString("configFile"));
     c.setFromType(formData.getString("fromType"));
@@ -131,19 +131,21 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setShowSummaryTemplateContent(formData.getString("showSummaryTemplateContent"));
 
     c.setCustomIssues(new ArrayList<CustomIssue>());
-    for (int i = 0; i < formData.getJSONArray("name").size(); i++) {
-      String name = (String) formData.getJSONArray("name").get(i);
-      String pattern = (String) formData.getJSONArray("pattern").get(i);
-      String link = (String) formData.getJSONArray("link").get(i);
-      String title = (String) formData.getJSONArray("title").get(i);
-      if (!isNullOrEmpty(name) && !isNullOrEmpty(pattern)) {
-        c.getCustomIssues().add(new CustomIssue(name, pattern, link, title));
+    if (formData.containsKey("name")) {
+      for (int i = 0; i < formData.getJSONArray("name").size(); i++) {
+        final String name = (String) formData.getJSONArray("name").get(i);
+        final String pattern = (String) formData.getJSONArray("pattern").get(i);
+        final String link = (String) formData.getJSONArray("link").get(i);
+        final String title = (String) formData.getJSONArray("title").get(i);
+        if (!isNullOrEmpty(name) && !isNullOrEmpty(pattern)) {
+          c.getCustomIssues().add(new CustomIssue(name, pattern, link, title));
+        }
       }
     }
     c.getCustomIssues().add(new CustomIssue("", "", "", ""));
     c.getCustomIssues().add(new CustomIssue("", "", "", ""));
 
-    GitChangelogRecorder publisher = new GitChangelogRecorder();
+    final GitChangelogRecorder publisher = new GitChangelogRecorder();
     publisher.setConfig(c);
     return publisher;
   }

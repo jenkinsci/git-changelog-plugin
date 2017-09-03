@@ -32,71 +32,157 @@ The `fromType` and `toType` can be:
 Here is a sample job DSL.
 
 ```
-job('example') {
- scm {
-  git('https://github.com/tomasbjerre/pull-request-notifier-for-stash.git')
- }
- publishers {
-  gitChangelogRecorder {
-   config {
-    configFile("")
-    createFileTemplateContent("")
-    createFileTemplateFile("")
-    createFileUseTemplateContent(false)
-    createFileUseTemplateFile(false)
-    customIssues {
-     customIssue {
-      name("")
-      pattern("")
-      link("")
-      title("")
-     }
+freeStyleJob('Git Changelog Job') {
+  scm {
+    git {
+      remote {
+        name('origin')
+        url('https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket.git')
+      }
     }
-    dateFormat("")
-    file("")
-    fromReference("252fc9355a0fd19e06f04ec21446a0afa070d80b")
-    fromType("commit")
-    gitHubApi("")
-    gitHubIssuePattern("")
-    gitHubToken("")
-    ignoreCommitsIfMessageMatches("")
-    ignoreCommitsWithoutIssue(false)
-    ignoreTagsIfNameMatches("")
-    jiraIssuePattern("")
-    jiraPassword("")
-    jiraServer("")
-    jiraUsername("")
-    mediaWikiPassword("")
-    mediaWikiTemplateContent("")
-    mediaWikiTemplateFile("")
-    mediaWikiTitle("")
-    mediaWikiUrl("")
-    mediaWikiUsername("")
-    mediaWikiUseTemplateContent(false)
-    mediaWikiUseTemplateFile(false)
-    noIssueName("")
-    readableTagName("")
-    showSummary(true)
-    showSummaryTemplateContent("template here")
-    showSummaryTemplateFile("")
-    showSummaryUseTemplateContent(true)
-    showSummaryUseTemplateFile(false)
-    subDirectory("")
-    timeZone("")
-    toReference("250ec4d56be6f3a5e9bda9f24b540479dd7cec47")
-    toType("commit")
-    untaggedName("")
-    useConfigFile(false)
-    useFile(false)
-    useGitHub(false)
-    useIgnoreTagsIfNameMatches(false)
-    useJira(false)
-    useMediaWiki(false)
-    useReadableTagName(false)
-    useSubDirectory(false)
-   }
   }
- }
+  publishers {
+    gitChangelogRecorder {
+      config {
+        fromType("commit")
+        fromReference("20aca44")
+        toType("ref")
+        toReference("master")
+
+        showSummary(true)
+        showSummaryUseTemplateContent(true)
+        showSummaryTemplateContent("""
+<h1> Git Changelog changelog </h1>
+
+<p>
+Changelog of Git Changelog.
+</p>
+
+{{#tags}}
+<h2> {{name}} </h2>
+ {{#issues}}
+  {{#hasIssue}}
+   {{#hasLink}}
+<h2> {{name}} <a href="{{link}}">{{issue}}</a> {{title}} </h2>
+   {{/hasLink}}
+   {{^hasLink}}
+<h2> {{name}} {{issue}} {{title}} </h2>
+   {{/hasLink}}
+  {{/hasIssue}}
+  {{^hasIssue}}
+<h2> {{name}} </h2>
+  {{/hasIssue}}
+
+
+   {{#commits}}
+<a href="https://github.com/tomasbjerre/git-changelog-lib/commit/{{hash}}">{{hash}}</a> {{authorName}} <i>{{commitTime}}</i>
+<p>
+<h3>{{{messageTitle}}}</h3>
+
+{{#messageBodyItems}}
+ <li> {{.}}</li> 
+{{/messageBodyItems}}
+</p>
+
+
+  {{/commits}}
+
+ {{/issues}}
+{{/tags}}
+        """)
+
+
+        useMediaWiki(true)
+        mediaWikiUseTemplateContent(true)
+        mediaWikiTemplateContent("""
+__NOTOC__
+
+= Git Changelog changelog =
+Changelog of Git Changelog.
+
+{{#tags}}
+== {{name}} ==
+ {{#issues}}
+  {{#hasIssue}}
+   {{#hasLink}}
+=== {{name}} [{{link}} {{issue}}] {{title}} ===
+   {{/hasLink}}
+   {{^hasLink}}
+=== {{name}} {{issue}} {{title}} ===
+   {{/hasLink}}
+  {{/hasIssue}}
+  {{^hasIssue}}
+=== {{name}} ===
+  {{/hasIssue}}
+
+   {{#commits}}
+[https://github.com/tomasbjerre/git-changelog-lib/commit/{{hash}} {{hash}}] {{authorName}} {{commitTime}}
+
+'''{{{messageTitle}}}'''
+
+{{#messageBodyItems}}
+ * {{.}} 
+{{/messageBodyItems}}
+
+  {{/commits}}
+
+ {{/issues}}
+{{/tags}}
+        """)
+        mediaWikiTitle("PRNFB Changelog")
+        mediaWikiUrl("http://web:80/w")
+        mediaWikiUsername(null)
+        mediaWikiPassword(null)
+        mediaWikiUseTemplateFile(false)
+        mediaWikiTemplateFile(null)
+        
+        useGitHub(true)
+        gitHubApi("https://api.github.com/repos/tomasbjerre/pull-request-notifier-for-bitbucket")
+        gitHubIssuePattern(null)
+        gitHubToken(null)
+        gitHubApiTokenCredentialsId(null)
+        useGitHubApiTokenCredentials(false)
+
+        useReadableTagName(true)
+        readableTagName("-([^-]+?)\$")
+
+        configFile(null)
+        createFileTemplateContent(null)
+        createFileTemplateFile(null)
+        createFileUseTemplateContent(false)
+        createFileUseTemplateFile(false)
+        customIssues {}
+        dateFormat(null)
+        file(null)
+        useGitLab(false)
+        gitLabServer(null)
+        gitLabProjectName(null)
+        gitLabToken(null)
+        ignoreCommitsIfMessageMatches(null)
+        ignoreCommitsWithoutIssue(false)
+        ignoreTagsIfNameMatches(null)
+        jiraIssuePattern(null)
+        jiraPassword(null)
+        jiraServer(null)
+        jiraUsername(null)
+        jiraUsernamePasswordCredentialsId(null)
+        useJiraUsernamePasswordCredentialsId(false)
+        noIssueName(null)
+        showSummaryTemplateFile(null)
+        showSummaryUseTemplateFile(false)
+        subDirectory(null)
+        timeZone(null)
+        untaggedName(null)
+        useConfigFile(false)
+        useFile(false)
+        useIgnoreTagsIfNameMatches(false)
+        useJira(false)
+        useSubDirectory(false)
+        gitLabApiTokenCredentialsId(null)
+        useGitLabApiTokenCredentials(false)
+      }
+    }
+  }
 }
 ```
 
