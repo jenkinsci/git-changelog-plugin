@@ -1,5 +1,14 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## Unreleased
+### No issue
+**Allowing edit config after created by DSL**
+ * Config page crashed on save after created by Job DSL. 
+ * Updating readme with new DSL. 
+ * Also changing MediaWiki integration to, hopefully, allow login. 
+
+[ad8ca1e5149708c](https://github.com/jenkinsci/git-changelog-plugin/commit/ad8ca1e5149708c) Tomas Bjerre *2017-09-03 09:27:30*
+
 ## 1.51
 ### No issue
 **Lib 1.71**
