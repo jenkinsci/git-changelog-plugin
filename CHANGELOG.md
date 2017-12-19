@@ -2,6 +2,22 @@
 Changelog of Git Changelog Plugin.
 ## Unreleased
 ### No issue
+**Doc**
+
+[a46a01bba1c3aed](https://github.com/jenkinsci/git-changelog-plugin/commit/a46a01bba1c3aed) Tomas Bjerre *2017-12-19 12:39:05*
+
+## 1.53
+### No issue
+**Updating lib from 1.72 to 1.76**
+ * Adding support for Jira Issue Description 
+ * Avoid fetching from integrations if not used 
+ * Avoiding usage of Guava Objects 
+ * https://github.com/tomasbjerre/git-changelog-lib/blob/master/CHANGELOG.md 
+
+[46b94f93fbde081](https://github.com/jenkinsci/git-changelog-plugin/commit/46b94f93fbde081) Tomas Bjerre *2017-12-19 12:34:23*
+
+## 1.52
+### No issue
 **Allowing edit config after created by DSL**
  * Config page crashed on save after created by Job DSL. 
  * Updating readme with new DSL. 
