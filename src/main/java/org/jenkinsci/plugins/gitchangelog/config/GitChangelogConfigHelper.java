@@ -1,5 +1,6 @@
 package org.jenkinsci.plugins.gitchangelog.config;
 
+import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.logging.Level.SEVERE;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_DATEFORMAT;
@@ -40,7 +41,7 @@ public class GitChangelogConfigHelper {
   private static Logger logger = Logger.getLogger(GitChangelogConfigHelper.class.getName());
 
   public static GitChangelogConfig createNewConfig() {
-    GitChangelogConfig config = new GitChangelogConfig();
+    final GitChangelogConfig config = new GitChangelogConfig();
     config.setConfigFile(DEFAULT_FILE);
     config.setDateFormat(DEFAULT_DATEFORMAT);
     config.setSubDirectory("");
@@ -56,7 +57,7 @@ public class GitChangelogConfigHelper {
     config.setShowSummaryTemplateContent(getResourceAsString("summaryTemplateDefault.mustache"));
     config.setMediaWikiTemplateContent(getResourceAsString("mediaWikiTemplateDefault.mustache"));
 
-    List<CustomIssue> customIssues = newArrayList();
+    final List<CustomIssue> customIssues = newArrayList();
     customIssues.add(new CustomIssue("", "", "", ""));
     customIssues.add(new CustomIssue("", "", "", ""));
     config.setCustomIssues(customIssues);
@@ -67,8 +68,9 @@ public class GitChangelogConfigHelper {
   private static String getResourceAsString(String filename) {
     try {
       return CharStreams.toString(
-          new InputStreamReader(GitChangelogConfigHelper.class.getResourceAsStream(filename)));
-    } catch (IOException e) {
+          new InputStreamReader(
+              GitChangelogConfigHelper.class.getResourceAsStream(filename), UTF_8));
+    } catch (final IOException e) {
       logger.log(SEVERE, "", e);
       return "";
     }

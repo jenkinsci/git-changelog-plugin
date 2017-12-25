@@ -31,7 +31,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
   private static final long serialVersionUID = -2489061314794088231L;
   private final GitChangelogConfig config;
-  private String path = new String();
+  private String path = "";
 
   private final String workspacePath;
 
@@ -43,8 +43,8 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
   @Override
   public RemoteResult call() throws IOException {
-    RemoteResult remoteResult = new RemoteResult();
-    StringBuilder logString = new StringBuilder();
+    final RemoteResult remoteResult = new RemoteResult();
+    final StringBuilder logString = new StringBuilder();
     this.path = this.workspacePath;
 
     if (this.config.isUseSubDirectory()) {
@@ -52,7 +52,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
     }
 
     try {
-      GitChangelogApi gitChangelogApiBuilder =
+      final GitChangelogApi gitChangelogApiBuilder =
           gitChangelogApiBuilder() //
               .withFromRepo(this.path);
 
@@ -60,7 +60,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         try {
           gitChangelogApiBuilder.withSettings(
               getResource(this.workspacePath + "/" + this.config.getConfigFile()).toURI().toURL());
-        } catch (URISyntaxException e) {
+        } catch (final URISyntaxException e) {
           propagate(e);
         }
       }
@@ -131,7 +131,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         gitChangelogApiBuilder.withToRef(firstCommit.getReference());
       }
 
-      for (CustomIssue ci : this.config.getCustomIssues()) {
+      for (final CustomIssue ci : this.config.getCustomIssues()) {
         if (!isNullOrEmpty(ci.getName()) && !isNullOrEmpty(ci.getPattern())) {
           gitChangelogApiBuilder.withCustomIssue(
               ci.getName(), ci.getPattern(), ci.getLink(), ci.getTitle());
@@ -161,7 +161,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
             && !isNullOrEmpty(this.config.getMediaWikiTemplateContent())) {
           gitChangelogApiBuilder.withTemplateContent(this.config.getMediaWikiTemplateContent());
         }
-        String mediaWikiFullUrl =
+        final String mediaWikiFullUrl =
             this.config.getMediaWikiUrl() + "/index.php/" + this.config.getMediaWikiTitle();
         logString.append("Posting changelog to " + mediaWikiFullUrl);
         gitChangelogApiBuilder.toMediaWiki( //
@@ -184,11 +184,14 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         }
         logString.append("Creating changelog " + this.config.toFile());
 
-        File toFile = new File(this.workspacePath + "/" + this.config.toFile());
-        new File(toFile.getParent()).mkdirs();
+        final File toFile = new File(this.workspacePath + "/" + this.config.toFile());
+        final boolean created = new File(toFile.getParent()).mkdirs();
+        if (!created) {
+          throw new IOException("Could not make dirs " + toFile.getParent());
+        }
         write(gitChangelogApiBuilder.render(), toFile, UTF_8);
       }
-    } catch (Exception e) {
+    } catch (final Throwable e) {
       logString.append(ExceptionUtils.getStackTrace(e));
     }
     remoteResult.setLog(logString.toString());
