@@ -1,6 +1,16 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
-## Unreleased
+## 1.54
+### GitHub [#15](https://github.com/jenkinsci/git-changelog-plugin/issues/15) Plugin holding open files? Unable to delete windows workspace due to busy git pack file
+**Closing RevWalk JENKINS-19994 #15**
+
+[4dd0b1c8a82edeb](https://github.com/jenkinsci/git-changelog-plugin/commit/4dd0b1c8a82edeb) Tomas Bjerre *2017-12-30 20:49:37*
+
+### Jira JENKINS-19994 
+**Closing RevWalk JENKINS-19994 #15**
+
+[4dd0b1c8a82edeb](https://github.com/jenkinsci/git-changelog-plugin/commit/4dd0b1c8a82edeb) Tomas Bjerre *2017-12-30 20:49:37*
+
 ### No issue
 **Violations Maven Plugin**
 
