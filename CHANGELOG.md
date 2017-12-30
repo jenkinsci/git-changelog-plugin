@@ -4,7 +4,7 @@ Changelog of Git Changelog Plugin.
 ### No issue
 **Violations Maven Plugin**
 
-[2477897b20097f0](https://github.com/jenkinsci/git-changelog-plugin/commit/2477897b20097f0) Tomas Bjerre *2017-12-25 07:16:58*
+[a7baaeeac3b76fb](https://github.com/jenkinsci/git-changelog-plugin/commit/a7baaeeac3b76fb) Tomas Bjerre *2017-12-25 19:31:55*
 
 **Doc**
 
