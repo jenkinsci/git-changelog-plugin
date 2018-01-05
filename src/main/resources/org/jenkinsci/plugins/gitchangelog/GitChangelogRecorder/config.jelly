@@ -314,6 +314,9 @@
         <f:entry title="Issue pattern">
           <f:textbox name="gitHubIssuePattern" value="${config.gitHubIssuePattern}"/>
         </f:entry>
+        <f:description>
+          This will identify issues mentioned in commits. You probably want something like: #([0-9]+)
+        </f:description>
       </f:optionalBlock>
       <f:description>
        With GitHub specified you can have the {{title}} variable populated with title from GitHub issues.
