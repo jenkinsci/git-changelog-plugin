@@ -1,5 +1,16 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## Unreleased
+### No issue
+**Making config attributes optional**
+ * This enables smaller pipeline scripts. 
+
+[61483203065c2d8](https://github.com/jenkinsci/git-changelog-plugin/commit/61483203065c2d8) Tomas Bjerre *2018-01-07 09:28:46*
+
+**Doc**
+
+[b4d7ca00198a193](https://github.com/jenkinsci/git-changelog-plugin/commit/b4d7ca00198a193) Tomas Bjerre *2018-01-05 10:31:48*
+
 ## 1.54
 ### GitHub [#15](https://github.com/jenkinsci/git-changelog-plugin/issues/15) Plugin holding open files? Unable to delete windows workspace due to busy git pack file
 **Closing RevWalk JENKINS-19994 #15**

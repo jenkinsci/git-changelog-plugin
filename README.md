@@ -21,13 +21,83 @@ emails, for example.
 
 This is also documented in [Jenkins wiki](https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin).
 
-### Job DSL
+# Pipeline
 
-The `fromType` and `toType` can be:
- * commit, in combination with the actual commit hash.
- * firstCommit, will refer to the first commit in repo.
- * ref, in combination with a branch, or tag.
- * master, will refer to the master branch.
+The plugin is compatible with the [pipeline plugin](https://jenkins.io/doc/book/pipeline/getting-started/) and can be configured to support many use cases. Here is a very simple one. You proabbly want to adjust it using the [Snippet Generator](https://jenkins.io/doc/book/pipeline/getting-started/#snippet-generator).
+
+```
+node {
+ deleteDir()
+
+ stage('Clone repo') {
+  sh "git clone https://github.com/tomasbjerre/git-changelog-lib.git ."
+ }
+ 
+ step([$class: 'GitChangelogRecorder',
+ config: [
+ untaggedName: 'Unreleased',
+ noIssueName: 'No issue',
+ useReadableTagName: true,
+ readableTagName: '/([^/]+?)$',
+ 
+ useGitHub: true,
+ gitHubApi: 'https://api.github.com/repos/tomasbjerre/git-changelog-lib',
+ 
+ useJira: true,
+ jiraIssuePattern: '\\bJENKINS-([0-9]+)\\b',
+ 
+ fromReference: '',
+ fromType: 'firstCommit',
+ toReference: '',
+ toType: 'master',
+ 
+ showSummary: true,
+ showSummaryUseTemplateContent: true,
+ showSummaryTemplateContent: '''<h1> Git Changelog Lib changelog </h1>
+
+<p>
+Changelog of Git Changelog Lib.
+</p>
+
+{{#tags}}
+<h2> {{name}} </h2>
+ {{#issues}}
+  {{#hasIssue}}
+   {{#hasLink}}
+<h2> {{name}} <a href="{{link}}">{{issue}}</a> {{title}} </h2>
+   {{/hasLink}}
+   {{^hasLink}}
+<h2> {{name}} {{issue}} {{title}} </h2>
+   {{/hasLink}}
+  {{/hasIssue}}
+  {{^hasIssue}}
+<h2> {{name}} </h2>
+  {{/hasIssue}}
+
+
+   {{#commits}}
+<a href="https://github.com/tomasbjerre/git-changelog-lib/commit/{{hash}}">{{hash}}</a> {{authorName}} <i>{{commitTime}}</i>
+<p>
+<h3>{{{messageTitle}}}</h3>
+
+{{#messageBodyItems}}
+ <li> {{.}}</li> 
+{{/messageBodyItems}}
+</p>
+
+
+  {{/commits}}
+
+ {{/issues}}
+ <hr/>
+{{/tags}}
+'''
+]])
+}
+```
+
+
+### Job DSL
 
 Here is a sample job DSL.
 
@@ -37,7 +107,7 @@ freeStyleJob('Git Changelog Job') {
     git {
       remote {
         name('origin')
-        url('https://github.com/tomasbjerre/pull-request-notifier-for-bitbucket.git')
+        url('https://github.com/tomasbjerre/git-changelog-lib.git')
       }
     }
   }
@@ -137,14 +207,14 @@ Changelog of Git Changelog.
         mediaWikiTemplateFile(null)
         
         useGitHub(true)
-        gitHubApi("https://api.github.com/repos/tomasbjerre/pull-request-notifier-for-bitbucket")
+        gitHubApi("https://api.github.com/repos/tomasbjerre/git-changelog-lib")
         gitHubIssuePattern(null)
         gitHubToken(null)
         gitHubApiTokenCredentialsId(null)
         useGitHubApiTokenCredentials(false)
 
         useReadableTagName(true)
-        readableTagName("-([^-]+?)\$")
+        readableTagName("/([^/]+?)\$")
 
         configFile(null)
         createFileTemplateContent(null)

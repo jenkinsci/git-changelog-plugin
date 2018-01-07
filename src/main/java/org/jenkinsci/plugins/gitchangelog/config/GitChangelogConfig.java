@@ -1,9 +1,11 @@
 package org.jenkinsci.plugins.gitchangelog.config;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
 
 public class GitChangelogConfig implements Serializable {
 
@@ -67,68 +69,70 @@ public class GitChangelogConfig implements Serializable {
   private boolean useGitLabApiTokenCredentials;
   private String gitLabApiTokenCredentialsId;
 
-  public GitChangelogConfig() {}
-
   @DataBoundConstructor
+  public GitChangelogConfig() {
+    this.customIssues = new ArrayList<>();
+  }
+
   public GitChangelogConfig(
-      String configFile,
-      String createFileTemplateContent,
-      String createFileTemplateFile,
-      boolean createFileUseTemplateContent,
-      boolean createFileUseTemplateFile,
-      List<CustomIssue> customIssues,
-      String dateFormat,
-      String file,
-      String fromReference,
-      String fromType,
-      String gitHubApi,
-      String gitHubIssuePattern,
-      String gitHubToken,
-      boolean useGitLab,
-      String gitLabServer,
-      String gitLabProjectName,
-      String gitLabToken,
-      String ignoreCommitsIfMessageMatches,
-      boolean ignoreCommitsWithoutIssue,
-      String ignoreTagsIfNameMatches,
-      String jiraIssuePattern,
-      String jiraPassword,
-      String jiraServer,
-      String jiraUsername,
-      String jiraUsernamePasswordCredentialsId,
-      boolean useJiraUsernamePasswordCredentialsId,
-      String mediaWikiPassword,
-      String mediaWikiTemplateContent,
-      String mediaWikiTemplateFile,
-      String mediaWikiTitle,
-      String mediaWikiUrl,
-      String mediaWikiUsername,
-      boolean mediaWikiUseTemplateContent,
-      boolean mediaWikiUseTemplateFile,
-      String noIssueName,
-      String readableTagName,
-      boolean showSummary,
-      String showSummaryTemplateContent,
-      String showSummaryTemplateFile,
-      boolean showSummaryUseTemplateContent,
-      boolean showSummaryUseTemplateFile,
-      String subDirectory,
-      String timeZone,
-      String toReference,
-      String toType,
-      String untaggedName,
-      boolean useConfigFile,
-      boolean useFile,
-      boolean useGitHub,
-      boolean useIgnoreTagsIfNameMatches,
-      boolean useJira,
-      boolean useMediaWiki,
-      boolean useReadableTagName,
-      boolean useSubDirectory,
-      String gitHubApiTokenCredentialsId,
-      String gitLabApiTokenCredentialsId,
-      boolean useGitLabApiTokenCredentials,
-      boolean useGitHubApiTokenCredentials) {
+      final String configFile,
+      final String createFileTemplateContent,
+      final String createFileTemplateFile,
+      final boolean createFileUseTemplateContent,
+      final boolean createFileUseTemplateFile,
+      final List<CustomIssue> customIssues,
+      final String dateFormat,
+      final String file,
+      final String fromReference,
+      final String fromType,
+      final String gitHubApi,
+      final String gitHubIssuePattern,
+      final String gitHubToken,
+      final boolean useGitLab,
+      final String gitLabServer,
+      final String gitLabProjectName,
+      final String gitLabToken,
+      final String ignoreCommitsIfMessageMatches,
+      final boolean ignoreCommitsWithoutIssue,
+      final String ignoreTagsIfNameMatches,
+      final String jiraIssuePattern,
+      final String jiraPassword,
+      final String jiraServer,
+      final String jiraUsername,
+      final String jiraUsernamePasswordCredentialsId,
+      final boolean useJiraUsernamePasswordCredentialsId,
+      final String mediaWikiPassword,
+      final String mediaWikiTemplateContent,
+      final String mediaWikiTemplateFile,
+      final String mediaWikiTitle,
+      final String mediaWikiUrl,
+      final String mediaWikiUsername,
+      final boolean mediaWikiUseTemplateContent,
+      final boolean mediaWikiUseTemplateFile,
+      final String noIssueName,
+      final String readableTagName,
+      final boolean showSummary,
+      final String showSummaryTemplateContent,
+      final String showSummaryTemplateFile,
+      final boolean showSummaryUseTemplateContent,
+      final boolean showSummaryUseTemplateFile,
+      final String subDirectory,
+      final String timeZone,
+      final String toReference,
+      final String toType,
+      final String untaggedName,
+      final boolean useConfigFile,
+      final boolean useFile,
+      final boolean useGitHub,
+      final boolean useIgnoreTagsIfNameMatches,
+      final boolean useJira,
+      final boolean useMediaWiki,
+      final boolean useReadableTagName,
+      final boolean useSubDirectory,
+      final String gitHubApiTokenCredentialsId,
+      final String gitLabApiTokenCredentialsId,
+      final boolean useGitLabApiTokenCredentials,
+      final boolean useGitHubApiTokenCredentials) {
     this.configFile = configFile;
     this.createFileTemplateContent = createFileTemplateContent;
     this.createFileTemplateFile = createFileTemplateFile;
@@ -381,67 +385,83 @@ public class GitChangelogConfig implements Serializable {
     return this.useSubDirectory;
   }
 
-  public void setConfigFile(String configFile) {
+  @DataBoundSetter
+  public void setConfigFile(final String configFile) {
     this.configFile = configFile;
   }
 
-  public void setCreateFileTemplateContent(String createFileTemplateContent) {
+  @DataBoundSetter
+  public void setCreateFileTemplateContent(final String createFileTemplateContent) {
     this.createFileTemplateContent = createFileTemplateContent;
   }
 
-  public void setCreateFileTemplateFile(String createFileTemplateFile) {
+  @DataBoundSetter
+  public void setCreateFileTemplateFile(final String createFileTemplateFile) {
     this.createFileTemplateFile = createFileTemplateFile;
   }
 
-  public void setCreateFileUseTemplateContent(boolean createFileUseTemplateContent) {
+  @DataBoundSetter
+  public void setCreateFileUseTemplateContent(final boolean createFileUseTemplateContent) {
     this.createFileUseTemplateContent = createFileUseTemplateContent;
   }
 
-  public void setCreateFileUseTemplateFile(boolean createFileUseTemplateFile) {
+  @DataBoundSetter
+  public void setCreateFileUseTemplateFile(final boolean createFileUseTemplateFile) {
     this.createFileUseTemplateFile = createFileUseTemplateFile;
   }
 
-  public void setCustomIssues(List<CustomIssue> customIssues) {
+  @DataBoundSetter
+  public void setCustomIssues(final List<CustomIssue> customIssues) {
     this.customIssues = customIssues;
   }
 
-  public void setDateFormat(String dateFormat) {
+  @DataBoundSetter
+  public void setDateFormat(final String dateFormat) {
     this.dateFormat = dateFormat;
   }
 
-  public void setFile(String file) {
+  @DataBoundSetter
+  public void setFile(final String file) {
     this.file = file;
   }
 
-  public void setFromReference(String fromReference) {
+  @DataBoundSetter
+  public void setFromReference(final String fromReference) {
     this.fromReference = fromReference;
   }
 
-  public void setFromType(String fromType) {
+  @DataBoundSetter
+  public void setFromType(final String fromType) {
     this.fromType = fromType;
   }
 
-  public void setGitHubApi(String gitHubApi) {
+  @DataBoundSetter
+  public void setGitHubApi(final String gitHubApi) {
     this.gitHubApi = gitHubApi;
   }
 
-  public void setGitHubIssuePattern(String gitHubIssuePattern) {
+  @DataBoundSetter
+  public void setGitHubIssuePattern(final String gitHubIssuePattern) {
     this.gitHubIssuePattern = gitHubIssuePattern;
   }
 
-  public void setGitHubToken(String gitHubToken) {
+  @DataBoundSetter
+  public void setGitHubToken(final String gitHubToken) {
     this.gitHubToken = gitHubToken;
   }
 
-  public void setGitLabProjectName(String gitLabProjectName) {
+  @DataBoundSetter
+  public void setGitLabProjectName(final String gitLabProjectName) {
     this.gitLabProjectName = gitLabProjectName;
   }
 
-  public void setGitLabServer(String gitLabServer) {
+  @DataBoundSetter
+  public void setGitLabServer(final String gitLabServer) {
     this.gitLabServer = gitLabServer;
   }
 
-  public void setGitLabToken(String gitLabToken) {
+  @DataBoundSetter
+  public void setGitLabToken(final String gitLabToken) {
     this.gitLabToken = gitLabToken;
   }
 
@@ -461,147 +481,183 @@ public class GitChangelogConfig implements Serializable {
     return gitLabToken;
   }
 
-  public void setUseGitLab(boolean useGitLab) {
+  @DataBoundSetter
+  public void setUseGitLab(final boolean useGitLab) {
     this.useGitLab = useGitLab;
   }
 
-  public void setIgnoreCommitsIfMessageMatches(String ignoreCommitsIfMessageMatches) {
+  @DataBoundSetter
+  public void setIgnoreCommitsIfMessageMatches(final String ignoreCommitsIfMessageMatches) {
     this.ignoreCommitsIfMessageMatches = ignoreCommitsIfMessageMatches;
   }
 
-  public void setIgnoreCommitsWithoutIssue(boolean ignoreCommitsWithoutIssue) {
+  @DataBoundSetter
+  public void setIgnoreCommitsWithoutIssue(final boolean ignoreCommitsWithoutIssue) {
     this.ignoreCommitsWithoutIssue = ignoreCommitsWithoutIssue;
   }
 
-  public void setIgnoreTagsIfNameMatches(String ignoreTagsIfNameMatches) {
+  @DataBoundSetter
+  public void setIgnoreTagsIfNameMatches(final String ignoreTagsIfNameMatches) {
     this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
   }
 
-  public void setJiraIssuePattern(String jiraIssuePattern) {
+  @DataBoundSetter
+  public void setJiraIssuePattern(final String jiraIssuePattern) {
     this.jiraIssuePattern = jiraIssuePattern;
   }
 
-  public void setJiraPassword(String jiraPassword) {
+  @DataBoundSetter
+  public void setJiraPassword(final String jiraPassword) {
     this.jiraPassword = jiraPassword;
   }
 
-  public void setJiraServer(String jiraServer) {
+  @DataBoundSetter
+  public void setJiraServer(final String jiraServer) {
     this.jiraServer = jiraServer;
   }
 
-  public void setJiraUsername(String jiraUsername) {
+  @DataBoundSetter
+  public void setJiraUsername(final String jiraUsername) {
     this.jiraUsername = jiraUsername;
   }
 
-  public void setMediaWikiPassword(String mediaWikiPassword) {
+  @DataBoundSetter
+  public void setMediaWikiPassword(final String mediaWikiPassword) {
     this.mediaWikiPassword = mediaWikiPassword;
   }
 
-  public void setMediaWikiTemplateContent(String mediaWikiTemplateContent) {
+  @DataBoundSetter
+  public void setMediaWikiTemplateContent(final String mediaWikiTemplateContent) {
     this.mediaWikiTemplateContent = mediaWikiTemplateContent;
   }
 
-  public void setMediaWikiTemplateFile(String mediaWikiTemplateFile) {
+  @DataBoundSetter
+  public void setMediaWikiTemplateFile(final String mediaWikiTemplateFile) {
     this.mediaWikiTemplateFile = mediaWikiTemplateFile;
   }
 
-  public void setMediaWikiTitle(String mediaWikiTitle) {
+  @DataBoundSetter
+  public void setMediaWikiTitle(final String mediaWikiTitle) {
     this.mediaWikiTitle = mediaWikiTitle;
   }
 
-  public void setMediaWikiUrl(String mediaWikiUrl) {
+  @DataBoundSetter
+  public void setMediaWikiUrl(final String mediaWikiUrl) {
     this.mediaWikiUrl = mediaWikiUrl;
   }
 
-  public void setMediaWikiUsername(String mediaWikiUsername) {
+  @DataBoundSetter
+  public void setMediaWikiUsername(final String mediaWikiUsername) {
     this.mediaWikiUsername = mediaWikiUsername;
   }
 
-  public void setMediaWikiUseTemplateContent(boolean mediaWikiUseTemplateContent) {
+  @DataBoundSetter
+  public void setMediaWikiUseTemplateContent(final boolean mediaWikiUseTemplateContent) {
     this.mediaWikiUseTemplateContent = mediaWikiUseTemplateContent;
   }
 
-  public void setMediaWikiUseTemplateFile(boolean mediaWikiUseTemplateFile) {
+  @DataBoundSetter
+  public void setMediaWikiUseTemplateFile(final boolean mediaWikiUseTemplateFile) {
     this.mediaWikiUseTemplateFile = mediaWikiUseTemplateFile;
   }
 
-  public void setNoIssueName(String noIssueName) {
+  @DataBoundSetter
+  public void setNoIssueName(final String noIssueName) {
     this.noIssueName = noIssueName;
   }
 
-  public void setReadableTagName(String readableTagName) {
+  @DataBoundSetter
+  public void setReadableTagName(final String readableTagName) {
     this.readableTagName = readableTagName;
   }
 
-  public void setShowSummary(boolean showSummary) {
+  @DataBoundSetter
+  public void setShowSummary(final boolean showSummary) {
     this.showSummary = showSummary;
   }
 
-  public void setShowSummaryTemplateContent(String showSummaryTemplateContent) {
+  @DataBoundSetter
+  public void setShowSummaryTemplateContent(final String showSummaryTemplateContent) {
     this.showSummaryTemplateContent = showSummaryTemplateContent;
   }
 
-  public void setShowSummaryTemplateFile(String showSummaryTemplateFile) {
+  @DataBoundSetter
+  public void setShowSummaryTemplateFile(final String showSummaryTemplateFile) {
     this.showSummaryTemplateFile = showSummaryTemplateFile;
   }
 
-  public void setShowSummaryUseTemplateContent(boolean showSummaryUseTemplateContent) {
+  @DataBoundSetter
+  public void setShowSummaryUseTemplateContent(final boolean showSummaryUseTemplateContent) {
     this.showSummaryUseTemplateContent = showSummaryUseTemplateContent;
   }
 
-  public void setShowSummaryUseTemplateFile(boolean showSummaryUseTemplateFile) {
+  @DataBoundSetter
+  public void setShowSummaryUseTemplateFile(final boolean showSummaryUseTemplateFile) {
     this.showSummaryUseTemplateFile = showSummaryUseTemplateFile;
   }
 
-  public void setSubDirectory(String subDirectory) {
+  @DataBoundSetter
+  public void setSubDirectory(final String subDirectory) {
     this.subDirectory = subDirectory;
   }
 
-  public void setTimeZone(String timeZone) {
+  @DataBoundSetter
+  public void setTimeZone(final String timeZone) {
     this.timeZone = timeZone;
   }
 
-  public void setToReference(String toReference) {
+  @DataBoundSetter
+  public void setToReference(final String toReference) {
     this.toReference = toReference;
   }
 
-  public void setToType(String toType) {
+  @DataBoundSetter
+  public void setToType(final String toType) {
     this.toType = toType;
   }
 
-  public void setUntaggedName(String untaggedName) {
+  @DataBoundSetter
+  public void setUntaggedName(final String untaggedName) {
     this.untaggedName = untaggedName;
   }
 
-  public void setUseConfigFile(boolean useConfigFile) {
+  @DataBoundSetter
+  public void setUseConfigFile(final boolean useConfigFile) {
     this.useConfigFile = useConfigFile;
   }
 
-  public void setUseFile(boolean useFile) {
+  @DataBoundSetter
+  public void setUseFile(final boolean useFile) {
     this.useFile = useFile;
   }
 
-  public void setUseGitHub(boolean useGithub) {
+  @DataBoundSetter
+  public void setUseGitHub(final boolean useGithub) {
     this.useGitHub = useGithub;
   }
 
-  public void setUseIgnoreTagsIfNameMatches(boolean useIgnoreTagsIfNameMatches) {
+  @DataBoundSetter
+  public void setUseIgnoreTagsIfNameMatches(final boolean useIgnoreTagsIfNameMatches) {
     this.useIgnoreTagsIfNameMatches = useIgnoreTagsIfNameMatches;
   }
 
-  public void setUseJira(boolean useJira) {
+  @DataBoundSetter
+  public void setUseJira(final boolean useJira) {
     this.useJira = useJira;
   }
 
-  public void setUseMediaWiki(boolean useMediaWiki) {
+  @DataBoundSetter
+  public void setUseMediaWiki(final boolean useMediaWiki) {
     this.useMediaWiki = useMediaWiki;
   }
 
-  public void setUseReadableTagName(boolean useReadableTagName) {
+  @DataBoundSetter
+  public void setUseReadableTagName(final boolean useReadableTagName) {
     this.useReadableTagName = useReadableTagName;
   }
 
-  public void setUseSubDirectory(boolean useSubDirectory) {
+  @DataBoundSetter
+  public void setUseSubDirectory(final boolean useSubDirectory) {
     this.useSubDirectory = useSubDirectory;
   }
 
@@ -629,28 +685,34 @@ public class GitChangelogConfig implements Serializable {
     return gitLabApiTokenCredentialsId;
   }
 
-  public void setGitHubApiTokenCredentialsId(String gitHubApiTokenCredentialsId) {
+  @DataBoundSetter
+  public void setGitHubApiTokenCredentialsId(final String gitHubApiTokenCredentialsId) {
     this.gitHubApiTokenCredentialsId = gitHubApiTokenCredentialsId;
   }
 
-  public void setGitLabApiTokenCredentialsId(String gitLabApiTokenCredentialsId) {
+  @DataBoundSetter
+  public void setGitLabApiTokenCredentialsId(final String gitLabApiTokenCredentialsId) {
     this.gitLabApiTokenCredentialsId = gitLabApiTokenCredentialsId;
   }
 
-  public void setUseGitHubApiTokenCredentials(boolean useGitHubApiTokenCredentials) {
+  @DataBoundSetter
+  public void setUseGitHubApiTokenCredentials(final boolean useGitHubApiTokenCredentials) {
     this.useGitHubApiTokenCredentials = useGitHubApiTokenCredentials;
   }
 
-  public void setUseGitLabApiTokenCredentials(boolean useGitLabApiTokenCredentials) {
+  @DataBoundSetter
+  public void setUseGitLabApiTokenCredentials(final boolean useGitLabApiTokenCredentials) {
     this.useGitLabApiTokenCredentials = useGitLabApiTokenCredentials;
   }
 
-  public void setJiraUsernamePasswordCredentialsId(String jiraUsernamePasswordCredentialsId) {
+  @DataBoundSetter
+  public void setJiraUsernamePasswordCredentialsId(final String jiraUsernamePasswordCredentialsId) {
     this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
   }
 
+  @DataBoundSetter
   public void setUseJiraUsernamePasswordCredentialsId(
-      boolean useJiraUsernamePasswordCredentialsId) {
+      final boolean useJiraUsernamePasswordCredentialsId) {
     this.useJiraUsernamePasswordCredentialsId = useJiraUsernamePasswordCredentialsId;
   }
 
