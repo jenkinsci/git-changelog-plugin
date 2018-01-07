@@ -1,11 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
-## Unreleased
+## 1.55
 ### No issue
 **Making config attributes optional**
  * This enables smaller pipeline scripts. 
 
-[61483203065c2d8](https://github.com/jenkinsci/git-changelog-plugin/commit/61483203065c2d8) Tomas Bjerre *2018-01-07 09:28:46*
+[9de7b11bd949ebe](https://github.com/jenkinsci/git-changelog-plugin/commit/9de7b11bd949ebe) Tomas Bjerre *2018-01-07 09:29:25*
 
 **Doc**
 
