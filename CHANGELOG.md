@@ -1,5 +1,12 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 1.56
+### No issue
+**Removing state from GitHub Client**
+ * The client was created once, with one API, and kept for all future invcations. So that if a changelog was created for one repo (A) and then for a repo (B), then B would use the API from A. Resulting in wrong issue information in B. 
+
+[25770b069f3f93a](https://github.com/jenkinsci/git-changelog-plugin/commit/25770b069f3f93a) Tomas Bjerre *2018-01-09 21:02:28*
+
 ## 1.55
 ### No issue
 **Making config attributes optional**
