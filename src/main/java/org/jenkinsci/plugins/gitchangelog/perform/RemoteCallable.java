@@ -185,10 +185,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         logString.append("Creating changelog " + this.config.toFile());
 
         final File toFile = new File(this.workspacePath + "/" + this.config.toFile());
-        final boolean created = new File(toFile.getParent()).mkdirs();
-        if (!created) {
-          throw new IOException("Could not make dirs " + toFile.getParent());
-        }
+        new File(toFile.getParent()).mkdirs();
         write(gitChangelogApiBuilder.render(), toFile, UTF_8);
       }
     } catch (final Throwable e) {
