@@ -25,6 +25,8 @@ This is also documented in [Jenkins wiki](https://wiki.jenkins-ci.org/display/JE
 
 The plugin is compatible with the [pipeline plugin](https://jenkins.io/doc/book/pipeline/getting-started/) and can be configured to support many use cases. Here is a very simple one. You probably want to adjust it using the [Snippet Generator](https://jenkins.io/doc/book/pipeline/getting-started/#snippet-generator).
 
+![Snippet Generator](/doc/imgs/snippet-generator.png)
+
 ```
 node {
  deleteDir()

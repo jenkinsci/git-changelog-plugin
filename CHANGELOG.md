@@ -1,5 +1,12 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 1.57
+### No issue
+**Removing faulty error check from file creation**
+ * mkdirs will return false if the dir already exists. So false here is not an error! 
+
+[1a46e41f521dbc3](https://github.com/jenkinsci/git-changelog-plugin/commit/1a46e41f521dbc3) Tomas Bjerre *2018-01-09 21:37:25*
+
 ## 1.56
 ### No issue
 **Removing state from GitHub Client**
