@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## Unreleased
+### No issue
+**Doc**
+
+[8586254e107db8a](https://github.com/jenkinsci/git-changelog-plugin/commit/8586254e107db8a) Tomas Bjerre *2018-01-11 18:06:38*
+
 ## 1.57
 ### No issue
 **Removing faulty error check from file creation**

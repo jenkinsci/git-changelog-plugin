@@ -130,7 +130,7 @@ Changelog of Git Changelog Plugin.
 			<plugin>
 				<groupId>se.bjurr.violations</groupId>
 				<artifactId>violations-maven-plugin</artifactId>
-				<version>1.3</version>
+				<version>1.6</version>
 				<executions>
 					<execution>
 						<phase>verify</phase>
