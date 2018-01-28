@@ -1,5 +1,6 @@
-Git Changelog Jenkins Plugin [![Build Status](https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/badge/icon)](https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/)
-===========================
+# Git Changelog Jenkins Plugin
+
+[![Build Status](https://ci.jenkins.io/job/Plugins/job/git-changelog-plugin/job/master/badge/icon)](https://ci.jenkins.io/job/Plugins/job/git-changelog-plugin)
 
 Jenkins plugin to extract a changelog out of commit messages between two GIT revisions. This changelog can be postprocessed and converted
 to either an human readable git changelog listing all commits, or a JIRA filter URL.

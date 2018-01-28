@@ -4,7 +4,7 @@ Changelog of Git Changelog Plugin.
 ### No issue
 **Doc**
 
-[8586254e107db8a](https://github.com/jenkinsci/git-changelog-plugin/commit/8586254e107db8a) Tomas Bjerre *2018-01-11 18:06:38*
+[bdf9bd0eb52798c](https://github.com/jenkinsci/git-changelog-plugin/commit/bdf9bd0eb52798c) Tomas Bjerre *2018-01-13 21:09:09*
 
 ## 1.57
 ### No issue
