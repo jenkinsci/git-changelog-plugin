@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+
+    <f:entry title="API">
+      <f:textbox field="api"/>
+      <f:description>
+      URL pointing at GitHub API. When configured, the title will be populated with title from GitHub.
+      Example: <b>https://api.github.com/repos/tomasbjerre/git-changelog-lib</b>
+      </f:description>
+    </f:entry>
+
+    <f:entry title="Token">
+      <f:password field="token"/>
+    </f:entry>
+
+    <f:entry title="Issue Pattern">
+      <f:textbox field="issuePattern"/>
+      <f:description>
+       Pattern to recognize GitHub:s issues. <b>#([0-9]+)</b>
+      </f:description>
+    </f:entry>
+
+</j:jelly>

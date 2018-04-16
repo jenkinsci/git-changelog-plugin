@@ -26,189 +26,71 @@ This is also documented in [Jenkins wiki](https://wiki.jenkins-ci.org/display/JE
 
 The plugin is compatible with the [pipeline plugin](https://jenkins.io/doc/book/pipeline/getting-started/) and can be configured to support many use cases. You probably want to adjust it using the [Snippet Generator](https://jenkins.io/doc/book/pipeline/getting-started/#snippet-generator).
 
-![Snippet Generator](/doc/imgs/snippet-generator.png)
+The `gitChangelog` step can return:
 
-Here is an example that creates the changelog in the summary of the job.
-```
-node {
- deleteDir()
+ * **Context** - An object that contains all the information needed to create a changelog. Can be used to gather information from Git like committers, emails, issues and much more.
+ * **String** - A string that is a rendered changelog, ready to be published. Can be used to publish on build summary page, on a wiki, emailed and much more.
 
- stage('Clone repo') {
-  sh "git clone https://github.com/tomasbjerre/git-changelog-lib.git ."
- }
- 
- step([$class: 'GitChangelogRecorder',
- config: [
- untaggedName: 'Unreleased',
- noIssueName: 'No issue',
- useReadableTagName: true,
- readableTagName: '/([^/]+?)$',
- 
- useGitHub: true,
- gitHubApi: 'https://api.github.com/repos/tomasbjerre/git-changelog-lib',
- 
- useJira: true,
- jiraIssuePattern: '\\bJENKINS-([0-9]+)\\b',
- 
- fromReference: '',
- fromType: 'firstCommit',
- toReference: '',
- toType: 'master',
- 
- showSummary: true,
- showSummaryUseTemplateContent: true,
- showSummaryTemplateContent: '''<h1> Git Changelog Lib changelog </h1>
+The template and context is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
 
-<p>
-Changelog of Git Changelog Lib.
-</p>
+It can integrate with issue management systems to get titles of issues and links.
 
-{{#tags}}
-<h2> {{name}} </h2>
- {{#issues}}
-  {{#hasIssue}}
-   {{#hasLink}}
-<h2> {{name}} <a href="{{link}}">{{issue}}</a> {{title}} </h2>
-   {{/hasLink}}
-   {{^hasLink}}
-<h2> {{name}} {{issue}} {{title}} </h2>
-   {{/hasLink}}
-  {{/hasIssue}}
-  {{^hasIssue}}
-<h2> {{name}} </h2>
-  {{/hasIssue}}
+ * GitLab
+ * GitHub
+ * Jira
 
+You can [create a file](https://jenkins.io/doc/pipeline/examples/) or maby publish the changelog with:
 
-   {{#commits}}
-<a href="https://github.com/tomasbjerre/git-changelog-lib/commit/{{hash}}">{{hash}}</a> {{authorName}} <i>{{commitTime}}</i>
-<p>
-<h3>{{{messageTitle}}}</h3>
+ * [HTML Publisher Plugin](https://plugins.jenkins.io/htmlpublisher)
+ * [Confluence Publisher Plugin](https://plugins.jenkins.io/confluence-publisher)
+ * [Email Extension](https://plugins.jenkins.io/email-ext)
 
-{{#messageBodyItems}}
- <li> {{.}}</li> 
-{{/messageBodyItems}}
-</p>
+You can:
 
+ * Specify specific from/to references/commits to only inlcude a subset of all commits.
+ * Filter out commits:
+  * Based on message.
+  * Based on commit time.
+ * Filter out tags based on tag name.
+ * Transform tag name to something more readable.
+ * And much more...
 
-  {{/commits}}
+Check the [Snippet Generator](https://jenkins.io/doc/book/pipeline/getting-started/#snippet-generator) to see all features!
 
- {{/issues}}
- <hr/>
-{{/tags}}
-'''
-]])
-}
-```
+## Pipeline with context
 
-And here is an example creating a file in the workspace. With commits between two other commits.
+Here is an example that clones a repo and prints commit titles in the build log. The context is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
 
 ```
 node {
- deleteDir()
+ sh """
+ git clone git@github.com:jenkinsci/git-changelog-plugin.git .
+ """
+    
+ def changelogContext = gitChangelog returnType: 'CONTEXT'
 
- stage('Clone repo') {
-  sh """
-   git clone https://github.com/tomasbjerre/git-changelog-lib.git
-   cd git-changelog-lib
-   git log
-   """
- }
- 
- step([$class: 'GitChangelogRecorder',
- config: [
- useSubDirectory: true,
- subDirectory: 'git-changelog-lib',
-     
- untaggedName: 'Unreleased',
- noIssueName: 'No issue',
- useReadableTagName: true,
- readableTagName: '/([^/]+?)$',
- 
- useGitHub: true,
- gitHubApi: 'https://api.github.com/repos/tomasbjerre/git-changelog-lib',
- 
- useJira: true,
- jiraIssuePattern: '\\bJENKINS-([0-9]+)\\b',
- 
- fromReference: '46d37d70e2f9ffe1bb256ad853fd72d87169032e',
- fromType: 'commit',
- toReference: 'e37c36d2145414b6e7ce40a83e5818e03679a21d',
- toType: 'commit',
-
- useFile: true,
- file: 'thechangelog.html',
- createFileUseTemplateContent: true,
- createFileTemplateContent: '''<h1> Git Changelog Lib changelog </h1>
-
-<p>
-Changelog of Git Changelog Lib.
-</p>
-
-{{#tags}}
-<h2> {{name}} </h2>
- {{#issues}}
-  {{#hasIssue}}
-   {{#hasLink}}
-<h2> {{name}} <a href="{{link}}">{{issue}}</a> {{title}} </h2>
-   {{/hasLink}}
-   {{^hasLink}}
-<h2> {{name}} {{issue}} {{title}} </h2>
-   {{/hasLink}}
-  {{/hasIssue}}
-  {{^hasIssue}}
-<h2> {{name}} </h2>
-  {{/hasIssue}}
-
-
-   {{#commits}}
-<a href="https://github.com/tomasbjerre/git-changelog-lib/commit/{{hash}}">{{hash}}</a> {{authorName}} <i>{{commitTime}}</i>
-<p>
-<h3>{{{messageTitle}}}</h3>
-
-{{#messageBodyItems}}
- <li> {{.}}</li> 
-{{/messageBodyItems}}
-</p>
-
-
-  {{/commits}}
-
- {{/issues}}
- <hr/>
-{{/tags}}
-'''
-]])
-
-archiveArtifacts artifacts: '**/thechangelog.html'
-}
-```
-
-### Job DSL
-
-Here is a sample job DSL.
-
-```
-freeStyleJob('Git Changelog Job') {
-  scm {
-    git {
-      remote {
-        name('origin')
-        url('https://github.com/tomasbjerre/git-changelog-lib.git')
-      }
-    }
+ changelogContext.tags.each { tag ->
+  println "Tag: ${tag}"
+  tag.commits.each {commit ->
+   println "Commit: ${commit.messageTitle}"
   }
-  publishers {
-    gitChangelogRecorder {
-      config {
-        fromType("commit")
-        fromReference("20aca44")
-        toType("ref")
-        toReference("master")
+ }
+}
+```
 
-        showSummary(true)
-        showSummaryUseTemplateContent(true)
-        showSummaryTemplateContent("""
-<h1> Git Changelog changelog </h1>
+## Pipeline with string
+
+Here is an example that clones a repo and publishes the changelog on job page. The template and context is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
+
+```
+node {
+ sh """
+ git clone git@github.com:jenkinsci/git-changelog-plugin.git .
+ """
+    
+ def changelogString = gitChangelog returnType: 'STRING'
+  template: """
+  <h1> Git Changelog changelog </h1>
 
 <p>
 Changelog of Git Changelog.
@@ -245,108 +127,17 @@ Changelog of Git Changelog.
 
  {{/issues}}
 {{/tags}}
-        """)
+  """
 
-
-        useMediaWiki(true)
-        mediaWikiUseTemplateContent(true)
-        mediaWikiTemplateContent("""
-__NOTOC__
-
-= Git Changelog changelog =
-Changelog of Git Changelog.
-
-{{#tags}}
-== {{name}} ==
- {{#issues}}
-  {{#hasIssue}}
-   {{#hasLink}}
-=== {{name}} [{{link}} {{issue}}] {{title}} ===
-   {{/hasLink}}
-   {{^hasLink}}
-=== {{name}} {{issue}} {{title}} ===
-   {{/hasLink}}
-  {{/hasIssue}}
-  {{^hasIssue}}
-=== {{name}} ===
-  {{/hasIssue}}
-
-   {{#commits}}
-[https://github.com/tomasbjerre/git-changelog-lib/commit/{{hash}} {{hash}}] {{authorName}} {{commitTime}}
-
-'''{{{messageTitle}}}'''
-
-{{#messageBodyItems}}
- * {{.}} 
-{{/messageBodyItems}}
-
-  {{/commits}}
-
- {{/issues}}
-{{/tags}}
-        """)
-        mediaWikiTitle("PRNFB Changelog")
-        mediaWikiUrl("http://web:80/w")
-        mediaWikiUsername(null)
-        mediaWikiPassword(null)
-        mediaWikiUseTemplateFile(false)
-        mediaWikiTemplateFile(null)
-        
-        useGitHub(true)
-        gitHubApi("https://api.github.com/repos/tomasbjerre/git-changelog-lib")
-        gitHubIssuePattern(null)
-        gitHubToken(null)
-        gitHubApiTokenCredentialsId(null)
-        useGitHubApiTokenCredentials(false)
-
-        useReadableTagName(true)
-        readableTagName("/([^/]+?)\$")
-
-        configFile(null)
-        createFileTemplateContent(null)
-        createFileTemplateFile(null)
-        createFileUseTemplateContent(false)
-        createFileUseTemplateFile(false)
-        customIssues {}
-        dateFormat(null)
-        file(null)
-        useGitLab(false)
-        gitLabServer(null)
-        gitLabProjectName(null)
-        gitLabToken(null)
-        ignoreCommitsIfMessageMatches(null)
-        ignoreCommitsWithoutIssue(false)
-        ignoreTagsIfNameMatches(null)
-        jiraIssuePattern(null)
-        jiraPassword(null)
-        jiraServer(null)
-        jiraUsername(null)
-        jiraUsernamePasswordCredentialsId(null)
-        useJiraUsernamePasswordCredentialsId(false)
-        noIssueName(null)
-        showSummaryTemplateFile(null)
-        showSummaryUseTemplateFile(false)
-        subDirectory(null)
-        timeZone(null)
-        untaggedName(null)
-        useConfigFile(false)
-        useFile(false)
-        useIgnoreTagsIfNameMatches(false)
-        useJira(false)
-        useSubDirectory(false)
-        gitLabApiTokenCredentialsId(null)
-        useGitLabApiTokenCredentials(false)
-      }
-    }
-  }
+ currentBuild.description = changelogString
 }
 ```
 
-### Using a Post-build Action
+# Using a Post-build Action
 
 When the plugin is installed, it will add some new post build actions in Jenkins job configuration.
 
-#### Jira Filter
+## Jira Filter
 The following documentation explains to set up the JIRA Filter post-build action. Using the basic changelog post-build action
 is even easier, as it does not need any further configuration.
 
@@ -363,7 +154,7 @@ If you leave the file input empty, the information will be logged into the jenki
 If you specify a filename, you can use other plugins like [HTML Publisher Plugin](https://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin)
 to save the files as jenkins report.
 
-### Using as Token Macro Replacement Provider
+# Using as Token Macro Replacement Provider
 
 Having installed the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin) plugin (which will be the case, as it is a dependency of this plugin), following macros for replacement are provided: <code>GITCHANGELOGJIRA</code> and <code>GITCHANGELOG</code>.
 
@@ -372,7 +163,7 @@ If you use these macros in any plugin supporting token macro replacements, this 
 The [Email-ext plugin](https://wiki.jenkins-ci.org/display/JENKINS/Email-ext+plugin) supports token macros, so you can include this URL
 in an automatically sent email.
 
-## Development
+# Development
 
 This plugin can be built and started with maven and Jenkins' hpi plugin:
 

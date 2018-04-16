@@ -2,6 +2,10 @@
 Changelog of Git Changelog Plugin.
 ## Unreleased
 ### No issue
+**Cleaning pom**
+
+[38fcc24e0bb0834](https://github.com/jenkinsci/git-changelog-plugin/commit/38fcc24e0bb0834) Tomas Bjerre *2018-01-28 16:50:58*
+
 **Doc**
 
 [bdf9bd0eb52798c](https://github.com/jenkinsci/git-changelog-plugin/commit/bdf9bd0eb52798c) Tomas Bjerre *2018-01-13 21:09:09*

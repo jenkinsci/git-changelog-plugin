@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+
+    <f:entry title="Name">
+      <f:textbox field="name"/>
+      <f:description>
+       Name of the issue manager. Perhaps "GitHub" or "JIRA".
+      </f:description>
+    </f:entry>
+
+    <f:entry title="Issue Pattern">
+      <f:textbox field="pattern"/>
+      <f:description>
+       Pattern to recognize issues. Like, <b>#([0-9]+)</b>. These groups are available as variables when configuring title and issue link below.
+      </f:description>
+    </f:entry>
+
+    <f:entry title="Title">
+      <f:textbox field="title"/>
+      <f:description>
+       Title of the issues. It supports variables like:
+       <b>${PATTERN_GROUP}</b> or
+       <b>${PATTERN_GROUP_1}</b>
+      </f:description>
+    </f:entry>
+
+    <f:entry title="Issue Link">
+      <f:textbox field="link"/>
+      <f:description>
+       Link pointing at the issue. It supports variables like:
+       <b>${PATTERN_GROUP}</b> or
+       <b>${PATTERN_GROUP_1}</b>
+      </f:description>
+    </f:entry>
+
+</j:jelly>

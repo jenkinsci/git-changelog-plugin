@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+
+    <f:section title="Return type">
+    
+      <f:entry>
+      
+	    <f:entry title="String">
+         <f:radio name="returnType" title="Rendered string" value="STRING" checked='true'/>
+		 <f:description>
+		  The rendered string that is the changelog is returned.
+		 </f:description>
+		 <f:entry>
+		  <f:textarea field="template" style="width: 100%; height: 300px"/>
+		  <f:description>
+		   The Mustache template that is rendered with the context from Git. The template and the context is documented <a href="https://github.com/tomasbjerre/git-changelog-lib" target="_blank">here</a>.
+		  </f:description>
+		 </f:entry>
+        </f:entry>
+          
+	    <f:entry title="Context">
+         <f:radio name="returnType" title="Changelog context" value="CONTEXT" />
+		 <f:description>
+		  The context that makes up the changelog is returned. It is documented <a href="https://github.com/tomasbjerre/git-changelog-lib" target="_blank">here</a>.
+		 </f:description>
+        </f:entry>
+          
+      </f:entry>
+
+    </f:section>
+
+
+    <f:section title="From">
+     <f:entry>
+      <f:property field="from"/>
+     </f:entry>
+     <f:description>
+      Parse Git commits from this reference or commit.
+     </f:description>
+    </f:section>
+    
+    <f:section title="To">
+     <f:entry>
+      <f:property field="to"/>
+     </f:entry>
+     <f:description>
+      Parse Git commits to this reference or commit.
+     </f:description>
+    </f:section>
+    
+    <f:section title="Issues">
+    <f:optionalBlock checked="${!empty instance.jira}" title="Jira" inline="true">
+     <f:entry>
+      <f:property field="jira"/>
+     </f:entry>
+     <f:description>
+      Integrate with Jira to get titles of issues.
+     </f:description>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.gitLab}" title="GitLab" inline="true">
+     <f:entry>
+      <f:property field="gitLab"/>
+     </f:entry>
+     <f:description>
+      Integrate with GitLab to get titles of issues.
+     </f:description>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.gitHub}" title="GitHub" inline="true">
+     <f:entry>
+      <f:property field="gitHub"/>
+     </f:entry>
+     <f:description>
+      Integrate with GitHub to get titles of issues.
+     </f:description>
+    </f:optionalBlock>
+    
+     <f:entry title="Custom Issues">
+        <f:repeatableProperty field="customIssues">
+            <f:entry title="">
+                <div align="right">
+                    <f:repeatableDeleteButton/>
+                </div>
+            </f:entry>
+        </f:repeatableProperty>
+      <f:description>
+       Create patterns that enables commits to be grouped into issues.
+      </f:description>
+     </f:entry>
+    </f:section>
+
+    <f:optionalBlock checked="${!empty instance.repo}" title="Specify repo location" inline="true">
+     <f:entry title="Repo">
+      <f:textbox field="repo"/>
+      <f:description>
+       Specifies where to look for a Git repo. Defaults to current directory.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.ignoreTagsIfNameMatches}" title="Specify ignored tags" inline="true">
+     <f:entry field="ignoreTagsIfNameMatches" title="Ignore Tags If Name Matches">
+      <f:textbox />
+      <f:description>
+       <a href="https://jex.im/regulex/" target="_blank">Regular expression</a>, ignores any tag that matches the pattern.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.ignoreCommitsIfMessageMatches}" title="Specify ignored commits" inline="true">
+     <f:entry field="ignoreCommitsIfMessageMatches" title="Ignore Commits If Message Matches">
+      <f:textbox />
+      <f:description>
+       <a href="https://jex.im/regulex/" target="_blank">Regular expression</a>, ignores any tag that matches the pattern.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.ignoreCommitsIfOlderThan}" title="Specify ignored commits by date" inline="true">
+     <f:entry field="ignoreCommitsIfOlderThan" title="Ignore Commits If Older Than Date">
+      <f:textbox />
+      <f:description>
+       Specified on <a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html" target="_blank">format</a> <b>YYYY-MM-dd HH:mm:ss</b>.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.dateFormat}" title="Specify date display format" inline="true">
+     <f:entry field="dateFormat" title="Date Display Format">
+      <f:textbox />
+      <f:description>
+       Specified on <a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html" target="_blank">format</a>, like <b>YYYY-MM-dd HH:mm:ss</b>.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.timeZone}" title="Specify date display time zone" inline="true">
+     <f:entry field="timeZone" title="Date Time Zone">
+      <f:textbox />
+      <f:description>
+       Like <b>UTC</b>.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.untaggedName}" title="Specify a virtual tag" inline="true">
+     <f:entry field="untaggedName" title="Virtual tag">
+      <f:textbox />
+      <f:description>
+       All commits are group in tags, the tag that exclusively contains the commits. This is the name of a virtual tag that holds list of commits that does not belong to any tag.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.readableTagName}" title="Specify a readable tag" inline="true">
+     <f:entry field="readableTagName" title="Virtual tag">
+      <f:textbox />
+      <f:description>
+       A tag might not be so pretty. Like the tag <b>maven-release-plugin-1.53</b>. This is a <a href="https://jex.im/regulex/" target="_blank">regular expression</a> that can transform that to <b>1.53</b> by specifying regexp <b>-([^-]+?)$</b>.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.noIssueName}" title="Specify a virtual issue" inline="true">
+     <f:entry field="noIssueName" title="Virtual issue">
+      <f:textbox />
+      <f:description>
+       All commits are group in issues. This is the name of a virtual issue that holds list of commits that does not belong to any issue. It can be <b>Wall of shame</b> and contain all committers who did not specify an issue in their commit messages.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+
+    <f:entry title="Remove the issue from commit messages" field="removeIssueFromMessage">
+     <f:checkbox />
+    </f:entry>
+
+    <f:entry title="Ignore commits without issues in messages" field="ignoreCommitsWithoutIssue">
+     <f:checkbox />
+    </f:entry>
+    
+     <f:entry title="Extend variables">
+        <f:repeatableProperty field="extendedVariables">
+            <f:entry title="">
+                <div align="right">
+                    <f:repeatableDeleteButton/>
+                </div>
+            </f:entry>
+        </f:repeatableProperty>
+      <f:description>
+       This is a way of adding variables that you can use in the template.
+      </f:description>
+     </f:entry>
+
+</j:jelly>
