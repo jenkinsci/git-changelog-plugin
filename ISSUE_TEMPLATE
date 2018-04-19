@@ -1,0 +1,12 @@
+When reporting a bug, please try to provide as much information as possible.
+
+ * Plugin version used.
+ * Jenkins version used.
+ * Your configuration:
+   * Template and any other relevant details.
+ * Expected result and actual result.
+ * Any information from the logs:
+   * Jenkins log: http://jenkins-server/log/
+   * Build log.
+
+

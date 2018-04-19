@@ -1,6 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
-## Unreleased
+## 2.0
+### GitHub [#18](https://github.com/jenkinsci/git-changelog-plugin/issues/18) Pipeline/Job DSL configuration is confusing
+**Adding steps #18**
+
+[62f0e8639e8913a](https://github.com/jenkinsci/git-changelog-plugin/commit/62f0e8639e8913a) Tomas Bjerre *2018-04-19 18:26:18*
+
 ### No issue
 **Cleaning pom**
 

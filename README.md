@@ -1,9 +1,8 @@
-# Git Changelog Jenkins Plugin
+# Git Changelog Plugin
 
 [![Build Status](https://ci.jenkins.io/job/Plugins/job/git-changelog-plugin/job/master/badge/icon)](https://ci.jenkins.io/job/Plugins/job/git-changelog-plugin)
 
-Jenkins plugin to extract a changelog out of commit messages between two GIT revisions. This changelog can be postprocessed and converted
-to either an human readable git changelog listing all commits, or a JIRA filter URL.
+Creates a changelog, or release notes, based on Git commits between 2 revisions.
 
 It implements basically the features of [git-changelog](https://github.com/paulwellnerbou/git-changelog) and [git-changelog-lib](https://github.com/tomasbjerre/git-changelog-lib).
 
@@ -12,14 +11,16 @@ The plugin is also documented in the [Jenkins wiki](https://wiki.jenkins-ci.org/
 ## Usage
 
 You can use this plugin either
-* As a post-build action
- * To crate a summary on Jenkins job containing changelog or releasenotes.
- * To create a file in workspace containing changelog or releasenotes.
- * To create a MediaWiki page containing changelog or releasenotes.
- * To produce a file containing the jira filter and some informative lines.
-* To provide replacement text for the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin), to send
-emails, for example.
-
+* As a post-build action. You may want to use variables provided by the [Git Plugin](https://wiki.jenkins.io/display/JENKINS/Git+Plugin) to create a changelog from `GIT_PREVIOUS_SUCCESSFUL_COMMIT` to `GIT_COMMIT` or perhaps just `GIT_PREVIOUS_COMMIT` to `GIT_COMMIT`.
+  * To crate a summary on Jenkins job containing changelog or releasenotes.
+  * To create a file in workspace containing changelog or releasenotes.
+  * To create a MediaWiki page containing changelog or releasenotes.
+  * To produce a file containing the jira filter and some informative lines.
+  * To provide replacement text for the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin), to send emails, for example.
+* As a pipeline step.
+  * To get a traversable data structure, context, that makes up the changes between two revisions.
+  * To get a rendered string, a custom Mustache template rendered with the context. Also based on changes between two revisions.
+ 
 This is also documented in [Jenkins wiki](https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin).
 
 # Pipeline
@@ -33,7 +34,7 @@ The `gitChangelog` step can return:
 
 The template and context is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
 
-It can integrate with issue management systems to get titles of issues and links.
+It can integrate with issue management systems to get titles of issues and links. You will probably want to avoid specifying credentials in plain text in your script. One way of doing that is using the [credentials binding plugin](https://jenkins.io/doc/pipeline/steps/credentials-binding/). The supported integrations are:
 
  * GitLab
  * GitHub
@@ -45,36 +46,48 @@ You can [create a file](https://jenkins.io/doc/pipeline/examples/) or maby publi
  * [Confluence Publisher Plugin](https://plugins.jenkins.io/confluence-publisher)
  * [Email Extension](https://plugins.jenkins.io/email-ext)
 
-You can:
+You can filter out a subset of the commits by:
 
- * Specify specific from/to references/commits to only inlcude a subset of all commits.
- * Filter out commits:
-  * Based on message.
-  * Based on commit time.
- * Filter out tags based on tag name.
- * Transform tag name to something more readable.
- * And much more...
+ * Specifying specific **from**/**to** **references**/**commits**.
+ * Adding filter based on message.
+ * Adding filter based on commit time.
+ * Filter tags based on tag name.
+ * Filter commits based on commit time.
+ * Ignore commits that does not contain an issue.
+
+You can make the changelog prettier by:
+
+ * Transforming tag name to something more readable.
+ * Changing date display format.
+ * Creating virtual tag, that contains all commits that does not belong to any other tag. This can be named something like *Unreleased*.
+ * Creating virtual issue, that contains all commits that does not belong to any other issue.
+ * Remove issue from commit message. This can be named something like *Wall of shame* and list all committers that did not commit on an issue.
 
 Check the [Snippet Generator](https://jenkins.io/doc/book/pipeline/getting-started/#snippet-generator) to see all features!
 
 ## Pipeline with context
 
-Here is an example that clones a repo and prints commit titles in the build log. The context is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
+Here is an example that clones a repo, gathers all jiras and adds a link to jira in the description of the job. The context contains much more then this and is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
 
-```
+```groovy
 node {
+ deleteDir()
  sh """
  git clone git@github.com:jenkinsci/git-changelog-plugin.git .
  """
     
- def changelogContext = gitChangelog returnType: 'CONTEXT'
+ def changelogContext = gitChangelog returnType: 'CONTEXT',
+  from: [type: 'REF', value: 'git-changelog-1.50'],
+  to: [type: 'REF', value: 'master'],
+  jira: [issuePattern: 'JENKINS-([0-9]+)\\b', password: '', server: '', username: '']
 
- changelogContext.tags.each { tag ->
-  println "Tag: ${tag}"
-  tag.commits.each {commit ->
-   println "Commit: ${commit.messageTitle}"
+ Set<String> issueIdentifiers = new TreeSet<>()
+ changelogContext.issues.each { issue ->
+  if (issue.name == 'Jira') {
+   issueIdentifiers.add(issue.issue)
   }
  }
+ currentBuild.description = "http://jira.com/issues/?jql=key%20in%20%28${issueIdentifiers.join(',')}%29"
 }
 ```
 
@@ -82,13 +95,16 @@ node {
 
 Here is an example that clones a repo and publishes the changelog on job page. The template and context is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
 
-```
+```groovy
 node {
+ deleteDir()
  sh """
  git clone git@github.com:jenkinsci/git-changelog-plugin.git .
  """
     
- def changelogString = gitChangelog returnType: 'STRING'
+ def changelogString = gitChangelog returnType: 'STRING',
+  from: [type: 'REF', value: 'git-changelog-1.50'],
+  to: [type: 'REF', value: 'master'],
   template: """
   <h1> Git Changelog changelog </h1>
 
