@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 2.2
+### GitHub [#20](https://github.com/jenkinsci/git-changelog-plugin/issues/20) gitChangelog step not working with slaves
+**Second correction file path on remote agents #20**
+
+[9fef4f13ba59f15](https://github.com/jenkinsci/git-changelog-plugin/commit/9fef4f13ba59f15) Tomas Bjerre *2018-04-23 18:12:17*
+
 ## 2.1
 ### GitHub [#20](https://github.com/jenkinsci/git-changelog-plugin/issues/20) gitChangelog step not working with slaves
 **Correct file path on remote agents #20**
