@@ -15,12 +15,15 @@ import hudson.util.ListBoxModel;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import jenkins.security.MasterToSlaveCallable;
 
 import org.jenkinsci.plugins.gitchangelog.steps.config.RETURN_TYPE;
 import org.jenkinsci.plugins.gitchangelog.steps.config.CustomIssueConfig;
@@ -39,6 +42,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
 import se.bjurr.gitchangelog.api.GitChangelogApi;
+import se.bjurr.gitchangelog.api.exceptions.GitChangelogRepositoryException;
 
 public class GitChangelogStep extends Step implements Serializable {
 
@@ -310,80 +314,97 @@ public class GitChangelogStep extends Step implements Serializable {
 
       @Override
       protected Object run() throws Exception {
-        Date ignoreCommitsIfOlderThanDate = null;
-        if (!isNullOrEmpty(ignoreCommitsIfOlderThan)) {
-          final DateFormat format = new SimpleDateFormat(DEFAULT_DATEFORMAT, ENGLISH);
-          ignoreCommitsIfOlderThanDate = format.parse(ignoreCommitsIfOlderThan);
-        }
-        final String remoteRepo = context.get(FilePath.class).getRemote() + "/" + nullToEmpty(repo);
-        final GitChangelogApi b =
-            gitChangelogApiBuilder() //
-                .withFromRepo(remoteRepo) //
-                .withDateFormat(dateFormat) //
-                .withIgnoreCommitsOlderThan(ignoreCommitsIfOlderThanDate) //
-                .withIgnoreCommitsWithMessage(ignoreCommitsIfMessageMatches) //
-                .withIgnoreCommitsWithoutIssue(
-                    ignoreCommitsWithoutIssue != null && ignoreCommitsWithoutIssue) //
-                .withIgnoreTagsIfNameMatches(ignoreTagsIfNameMatches) //
-                .withNoIssueName(noIssueName) //
-                .withReadableTagName(readableTagName) //
-                .withRemoveIssueFromMessageArgument(
-                    removeIssueFromMessage != null && removeIssueFromMessage) //
-                .withTimeZone(timeZone) //
-                .withUntaggedName(untaggedName);
-        if (extendedVariables != null) {
-          final Map<String, Object> extendedVariablesMap = new HashMap<>();
-          for (final ExtendedVariableConfig e : extendedVariables) {
-            extendedVariablesMap.put(e.getName(), e.getValue());
-          }
-          b.withExtendedVariables(extendedVariablesMap);
-        }
-        if (from != null && from.getType() == COMMIT) {
-          b.withFromCommit(from.getValue());
-        }
-        if (from != null && from.getType() == REF) {
-          b.withFromRef(from.getValue());
-        }
-        if (to != null && to.getType() == COMMIT) {
-          b.withToCommit(to.getValue());
-        }
-        if (to != null && to.getType() == REF) {
-          b.withToRef(to.getValue());
-        }
-        for (final CustomIssueConfig issue : customIssues) {
-          b.withCustomIssue(
-              issue.getName(), issue.getIssuePattern(), issue.getLink(), issue.getTitle());
-        }
-        if (gitHub != null) {
-          b //
-              .withGitHubApi(gitHub.getApi()) //
-              .withGitHubIssuePattern(gitHub.getIssuePattern()) //
-              .withGitHubToken(gitHub.getToken());
-        }
-        if (gitLab != null) {
-          b //
-              .withGitLabIssuePattern(gitLab.getIssuePattern()) //
-              .withGitLabProjectName(gitLab.getProjectName()) //
-              .withGitLabServer(gitLab.getServer()) //
-              .withGitLabToken(gitLab.getToken());
-        }
-        if (jira != null) {
-          b //
-              .withJiraIssuePattern(jira.getIssuePattern()) //
-              .withJiraServer(jira.getServer()) //
-              .withJiraUsername(jira.getUsername()) //
-              .withJiraPassword(jira.getPassword());
-        }
-        if (returnType == CONTEXT) {
-          return b.getChangelog(true);
-        } else {
-          if (isNullOrEmpty(template)) {
-            throw new RuntimeException("No template specified");
-          }
-          return b.withTemplateContent(template) //
-              .render();
-        }
+        final FilePath workspace = context.get(FilePath.class);
+
+        final MasterToSlaveCallable<Object, Exception> callable =
+            new MasterToSlaveCallable<Object, Exception>() {
+              private static final long serialVersionUID = 1L;
+
+              @Override
+              public Object call() throws Exception {
+                return perform(workspace);
+              }
+            };
+
+        return workspace.act(callable);
       }
     };
+  }
+
+  private Object perform(final FilePath workspace)
+      throws ParseException, GitChangelogRepositoryException {
+    Date ignoreCommitsIfOlderThanDate = null;
+    if (!isNullOrEmpty(ignoreCommitsIfOlderThan)) {
+      final DateFormat format = new SimpleDateFormat(DEFAULT_DATEFORMAT, ENGLISH);
+      ignoreCommitsIfOlderThanDate = format.parse(ignoreCommitsIfOlderThan);
+    }
+    final String remoteRepo = workspace.getRemote() + "/" + nullToEmpty(repo);
+    final GitChangelogApi b =
+        gitChangelogApiBuilder() //
+            .withFromRepo(remoteRepo) //
+            .withDateFormat(dateFormat) //
+            .withIgnoreCommitsOlderThan(ignoreCommitsIfOlderThanDate) //
+            .withIgnoreCommitsWithMessage(ignoreCommitsIfMessageMatches) //
+            .withIgnoreCommitsWithoutIssue(
+                ignoreCommitsWithoutIssue != null && ignoreCommitsWithoutIssue) //
+            .withIgnoreTagsIfNameMatches(ignoreTagsIfNameMatches) //
+            .withNoIssueName(noIssueName) //
+            .withReadableTagName(readableTagName) //
+            .withRemoveIssueFromMessageArgument(
+                removeIssueFromMessage != null && removeIssueFromMessage) //
+            .withTimeZone(timeZone) //
+            .withUntaggedName(untaggedName);
+    if (extendedVariables != null) {
+      final Map<String, Object> extendedVariablesMap = new HashMap<>();
+      for (final ExtendedVariableConfig e : extendedVariables) {
+        extendedVariablesMap.put(e.getName(), e.getValue());
+      }
+      b.withExtendedVariables(extendedVariablesMap);
+    }
+    if (from != null && from.getType() == COMMIT) {
+      b.withFromCommit(from.getValue());
+    }
+    if (from != null && from.getType() == REF) {
+      b.withFromRef(from.getValue());
+    }
+    if (to != null && to.getType() == COMMIT) {
+      b.withToCommit(to.getValue());
+    }
+    if (to != null && to.getType() == REF) {
+      b.withToRef(to.getValue());
+    }
+    for (final CustomIssueConfig issue : customIssues) {
+      b.withCustomIssue(
+          issue.getName(), issue.getIssuePattern(), issue.getLink(), issue.getTitle());
+    }
+    if (gitHub != null) {
+      b //
+          .withGitHubApi(gitHub.getApi()) //
+          .withGitHubIssuePattern(gitHub.getIssuePattern()) //
+          .withGitHubToken(gitHub.getToken());
+    }
+    if (gitLab != null) {
+      b //
+          .withGitLabIssuePattern(gitLab.getIssuePattern()) //
+          .withGitLabProjectName(gitLab.getProjectName()) //
+          .withGitLabServer(gitLab.getServer()) //
+          .withGitLabToken(gitLab.getToken());
+    }
+    if (jira != null) {
+      b //
+          .withJiraIssuePattern(jira.getIssuePattern()) //
+          .withJiraServer(jira.getServer()) //
+          .withJiraUsername(jira.getUsername()) //
+          .withJiraPassword(jira.getPassword());
+    }
+    if (returnType == CONTEXT) {
+      return b.getChangelog(true);
+    } else {
+      if (isNullOrEmpty(template)) {
+        throw new RuntimeException("No template specified");
+      }
+      return b.withTemplateContent(template) //
+          .render();
+    }
   }
 }
