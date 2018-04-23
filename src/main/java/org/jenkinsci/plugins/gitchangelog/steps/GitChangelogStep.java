@@ -2,6 +2,7 @@ package org.jenkinsci.plugins.gitchangelog.steps;
 
 import static com.google.common.base.Strings.emptyToNull;
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.google.common.base.Strings.nullToEmpty;
 import static java.util.Locale.ENGLISH;
 import static org.jenkinsci.plugins.gitchangelog.steps.config.REF_TYPE.COMMIT;
 import static org.jenkinsci.plugins.gitchangelog.steps.config.REF_TYPE.REF;
@@ -9,6 +10,7 @@ import static org.jenkinsci.plugins.gitchangelog.steps.config.RETURN_TYPE.CONTEX
 import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_DATEFORMAT;
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.util.ListBoxModel;
 
 import java.io.Serializable;
@@ -313,9 +315,10 @@ public class GitChangelogStep extends Step implements Serializable {
           final DateFormat format = new SimpleDateFormat(DEFAULT_DATEFORMAT, ENGLISH);
           ignoreCommitsIfOlderThanDate = format.parse(ignoreCommitsIfOlderThan);
         }
+        final String remoteRepo = context.get(FilePath.class).getRemote() + "/" + nullToEmpty(repo);
         final GitChangelogApi b =
             gitChangelogApiBuilder() //
-                .withFromRepo(repo) //
+                .withFromRepo(remoteRepo) //
                 .withDateFormat(dateFormat) //
                 .withIgnoreCommitsOlderThan(ignoreCommitsIfOlderThanDate) //
                 .withIgnoreCommitsWithMessage(ignoreCommitsIfMessageMatches) //
