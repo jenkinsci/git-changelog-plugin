@@ -1,0 +1,9 @@
+se.bjurr.gitchangelog.api.model.interfaces.IAuthors
+se.bjurr.gitchangelog.api.model.interfaces.ICommits
+se.bjurr.gitchangelog.api.model.interfaces.IIssues
+se.bjurr.gitchangelog.api.model.Author
+se.bjurr.gitchangelog.api.model.Changelog
+se.bjurr.gitchangelog.api.model.Commit
+se.bjurr.gitchangelog.api.model.Issue
+se.bjurr.gitchangelog.api.model.IssueType
+se.bjurr.gitchangelog.api.model.Tag

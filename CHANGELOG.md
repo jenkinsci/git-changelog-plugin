@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## Unreleased
+### No issue
+**Helper scripts**
+
+[f374c9a15dd3a51](https://github.com/jenkinsci/git-changelog-plugin/commit/f374c9a15dd3a51) Tomas Bjerre *2018-04-25 17:45:50*
+
 ## 2.2
 ### GitHub [#20](https://github.com/jenkinsci/git-changelog-plugin/issues/20) gitChangelog step not working with slaves
 **Second correction file path on remote agents #20**
