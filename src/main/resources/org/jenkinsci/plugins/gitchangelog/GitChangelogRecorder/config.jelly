@@ -268,8 +268,8 @@
          Leave blank to use default.
         </f:description>
 
-        <f:optionalBlock checked="${config.useJiraUsernamePasswordCredentialsId}" name="useJiraUsernamePasswordCredentialsId" title="Use API token credentials" inline="true">
-          <f:entry title="API token Credential" field="jiraUsernamePasswordCredentialsId">
+        <f:optionalBlock checked="${config.useJiraUsernamePasswordCredentialsId}" name="useJiraUsernamePasswordCredentialsId" title="Use credentials" inline="true">
+          <f:entry title="Credential" field="jiraUsernamePasswordCredentialsId">
             <c:select default="${config.jiraUsernamePasswordCredentialsId}" />
           </f:entry>
         </f:optionalBlock>

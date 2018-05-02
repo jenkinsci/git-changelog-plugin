@@ -1,10 +1,10 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
-## Unreleased
-### No issue
-**Helper scripts**
+## 2.3
+### Jira JENKINS-50990 
+**JENKINS-50990 Adding ClassFilter for changelog**
 
-[f374c9a15dd3a51](https://github.com/jenkinsci/git-changelog-plugin/commit/f374c9a15dd3a51) Tomas Bjerre *2018-04-25 17:45:50*
+[ce8bc9268fe79dc](https://github.com/jenkinsci/git-changelog-plugin/commit/ce8bc9268fe79dc) Tomas Bjerre *2018-04-26 03:48:28*
 
 ## 2.2
 ### GitHub [#20](https://github.com/jenkinsci/git-changelog-plugin/issues/20) gitChangelog step not working with slaves

@@ -10,7 +10,7 @@
     </f:entry>
 
     <f:entry title="Issue Pattern">
-      <f:textbox field="pattern"/>
+      <f:textbox field="issuePattern"/>
       <f:description>
        Pattern to recognize issues. Like, <b>#([0-9]+)</b>. These groups are available as variables when configuring title and issue link below.
       </f:description>
