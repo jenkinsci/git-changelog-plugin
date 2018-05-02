@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 2.4
+### GitHub [#21](https://github.com/jenkinsci/git-changelog-plugin/issues/21) CustomIssue not working in Pipeline
+**Correcting snippet generator for custom issues #21**
+
+[fb94b6dc7cbb71e](https://github.com/jenkinsci/git-changelog-plugin/commit/fb94b6dc7cbb71e) Tomas Bjerre *2018-05-02 15:35:48*
+
 ## 2.3
 ### Jira JENKINS-50990 
 **JENKINS-50990 Adding ClassFilter for changelog**
