@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 2.6
+### GitHub [#22](https://github.com/jenkinsci/git-changelog-plugin/issues/22) JIRA issues in branch name not showing up in changelog
+**Not ignoring commits, unless pattern supplied #22**
+
+[7f0c10b9fe43049](https://github.com/jenkinsci/git-changelog-plugin/commit/7f0c10b9fe43049) Tomas Bjerre *2018-05-09 14:14:25*
+
 ## 2.5
 ### No issue
 **Closing connection to Jira**
