@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 2.5
+### No issue
+**Closing connection to Jira**
+
+[ff1a38d1e518756](https://github.com/jenkinsci/git-changelog-plugin/commit/ff1a38d1e518756) Tomas Bjerre *2018-05-05 07:47:37*
+
 ## 2.4
 ### GitHub [#21](https://github.com/jenkinsci/git-changelog-plugin/issues/21) CustomIssue not working in Pipeline
 **Correcting snippet generator for custom issues #21**

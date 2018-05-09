@@ -344,7 +344,7 @@ public class GitChangelogStep extends Step implements Serializable {
             .withFromRepo(remoteRepo) //
             .withDateFormat(dateFormat) //
             .withIgnoreCommitsOlderThan(ignoreCommitsIfOlderThanDate) //
-            .withIgnoreCommitsWithMessage(ignoreCommitsIfMessageMatches) //
+            .withIgnoreCommitsWithMessage(nullToEmpty(ignoreCommitsIfMessageMatches)) //
             .withIgnoreCommitsWithoutIssue(
                 ignoreCommitsWithoutIssue != null && ignoreCommitsWithoutIssue) //
             .withIgnoreTagsIfNameMatches(ignoreTagsIfNameMatches) //
