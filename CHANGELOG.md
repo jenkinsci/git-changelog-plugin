@@ -1,5 +1,17 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 2.7
+### GitHub [#11](https://github.com/jenkinsci/git-changelog-plugin/issues/11) Html incorrectly rendered in summary on job page
+**Escaping HTML to avoid XSS**
+ * This reverts the change from #11 and will no longer allow HTML on summary page. 
+
+[a078e105107afe4](https://github.com/jenkinsci/git-changelog-plugin/commit/a078e105107afe4) Tomas Bjerre *2018-08-22 07:34:30*
+
+### No issue
+**Correcting license**
+
+[ac4d87b241e836f](https://github.com/jenkinsci/git-changelog-plugin/commit/ac4d87b241e836f) Tomas Bjerre *2018-06-21 17:20:08*
+
 ## 2.6
 ### GitHub [#22](https://github.com/jenkinsci/git-changelog-plugin/issues/22) JIRA issues in branch name not showing up in changelog
 **Not ignoring commits, unless pattern supplied #22**
