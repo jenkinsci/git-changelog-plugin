@@ -3,7 +3,6 @@ package org.jenkinsci.plugins.gitchangelog.config;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 

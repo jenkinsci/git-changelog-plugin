@@ -9,10 +9,10 @@ import static org.jenkinsci.plugins.gitchangelog.steps.config.REF_TYPE.REF;
 import static org.jenkinsci.plugins.gitchangelog.steps.config.RETURN_TYPE.CONTEXT;
 import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_DATEFORMAT;
+
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.util.ListBoxModel;
-
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,15 +22,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import jenkins.security.MasterToSlaveCallable;
-
-import org.jenkinsci.plugins.gitchangelog.steps.config.RETURN_TYPE;
 import org.jenkinsci.plugins.gitchangelog.steps.config.CustomIssueConfig;
 import org.jenkinsci.plugins.gitchangelog.steps.config.ExtendedVariableConfig;
 import org.jenkinsci.plugins.gitchangelog.steps.config.GitHubConfig;
 import org.jenkinsci.plugins.gitchangelog.steps.config.GitLabConfig;
 import org.jenkinsci.plugins.gitchangelog.steps.config.JiraConfig;
+import org.jenkinsci.plugins.gitchangelog.steps.config.RETURN_TYPE;
 import org.jenkinsci.plugins.gitchangelog.steps.config.RefConfig;
 import org.jenkinsci.plugins.workflow.steps.Step;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -40,7 +38,6 @@ import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
-
 import se.bjurr.gitchangelog.api.GitChangelogApi;
 import se.bjurr.gitchangelog.api.exceptions.GitChangelogRepositoryException;
 

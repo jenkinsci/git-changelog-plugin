@@ -1,14 +1,11 @@
 package org.jenkinsci.plugins.gitchangelog.steps.config;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
-
 import java.io.Serializable;
-
 import org.kohsuke.stapler.DataBoundConstructor;
-
-import edu.umd.cs.findbugs.annotations.NonNull;
 
 public class JiraConfig extends AbstractDescribableImpl<JiraConfig> implements Serializable {
   private static final long serialVersionUID = -2407705524441526456L;

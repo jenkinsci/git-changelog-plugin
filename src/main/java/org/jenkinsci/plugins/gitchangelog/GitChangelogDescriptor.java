@@ -2,15 +2,13 @@ package org.jenkinsci.plugins.gitchangelog;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.createNewConfig;
+
 import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
 import hudson.util.ListBoxModel;
-
 import java.util.ArrayList;
-
 import net.sf.json.JSONObject;
-
 import org.jenkinsci.plugins.gitchangelog.config.CredentialsHelper;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;

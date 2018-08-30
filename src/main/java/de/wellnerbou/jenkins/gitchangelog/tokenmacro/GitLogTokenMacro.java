@@ -7,10 +7,9 @@ import hudson.AbortException;
 import hudson.FilePath;
 import hudson.model.AbstractBuild;
 import hudson.model.TaskListener;
+import java.io.IOException;
 import org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro;
 import org.jenkinsci.plugins.tokenmacro.MacroEvaluationException;
-
-import java.io.IOException;
 
 public abstract class GitLogTokenMacro extends DataBoundTokenMacro {
 

@@ -1,7 +1,6 @@
 package org.jenkinsci.plugins.gitchangelog;
 
 import hudson.model.TaskListener;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

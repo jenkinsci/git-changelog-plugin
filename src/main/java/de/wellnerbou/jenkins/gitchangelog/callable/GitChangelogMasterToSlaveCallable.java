@@ -3,13 +3,12 @@ package de.wellnerbou.jenkins.gitchangelog.callable;
 import de.wellnerbou.gitchangelog.app.GitChangelog;
 import de.wellnerbou.gitchangelog.app.GitChangelogArgs;
 import de.wellnerbou.gitchangelog.model.Changelog;
-import jenkins.security.MasterToSlaveCallable;
-import org.apache.commons.lang.CharEncoding;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.Serializable;
+import jenkins.security.MasterToSlaveCallable;
+import org.apache.commons.lang.CharEncoding;
 
 public class GitChangelogMasterToSlaveCallable extends MasterToSlaveCallable<String, IOException>
     implements Serializable {

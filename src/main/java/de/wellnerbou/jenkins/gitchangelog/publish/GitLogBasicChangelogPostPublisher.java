@@ -10,9 +10,8 @@ import hudson.model.BuildListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
-import org.kohsuke.stapler.DataBoundConstructor;
-
 import java.io.IOException;
+import org.kohsuke.stapler.DataBoundConstructor;
 
 public class GitLogBasicChangelogPostPublisher extends Publisher {
 

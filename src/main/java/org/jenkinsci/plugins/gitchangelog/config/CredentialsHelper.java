@@ -10,20 +10,17 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static hudson.security.ACL.SYSTEM;
 
-import java.util.List;
-
-import org.acegisecurity.Authentication;
-import org.jenkinsci.plugins.plaincredentials.StringCredentials;
-
 import com.cloudbees.plugins.credentials.Credentials;
 import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
 import com.cloudbees.plugins.credentials.common.StandardUsernameListBoxModel;
 import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
 import com.cloudbees.plugins.credentials.domains.DomainRequirement;
 import com.google.common.base.Optional;
-
 import hudson.model.ItemGroup;
 import hudson.util.ListBoxModel;
+import java.util.List;
+import org.acegisecurity.Authentication;
+import org.jenkinsci.plugins.plaincredentials.StringCredentials;
 
 public class CredentialsHelper {
   public static Optional<String> findSecretString(String credentialsId) {

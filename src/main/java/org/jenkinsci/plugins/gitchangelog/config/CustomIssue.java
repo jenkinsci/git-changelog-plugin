@@ -1,7 +1,6 @@
 package org.jenkinsci.plugins.gitchangelog.config;
 
 import java.io.Serializable;
-
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class CustomIssue implements Serializable {

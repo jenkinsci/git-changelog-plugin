@@ -12,9 +12,8 @@ import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
-import org.kohsuke.stapler.DataBoundConstructor;
-
 import java.io.IOException;
+import org.kohsuke.stapler.DataBoundConstructor;
 
 public class GitLogJiraFilterPostPublisher extends Recorder {
 

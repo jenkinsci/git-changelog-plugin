@@ -2,20 +2,18 @@ package org.jenkinsci.plugins.gitchangelog;
 
 import static hudson.tasks.BuildStepMonitor.NONE;
 import static org.jenkinsci.plugins.gitchangelog.perform.GitChangelogPerformer.performerPerform;
+
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.TaskListener;
 import hudson.model.Run;
+import hudson.model.TaskListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
-
 import java.io.IOException;
-
 import jenkins.tasks.SimpleBuildStep;
-
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.kohsuke.stapler.DataBoundConstructor;
 

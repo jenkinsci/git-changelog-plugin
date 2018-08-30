@@ -1,7 +1,6 @@
 package org.jenkinsci.plugins.gitchangelog.perform;
 
 import hudson.model.Action;
-
 import org.kohsuke.stapler.export.Exported;
 import org.kohsuke.stapler.export.ExportedBean;
 

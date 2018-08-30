@@ -1,14 +1,11 @@
 package org.jenkinsci.plugins.gitchangelog.steps.config;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
-
 import java.io.Serializable;
-
 import org.kohsuke.stapler.DataBoundConstructor;
-
-import edu.umd.cs.findbugs.annotations.NonNull;
 
 public class GitLabConfig extends AbstractDescribableImpl<GitLabConfig> implements Serializable {
   private static final long serialVersionUID = -8851592658630679192L;

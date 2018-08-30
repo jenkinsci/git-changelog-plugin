@@ -8,17 +8,14 @@ import static org.jenkinsci.plugins.gitchangelog.GitChangelogLogger.doLog;
 import static org.jenkinsci.plugins.gitchangelog.config.CredentialsHelper.findSecretString;
 import static org.jenkinsci.plugins.gitchangelog.config.CredentialsHelper.findSecretUsernamePassword;
 
-import java.util.List;
-
-import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
-import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
-
 import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
-
 import hudson.EnvVars;
 import hudson.FilePath;
 import hudson.model.Run;
 import hudson.model.TaskListener;
+import java.util.List;
+import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
+import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 
 public class GitChangelogPerformer {
 

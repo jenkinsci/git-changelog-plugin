@@ -15,15 +15,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
-
 import jenkins.security.MasterToSlaveCallable;
-
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE;
 import org.jenkinsci.remoting.RoleChecker;
-
 import se.bjurr.gitchangelog.api.GitChangelogApi;
 
 public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOException>

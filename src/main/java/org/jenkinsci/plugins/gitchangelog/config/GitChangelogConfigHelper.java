@@ -14,12 +14,11 @@ import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_TIMEZON
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_UNTAGGED_NAME;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.ZERO_COMMIT;
 
+import com.google.common.io.CharStreams;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.logging.Logger;
-
-import com.google.common.io.CharStreams;
 
 public class GitChangelogConfigHelper {
   public enum FROMTYPE {

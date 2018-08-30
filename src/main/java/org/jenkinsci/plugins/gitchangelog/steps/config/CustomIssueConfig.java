@@ -1,15 +1,12 @@
 package org.jenkinsci.plugins.gitchangelog.steps.config;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
-
 import java.io.Serializable;
-
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
-
-import edu.umd.cs.findbugs.annotations.NonNull;
 
 public class CustomIssueConfig extends AbstractDescribableImpl<CustomIssueConfig>
     implements Serializable {

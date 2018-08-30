@@ -1,12 +1,9 @@
 package org.jenkinsci.plugins.gitchangelog.steps;
 
 import hudson.model.TaskListener;
-
 import java.util.Collections;
 import java.util.Set;
-
 import javax.annotation.Nonnull;
-
 import org.jenkinsci.plugins.workflow.steps.StepDescriptor;
 
 public class GitChangelogStepDescriptor extends StepDescriptor {

@@ -9,7 +9,6 @@ import hudson.FilePath;
 import hudson.model.AbstractBuild;
 import hudson.model.BuildListener;
 import hudson.remoting.Callable;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
