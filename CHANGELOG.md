@@ -1,6 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
-## Unreleased
+## 2.8
+### GitHub [#24](https://github.com/jenkinsci/git-changelog-plugin/issues/24) Wrong info for {{ownerName}} and {{repoName}} when Repo name has &#39;.&#39; in it
+**Correcting ownerName when dot in repo name #24**
+
+[19cbbc18b0ee958](https://github.com/jenkinsci/git-changelog-plugin/commit/19cbbc18b0ee958) Tomas Bjerre *2018-09-12 15:20:49*
+
 ### No issue
 **Updating fmt-maven-plugin**
 
