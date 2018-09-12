@@ -4,7 +4,7 @@ Changelog of Git Changelog Plugin.
 ### No issue
 **Updating fmt-maven-plugin**
 
-[95aee7889323a02](https://github.com/jenkinsci/git-changelog-plugin/commit/95aee7889323a02) Tomas Bjerre *2018-08-30 17:54:44*
+[74790d757ca6edd](https://github.com/jenkinsci/git-changelog-plugin/commit/74790d757ca6edd) Tomas Bjerre *2018-08-30 17:55:32*
 
 ## 2.7
 ### GitHub [#11](https://github.com/jenkinsci/git-changelog-plugin/issues/11) Html incorrectly rendered in summary on job page
