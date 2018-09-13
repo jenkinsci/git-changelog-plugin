@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## Unreleased
+### No issue
+**doc**
+
+[fea28267aa2e871](https://github.com/jenkinsci/git-changelog-plugin/commit/fea28267aa2e871) Tomas Bjerre *2018-09-13 15:47:05*
+
 ## 2.9
 ### No issue
 **git-changelog-lib 1.82**
