@@ -4,26 +4,13 @@
 
 Creates a changelog, or release notes, based on Git commits between 2 revisions.
 
-It implements basically the features of [git-changelog](https://github.com/paulwellnerbou/git-changelog) and [git-changelog-lib](https://github.com/tomasbjerre/git-changelog-lib).
-
 The plugin is also documented in the [Jenkins wiki](https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin).
 
-## Usage
+# Usage
 
-You can use this plugin either
-* As a post-build action. You may want to use variables provided by the [Git Plugin](https://wiki.jenkins.io/display/JENKINS/Git+Plugin) to create a changelog from `GIT_PREVIOUS_SUCCESSFUL_COMMIT` to `GIT_COMMIT` or perhaps just `GIT_PREVIOUS_COMMIT` to `GIT_COMMIT`.
-  * To crate a summary on Jenkins job containing changelog or releasenotes.
-  * To create a file in workspace containing changelog or releasenotes.
-  * To create a MediaWiki page containing changelog or releasenotes.
-  * To produce a file containing the jira filter and some informative lines.
-  * To provide replacement text for the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin), to send emails, for example.
-* As a pipeline step.
-  * To get a traversable data structure, context, that makes up the changes between two revisions.
-  * To get a rendered string, a custom Mustache template rendered with the context. Also based on changes between two revisions.
- 
-This is also documented in [Jenkins wiki](https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin).
+You can use this plugin either in a **pipeline** or as a **post-build action**.
 
-# Pipeline
+## Pipeline
 
 The plugin is compatible with the [pipeline plugin](https://jenkins.io/doc/book/pipeline/getting-started/) and can be configured to support many use cases. You probably want to adjust it using the [Snippet Generator](https://jenkins.io/doc/book/pipeline/getting-started/#snippet-generator).
 
@@ -65,7 +52,7 @@ You can make the changelog prettier by:
 
 Check the [Snippet Generator](https://jenkins.io/doc/book/pipeline/getting-started/#snippet-generator) to see all features!
 
-## Pipeline with context
+### Pipeline with context
 
 Here is an example that clones a repo, gathers all jiras and adds a link to jira in the description of the job. The context contains much more then this and is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
 
@@ -91,7 +78,7 @@ node {
 }
 ```
 
-## Pipeline with string
+### Pipeline with string
 
 Here is an example that clones a repo and publishes the changelog on job page. The template and context is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
 
@@ -149,11 +136,27 @@ Changelog of Git Changelog.
 }
 ```
 
-# Using a Post-build Action
+## Post-build action
 
 When the plugin is installed, it will add some new post build actions in Jenkins job configuration.
 
-## Jira Filter
+ * **Git Changelog** - Implements features from [git-changelog-lib](https://github.com/tomasbjerre/git-changelog-lib).
+ * **Publish Git Changelog** - Implements features from [git-changelog](https://github.com/paulwellnerbou/git-changelog).
+ * **Publish JIRA Filter** - Implements features from [git-changelog](https://github.com/paulwellnerbou/git-changelog).
+
+There are duplicated features here because this plugin is a merge of 2 plugins!
+
+### Git Changelog
+
+A couple of revisions are configured along with some other optional features. A editable template is available for the user to tweak. 
+
+![Select references](/doc/imgs/git-changelog-references.png)
+
+The changelog is created from parsing Git and rendering the template with a context derived from the configured revisions.
+
+![Tweak template](/doc/imgs/git-changelog-file.png)
+
+### Publish JIRA Filter
 The following documentation explains to set up the JIRA Filter post-build action. Using the basic changelog post-build action
 is even easier, as it does not need any further configuration.
 
@@ -170,9 +173,17 @@ If you leave the file input empty, the information will be logged into the jenki
 If you specify a filename, you can use other plugins like [HTML Publisher Plugin](https://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin)
 to save the files as jenkins report.
 
-# Using as Token Macro Replacement Provider
+### Publish Git Changelog
+
+A couple of revisions are configured and an output file will be created with the changes between them.
+
+![](/doc/imgs/publish-git-changelog.png)
+
+### Using as Token Macro Replacement Provider
 
 Having installed the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin) plugin (which will be the case, as it is a dependency of this plugin), following macros for replacement are provided: <code>GITCHANGELOGJIRA</code> and <code>GITCHANGELOG</code>.
+
+The **Publish Git Changelog** provides macro `GITCHANGELOGJIRA` and **Publish JIRA Filter** provides macro `GITCHANGELOG`. The **Git Changelog** post-build step does not provide a macro, instead use pipelines!
 
 If you use these macros in any plugin supporting token macro replacements, this will be replaced with either the Jira URL or the changelog.
 

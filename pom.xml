@@ -46,7 +46,7 @@
 			<plugin>
 				<groupId>se.bjurr.gitchangelog</groupId>
 				<artifactId>git-changelog-maven-plugin</artifactId>
-				<version>1.40</version>
+				<version>1.55</version>
 				<executions>
 					<execution>
 						<id>GenerateGitChangelog</id>
@@ -59,7 +59,6 @@
 							<gitHubApi>https://api.github.com/repos/jenkinsci/git-changelog-plugin</gitHubApi>
 							<gitHubToken>${GITHUB_OAUTH2TOKEN}</gitHubToken>
 							<gitHubIssuePattern>#([0-9]*)</gitHubIssuePattern>
-							<filePath>CHANGELOG.md</filePath>
 							<templateContent>
         <![CDATA[
 # Git Changelog Plugin Changelog

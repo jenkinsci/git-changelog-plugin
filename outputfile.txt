@@ -1,0 +1,43 @@
+Commits between 86ebeb88aa7a97bf1878d4799f6b76027ebd35e5 and d8a31bd9402b1063f77cb723f494ee330299a961:
+* d8a31bd	Updating fmt-plugin
+* 6e0cf42	[maven-release-plugin] prepare for next development iteration
+* cfde52b	[maven-release-plugin] prepare release pull-request-notifier-for-bitbucket-3.22
+* 9c6ed9e	Only stripping username from HTTP clone URL #229
+* 81c0f47	[maven-release-plugin] prepare for next development iteration
+* b29d76a	[maven-release-plugin] prepare release pull-request-notifier-for-bitbucket-3.21
+* 5a43e52	Avoiding printing password in log #284
+* f423f9f	Merge pull request #285 from omerfarukdogan/patch-1
+
+Fix visible "pr-triggerbutton"* 81c7b9d	Fix visible "pr-triggerbutton"
+
+"pr-triggerbutton" button wouldn't get removed if the pull request wasn't in OPEN state.* e8a50c6	[maven-release-plugin] prepare for next development iteration
+* abda495	[maven-release-plugin] prepare release pull-request-notifier-for-bitbucket-3.20
+* 6532327	Merge pull request #271 from jwoolston/issue-229-development
+
+#229 Proposed URI reconstruction to remove username from PULL_REQUEST…* 8b3d22b	#229 Proposed URI reconstruction to remove username from PULL_REQUEST_{TO_FROM}_{HTTP,SSH}_CLONE_URL
+
+Signed-off-by: Jared Woolston <Jared.Woolston@gmail.com>
+* d8b1d48	[maven-release-plugin] prepare for next development iteration
+* 98a3fc2	[maven-release-plugin] prepare release pull-request-notifier-for-bitbucket-3.19
+* db0f61a	Using Findbugs 3.0.0
+
+ * Because latest gives error on mvn deploy.
+* 92ad3da	Merge pull request #269 from mhitchens/ie-remove-bug
+
+uses jQuery.remove() for greater protability* 97a2d28	Bitbucket 5.7.0
+* 5674266	uses jQuery.remove() for greater protability
+
+Internet Explorer's HTMLButtonElement doesn't support a .remove() function, but jQuery can remove the element across browsers.* 73e8e00	Doc
+* 4c004e3	[maven-release-plugin] prepare for next development iteration
+* 379e454	[maven-release-plugin] prepare release pull-request-notifier-for-bitbucket-3.18
+* 117a2e4	Support for delete-event #259
+* e3ab153	Doc
+* c39bce3	[maven-release-plugin] prepare for next development iteration
+* fbf0d59	[maven-release-plugin] prepare release pull-request-notifier-for-bitbucket-3.17
+* 2665e48	Adding HTTP 1.1 support #257
+
+Hopefully solves OpenShift integration problem.
+* cdc5e60	Doc
+* bdd9123	[maven-release-plugin] prepare for next development iteration
+* 635b379	[maven-release-plugin] prepare release pull-request-notifier-for-bitbucket-3.16
+
