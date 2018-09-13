@@ -1,6 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
-## Unreleased
+## 2.10
+### GitHub [#27](https://github.com/jenkinsci/git-changelog-plugin/issues/27) Using Context in scripted pipeline requires script security approvals
+**Whitelisting context methods #27**
+
+[cc77add3abbf6ab](https://github.com/jenkinsci/git-changelog-plugin/commit/cc77add3abbf6ab) Tomas Bjerre *2018-09-13 19:07:40*
+
 ### No issue
 **doc**
 
