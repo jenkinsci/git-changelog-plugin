@@ -237,7 +237,7 @@ Changelog of Git Changelog Plugin.
 		<dependency>
 			<groupId>se.bjurr.gitchangelog</groupId>
 			<artifactId>git-changelog-lib</artifactId>
-			<version>1.81</version>
+			<version>1.82</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>guava</artifactId>
