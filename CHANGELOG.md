@@ -1,5 +1,11 @@
 # Git Changelog Plugin Changelog
 Changelog of Git Changelog Plugin.
+## 2.9
+### No issue
+**git-changelog-lib 1.82**
+
+[bda19353f67c2c1](https://github.com/jenkinsci/git-changelog-plugin/commit/bda19353f67c2c1) Tomas Bjerre *2018-09-13 07:23:10*
+
 ## 2.8
 ### GitHub [#24](https://github.com/jenkinsci/git-changelog-plugin/issues/24) Wrong info for {{ownerName}} and {{repoName}} when Repo name has &#39;.&#39; in it
 **Correcting ownerName when dot in repo name #24**
