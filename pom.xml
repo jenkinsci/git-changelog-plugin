@@ -13,6 +13,10 @@
 		<findbugs.failOnError>false</findbugs.failOnError>
 		<java.level>7</java.level>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<fmt>2.5.1</fmt>
+		<violations.version>1.13</violations.version>
+		<changelog-lib>1.82</changelog-lib>
+		<changelog-plugin>1.55</changelog-plugin>
 	</properties>
 
 	<groupId>de.wellnerbou.jenkins</groupId>
@@ -46,7 +50,7 @@
 			<plugin>
 				<groupId>se.bjurr.gitchangelog</groupId>
 				<artifactId>git-changelog-maven-plugin</artifactId>
-				<version>1.55</version>
+				<version>${changelog-plugin}</version>
 				<executions>
 					<execution>
 						<id>GenerateGitChangelog</id>
@@ -97,7 +101,7 @@ Changelog of Git Changelog Plugin.
 			<plugin>
 				<groupId>com.coveo</groupId>
 				<artifactId>fmt-maven-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>${fmt}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -107,58 +111,31 @@ Changelog of Git Changelog Plugin.
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>se.bjurr.violations</groupId>
-				<artifactId>violations-maven-plugin</artifactId>
-				<version>1.6</version>
-				<executions>
-					<execution>
-						<phase>verify</phase>
-						<goals>
-							<goal>violations</goal>
-						</goals>
-						<configuration>
-							<maxViolations>99999999</maxViolations>
-							<minSeverity>INFO</minSeverity>
-							<!-- PER_FILE_COMPACT, COMPACT or VERBOSE -->
-							<detailLevel>VERBOSE</detailLevel>
-							<violations>
-								<violation>
-									<parser>FINDBUGS</parser>
-									<reporter>Findbugs</reporter>
-									<folder>.</folder>
-									<pattern>.*/findbugsXml.*\.xml$</pattern>
-								</violation>
-							</violations>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>se.bjurr.violations</groupId>
-				<artifactId>violations-maven-plugin</artifactId>
-				<version>1.7</version>
-				<configuration>
-					<minSeverity>INFO</minSeverity>
-					<detailLevel>VERBOSE</detailLevel>
-					<maxViolations>99999999</maxViolations>
-					<printViolations>true</printViolations>
-					<violations>
-						<violation>
-							<parser>FINDBUGS</parser>
-							<reporter>Findbugs</reporter>
-							<folder>.</folder>
-							<pattern>.*/findbugsXml.*\.xml$</pattern>
-						</violation>
-					</violations>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>verify</phase>
-						<goals>
-							<goal>violations</goal>
-						</goals>
-					</execution>
-				</executions>
+                               <groupId>se.bjurr.violations</groupId>
+                               <artifactId>violations-maven-plugin</artifactId>
+                               <version>${violations.version}</version>
+                               <configuration>
+                                       <minSeverity>INFO</minSeverity>
+                                       <detailLevel>VERBOSE</detailLevel>
+                                       <maxViolations>99999999</maxViolations>
+                                       <printViolations>true</printViolations>
+                                       <violations>
+                                               <violation>
+                                                       <parser>FINDBUGS</parser>
+                                                       <reporter>Findbugs</reporter>
+                                                       <folder>.</folder>
+                                                       <pattern>.*/findbugsXml.*\.xml$</pattern>
+                                               </violation>
+                                       </violations>
+                               </configuration>
+                               <executions>
+                                       <execution>
+                                               <phase>verify</phase>
+                                               <goals>
+                                                       <goal>violations</goal>
+                                               </goals>
+                                       </execution>
+                               </executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -236,7 +213,7 @@ Changelog of Git Changelog Plugin.
 		<dependency>
 			<groupId>se.bjurr.gitchangelog</groupId>
 			<artifactId>git-changelog-lib</artifactId>
-			<version>1.82</version>
+			<version>${changelog-lib}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>guava</artifactId>
