@@ -259,6 +259,11 @@ Changelog of ${projectDisplayName}.
             <artifactId>script-security</artifactId>
             <version>1.46</version>
         </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>antisamy-markup-formatter</artifactId>
+            <version>1.5</version>
+        </dependency>
 
         <!-- test // -->
         <dependency>
