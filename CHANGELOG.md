@@ -1,8 +1,26 @@
 # Changelog
-Changelog of ${projectDisplayName}.
+Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 2.11
+### GitHub [#29](https://github.com/jenkinsci/git-changelog-plugin/issues/29) Latest version is not rendering html on the build page    *bug*  
+
+**Re-enabling HTML on summary page #29**
+
+
+[7dd2e78895f7102](https://github.com/jenkinsci/git-changelog-plugin/commit/7dd2e78895f7102) Tomas Bjerre *2018-09-25 15:24:40*
+
+
 ### No issue
+
+**Adding release script**
+
+
+[2d98c6729136d18](https://github.com/jenkinsci/git-changelog-plugin/commit/2d98c6729136d18) Tomas Bjerre *2018-09-25 15:29:16*
+
+**Cleaning pom**
+
+
+[5593c2ecac6826b](https://github.com/jenkinsci/git-changelog-plugin/commit/5593c2ecac6826b) Tomas Bjerre *2018-09-25 15:23:30*
 
 **Automatically stepping dependencies**
 
