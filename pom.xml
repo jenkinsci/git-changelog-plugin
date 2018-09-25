@@ -1,294 +1,298 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.jenkins-ci.plugins</groupId>
-		<artifactId>plugin</artifactId>
-		<version>3.2</version>
-	</parent>
+    <parent>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>plugin</artifactId>
+        <version>3.2</version>
+    </parent>
 
-	<properties>
-		<jenkins.version>2.32.3</jenkins.version>
-		<findbugs.failOnError>false</findbugs.failOnError>
-		<java.level>7</java.level>
-		<maven.javadoc.skip>true</maven.javadoc.skip>
-		<fmt>2.5.1</fmt>
-		<violations.version>1.13</violations.version>
-		<changelog-lib>1.82</changelog-lib>
-		<changelog-plugin>1.55</changelog-plugin>
-	</properties>
+    <properties>
+        <jenkins.version>2.32.3</jenkins.version>
+        <findbugs.failOnError>false</findbugs.failOnError>
+        <java.level>8</java.level>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <fmt>2.5.1</fmt>
+        <violations.version>1.13</violations.version>
+        <changelog-lib>1.82</changelog-lib>
+        <changelog-plugin>1.55</changelog-plugin>
+    </properties>
 
-	<groupId>de.wellnerbou.jenkins</groupId>
-	<artifactId>git-changelog</artifactId>
-	<version>2.11-SNAPSHOT</version>
-	<packaging>hpi</packaging>
+    <groupId>de.wellnerbou.jenkins</groupId>
+    <artifactId>git-changelog</artifactId>
+    <version>2.11-SNAPSHOT</version>
+    <packaging>hpi</packaging>
 
-	<name>Git Changelog</name>
-	<description>Plugin creating changelogs based on Git's history between two tags or revisions</description>
-	<url>https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin</url>
+    <name>Git Changelog</name>
+    <description>Creates a changelog, or release notes, based on Git commits between 2 revisions</description>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin</url>
 
-	<ciManagement>
-		<system>Jenkins</system>
-		<url>https://jenkins.ci.cloudbees.com/job/plugins/job/git-changelog-plugin/</url>
-	</ciManagement>
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>https://ci.jenkins.io/job/Plugins/job/git-changelog-plugin</url>
+    </ciManagement>
 
-	<issueManagement>
-		<system>Jira</system>
-		<url>https://issues.jenkins-ci.org/</url>
-		<!-- All issues for this plugin: https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20component%20%3D%20git-changelog-plugin -->
-	</issueManagement>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/jenkinsci/git-changelog-plugin/issues</url>
+    </issueManagement>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>se.bjurr.gitchangelog</groupId>
-				<artifactId>git-changelog-maven-plugin</artifactId>
-				<version>${changelog-plugin}</version>
-				<executions>
-					<execution>
-						<id>GenerateGitChangelog</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>git-changelog</goal>
-						</goals>
-						<configuration>
-							<readableTagName>-([^-]+?)$</readableTagName>
-							<gitHubApi>https://api.github.com/repos/jenkinsci/git-changelog-plugin</gitHubApi>
-							<gitHubToken>${GITHUB_OAUTH2TOKEN}</gitHubToken>
-							<gitHubIssuePattern>#([0-9]*)</gitHubIssuePattern>
-							<templateContent>
-        <![CDATA[
-# Git Changelog Plugin Changelog
-Changelog of Git Changelog Plugin.
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>se.bjurr.gitchangelog</groupId>
+                <artifactId>git-changelog-maven-plugin</artifactId>
+                <version>${changelog-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>GenerateGitChangelog</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>git-changelog</goal>
+                        </goals>
+                        <configuration>
+                            <readableTagName>-([^-]+?)$</readableTagName>
+                            <gitHubApi>https://api.github.com/repos/jenkinsci/git-changelog-plugin</gitHubApi>
+                            <gitHubToken>${GITHUB_OAUTH2TOKEN}</gitHubToken>
+                            <gitHubIssuePattern>#([0-9]*)</gitHubIssuePattern>
+                            <templateContent>
+                                <![CDATA[
+# Changelog
+Changelog of ${projectDisplayName}.
+
 {{#tags}}
 ## {{name}}
  {{#issues}}
   {{#hasIssue}}
    {{#hasLink}}
-### {{name}} [{{issue}}]({{link}}) {{title}}
+### {{name}} [{{issue}}]({{link}}) {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
    {{/hasLink}}
    {{^hasLink}}
-### {{name}} {{issue}} {{title}}
+### {{name}} {{issue}} {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
    {{/hasLink}}
   {{/hasIssue}}
   {{^hasIssue}}
 ### {{name}}
   {{/hasIssue}}
+
   {{#commits}}
 **{{{messageTitle}}}**
+
 {{#messageBodyItems}}
- * {{.}} 
+ * {{.}}
 {{/messageBodyItems}}
 
-[{{hash}}](https://github.com/jenkinsci/git-changelog-plugin/commit/{{hash}}) {{authorName}} *{{commitTime}}*
+[{{hash}}](https://github.com/{{ownerName}}/{{repoName}}/commit/{{hash}}) {{authorName}} *{{commitTime}}*
 
   {{/commits}}
+
  {{/issues}}
 {{/tags}}
 ]]>
-							</templateContent>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>com.coveo</groupId>
-				<artifactId>fmt-maven-plugin</artifactId>
-				<version>${fmt}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>format</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-                               <groupId>se.bjurr.violations</groupId>
-                               <artifactId>violations-maven-plugin</artifactId>
-                               <version>${violations.version}</version>
-                               <configuration>
-                                       <minSeverity>INFO</minSeverity>
-                                       <detailLevel>VERBOSE</detailLevel>
-                                       <maxViolations>99999999</maxViolations>
-                                       <printViolations>true</printViolations>
-                                       <violations>
-                                               <violation>
-                                                       <parser>FINDBUGS</parser>
-                                                       <reporter>Findbugs</reporter>
-                                                       <folder>.</folder>
-                                                       <pattern>.*/findbugsXml.*\.xml$</pattern>
-                                               </violation>
-                                       </violations>
-                               </configuration>
-                               <executions>
-                                       <execution>
-                                               <phase>verify</phase>
-                                               <goals>
-                                                       <goal>violations</goal>
-                                               </goals>
-                                       </execution>
-                               </executions>
-			</plugin>
-		</plugins>
-	</build>
+                            </templateContent>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.coveo</groupId>
+                <artifactId>fmt-maven-plugin</artifactId>
+                <version>${fmt}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>se.bjurr.violations</groupId>
+                <artifactId>violations-maven-plugin</artifactId>
+                <version>${violations.version}</version>
+                <configuration>
+                    <minSeverity>INFO</minSeverity>
+                    <detailLevel>VERBOSE</detailLevel>
+                    <maxViolations>99999999</maxViolations>
+                    <printViolations>true</printViolations>
+                    <violations>
+                        <violation>
+                            <parser>FINDBUGS</parser>
+                            <reporter>Findbugs</reporter>
+                            <folder>.</folder>
+                            <pattern>.*/findbugsXml.*\.xml$</pattern>
+                        </violation>
+                    </violations>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>violations</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
-	<licenses>
-		<license>
-			<name>MIT License</name>
-			<url>http://opensource.org/licenses/MIT</url>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 
-	<developers>
-		<developer>
-			<id>paulwellnerbou</id>
-			<name>Paul Wellner Bou</name>
-			<email>paul@wellnerbou.de</email>
-			<url>http://paul.wellnerbou.de</url>
-		</developer>
-		<developer>
-			<id>tomasbjerre</id>
-			<name>Tomas Bjerre</name>
-			<email>tomas.bjerre85@gmail.com</email>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <id>paulwellnerbou</id>
+            <name>Paul Wellner Bou</name>
+            <email>paul@wellnerbou.de</email>
+            <url>http://paul.wellnerbou.de</url>
+        </developer>
+        <developer>
+            <id>tomasbjerre</id>
+            <name>Tomas Bjerre</name>
+            <email>tomas.bjerre85@gmail.com</email>
+        </developer>
+    </developers>
 
-	<scm>
-		<connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-		<url>git@github.com:jenkinsci/${project.artifactId}-plugin</url>
-		<tag>HEAD</tag>
-	</scm>
+    <scm>
+        <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
+        <url>git@github.com:jenkinsci/${project.artifactId}-plugin</url>
+        <tag>HEAD</tag>
+    </scm>
 
-	<repositories>
-		<repository>
-			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
-		</repository>
-		<repository>
-			<id>bintray-paulwellnerbou-maven</id>
-			<name>bintray</name>
-			<url>http://dl.bintray.com/paulwellnerbou/maven</url>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </repository>
+        <repository>
+            <id>bintray-paulwellnerbou-maven</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/paulwellnerbou/maven</url>
+        </repository>
+    </repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
-		</pluginRepository>
-	</pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
-	<dependencies>
-		<!-- git-changelog depends on Guava 18, jenkins depends on Guava 11, 14 
-			is a working compromise -->
-		<dependency>
-			<artifactId>guava</artifactId>
-			<groupId>com.google.guava</groupId>
-			<version>14.0</version>
-		</dependency>
-		<dependency>
-			<groupId>de.wellnerbou</groupId>
-			<artifactId>git-changelog</artifactId>
-			<version>2.3</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>guava</artifactId>
-					<groupId>com.google.guava</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>httpclient</artifactId>
-					<groupId>org.apache.httpcomponents</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>se.bjurr.gitchangelog</groupId>
-			<artifactId>git-changelog-lib</artifactId>
-			<version>${changelog-lib}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>guava</artifactId>
-					<groupId>com.google.guava</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>httpclient</artifactId>
-					<groupId>org.apache.httpcomponents</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jenkins-ci.plugins</groupId>
-			<artifactId>token-macro</artifactId>
-			<version>1.10</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jenkins-ci.plugins</groupId>
-			<artifactId>git</artifactId>
-			<version>2.3.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jenkins-ci.plugins</groupId>
-			<artifactId>credentials</artifactId>
-			<version>2.1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jenkins-ci.plugins</groupId>
-			<artifactId>plain-credentials</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jenkins-ci.plugins.workflow</groupId>
-			<artifactId>workflow-step-api</artifactId>
-			<version>2.14</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jenkins-ci.plugins</groupId>
-			<artifactId>script-security</artifactId>
-			<version>1.46</version>
-		</dependency>
+    <dependencies>
+        <!-- git-changelog depends on Guava 18, jenkins depends on Guava 11, 14
+            is a working compromise -->
+        <dependency>
+            <artifactId>guava</artifactId>
+            <groupId>com.google.guava</groupId>
+            <version>14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>de.wellnerbou</groupId>
+            <artifactId>git-changelog</artifactId>
+            <version>2.3</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>httpclient</artifactId>
+                    <groupId>org.apache.httpcomponents</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>se.bjurr.gitchangelog</groupId>
+            <artifactId>git-changelog-lib</artifactId>
+            <version>${changelog-lib}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>httpclient</artifactId>
+                    <groupId>org.apache.httpcomponents</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>token-macro</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>git</artifactId>
+            <version>2.3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>credentials</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>plain-credentials</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins.workflow</groupId>
+            <artifactId>workflow-step-api</artifactId>
+            <version>2.14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>script-security</artifactId>
+            <version>1.46</version>
+        </dependency>
 
-		<!-- test // -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<version>2.1.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>4.1.6.RELEASE</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <!-- test // -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>2.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>4.1.6.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	<profiles>
-		<profile>
-			<id>with-email-ext</id>
-			<!-- The email-ext plugin is a good way to test the token macro replacements. -->
-			<dependencies>
-				<dependency>
-					<groupId>org.jenkins-ci.plugins</groupId>
-					<artifactId>email-ext</artifactId>
-					<version>2.40.5</version>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>with-email-ext</id>
+            <!-- The email-ext plugin is a good way to test the token macro replacements. -->
+            <dependencies>
+                <dependency>
+                    <groupId>org.jenkins-ci.plugins</groupId>
+                    <artifactId>email-ext</artifactId>
+                    <version>2.40.5</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
 </project>
