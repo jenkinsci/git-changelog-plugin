@@ -15,7 +15,7 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <fmt>2.5.1</fmt>
         <violations.version>1.13</violations.version>
-        <changelog-lib>1.84</changelog-lib>
+        <changelog-lib>1.85</changelog-lib>
         <changelog-plugin>1.55</changelog-plugin>
     </properties>
 
