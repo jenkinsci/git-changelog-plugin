@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 2.14
+### No issue
+
+**Correcting GitLab integration after upgrade**
+
+
+[19855ff830a92c1](https://github.com/jenkinsci/git-changelog-plugin/commit/19855ff830a92c1) Tomas Bjerre *2018-10-27 17:54:09*
+
+
 ## 2.13
 ### No issue
 
