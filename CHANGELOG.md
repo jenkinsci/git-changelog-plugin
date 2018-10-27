@@ -1,6 +1,20 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 2.12
+### No issue
+
+**isJira, isGitHub...**
+
+
+[2c4ec6476c77cd9](https://github.com/jenkinsci/git-changelog-plugin/commit/2c4ec6476c77cd9) Tomas Bjerre *2018-10-27 06:11:34*
+
+**Using escape-by-default true and out to indicate it is intended and safe**
+
+
+[32a61fb9a7cf741](https://github.com/jenkinsci/git-changelog-plugin/commit/32a61fb9a7cf741) Tomas Bjerre *2018-09-25 17:48:19*
+
+
 ## 2.11
 ### GitHub [#29](https://github.com/jenkinsci/git-changelog-plugin/issues/29) Latest version is not rendering html on the build page    *bug*  
 
