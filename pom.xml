@@ -15,7 +15,7 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <fmt>2.5.1</fmt>
         <violations.version>1.13</violations.version>
-        <changelog-lib>1.83</changelog-lib>
+        <changelog-lib>1.84</changelog-lib>
         <changelog-plugin>1.55</changelog-plugin>
     </properties>
 
@@ -225,6 +225,10 @@ Changelog of Git Changelog Plugin.
                 <exclusion>
                     <artifactId>httpclient</artifactId>
                     <groupId>org.apache.httpcomponents</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

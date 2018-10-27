@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### No issue
+
+**GitLab API v4**
+
+
+[724bb802079f6e7](https://github.com/jenkinsci/git-changelog-plugin/commit/724bb802079f6e7) Tomas Bjerre *2018-10-27 16:30:44*
+
+
 ## 2.12
 ### No issue
 
