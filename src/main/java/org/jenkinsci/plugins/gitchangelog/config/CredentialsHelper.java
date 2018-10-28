@@ -4,8 +4,6 @@ import static com.cloudbees.plugins.credentials.CredentialsMatchers.allOf;
 import static com.cloudbees.plugins.credentials.CredentialsMatchers.firstOrNull;
 import static com.cloudbees.plugins.credentials.CredentialsMatchers.withId;
 import static com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials;
-import static com.google.common.base.Optional.absent;
-import static com.google.common.base.Optional.fromNullable;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static hudson.security.ACL.SYSTEM;
@@ -15,16 +13,16 @@ import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
 import com.cloudbees.plugins.credentials.common.StandardUsernameListBoxModel;
 import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
 import com.cloudbees.plugins.credentials.domains.DomainRequirement;
-import com.google.common.base.Optional;
 import hudson.model.ItemGroup;
 import hudson.util.ListBoxModel;
 import java.util.List;
+import java.util.Optional;
 import org.acegisecurity.Authentication;
 import org.jenkinsci.plugins.plaincredentials.StringCredentials;
 
 public class CredentialsHelper {
   public static Optional<String> findSecretString(String credentialsId) {
-    Optional<String> token = Optional.absent();
+    Optional<String> token = Optional.empty();
     if (!isNullOrEmpty(credentialsId)) {
       final Optional<StringCredentials> credentials =
           CredentialsHelper.findCredentials(credentialsId);
@@ -39,7 +37,7 @@ public class CredentialsHelper {
 
   public static Optional<StandardUsernamePasswordCredentials> findSecretUsernamePassword(
       String credentialsId) {
-    Optional<StandardUsernamePasswordCredentials> token = Optional.absent();
+    Optional<StandardUsernamePasswordCredentials> token = Optional.empty();
     if (!isNullOrEmpty(credentialsId)) {
       final Optional<StandardUsernamePasswordCredentials> credentials =
           CredentialsHelper.findUserCredentials(credentialsId);
@@ -72,10 +70,10 @@ public class CredentialsHelper {
 
   public static Optional<StringCredentials> findCredentials(String apiTokenCredentialsId) {
     if (isNullOrEmpty(apiTokenCredentialsId)) {
-      return absent();
+      return Optional.empty();
     }
 
-    return fromNullable(
+    return Optional.ofNullable(
         firstOrNull(
             getAllCredentials(StringCredentials.class), allOf(withId(apiTokenCredentialsId))));
   }
@@ -83,10 +81,10 @@ public class CredentialsHelper {
   public static Optional<StandardUsernamePasswordCredentials> findUserCredentials(
       String apiTokenCredentialsId) {
     if (isNullOrEmpty(apiTokenCredentialsId)) {
-      return absent();
+      return Optional.empty();
     }
 
-    return fromNullable(
+    return Optional.ofNullable(
         firstOrNull(
             getAllCredentials(StandardUsernamePasswordCredentials.class),
             allOf(withId(apiTokenCredentialsId))));

@@ -1,10 +1,10 @@
 package org.jenkinsci.plugins.gitchangelog.perform;
 
-import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static com.google.common.base.Throwables.propagate;
 import static com.google.common.io.Files.write;
 import static com.google.common.io.Resources.getResource;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE.commit;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE.firstCommit;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE.master;
