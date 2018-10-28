@@ -52,20 +52,16 @@ public class CredentialsHelper {
   public static ListBoxModel doFillUserNamePasswordCredentialsIdItems() {
     List<StandardUsernamePasswordCredentials> credentials =
         getAllCredentials(StandardUsernamePasswordCredentials.class);
-    ListBoxModel listBoxModel =
-        new StandardUsernameListBoxModel() //
-            .includeEmptyValue() //
-            .withAll(credentials);
-    return listBoxModel;
+    return new StandardUsernameListBoxModel() //
+        .includeEmptyValue() //
+        .withAll(credentials);
   }
 
   public static ListBoxModel doFillApiTokenCredentialsIdItems() {
     List<StringCredentials> credentials = getAllCredentials(StringCredentials.class);
-    ListBoxModel listBoxModel =
-        new StandardListBoxModel() //
-            .includeEmptyValue() //
-            .withAll(credentials);
-    return listBoxModel;
+    return new StandardListBoxModel() //
+        .includeEmptyValue() //
+        .withAll(credentials);
   }
 
   public static Optional<StringCredentials> findCredentials(String apiTokenCredentialsId) {
