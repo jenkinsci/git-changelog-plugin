@@ -123,7 +123,7 @@
     <f:textbox name="ignoreCommitsIfMessageMatches" value="${config.ignoreCommitsIfMessageMatches}"/>
   </f:entry>
   <f:description>
-   Add a regular expression here to ignore commits whith matching comment.<br/>
+   Add a regular expression here to ignore commits with matching comment.<br/>
    Example: <i>^\[maven-release-plugin\].*|^\[Gradle Release Plugin\].*|^Merge.*</i>
   </f:description>
 
