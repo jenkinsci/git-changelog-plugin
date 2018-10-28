@@ -46,7 +46,6 @@ public class GitChangelogPerformer {
       doLog(listener, INFO, remoteResult.getLog());
     } catch (Exception e) {
       doLog(listener, SEVERE, e.getMessage(), e);
-      return;
     }
   }
 
