@@ -160,7 +160,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         }
         final String mediaWikiFullUrl =
             this.config.getMediaWikiUrl() + "/index.php/" + this.config.getMediaWikiTitle();
-        logString.append("Posting changelog to " + mediaWikiFullUrl);
+        logString.append("Posting changelog to ").append(mediaWikiFullUrl);
         gitChangelogApiBuilder.toMediaWiki( //
             this.config.getMediaWikiUsername(), //
             this.config.getMediaWikiPassword(), //
@@ -179,7 +179,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
             && !isNullOrEmpty(this.config.getCreateFileTemplateContent())) {
           gitChangelogApiBuilder.withTemplateContent(this.config.getCreateFileTemplateContent());
         }
-        logString.append("Creating changelog " + this.config.toFile());
+        logString.append("Creating changelog ").append(this.config.toFile());
 
         final File toFile = new File(this.workspacePath + "/" + this.config.toFile());
         new File(toFile.getParent()).mkdirs();
