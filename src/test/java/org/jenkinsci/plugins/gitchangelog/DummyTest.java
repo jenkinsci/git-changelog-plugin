@@ -8,7 +8,7 @@ public class DummyTest {
 
   @Test
   public void test() {
-    /** Adding this test to make Jenkins Test Harness happy =) */
+    // Adding this test to make Jenkins Test Harness happy =)
     assertTrue(true);
   }
 }
