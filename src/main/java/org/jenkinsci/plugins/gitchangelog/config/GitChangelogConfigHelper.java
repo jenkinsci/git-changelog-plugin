@@ -1,7 +1,6 @@
 package org.jenkinsci.plugins.gitchangelog.config;
 
-import static com.google.common.base.Charsets.UTF_8;
-import static com.google.common.collect.Lists.newArrayList;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.logging.Level.SEVERE;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_DATEFORMAT;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_FILE;
@@ -17,6 +16,7 @@ import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.ZERO_COMMIT;
 import com.google.common.io.CharStreams;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -56,7 +56,7 @@ public class GitChangelogConfigHelper {
     config.setShowSummaryTemplateContent(getResourceAsString("summaryTemplateDefault.mustache"));
     config.setMediaWikiTemplateContent(getResourceAsString("mediaWikiTemplateDefault.mustache"));
 
-    final List<CustomIssue> customIssues = newArrayList();
+    final List<CustomIssue> customIssues = new ArrayList<>();
     customIssues.add(new CustomIssue("", "", "", ""));
     customIssues.add(new CustomIssue("", "", "", ""));
     config.setCustomIssues(customIssues);

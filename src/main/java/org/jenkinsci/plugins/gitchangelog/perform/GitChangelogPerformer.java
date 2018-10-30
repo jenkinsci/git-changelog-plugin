@@ -1,7 +1,6 @@
 package org.jenkinsci.plugins.gitchangelog.perform;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static com.google.common.collect.Lists.newArrayList;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 import static org.jenkinsci.plugins.gitchangelog.GitChangelogLogger.doLog;
@@ -13,6 +12,7 @@ import hudson.EnvVars;
 import hudson.FilePath;
 import hudson.model.Run;
 import hudson.model.TaskListener;
+import java.util.ArrayList;
 import java.util.List;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
@@ -46,7 +46,6 @@ public class GitChangelogPerformer {
       doLog(listener, INFO, remoteResult.getLog());
     } catch (Exception e) {
       doLog(listener, SEVERE, e.getMessage(), e);
-      return;
     }
   }
 
@@ -54,18 +53,18 @@ public class GitChangelogPerformer {
       final GitChangelogConfig configExpanded, final TaskListener listener) {
     if (configExpanded.isUseGitHubApiTokenCredentials()) {
       final String getApiTokenCredentialsId = configExpanded.getGitHubApiTokenCredentialsId();
-      String token = findSecretString(getApiTokenCredentialsId).orNull();
+      String token = findSecretString(getApiTokenCredentialsId).orElse(null);
       configExpanded.setGitHubToken(token);
     }
     if (configExpanded.isUseGitLabApiTokenCredentials()) {
       final String getApiTokenCredentialsId = configExpanded.getGitLabApiTokenCredentialsId();
-      String token = findSecretString(getApiTokenCredentialsId).orNull();
+      String token = findSecretString(getApiTokenCredentialsId).orElse(null);
       configExpanded.setGitLabToken(token);
     }
     if (configExpanded.isUseJiraUsernamePasswordCredentialsId()) {
       final String getApiTokenCredentialsId = configExpanded.getJiraUsernamePasswordCredentialsId();
       StandardUsernamePasswordCredentials token =
-          findSecretUsernamePassword(getApiTokenCredentialsId).orNull();
+          findSecretUsernamePassword(getApiTokenCredentialsId).orElse(null);
       configExpanded.setJiraUsername(token.getUsername());
       configExpanded.setJiraPassword(token.getPassword().getPlainText());
     }
@@ -142,7 +141,7 @@ public class GitChangelogPerformer {
     c.setShowSummaryUseTemplateContent(config.isShowSummaryUseTemplateContent());
     c.setShowSummaryTemplateContent(environment.expand(config.getShowSummaryTemplateContent()));
 
-    List<CustomIssue> expandedCi = newArrayList();
+    List<CustomIssue> expandedCi = new ArrayList<>();
     for (CustomIssue ci : config.getCustomIssues()) {
       expandedCi.add(
           new CustomIssue( //

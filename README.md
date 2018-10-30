@@ -27,7 +27,7 @@ It can integrate with issue management systems to get titles of issues and links
  * GitHub
  * Jira
 
-You can [create a file](https://jenkins.io/doc/pipeline/examples/) or maby publish the changelog with:
+You can [create a file](https://jenkins.io/doc/pipeline/examples/) or maybe publish the changelog with:
 
  * [HTML Publisher Plugin](https://plugins.jenkins.io/htmlpublisher)
  * [Confluence Publisher Plugin](https://plugins.jenkins.io/confluence-publisher)

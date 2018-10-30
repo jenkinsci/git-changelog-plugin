@@ -1,10 +1,10 @@
 package org.jenkinsci.plugins.gitchangelog.perform;
 
-import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static com.google.common.base.Throwables.propagate;
 import static com.google.common.io.Files.write;
 import static com.google.common.io.Resources.getResource;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE.commit;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE.firstCommit;
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE.master;
@@ -160,7 +160,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         }
         final String mediaWikiFullUrl =
             this.config.getMediaWikiUrl() + "/index.php/" + this.config.getMediaWikiTitle();
-        logString.append("Posting changelog to " + mediaWikiFullUrl);
+        logString.append("Posting changelog to ").append(mediaWikiFullUrl);
         gitChangelogApiBuilder.toMediaWiki( //
             this.config.getMediaWikiUsername(), //
             this.config.getMediaWikiPassword(), //
@@ -179,7 +179,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
             && !isNullOrEmpty(this.config.getCreateFileTemplateContent())) {
           gitChangelogApiBuilder.withTemplateContent(this.config.getCreateFileTemplateContent());
         }
-        logString.append("Creating changelog " + this.config.toFile());
+        logString.append("Creating changelog ").append(this.config.toFile());
 
         final File toFile = new File(this.workspacePath + "/" + this.config.toFile());
         new File(toFile.getParent()).mkdirs();

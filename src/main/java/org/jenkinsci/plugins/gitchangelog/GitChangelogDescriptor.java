@@ -128,7 +128,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setShowSummaryUseTemplateContent(formData.getBoolean("showSummaryUseTemplateContent"));
     c.setShowSummaryTemplateContent(formData.getString("showSummaryTemplateContent"));
 
-    c.setCustomIssues(new ArrayList<CustomIssue>());
+    c.setCustomIssues(new ArrayList<>());
     if (formData.containsKey("name")) {
       for (int i = 0; i < formData.getJSONArray("name").size(); i++) {
         final String name = (String) formData.getJSONArray("name").get(i);
