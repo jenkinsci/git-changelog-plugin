@@ -1,8 +1,13 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 2.15
 ### No issue
+
+**Jira linked issues**
+
+
+[770e243895faa98](https://github.com/jenkinsci/git-changelog-plugin/commit/770e243895faa98) Tomas Bjerre *2019-01-08 18:34:01*
 
 **Upgrade to latest parent pom**
 
