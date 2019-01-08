@@ -1,6 +1,56 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### No issue
+
+**Upgrade to latest parent pom**
+
+
+[ea316d3edb5978d](https://github.com/jenkinsci/git-changelog-plugin/commit/ea316d3edb5978d) René Scheibe *2018-10-29 22:03:24*
+
+**Replace Guava with JDK functionality**
+
+
+[e06ec581cc16774](https://github.com/jenkinsci/git-changelog-plugin/commit/e06ec581cc16774) René Scheibe *2018-10-29 22:03:24*
+
+**Inline redundant variables**
+
+
+[de51cbdf5b2b76d](https://github.com/jenkinsci/git-changelog-plugin/commit/de51cbdf5b2b76d) René Scheibe *2018-10-29 22:03:24*
+
+**Fix dangling JavaDoc**
+
+
+[9e933e5f332e006](https://github.com/jenkinsci/git-changelog-plugin/commit/9e933e5f332e006) René Scheibe *2018-10-29 22:03:24*
+
+**Use HTTPS for Jenkins repository**
+
+
+[92bceb1c6a2107e](https://github.com/jenkinsci/git-changelog-plugin/commit/92bceb1c6a2107e) René Scheibe *2018-10-29 22:03:24*
+
+**Remove unnecessary return statement**
+
+ * That&#39;s anyway the last statement in the method.
+
+[556ac7358c15aec](https://github.com/jenkinsci/git-changelog-plugin/commit/556ac7358c15aec) René Scheibe *2018-10-29 22:03:24*
+
+**Use diamond operator to reduce type duplication**
+
+
+[4e0e074ee78acd7](https://github.com/jenkinsci/git-changelog-plugin/commit/4e0e074ee78acd7) René Scheibe *2018-10-29 22:03:24*
+
+**Use the StringBuilder properly**
+
+
+[4b515b89105cd59](https://github.com/jenkinsci/git-changelog-plugin/commit/4b515b89105cd59) René Scheibe *2018-10-29 22:03:24*
+
+**Fix typos**
+
+
+[aeed80ce46e3da1](https://github.com/jenkinsci/git-changelog-plugin/commit/aeed80ce46e3da1) René Scheibe *2018-10-29 22:03:23*
+
+
 ## 2.14
 ### No issue
 

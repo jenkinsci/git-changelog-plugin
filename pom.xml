@@ -13,10 +13,10 @@
         <findbugs.failOnError>false</findbugs.failOnError>
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <fmt>2.5.1</fmt>
+        <fmt>2.7</fmt>
         <violations.version>1.13</violations.version>
-        <changelog-lib>1.85</changelog-lib>
-        <changelog-plugin>1.55</changelog-plugin>
+        <changelog-lib>1.88</changelog-lib>
+        <changelog-plugin>1.59</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
