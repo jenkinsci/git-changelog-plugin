@@ -10,6 +10,8 @@ The plugin is also documented in the [Jenkins wiki](https://wiki.jenkins-ci.org/
 
 You can use this plugin either in a **pipeline** or as a **post-build action**.
 
+There is a complete running example available here: https://github.com/tomasbjerre/jenkins-configuration-as-code-sandbox
+
 ## Pipeline
 
 The plugin is compatible with the [pipeline plugin](https://jenkins.io/doc/book/pipeline/getting-started/) and can be configured to support many use cases. You probably want to adjust it using the [Snippet Generator](https://jenkins.io/doc/book/pipeline/getting-started/#snippet-generator).
