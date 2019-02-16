@@ -7,3 +7,5 @@ se.bjurr.gitchangelog.api.model.Commit
 se.bjurr.gitchangelog.api.model.Issue
 se.bjurr.gitchangelog.api.model.IssueType
 se.bjurr.gitchangelog.api.model.Tag
+net.minidev.json.JSONArray
+net.sf.json.JSONArray

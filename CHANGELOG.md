@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### No issue
+
+**Doc**
+
+
+[82bc9553431df8f](https://github.com/jenkinsci/git-changelog-plugin/commit/82bc9553431df8f) Tomas Bjerre *2019-02-08 19:00:56*
+
+
 ## 2.15
 ### No issue
 
