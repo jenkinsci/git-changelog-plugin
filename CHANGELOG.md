@@ -1,7 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 2.16
+### GitHub [#32](https://github.com/jenkinsci/git-changelog-plugin/issues/32) JEP-200 net.minidev.json.JSONArray    *bug*  
+
+**Allowing JSONArray #32**
+
+
+[57c7c06db0c06c2](https://github.com/jenkinsci/git-changelog-plugin/commit/57c7c06db0c06c2) Tomas Bjerre *2019-02-16 17:17:03*
+
+
 ### No issue
 
 **Doc**
