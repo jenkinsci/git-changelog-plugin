@@ -13,9 +13,9 @@
         <findbugs.failOnError>false</findbugs.failOnError>
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <fmt>2.8</fmt>
-        <violations.version>1.15</violations.version>
-        <changelog-lib>1.89</changelog-lib>
+        <fmt>2.9</fmt>
+        <violations.version>1.19</violations.version>
+        <changelog-lib>1.91</changelog-lib>
         <changelog-plugin>1.59</changelog-plugin>
     </properties>
 
