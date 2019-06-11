@@ -1,13 +1,13 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 2.17
 ### GitHub [#34](https://github.com/jenkinsci/git-changelog-plugin/issues/34) please fix needed JAXB dependency for openjdk11  
 
 **Removing dependency on javax.xml #34**
 
 
-[75438e134ffe8bb](https://github.com/jenkinsci/git-changelog-plugin/commit/75438e134ffe8bb) Tomas Bjerre *2019-06-11 17:07:23*
+[f59327b9ff09fa2](https://github.com/jenkinsci/git-changelog-plugin/commit/f59327b9ff09fa2) Tomas Bjerre *2019-06-11 17:08:11*
 
 
 ## 2.16
