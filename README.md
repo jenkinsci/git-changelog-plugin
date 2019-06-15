@@ -4,7 +4,7 @@
 
 Creates a changelog, or release notes, based on Git commits between 2 revisions.
 
-The plugin is also documented in the [Jenkins wiki](https://wiki.jenkins-ci.org/display/JENKINS/Git+Changelog+Plugin).
+This can also be done with a [command line tool](https://github.com/tomasbjerre/git-changelog-command-line).
 
 # Usage
 
