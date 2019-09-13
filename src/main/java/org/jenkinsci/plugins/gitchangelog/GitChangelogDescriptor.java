@@ -59,7 +59,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
   }
 
   @Override
-  public Publisher newInstance(StaplerRequest req, JSONObject formData)
+  public Publisher newInstance(final StaplerRequest req, final JSONObject formData)
       throws hudson.model.Descriptor.FormException {
     final GitChangelogConfig c = new GitChangelogConfig();
     c.setUseConfigFile(formData.getBoolean("useConfigFile"));
@@ -79,10 +79,6 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setUseJira(formData.getBoolean("useJira"));
     c.setJiraServer(formData.getString("jiraServer"));
     c.setJiraIssuePattern(formData.getString("jiraIssuePattern"));
-    c.setJiraUsername(formData.getString("jiraUsername"));
-    c.setJiraPassword(formData.getString("jiraPassword"));
-    c.setUseJiraUsernamePasswordCredentialsId(
-        formData.getBoolean("useJiraUsernamePasswordCredentialsId"));
     c.setJiraUsernamePasswordCredentialsId(formData.getString("jiraUsernamePasswordCredentialsId"));
 
     c.setUseGitHub(formData.getBoolean("useGitHub"));
@@ -104,19 +100,9 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setUntaggedName(formData.getString("untaggedName"));
     c.setUseReadableTagName(formData.getBoolean("useReadableTagName"));
     c.setReadableTagName(formData.getString("readableTagName"));
-    c.setUseMediaWiki(formData.getBoolean("useMediaWiki"));
-    c.setMediaWikiUsername(formData.getString("mediaWikiUsername"));
-    c.setMediaWikiPassword(formData.getString("mediaWikiPassword"));
-    c.setMediaWikiTitle(formData.getString("mediaWikiTitle"));
-    c.setMediaWikiUrl(formData.getString("mediaWikiUrl"));
     c.setUseFile(formData.getBoolean("useFile"));
     c.setFile(formData.getString("file"));
     c.setShowSummary(formData.getBoolean("showSummary"));
-
-    c.setMediaWikiUseTemplateFile(formData.getBoolean("mediaWikiUseTemplateFile"));
-    c.setMediaWikiTemplateFile(formData.getString("mediaWikiTemplateFile"));
-    c.setMediaWikiUseTemplateContent(formData.getBoolean("mediaWikiUseTemplateContent"));
-    c.setMediaWikiTemplateContent(formData.getString("mediaWikiTemplateContent"));
 
     c.setCreateFileUseTemplateFile(formData.getBoolean("createFileUseTemplateFile"));
     c.setCreateFileTemplateFile(formData.getString("createFileTemplateFile"));

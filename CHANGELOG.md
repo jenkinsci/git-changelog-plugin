@@ -1,8 +1,27 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### Jira SECURITY-1574   
+
+**Remving raw Jira username/password and forcing credentials**
+
+ * Also removing MediaWiki support. Because of security reasons in combination with, probably, few users. There should probably be another MediaWiki publisher plugin to do that.
+ * SECURITY-1574
+
+[91c67b171ff72fe](https://github.com/jenkinsci/git-changelog-plugin/commit/91c67b171ff72fe) Tomas Bjerre *2019-09-13 18:10:17*
+
+
+### No issue
+
+**doc**
+
+
+[3ac4b9b7b25e2d5](https://github.com/jenkinsci/git-changelog-plugin/commit/3ac4b9b7b25e2d5) Tomas Bjerre *2019-06-15 12:36:10*
+
+
 ## 2.17
-### GitHub [#34](https://github.com/jenkinsci/git-changelog-plugin/issues/34) please fix needed JAXB dependency for openjdk11  
+### GitHub [#34](https://github.com/jenkinsci/git-changelog-plugin/issues/34) please fix needed JAXB dependency for openjdk11    *bug*  
 
 **Removing dependency on javax.xml #34**
 

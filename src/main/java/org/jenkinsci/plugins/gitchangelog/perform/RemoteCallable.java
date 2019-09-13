@@ -32,7 +32,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
   private final String workspacePath;
 
-  public RemoteCallable(String workspacePath, GitChangelogConfig config) {
+  public RemoteCallable(final String workspacePath, final GitChangelogConfig config) {
 
     this.workspacePath = workspacePath;
     this.config = config;
@@ -148,27 +148,6 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         remoteResult.setSummary(gitChangelogApiBuilder.render());
       }
 
-      if (this.config.isUseMediaWiki()) {
-        if (this.config.isMediaWikiUseTemplateFile()
-            && !isNullOrEmpty(this.config.getMediaWikiTemplateFile())) {
-          gitChangelogApiBuilder.withTemplatePath(
-              this.workspacePath + "/" + this.config.getMediaWikiTemplateFile());
-        }
-        if (this.config.isMediaWikiUseTemplateContent()
-            && !isNullOrEmpty(this.config.getMediaWikiTemplateContent())) {
-          gitChangelogApiBuilder.withTemplateContent(this.config.getMediaWikiTemplateContent());
-        }
-        final String mediaWikiFullUrl =
-            this.config.getMediaWikiUrl() + "/index.php/" + this.config.getMediaWikiTitle();
-        logString.append("Posting changelog to ").append(mediaWikiFullUrl);
-        gitChangelogApiBuilder.toMediaWiki( //
-            this.config.getMediaWikiUsername(), //
-            this.config.getMediaWikiPassword(), //
-            this.config.getMediaWikiUrl(), //
-            this.config.getMediaWikiTitle());
-        remoteResult.setLeftSide(this.config.getMediaWikiTitle(), mediaWikiFullUrl);
-      }
-
       if (this.config.isUseFile()) {
         if (this.config.isCreateFileUseTemplateFile()
             && !isNullOrEmpty(this.config.getCreateFileTemplateFile())) {
@@ -193,5 +172,5 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
   }
 
   @Override
-  public void checkRoles(RoleChecker checker) throws SecurityException {}
+  public void checkRoles(final RoleChecker checker) throws SecurityException {}
 }

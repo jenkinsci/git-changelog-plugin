@@ -30,19 +30,10 @@ public class GitChangelogConfig implements Serializable {
   private boolean ignoreCommitsWithoutIssue;
   private String ignoreTagsIfNameMatches;
   private String jiraIssuePattern;
-  private String jiraPassword;
+  private transient String jiraPassword;
   private String jiraServer;
-  private String jiraUsername;
+  private transient String jiraUsername;
   private String jiraUsernamePasswordCredentialsId;
-  private boolean useJiraUsernamePasswordCredentialsId;
-  private String mediaWikiPassword;
-  private String mediaWikiTemplateContent;
-  private String mediaWikiTemplateFile;
-  private String mediaWikiTitle;
-  private String mediaWikiUrl;
-  private String mediaWikiUsername;
-  private boolean mediaWikiUseTemplateContent;
-  private boolean mediaWikiUseTemplateFile;
   private String noIssueName;
   private String readableTagName;
   private boolean showSummary;
@@ -60,7 +51,6 @@ public class GitChangelogConfig implements Serializable {
   private boolean useGitHub;
   private boolean useIgnoreTagsIfNameMatches;
   private boolean useJira;
-  private boolean useMediaWiki;
   private boolean useReadableTagName;
   private boolean useSubDirectory;
   private String gitHubApiTokenCredentialsId;
@@ -99,15 +89,6 @@ public class GitChangelogConfig implements Serializable {
       final String jiraServer,
       final String jiraUsername,
       final String jiraUsernamePasswordCredentialsId,
-      final boolean useJiraUsernamePasswordCredentialsId,
-      final String mediaWikiPassword,
-      final String mediaWikiTemplateContent,
-      final String mediaWikiTemplateFile,
-      final String mediaWikiTitle,
-      final String mediaWikiUrl,
-      final String mediaWikiUsername,
-      final boolean mediaWikiUseTemplateContent,
-      final boolean mediaWikiUseTemplateFile,
       final String noIssueName,
       final String readableTagName,
       final boolean showSummary,
@@ -125,7 +106,6 @@ public class GitChangelogConfig implements Serializable {
       final boolean useGitHub,
       final boolean useIgnoreTagsIfNameMatches,
       final boolean useJira,
-      final boolean useMediaWiki,
       final boolean useReadableTagName,
       final boolean useSubDirectory,
       final String gitHubApiTokenCredentialsId,
@@ -157,15 +137,6 @@ public class GitChangelogConfig implements Serializable {
     this.jiraServer = jiraServer;
     this.jiraUsername = jiraUsername;
     this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
-    this.useJiraUsernamePasswordCredentialsId = useJiraUsernamePasswordCredentialsId;
-    this.mediaWikiPassword = mediaWikiPassword;
-    this.mediaWikiTemplateContent = mediaWikiTemplateContent;
-    this.mediaWikiTemplateFile = mediaWikiTemplateFile;
-    this.mediaWikiTitle = mediaWikiTitle;
-    this.mediaWikiUrl = mediaWikiUrl;
-    this.mediaWikiUsername = mediaWikiUsername;
-    this.mediaWikiUseTemplateContent = mediaWikiUseTemplateContent;
-    this.mediaWikiUseTemplateFile = mediaWikiUseTemplateFile;
     this.noIssueName = noIssueName;
     this.readableTagName = readableTagName;
     this.showSummary = showSummary;
@@ -183,7 +154,6 @@ public class GitChangelogConfig implements Serializable {
     this.useGitHub = useGitHub;
     this.useIgnoreTagsIfNameMatches = useIgnoreTagsIfNameMatches;
     this.useJira = useJira;
-    this.useMediaWiki = useMediaWiki;
     this.useReadableTagName = useReadableTagName;
     this.useSubDirectory = useSubDirectory;
     this.gitHubApiTokenCredentialsId = gitHubApiTokenCredentialsId;
@@ -260,30 +230,6 @@ public class GitChangelogConfig implements Serializable {
     return this.jiraUsername;
   }
 
-  public String getMediaWikiPassword() {
-    return this.mediaWikiPassword;
-  }
-
-  public String getMediaWikiTemplateContent() {
-    return this.mediaWikiTemplateContent;
-  }
-
-  public String getMediaWikiTemplateFile() {
-    return this.mediaWikiTemplateFile;
-  }
-
-  public String getMediaWikiTitle() {
-    return this.mediaWikiTitle;
-  }
-
-  public String getMediaWikiUrl() {
-    return this.mediaWikiUrl;
-  }
-
-  public String getMediaWikiUsername() {
-    return this.mediaWikiUsername;
-  }
-
   public String getNoIssueName() {
     return this.noIssueName;
   }
@@ -332,14 +278,6 @@ public class GitChangelogConfig implements Serializable {
     return this.ignoreCommitsWithoutIssue;
   }
 
-  public boolean isMediaWikiUseTemplateContent() {
-    return this.mediaWikiUseTemplateContent;
-  }
-
-  public boolean isMediaWikiUseTemplateFile() {
-    return this.mediaWikiUseTemplateFile;
-  }
-
   public boolean isShowSummary() {
     return this.showSummary;
   }
@@ -370,10 +308,6 @@ public class GitChangelogConfig implements Serializable {
 
   public boolean isUseJira() {
     return this.useJira;
-  }
-
-  public boolean isUseMediaWiki() {
-    return this.useMediaWiki;
   }
 
   public boolean isUseReadableTagName() {
@@ -521,46 +455,6 @@ public class GitChangelogConfig implements Serializable {
   }
 
   @DataBoundSetter
-  public void setMediaWikiPassword(final String mediaWikiPassword) {
-    this.mediaWikiPassword = mediaWikiPassword;
-  }
-
-  @DataBoundSetter
-  public void setMediaWikiTemplateContent(final String mediaWikiTemplateContent) {
-    this.mediaWikiTemplateContent = mediaWikiTemplateContent;
-  }
-
-  @DataBoundSetter
-  public void setMediaWikiTemplateFile(final String mediaWikiTemplateFile) {
-    this.mediaWikiTemplateFile = mediaWikiTemplateFile;
-  }
-
-  @DataBoundSetter
-  public void setMediaWikiTitle(final String mediaWikiTitle) {
-    this.mediaWikiTitle = mediaWikiTitle;
-  }
-
-  @DataBoundSetter
-  public void setMediaWikiUrl(final String mediaWikiUrl) {
-    this.mediaWikiUrl = mediaWikiUrl;
-  }
-
-  @DataBoundSetter
-  public void setMediaWikiUsername(final String mediaWikiUsername) {
-    this.mediaWikiUsername = mediaWikiUsername;
-  }
-
-  @DataBoundSetter
-  public void setMediaWikiUseTemplateContent(final boolean mediaWikiUseTemplateContent) {
-    this.mediaWikiUseTemplateContent = mediaWikiUseTemplateContent;
-  }
-
-  @DataBoundSetter
-  public void setMediaWikiUseTemplateFile(final boolean mediaWikiUseTemplateFile) {
-    this.mediaWikiUseTemplateFile = mediaWikiUseTemplateFile;
-  }
-
-  @DataBoundSetter
   public void setNoIssueName(final String noIssueName) {
     this.noIssueName = noIssueName;
   }
@@ -646,11 +540,6 @@ public class GitChangelogConfig implements Serializable {
   }
 
   @DataBoundSetter
-  public void setUseMediaWiki(final boolean useMediaWiki) {
-    this.useMediaWiki = useMediaWiki;
-  }
-
-  @DataBoundSetter
   public void setUseReadableTagName(final boolean useReadableTagName) {
     this.useReadableTagName = useReadableTagName;
   }
@@ -709,16 +598,6 @@ public class GitChangelogConfig implements Serializable {
     this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
   }
 
-  @DataBoundSetter
-  public void setUseJiraUsernamePasswordCredentialsId(
-      final boolean useJiraUsernamePasswordCredentialsId) {
-    this.useJiraUsernamePasswordCredentialsId = useJiraUsernamePasswordCredentialsId;
-  }
-
-  public boolean isUseJiraUsernamePasswordCredentialsId() {
-    return useJiraUsernamePasswordCredentialsId;
-  }
-
   public String getJiraUsernamePasswordCredentialsId() {
     return jiraUsernamePasswordCredentialsId;
   }
@@ -775,24 +654,6 @@ public class GitChangelogConfig implements Serializable {
         + jiraUsername
         + ", jiraUsernamePasswordCredentialsId="
         + jiraUsernamePasswordCredentialsId
-        + ", useJiraUsernamePasswordCredentialsId="
-        + useJiraUsernamePasswordCredentialsId
-        + ", mediaWikiPassword="
-        + mediaWikiPassword
-        + ", mediaWikiTemplateContent="
-        + mediaWikiTemplateContent
-        + ", mediaWikiTemplateFile="
-        + mediaWikiTemplateFile
-        + ", mediaWikiTitle="
-        + mediaWikiTitle
-        + ", mediaWikiUrl="
-        + mediaWikiUrl
-        + ", mediaWikiUsername="
-        + mediaWikiUsername
-        + ", mediaWikiUseTemplateContent="
-        + mediaWikiUseTemplateContent
-        + ", mediaWikiUseTemplateFile="
-        + mediaWikiUseTemplateFile
         + ", noIssueName="
         + noIssueName
         + ", readableTagName="
@@ -827,8 +688,6 @@ public class GitChangelogConfig implements Serializable {
         + useIgnoreTagsIfNameMatches
         + ", useJira="
         + useJira
-        + ", useMediaWiki="
-        + useMediaWiki
         + ", useReadableTagName="
         + useReadableTagName
         + ", useSubDirectory="

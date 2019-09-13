@@ -23,9 +23,9 @@ public class GitChangelogPerformer {
       final GitChangelogConfig configUnexpanded,
       final Run<?, ?> build,
       final TaskListener listener,
-      FilePath workspace) {
+      final FilePath workspace) {
     try {
-      EnvVars env = build.getEnvironment(listener);
+      final EnvVars env = build.getEnvironment(listener);
       final GitChangelogConfig config = expand(configUnexpanded, env);
       listener.getLogger().println("---");
       listener.getLogger().println("--- Git Changelog ---");
@@ -33,8 +33,8 @@ public class GitChangelogPerformer {
 
       setApiTokenCredentials(config, listener);
 
-      RemoteCallable remoteTask = new RemoteCallable(workspace.getRemote(), config);
-      RemoteResult remoteResult = workspace.act(remoteTask);
+      final RemoteCallable remoteTask = new RemoteCallable(workspace.getRemote(), config);
+      final RemoteResult remoteResult = workspace.act(remoteTask);
       if (!isNullOrEmpty(remoteResult.getLeftSideTitle())) {
         build.addAction(
             new GitChangelogLeftsideBuildDecorator(
@@ -44,7 +44,7 @@ public class GitChangelogPerformer {
         build.addAction(new GitChangelogSummaryDecorator(remoteResult.getSummary()));
       }
       doLog(listener, INFO, remoteResult.getLog());
-    } catch (Exception e) {
+    } catch (final Exception e) {
       doLog(listener, SEVERE, e.getMessage(), e);
     }
   }
@@ -53,25 +53,26 @@ public class GitChangelogPerformer {
       final GitChangelogConfig configExpanded, final TaskListener listener) {
     if (configExpanded.isUseGitHubApiTokenCredentials()) {
       final String getApiTokenCredentialsId = configExpanded.getGitHubApiTokenCredentialsId();
-      String token = findSecretString(getApiTokenCredentialsId).orElse(null);
+      final String token = findSecretString(getApiTokenCredentialsId).orElse(null);
       configExpanded.setGitHubToken(token);
     }
     if (configExpanded.isUseGitLabApiTokenCredentials()) {
       final String getApiTokenCredentialsId = configExpanded.getGitLabApiTokenCredentialsId();
-      String token = findSecretString(getApiTokenCredentialsId).orElse(null);
+      final String token = findSecretString(getApiTokenCredentialsId).orElse(null);
       configExpanded.setGitLabToken(token);
     }
-    if (configExpanded.isUseJiraUsernamePasswordCredentialsId()) {
+    if (configExpanded.isUseJira()) {
       final String getApiTokenCredentialsId = configExpanded.getJiraUsernamePasswordCredentialsId();
-      StandardUsernamePasswordCredentials token =
+      final StandardUsernamePasswordCredentials token =
           findSecretUsernamePassword(getApiTokenCredentialsId).orElse(null);
       configExpanded.setJiraUsername(token.getUsername());
       configExpanded.setJiraPassword(token.getPassword().getPlainText());
     }
   }
   /** Makes sure any Jenkins variable, used in the configuration fields, are evaluated. */
-  private static GitChangelogConfig expand(GitChangelogConfig config, EnvVars environment) {
-    GitChangelogConfig c = new GitChangelogConfig();
+  private static GitChangelogConfig expand(
+      final GitChangelogConfig config, final EnvVars environment) {
+    final GitChangelogConfig c = new GitChangelogConfig();
 
     c.setUseConfigFile(config.isUseConfigFile());
     c.setConfigFile(environment.expand(config.getConfigFile()));
@@ -91,7 +92,6 @@ public class GitChangelogPerformer {
     c.setJiraIssuePattern(environment.expand(config.getJiraIssuePattern()));
     c.setJiraUsername(environment.expand(config.getJiraUsername()));
     c.setJiraPassword(environment.expand(config.getJiraPassword()));
-    c.setUseJiraUsernamePasswordCredentialsId(config.isUseJiraUsernamePasswordCredentialsId());
     c.setJiraUsernamePasswordCredentialsId(
         environment.expand(config.getJiraUsernamePasswordCredentialsId()));
 
@@ -118,16 +118,6 @@ public class GitChangelogPerformer {
     c.setUseIgnoreTagsIfNameMatches(config.isUseIgnoreTagsIfNameMatches());
     c.setIgnoreTagsIfNameMatches(environment.expand(config.getIgnoreTagsIfNameMatches()));
 
-    c.setUseMediaWiki(config.isUseMediaWiki());
-    c.setMediaWikiUsername(environment.expand(config.getMediaWikiUsername()));
-    c.setMediaWikiPassword(environment.expand(config.getMediaWikiPassword()));
-    c.setMediaWikiTitle(environment.expand(config.getMediaWikiTitle()));
-    c.setMediaWikiUrl(environment.expand(config.getMediaWikiUrl()));
-    c.setMediaWikiUseTemplateFile(config.isMediaWikiUseTemplateFile());
-    c.setMediaWikiTemplateFile(environment.expand(config.getMediaWikiTemplateFile()));
-    c.setMediaWikiUseTemplateContent(config.isMediaWikiUseTemplateContent());
-    c.setMediaWikiTemplateContent(environment.expand(config.getMediaWikiTemplateContent()));
-
     c.setUseFile(config.isUseFile());
     c.setFile(environment.expand(config.getFile()));
     c.setCreateFileUseTemplateFile(config.isCreateFileUseTemplateFile());
@@ -141,8 +131,8 @@ public class GitChangelogPerformer {
     c.setShowSummaryUseTemplateContent(config.isShowSummaryUseTemplateContent());
     c.setShowSummaryTemplateContent(environment.expand(config.getShowSummaryTemplateContent()));
 
-    List<CustomIssue> expandedCi = new ArrayList<>();
-    for (CustomIssue ci : config.getCustomIssues()) {
+    final List<CustomIssue> expandedCi = new ArrayList<>();
+    for (final CustomIssue ci : config.getCustomIssues()) {
       expandedCi.add(
           new CustomIssue( //
               environment.expand(ci.getName()), //

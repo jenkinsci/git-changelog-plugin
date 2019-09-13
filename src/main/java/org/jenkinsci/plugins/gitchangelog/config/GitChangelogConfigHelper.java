@@ -28,7 +28,7 @@ public class GitChangelogConfigHelper {
     ref("ref");
     private final String reference;
 
-    FROMTYPE(String ref) {
+    FROMTYPE(final String ref) {
       this.reference = ref;
     }
 
@@ -54,7 +54,6 @@ public class GitChangelogConfigHelper {
     config.setUntaggedName(DEFAULT_UNTAGGED_NAME);
     config.setCreateFileTemplateContent(getResourceAsString("fileTemplateDefault.mustache"));
     config.setShowSummaryTemplateContent(getResourceAsString("summaryTemplateDefault.mustache"));
-    config.setMediaWikiTemplateContent(getResourceAsString("mediaWikiTemplateDefault.mustache"));
 
     final List<CustomIssue> customIssues = new ArrayList<>();
     customIssues.add(new CustomIssue("", "", "", ""));
@@ -64,7 +63,7 @@ public class GitChangelogConfigHelper {
     return config;
   }
 
-  private static String getResourceAsString(String filename) {
+  private static String getResourceAsString(final String filename) {
     try {
       return CharStreams.toString(
           new InputStreamReader(

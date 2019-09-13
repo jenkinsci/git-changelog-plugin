@@ -207,49 +207,6 @@
   </f:block>
 </f:section>
 
-<f:section title="Post to MediaWiki page">
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.useMediaWiki}" name="useMediaWiki" title="Create MediaWiki page" inline="true">
-        <f:entry title="Username">
-          <f:textbox name="mediaWikiUsername" value="${config.mediaWikiUsername}"/>
-        </f:entry>
-        <f:description>
-         Leave empty if authentication not needed.
-        </f:description>
-        <f:entry title="Password">
-          <f:password name="mediaWikiPassword" value="${config.mediaWikiPassword}"/>
-        </f:entry>
-        <f:description>
-         Leave empty if authentication not needed.
-        </f:description>
-        <f:entry title="MediaWiki URL">
-          <f:textbox name="mediaWikiUrl" value="${config.mediaWikiUrl}"/>
-        </f:entry>
-        <f:entry title="Title">
-          <f:textbox name="mediaWikiTitle" value="${config.mediaWikiTitle}"/>
-        </f:entry>
-        <f:optionalBlock checked="${config.mediaWikiUseTemplateFile}" name="mediaWikiUseTemplateFile" title="Use a template file from workspace" inline="true">
-          <f:entry title="Filename">
-            <f:textbox name="mediaWikiTemplateFile" value="${config.mediaWikiTemplateFile}"/>
-          </f:entry>
-          <f:description>
-            If you template is in source control, you may point it out here. Relative to workspace.
-          </f:description>
-        </f:optionalBlock>
-        <f:optionalBlock checked="${config.mediaWikiUseTemplateContent}" name="mediaWikiUseTemplateContent" title="Configure template here" inline="true">
-          <f:entry title="Content">
-            <f:textarea name="mediaWikiTemplateContent" value="${config.mediaWikiTemplateContent}" style="width: 500px; height: 200px"/>
-          </f:entry>
-          <f:description>
-            Context is documented <a target="_blank" href="https://github.com/tomasbjerre/git-changelog-lib">here</a>.
-          </f:description>
-        </f:optionalBlock>
-      </f:optionalBlock>
-    </table>
-  </f:block>
-</f:section>
-
 <f:section title="Jira">
   <f:block>
     <table>
@@ -268,18 +225,10 @@
          Leave blank to use default.
         </f:description>
 
-        <f:optionalBlock checked="${config.useJiraUsernamePasswordCredentialsId}" name="useJiraUsernamePasswordCredentialsId" title="Use credentials" inline="true">
-          <f:entry title="Credential" field="jiraUsernamePasswordCredentialsId">
-            <c:select default="${config.jiraUsernamePasswordCredentialsId}" />
-          </f:entry>
-        </f:optionalBlock>
+        <f:entry title="Credential" field="jiraUsernamePasswordCredentialsId">
+          <c:select default="${config.jiraUsernamePasswordCredentialsId}" />
+        </f:entry>
         
-        <f:entry title="Username">
-          <f:textbox name="jiraUsername" value="${config.jiraUsername}"/>
-        </f:entry>
-        <f:entry title="Password">
-          <f:password name="jiraPassword" value="${config.jiraPassword}"/>
-        </f:entry>
       </f:optionalBlock>
       <f:description>
        With Jira credentials you can have the {{title}} variable populated with title from Jira issues.
