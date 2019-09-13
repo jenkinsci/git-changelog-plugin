@@ -1,7 +1,7 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 2.18
 ### Jira SECURITY-1574   
 
 **Remving raw Jira username/password and forcing credentials**
@@ -9,7 +9,7 @@ Changelog of Git Changelog Plugin.
  * Also removing MediaWiki support. Because of security reasons in combination with, probably, few users. There should probably be another MediaWiki publisher plugin to do that.
  * SECURITY-1574
 
-[91c67b171ff72fe](https://github.com/jenkinsci/git-changelog-plugin/commit/91c67b171ff72fe) Tomas Bjerre *2019-09-13 18:10:17*
+[356243aa6d3f6ad](https://github.com/jenkinsci/git-changelog-plugin/commit/356243aa6d3f6ad) Tomas Bjerre *2019-09-13 18:24:36*
 
 
 ### No issue
