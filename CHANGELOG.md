@@ -1,6 +1,16 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 2.19
+### Jira SECURITY-1574   
+
+**Removing raw GitLab/GitHub tokens and forcing credentials**
+
+ * SECURITY-1574
+
+[305e80d8b0eb972](https://github.com/jenkinsci/git-changelog-plugin/commit/305e80d8b0eb972) Tomas Bjerre *2019-09-14 05:41:26*
+
+
 ## 2.18
 ### Jira SECURITY-1574   
 
