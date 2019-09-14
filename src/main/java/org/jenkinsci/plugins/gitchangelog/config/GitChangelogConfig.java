@@ -21,10 +21,10 @@ public class GitChangelogConfig implements Serializable {
   private String fromType;
   private String gitHubApi;
   private String gitHubIssuePattern;
-  private String gitHubToken;
+  private transient String gitHubToken;
   private String gitLabServer;
   private String gitLabProjectName;
-  private String gitLabToken;
+  private transient String gitLabToken;
   private boolean useGitLab;
   private String ignoreCommitsIfMessageMatches;
   private boolean ignoreCommitsWithoutIssue;
@@ -54,8 +54,6 @@ public class GitChangelogConfig implements Serializable {
   private boolean useReadableTagName;
   private boolean useSubDirectory;
   private String gitHubApiTokenCredentialsId;
-  private boolean useGitHubApiTokenCredentials;
-  private boolean useGitLabApiTokenCredentials;
   private String gitLabApiTokenCredentialsId;
 
   @DataBoundConstructor
@@ -76,11 +74,9 @@ public class GitChangelogConfig implements Serializable {
       final String fromType,
       final String gitHubApi,
       final String gitHubIssuePattern,
-      final String gitHubToken,
       final boolean useGitLab,
       final String gitLabServer,
       final String gitLabProjectName,
-      final String gitLabToken,
       final String ignoreCommitsIfMessageMatches,
       final boolean ignoreCommitsWithoutIssue,
       final String ignoreTagsIfNameMatches,
@@ -109,9 +105,7 @@ public class GitChangelogConfig implements Serializable {
       final boolean useReadableTagName,
       final boolean useSubDirectory,
       final String gitHubApiTokenCredentialsId,
-      final String gitLabApiTokenCredentialsId,
-      final boolean useGitLabApiTokenCredentials,
-      final boolean useGitHubApiTokenCredentials) {
+      final String gitLabApiTokenCredentialsId) {
     this.configFile = configFile;
     this.createFileTemplateContent = createFileTemplateContent;
     this.createFileTemplateFile = createFileTemplateFile;
@@ -124,18 +118,14 @@ public class GitChangelogConfig implements Serializable {
     this.fromType = fromType;
     this.gitHubApi = gitHubApi;
     this.gitHubIssuePattern = gitHubIssuePattern;
-    this.gitHubToken = gitHubToken;
     this.useGitLab = useGitLab;
     this.gitLabProjectName = gitLabProjectName;
     this.gitLabServer = gitLabServer;
-    this.gitLabToken = gitLabToken;
     this.ignoreCommitsIfMessageMatches = ignoreCommitsIfMessageMatches;
     this.ignoreCommitsWithoutIssue = ignoreCommitsWithoutIssue;
     this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
     this.jiraIssuePattern = jiraIssuePattern;
-    this.jiraPassword = jiraPassword;
     this.jiraServer = jiraServer;
-    this.jiraUsername = jiraUsername;
     this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
     this.noIssueName = noIssueName;
     this.readableTagName = readableTagName;
@@ -157,8 +147,6 @@ public class GitChangelogConfig implements Serializable {
     this.useReadableTagName = useReadableTagName;
     this.useSubDirectory = useSubDirectory;
     this.gitHubApiTokenCredentialsId = gitHubApiTokenCredentialsId;
-    this.useGitHubApiTokenCredentials = useGitHubApiTokenCredentials;
-    this.useGitLabApiTokenCredentials = useGitLabApiTokenCredentials;
     this.gitLabApiTokenCredentialsId = gitLabApiTokenCredentialsId;
   }
 
@@ -561,14 +549,6 @@ public class GitChangelogConfig implements Serializable {
     return gitHubApiTokenCredentialsId;
   }
 
-  public boolean isUseGitHubApiTokenCredentials() {
-    return useGitHubApiTokenCredentials;
-  }
-
-  public boolean isUseGitLabApiTokenCredentials() {
-    return useGitLabApiTokenCredentials;
-  }
-
   public String getGitLabApiTokenCredentialsId() {
     return gitLabApiTokenCredentialsId;
   }
@@ -581,16 +561,6 @@ public class GitChangelogConfig implements Serializable {
   @DataBoundSetter
   public void setGitLabApiTokenCredentialsId(final String gitLabApiTokenCredentialsId) {
     this.gitLabApiTokenCredentialsId = gitLabApiTokenCredentialsId;
-  }
-
-  @DataBoundSetter
-  public void setUseGitHubApiTokenCredentials(final boolean useGitHubApiTokenCredentials) {
-    this.useGitHubApiTokenCredentials = useGitHubApiTokenCredentials;
-  }
-
-  @DataBoundSetter
-  public void setUseGitLabApiTokenCredentials(final boolean useGitLabApiTokenCredentials) {
-    this.useGitLabApiTokenCredentials = useGitLabApiTokenCredentials;
   }
 
   @DataBoundSetter
@@ -694,10 +664,6 @@ public class GitChangelogConfig implements Serializable {
         + useSubDirectory
         + ", gitHubApiTokenCredentialsId="
         + gitHubApiTokenCredentialsId
-        + ", useGitHubApiTokenCredentials="
-        + useGitHubApiTokenCredentials
-        + ", useGitLabApiTokenCredentials="
-        + useGitLabApiTokenCredentials
         + ", gitLabApiTokenCredentialsId="
         + gitLabApiTokenCredentialsId
         + "]";

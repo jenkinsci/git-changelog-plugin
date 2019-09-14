@@ -248,13 +248,8 @@
           Something like: https://api.github.com/repos/REPO/PROJECT
         </f:description>
 
-        <f:optionalBlock checked="${config.useGitHubApiTokenCredentials}" name="useGitHubApiTokenCredentials" title="Use API token credentials" inline="true">
-          <f:entry title="API token Credential" field="gitHubApiTokenCredentialsId">
-            <c:select default="${config.gitHubApiTokenCredentialsId}" />
-          </f:entry>
-        </f:optionalBlock>
-        <f:entry title="GitHub Token">
-          <f:textbox name="gitHubToken" value="${config.gitHubToken}"/>
+        <f:entry title="API token Credential" field="gitHubApiTokenCredentialsId">
+          <c:select default="${config.gitHubApiTokenCredentialsId}" />
         </f:entry>
         <f:description>
           This will allow more requests on the API. You can get a token with curl like this: curl -u 'yourgithubuser' -d '{"note":"Git Changelog Lib"}' https://api.github.com/authorizations
@@ -291,13 +286,8 @@
           In https://gitlab.com/tomas.bjerre85/violations-test, that would be violations-test.
         </f:description>
 
-        <f:optionalBlock checked="${config.useGitLabApiTokenCredentials}" name="useGitLabApiTokenCredentials" title="Use API token credentials" inline="true">
-          <f:entry title="API token Credential" field="gitLabApiTokenCredentialsId">
-            <c:select default="${config.gitLabApiTokenCredentialsId}" />
-          </f:entry>
-        </f:optionalBlock>
-        <f:entry title="GitLab Token">
-          <f:textbox name="gitLabToken" value="${config.gitLabToken}"/>
+        <f:entry title="API token Credential" field="gitLabApiTokenCredentialsId">
+          <c:select default="${config.gitLabApiTokenCredentialsId}" />
         </f:entry>
         <f:description>
          You can create one in the project settings.

@@ -84,15 +84,11 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setUseGitHub(formData.getBoolean("useGitHub"));
     c.setGitHubApi(formData.getString("gitHubApi"));
     c.setGitHubIssuePattern(formData.getString("gitHubIssuePattern"));
-    c.setGitHubToken(formData.getString("gitHubToken"));
-    c.setUseGitHubApiTokenCredentials(formData.getBoolean("useGitHubApiTokenCredentials"));
     c.setGitHubApiTokenCredentialsId(formData.getString("gitHubApiTokenCredentialsId"));
 
     c.setUseGitLab(formData.getBoolean("useGitLab"));
     c.setGitLabServer(formData.getString("gitLabServer"));
     c.setGitLabProjectName(formData.getString("gitLabProjectName"));
-    c.setGitLabToken(formData.getString("gitLabToken"));
-    c.setUseGitLabApiTokenCredentials(formData.getBoolean("useGitLabApiTokenCredentials"));
     c.setGitLabApiTokenCredentialsId(formData.getString("gitLabApiTokenCredentialsId"));
 
     c.setNoIssueName(formData.getString("noIssueName"));

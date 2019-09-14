@@ -51,12 +51,12 @@ public class GitChangelogPerformer {
 
   private static void setApiTokenCredentials(
       final GitChangelogConfig configExpanded, final TaskListener listener) {
-    if (configExpanded.isUseGitHubApiTokenCredentials()) {
+    if (configExpanded.isUseGitHub()) {
       final String getApiTokenCredentialsId = configExpanded.getGitHubApiTokenCredentialsId();
       final String token = findSecretString(getApiTokenCredentialsId).orElse(null);
       configExpanded.setGitHubToken(token);
     }
-    if (configExpanded.isUseGitLabApiTokenCredentials()) {
+    if (configExpanded.isUseGitLab()) {
       final String getApiTokenCredentialsId = configExpanded.getGitLabApiTokenCredentialsId();
       final String token = findSecretString(getApiTokenCredentialsId).orElse(null);
       configExpanded.setGitLabToken(token);
@@ -100,14 +100,12 @@ public class GitChangelogPerformer {
     c.setGitHubIssuePattern(environment.expand(config.getGitHubIssuePattern()));
     c.setGitHubToken(environment.expand(config.getGitHubToken()));
     c.setGitHubApiTokenCredentialsId(environment.expand(config.getGitHubApiTokenCredentialsId()));
-    c.setUseGitHubApiTokenCredentials(config.isUseGitHubApiTokenCredentials());
 
     c.setUseGitLab(config.isUseGitLab());
     c.setGitLabServer(environment.expand(config.getGitLabServer()));
     c.setGitLabProjectName(environment.expand(config.getGitLabProjectName()));
     c.setGitLabToken(environment.expand(config.getGitLabToken()));
     c.setGitLabApiTokenCredentialsId(environment.expand(config.getGitLabApiTokenCredentialsId()));
-    c.setUseGitLabApiTokenCredentials(config.isUseGitLabApiTokenCredentials());
 
     c.setNoIssueName(environment.expand(config.getNoIssueName()));
     c.setIgnoreCommitsWithoutIssue(config.isIgnoreCommitsWithoutIssue());
