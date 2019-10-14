@@ -11,6 +11,7 @@ import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE.ref;
 import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -39,6 +40,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
   }
 
   @Override
+  @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
   public RemoteResult call() throws IOException {
     final RemoteResult remoteResult = new RemoteResult();
     final StringBuilder logString = new StringBuilder();

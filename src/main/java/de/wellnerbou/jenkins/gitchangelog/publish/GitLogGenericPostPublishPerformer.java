@@ -3,6 +3,7 @@ package de.wellnerbou.jenkins.gitchangelog.publish;
 import de.wellnerbou.gitchangelog.app.GitChangelogArgs;
 import de.wellnerbou.gitchangelog.processors.ChangelogProcessor;
 import de.wellnerbou.jenkins.gitchangelog.callable.GitChangelogMasterToSlaveCallable;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.FilePath;
@@ -13,10 +14,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class GitLogGenericPostPublishPerformer {
 
-  private ChangelogProcessor changelogProcessor;
+  private final ChangelogProcessor changelogProcessor;
   private final String outputfile;
   private final String fromRev;
   private final String toRev;
@@ -32,6 +35,7 @@ public class GitLogGenericPostPublishPerformer {
     this.toRev = toRev;
   }
 
+  @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
   public boolean perform(final AbstractBuild<?, ?> build, final BuildListener listener)
       throws InterruptedException, IOException {
     final EnvVars env = build.getEnvironment(listener);
@@ -67,7 +71,11 @@ public class GitLogGenericPostPublishPerformer {
       listener
           .getLogger()
           .println("Saving processed git changelog to file " + file.getAbsolutePath() + ".");
-      printStream = new PrintStream(file);
+      try {
+        printStream = new PrintStream(file, StandardCharsets.UTF_8.name());
+      } catch (final UnsupportedEncodingException e) {
+        throw new RuntimeException(e);
+      }
     }
     return printStream;
   }
@@ -75,7 +83,7 @@ public class GitLogGenericPostPublishPerformer {
   private GitChangelogArgs createGitChangelogArgs(
       final FilePath workspace, final String fromRev, final String toRev) throws AbortException {
     if (workspace == null) {
-      throw new AbortException("no workspace for " + workspace);
+      throw new AbortException("no workspace");
     }
     final GitChangelogArgs gitChangelogArgs = new GitChangelogArgs();
     gitChangelogArgs.setChangelogProcessor(changelogProcessor);

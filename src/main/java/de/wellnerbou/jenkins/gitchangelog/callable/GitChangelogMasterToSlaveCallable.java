@@ -3,6 +3,7 @@ package de.wellnerbou.jenkins.gitchangelog.callable;
 import de.wellnerbou.gitchangelog.app.GitChangelog;
 import de.wellnerbou.gitchangelog.app.GitChangelogArgs;
 import de.wellnerbou.gitchangelog.model.Changelog;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -18,6 +19,8 @@ public class GitChangelogMasterToSlaveCallable extends MasterToSlaveCallable<Str
     this.gitChangelogArgs = gitChangelogArgs;
   }
 
+  @Override
+  @SuppressFBWarnings("DM_DEFAULT_ENCODING")
   public String call() throws IOException {
     try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos)) {
