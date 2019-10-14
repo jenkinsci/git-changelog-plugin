@@ -62,11 +62,15 @@ public class GitChangelogPerformer {
       configExpanded.setGitLabToken(token);
     }
     if (configExpanded.isUseJira()) {
+      listener.getLogger().println("Using jira");
       final String getApiTokenCredentialsId = configExpanded.getJiraUsernamePasswordCredentialsId();
       final StandardUsernamePasswordCredentials token =
           findSecretUsernamePassword(getApiTokenCredentialsId).orElse(null);
       configExpanded.setJiraUsername(token.getUsername());
       configExpanded.setJiraPassword(token.getPassword().getPlainText());
+      listener
+          .getLogger()
+          .println(configExpanded.getJiraUsername() + " " + configExpanded.getJiraPassword());
     }
   }
   /** Makes sure any Jenkins variable, used in the configuration fields, are evaluated. */

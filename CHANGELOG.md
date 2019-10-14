@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### No issue
+
+**Create FUNDING.yml**
+
+
+[a66ed818f4aa726](https://github.com/jenkinsci/git-changelog-plugin/commit/a66ed818f4aa726) Tomas Bjerre *2019-09-28 06:51:47*
+
+
 ## 2.19
 ### Jira SECURITY-1574   
 
