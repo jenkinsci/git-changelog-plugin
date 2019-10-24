@@ -1,8 +1,18 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 2.20
 ### No issue
+
+**Setting URL to README.md to update plugins.jenkins.io**
+
+
+[9644e04038d0234](https://github.com/jenkinsci/git-changelog-plugin/commit/9644e04038d0234) Tomas Bjerre *2019-10-24 18:34:53*
+
+**Taking care of some SCA findings**
+
+
+[7cbd27ba3fd5300](https://github.com/jenkinsci/git-changelog-plugin/commit/7cbd27ba3fd5300) Tomas Bjerre *2019-10-14 16:29:15*
 
 **Create FUNDING.yml**
 
