@@ -1,13 +1,13 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 2.21
 ### GitHub [#38](https://github.com/jenkinsci/git-changelog-plugin/issues/38) Build log exposes Jira credentials which was not the case in previous version.  
 
 **Removing Jira credentials from log #38**
 
 
-[10c43845ea6116e](https://github.com/jenkinsci/git-changelog-plugin/commit/10c43845ea6116e) Tomas Bjerre *2019-11-08 14:33:58*
+[c1a9528c07bd369](https://github.com/jenkinsci/git-changelog-plugin/commit/c1a9528c07bd369) Tomas Bjerre *2019-11-08 14:37:42*
 
 
 ## 2.20
