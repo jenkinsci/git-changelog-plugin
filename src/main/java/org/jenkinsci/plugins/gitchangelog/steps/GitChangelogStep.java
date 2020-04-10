@@ -387,12 +387,15 @@ public class GitChangelogStep extends Step implements Serializable {
           .withGitLabServer(gitLab.getServer()) //
           .withGitLabToken(gitLab.getToken());
     }
+
     if (jira != null) {
+
       b //
           .withJiraIssuePattern(jira.getIssuePattern()) //
           .withJiraServer(jira.getServer()) //
           .withJiraUsername(jira.getUsername()) //
-          .withJiraPassword(jira.getPassword());
+          .withJiraPassword(jira.getPassword())
+          .withJiraBasicAuthString(jira.getBasicAuthString());
     }
     if (returnType == CONTEXT) {
       return b.getChangelog(true);

@@ -13,6 +13,7 @@ public class JiraConfig extends AbstractDescribableImpl<JiraConfig> implements S
   private final String issuePattern;
   private final String username;
   private final String password;
+  private final String basicAuthString;
 
   @Extension
   public static class DescriptorImpl extends Descriptor<JiraConfig> {
@@ -28,11 +29,13 @@ public class JiraConfig extends AbstractDescribableImpl<JiraConfig> implements S
       final String server,
       final String issuePattern,
       final String username,
-      final String password) {
+      final String password,
+      final String basicAuthString) {
     this.server = server;
     this.issuePattern = issuePattern;
     this.username = username;
     this.password = password;
+    this.basicAuthString = basicAuthString;
   }
 
   public String getServer() {
@@ -49,5 +52,9 @@ public class JiraConfig extends AbstractDescribableImpl<JiraConfig> implements S
 
   public String getPassword() {
     return password;
+  }
+
+  public String getBasicAuthString() {
+    return basicAuthString;
   }
 }
