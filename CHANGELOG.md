@@ -1,8 +1,13 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 2.22
 ### No issue
+
+**doc**
+
+
+[f6bdde07d13c32d](https://github.com/jenkinsci/git-changelog-plugin/commit/f6bdde07d13c32d) Tomas Bjerre *2020-04-16 15:01:21*
 
 **update changelog-lib version**
 
