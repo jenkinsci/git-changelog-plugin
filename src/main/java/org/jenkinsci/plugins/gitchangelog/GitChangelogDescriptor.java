@@ -80,6 +80,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setJiraServer(formData.getString("jiraServer"));
     c.setJiraIssuePattern(formData.getString("jiraIssuePattern"));
     c.setJiraUsernamePasswordCredentialsId(formData.getString("jiraUsernamePasswordCredentialsId"));
+    c.setBasicAuthString(formData.getString("basicAuthString"));
 
     c.setUseGitHub(formData.getBoolean("useGitHub"));
     c.setGitHubApi(formData.getString("gitHubApi"));

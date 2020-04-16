@@ -77,7 +77,8 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
             .withJiraServer(this.config.getJiraServer()) //
             .withJiraIssuePattern(this.config.getJiraIssuePattern()) //
             .withJiraUsername(this.config.getJiraUsername()) //
-            .withJiraPassword(this.config.getJiraPassword());
+            .withJiraPassword(this.config.getJiraPassword())
+            .withJiraBasicAuthString(this.config.getBasicAuthString());
       }
 
       if (this.config.isUseGitHub()) {

@@ -96,6 +96,7 @@ public class GitChangelogPerformer {
     c.setJiraIssuePattern(environment.expand(config.getJiraIssuePattern()));
     c.setJiraUsername(environment.expand(config.getJiraUsername()));
     c.setJiraPassword(environment.expand(config.getJiraPassword()));
+    c.setBasicAuthString(environment.expand(config.getBasicAuthString()));
     c.setJiraUsernamePasswordCredentialsId(
         environment.expand(config.getJiraUsernamePasswordCredentialsId()));
 

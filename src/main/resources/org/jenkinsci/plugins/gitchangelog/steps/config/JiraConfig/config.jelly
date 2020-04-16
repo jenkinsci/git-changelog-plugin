@@ -24,4 +24,8 @@
       <f:password field="password"/>
     </f:entry>
 
+    <f:entry title="API token">
+      <f:password field="basicAuthString"/>
+    </f:entry>
+
 </j:jelly>

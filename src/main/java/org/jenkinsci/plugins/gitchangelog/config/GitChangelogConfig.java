@@ -8,7 +8,7 @@ import org.kohsuke.stapler.DataBoundSetter;
 
 public class GitChangelogConfig implements Serializable {
 
-  private static final long serialVersionUID = -6715117454282183132L;
+  private static final long serialVersionUID = -6715117454282183133L;
   private String configFile;
   private String createFileTemplateContent;
   private String createFileTemplateFile;
@@ -31,6 +31,7 @@ public class GitChangelogConfig implements Serializable {
   private String ignoreTagsIfNameMatches;
   private String jiraIssuePattern;
   private transient String jiraPassword;
+  private transient String basicAuthString;
   private String jiraServer;
   private transient String jiraUsername;
   private String jiraUsernamePasswordCredentialsId;
@@ -82,6 +83,7 @@ public class GitChangelogConfig implements Serializable {
       final String ignoreTagsIfNameMatches,
       final String jiraIssuePattern,
       final String jiraPassword,
+      final String basicAuthString,
       final String jiraServer,
       final String jiraUsername,
       final String jiraUsernamePasswordCredentialsId,
@@ -126,6 +128,7 @@ public class GitChangelogConfig implements Serializable {
     this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
     this.jiraIssuePattern = jiraIssuePattern;
     this.jiraServer = jiraServer;
+    this.basicAuthString = basicAuthString;
     this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
     this.noIssueName = noIssueName;
     this.readableTagName = readableTagName;
@@ -208,6 +211,10 @@ public class GitChangelogConfig implements Serializable {
 
   public String getJiraPassword() {
     return this.jiraPassword;
+  }
+
+  public String getBasicAuthString() {
+    return this.basicAuthString;
   }
 
   public String getJiraServer() {
@@ -433,6 +440,11 @@ public class GitChangelogConfig implements Serializable {
   }
 
   @DataBoundSetter
+  public void setBasicAuthString(final String basicAuthString) {
+    this.basicAuthString = basicAuthString;
+  }
+
+  @DataBoundSetter
   public void setJiraServer(final String jiraServer) {
     this.jiraServer = jiraServer;
   }
@@ -618,6 +630,8 @@ public class GitChangelogConfig implements Serializable {
         + jiraIssuePattern
         + ", jiraPassword="
         + jiraPassword
+        + ", basicAuthString="
+        + basicAuthString
         + ", jiraServer="
         + jiraServer
         + ", jiraUsername="
