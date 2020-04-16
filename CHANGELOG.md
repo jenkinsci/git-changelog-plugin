@@ -1,6 +1,20 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### No issue
+
+**update changelog-lib version**
+
+
+[42df33ba6bc2d71](https://github.com/jenkinsci/git-changelog-plugin/commit/42df33ba6bc2d71) Dmitry Mamchur *2020-04-14 07:55:20*
+
+**add support for jira api token**
+
+
+[a97bdf3e006485c](https://github.com/jenkinsci/git-changelog-plugin/commit/a97bdf3e006485c) Dmitry Mamchur *2020-04-10 10:57:42*
+
+
 ## 2.21
 ### GitHub [#38](https://github.com/jenkinsci/git-changelog-plugin/issues/38) Build log exposes Jira credentials which was not the case in previous version.  
 

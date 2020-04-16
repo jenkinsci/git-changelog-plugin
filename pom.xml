@@ -14,9 +14,9 @@
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <fmt>2.9</fmt>
-        <violations.version>1.30</violations.version>
+        <violations.version>1.36</violations.version>
         <changelog-lib>1.92</changelog-lib>
-        <changelog-plugin>1.60</changelog-plugin>
+        <changelog-plugin>1.61</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
