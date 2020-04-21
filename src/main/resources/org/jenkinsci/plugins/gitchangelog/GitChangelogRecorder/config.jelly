@@ -228,6 +228,10 @@
         <f:entry title="Credential" field="jiraUsernamePasswordCredentialsId">
           <c:select default="${config.jiraUsernamePasswordCredentialsId}" />
         </f:entry>
+
+        <f:entry title="Basic Auth String" field="jiraBasicAuthStringCredentialsId">
+          <c:select default="${config.jiraBasicAuthStringCredentialsId}" />
+        </f:entry>
         
       </f:optionalBlock>
       <f:description>

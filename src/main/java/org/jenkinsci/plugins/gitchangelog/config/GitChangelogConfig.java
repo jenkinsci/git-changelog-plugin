@@ -31,10 +31,11 @@ public class GitChangelogConfig implements Serializable {
   private String ignoreTagsIfNameMatches;
   private String jiraIssuePattern;
   private transient String jiraPassword;
-  private transient String basicAuthString;
   private String jiraServer;
   private transient String jiraUsername;
   private String jiraUsernamePasswordCredentialsId;
+  private String jiraBasicAuthStringCredentialsId;
+  private transient String jiraBasicAuthString;
   private String noIssueName;
   private String readableTagName;
   private boolean showSummary;
@@ -87,6 +88,7 @@ public class GitChangelogConfig implements Serializable {
       final String jiraServer,
       final String jiraUsername,
       final String jiraUsernamePasswordCredentialsId,
+      final String jiraBasicAuthStringCredentialsId,
       final String noIssueName,
       final String readableTagName,
       final boolean showSummary,
@@ -128,8 +130,8 @@ public class GitChangelogConfig implements Serializable {
     this.ignoreTagsIfNameMatches = ignoreTagsIfNameMatches;
     this.jiraIssuePattern = jiraIssuePattern;
     this.jiraServer = jiraServer;
-    this.basicAuthString = basicAuthString;
     this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
+    this.jiraBasicAuthStringCredentialsId = jiraBasicAuthStringCredentialsId;
     this.noIssueName = noIssueName;
     this.readableTagName = readableTagName;
     this.showSummary = showSummary;
@@ -213,8 +215,8 @@ public class GitChangelogConfig implements Serializable {
     return this.jiraPassword;
   }
 
-  public String getBasicAuthString() {
-    return this.basicAuthString;
+  public String getJiraBasicAuthStringCredentialsId() {
+    return jiraBasicAuthStringCredentialsId;
   }
 
   public String getJiraServer() {
@@ -440,8 +442,8 @@ public class GitChangelogConfig implements Serializable {
   }
 
   @DataBoundSetter
-  public void setBasicAuthString(final String basicAuthString) {
-    this.basicAuthString = basicAuthString;
+  public void setJiraBasicAuthStringCredentialsId(String jiraBasicAuthStringCredentialsId) {
+    this.jiraBasicAuthStringCredentialsId = jiraBasicAuthStringCredentialsId;
   }
 
   @DataBoundSetter
@@ -452,6 +454,15 @@ public class GitChangelogConfig implements Serializable {
   @DataBoundSetter
   public void setJiraUsername(final String jiraUsername) {
     this.jiraUsername = jiraUsername;
+  }
+
+  @DataBoundSetter
+  public void setJiraBasicAuthString(String jiraBasicAuthString) {
+    this.jiraBasicAuthString = jiraBasicAuthString;
+  }
+
+  public String getJiraBasicAuthString() {
+    return jiraBasicAuthString;
   }
 
   @DataBoundSetter
@@ -630,8 +641,8 @@ public class GitChangelogConfig implements Serializable {
         + jiraIssuePattern
         + ", jiraPassword="
         + jiraPassword
-        + ", basicAuthString="
-        + basicAuthString
+        + ", jiraBasicAuthStringCredentialsId="
+        + jiraBasicAuthStringCredentialsId
         + ", jiraServer="
         + jiraServer
         + ", jiraUsername="

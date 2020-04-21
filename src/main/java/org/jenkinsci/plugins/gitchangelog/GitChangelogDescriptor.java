@@ -37,6 +37,10 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     return CredentialsHelper.doFillUserNamePasswordCredentialsIdItems();
   }
 
+  public ListBoxModel doFillJiraBasicAuthStringCredentialsIdItems() {
+    return CredentialsHelper.doFillApiTokenCredentialsIdItems();
+  }
+
   @Override
   public String getDisplayName() {
     return "Git Changelog";
@@ -80,7 +84,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setJiraServer(formData.getString("jiraServer"));
     c.setJiraIssuePattern(formData.getString("jiraIssuePattern"));
     c.setJiraUsernamePasswordCredentialsId(formData.getString("jiraUsernamePasswordCredentialsId"));
-    c.setBasicAuthString(formData.getString("basicAuthString"));
+    c.setJiraBasicAuthStringCredentialsId(formData.getString("jiraBasicAuthStringCredentialsId"));
 
     c.setUseGitHub(formData.getBoolean("useGitHub"));
     c.setGitHubApi(formData.getString("gitHubApi"));

@@ -71,6 +71,14 @@ public class GitChangelogPerformer {
         configExpanded.setJiraUsername(token.getUsername());
         configExpanded.setJiraPassword(token.getPassword().getPlainText());
       }
+
+      final String getBasicAuthCredentialsId = configExpanded.getJiraBasicAuthStringCredentialsId();
+      final String secretString = findSecretString(getBasicAuthCredentialsId).orElse(null);
+      if (secretString == null) {
+        listener.getLogger().println("Jira basic auth, credential not found!");
+      } else {
+        configExpanded.setJiraBasicAuthString(secretString);
+      }
     }
   }
   /** Makes sure any Jenkins variable, used in the configuration fields, are evaluated. */
@@ -96,7 +104,8 @@ public class GitChangelogPerformer {
     c.setJiraIssuePattern(environment.expand(config.getJiraIssuePattern()));
     c.setJiraUsername(environment.expand(config.getJiraUsername()));
     c.setJiraPassword(environment.expand(config.getJiraPassword()));
-    c.setBasicAuthString(environment.expand(config.getBasicAuthString()));
+    c.setJiraBasicAuthStringCredentialsId(
+        environment.expand(config.getJiraBasicAuthStringCredentialsId()));
     c.setJiraUsernamePasswordCredentialsId(
         environment.expand(config.getJiraUsernamePasswordCredentialsId()));
 
