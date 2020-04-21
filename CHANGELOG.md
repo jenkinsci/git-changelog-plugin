@@ -1,6 +1,23 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 2.23
+### GitHub [#42](https://github.com/jenkinsci/git-changelog-plugin/pull/42) add support for jira api token  
+
+**Correcting regression from #42 reported in #44**
+
+
+[45a547887c386f8](https://github.com/jenkinsci/git-changelog-plugin/commit/45a547887c386f8) Tomas Bjerre *2020-04-21 17:09:55*
+
+
+### GitHub [#44](https://github.com/jenkinsci/git-changelog-plugin/issues/44) Unable to save job config when GIT Changelog plugin is used  
+
+**Correcting regression from #42 reported in #44**
+
+
+[45a547887c386f8](https://github.com/jenkinsci/git-changelog-plugin/commit/45a547887c386f8) Tomas Bjerre *2020-04-21 17:09:55*
+
+
 ## 2.22
 ### No issue
 
