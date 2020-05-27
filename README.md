@@ -140,13 +140,9 @@ Changelog of Git Changelog.
 
 ## Post-build action
 
-When the plugin is installed, it will add some new post build actions in Jenkins job configuration.
+When the plugin is installed, it will add a new post build action in Jenkins job configuration.
 
  * **Git Changelog** - Implements features from [git-changelog-lib](https://github.com/tomasbjerre/git-changelog-lib).
- * **Publish Git Changelog** - Implements features from [git-changelog](https://github.com/paulwellnerbou/git-changelog).
- * **Publish JIRA Filter** - Implements features from [git-changelog](https://github.com/paulwellnerbou/git-changelog).
-
-There are duplicated features here because this plugin is a merge of 2 plugins!
 
 ### Git Changelog
 
@@ -158,40 +154,6 @@ The changelog is created from parsing Git and rendering the template with a cont
 
 ![Tweak template](/doc/imgs/git-changelog-file.png)
 
-### Publish JIRA Filter
-The following documentation explains to set up the JIRA Filter post-build action. Using the basic changelog post-build action
-is even easier, as it does not need any further configuration.
-
-On any jenkins project using Git as Source Code Management, add "Publish JIRA Filter" Post-build Action. A form with a few
-input fields appears where you can configure the behaviour. Just below the input fields their meaning and default behaviour is
-explained.
-
-![](/doc/imgs/git-jira-log-post-build-action.png)
-
-If you leave the file input empty, the information will be logged into the jenkins console.
-
-![](/doc/imgs/git-jira-log-post-build-action-console.png)
-
-If you specify a filename, you can use other plugins like [HTML Publisher Plugin](https://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin)
-to save the files as jenkins report.
-
-### Publish Git Changelog
-
-A couple of revisions are configured and an output file will be created with the changes between them.
-
-![](/doc/imgs/publish-git-changelog.png)
-
-### Using as Token Macro Replacement Provider
-
-Having installed the [Token Macro Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Token+Macro+Plugin) plugin (which will be the case, as it is a dependency of this plugin), following macros for replacement are provided: <code>GITCHANGELOGJIRA</code> and <code>GITCHANGELOG</code>.
-
-The **Publish Git Changelog** provides macro `GITCHANGELOGJIRA` and **Publish JIRA Filter** provides macro `GITCHANGELOG`. The **Git Changelog** post-build step does not provide a macro, instead use pipelines!
-
-If you use these macros in any plugin supporting token macro replacements, this will be replaced with either the Jira URL or the changelog.
-
-The [Email-ext plugin](https://wiki.jenkins-ci.org/display/JENKINS/Email-ext+plugin) supports token macros, so you can include this URL
-in an automatically sent email.
-
 # Development
 
 This plugin can be built and started with maven and Jenkins' hpi plugin:
@@ -200,6 +162,6 @@ This plugin can be built and started with maven and Jenkins' hpi plugin:
 ./run.sh
 ```
 
-The functionality is implemented in [git-changelog](https://github.com/paulwellnerbou/git-changelog) and [git-changelog-lib](https://github.com/tomasbjerre/git-changelog-lib). Pull requests are welcome!
+The functionality is implemented in [git-changelog-lib](https://github.com/tomasbjerre/git-changelog-lib). Pull requests are welcome!
 
 
