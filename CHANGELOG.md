@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.0
+### GitHub [#41](https://github.com/jenkinsci/git-changelog-plugin/issues/41) not compatible jGIT 5 (latest git client plug ins)  
+
+**removing git-changelog #41**
+
+
+[19adf92d004aa3b](https://github.com/jenkinsci/git-changelog-plugin/commit/19adf92d004aa3b) Tomas Bjerre *2020-05-27 14:33:14*
+
+
 ## 2.23
 ### GitHub [#42](https://github.com/jenkinsci/git-changelog-plugin/pull/42) add support for jira api token  
 
