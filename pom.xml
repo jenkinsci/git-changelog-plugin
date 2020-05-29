@@ -21,7 +21,7 @@
 
     <groupId>de.wellnerbou.jenkins</groupId>
     <artifactId>git-changelog</artifactId>
-    <version>2.24-SNAPSHOT</version>
+    <version>3.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
     <name>Git Changelog</name>
@@ -152,12 +152,6 @@ Changelog of Git Changelog Plugin.
 
     <developers>
         <developer>
-            <id>paulwellnerbou</id>
-            <name>Paul Wellner Bou</name>
-            <email>paul@wellnerbou.de</email>
-            <url>http://paul.wellnerbou.de</url>
-        </developer>
-        <developer>
             <id>tomasbjerre</id>
             <name>Tomas Bjerre</name>
             <email>tomas.bjerre85@gmail.com</email>
@@ -176,11 +170,6 @@ Changelog of Git Changelog Plugin.
             <id>repo.jenkins-ci.org</id>
             <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
-        <repository>
-            <id>bintray-paulwellnerbou-maven</id>
-            <name>bintray</name>
-            <url>http://dl.bintray.com/paulwellnerbou/maven</url>
-        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -191,27 +180,10 @@ Changelog of Git Changelog Plugin.
     </pluginRepositories>
 
     <dependencies>
-        <!-- git-changelog depends on Guava 18, jenkins depends on Guava 11, 14
-            is a working compromise -->
         <dependency>
             <artifactId>guava</artifactId>
             <groupId>com.google.guava</groupId>
             <version>14.0</version>
-        </dependency>
-        <dependency>
-            <groupId>de.wellnerbou</groupId>
-            <artifactId>git-changelog</artifactId>
-            <version>2.3</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>httpclient</artifactId>
-                    <groupId>org.apache.httpcomponents</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>se.bjurr.gitchangelog</groupId>
@@ -288,19 +260,4 @@ Changelog of Git Changelog Plugin.
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>with-email-ext</id>
-            <!-- The email-ext plugin is a good way to test the token macro replacements. -->
-            <dependencies>
-                <dependency>
-                    <groupId>org.jenkins-ci.plugins</groupId>
-                    <artifactId>email-ext</artifactId>
-                    <version>2.40.5</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-
 </project>
