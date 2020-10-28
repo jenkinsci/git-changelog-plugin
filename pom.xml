@@ -13,10 +13,9 @@
         <findbugs.failOnError>false</findbugs.failOnError>
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <fmt>2.9</fmt>
-        <violations.version>1.36</violations.version>
+        <violations.version>1.42</violations.version>
         <changelog-lib>1.92</changelog-lib>
-        <changelog-plugin>1.61</changelog-plugin>
+        <changelog-plugin>1.62</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
@@ -104,7 +103,7 @@ Changelog of Git Changelog Plugin.
             <plugin>
                 <groupId>com.coveo</groupId>
                 <artifactId>fmt-maven-plugin</artifactId>
-                <version>${fmt}</version>
+                <version>2.9</version>
                 <executions>
                     <execution>
                         <goals>

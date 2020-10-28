@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### No issue
+
+**Rename jenkins/jnlp-slave -> jenkins/inbound-agent**
+
+
+[4618258d114168c](https://github.com/jenkinsci/git-changelog-plugin/commit/4618258d114168c) Sergey Slabnov *2020-10-17 20:44:56*
+
+
 ## 3.0
 ### GitHub [#41](https://github.com/jenkinsci/git-changelog-plugin/issues/41) not compatible jGIT 5 (latest git client plug ins)  
 
