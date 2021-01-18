@@ -5,6 +5,24 @@ Changelog of Git Changelog Plugin.
 ## Unreleased
  
   
+  
+### No issue
+  
+
+  
+**[maven-release-plugin] prepare for next development iteration**
+
+
+
+[92fe64450acc7a3](https://github.com/jenkinsci/git-changelog-plugin/commit/92fe64450acc7a3) Tomas Bjerre *2021-01-18 17:36:40*
+
+  
+
+ 
+
+## 3.1
+ 
+  
    
 ### GitHub [#52](https://github.com/jenkinsci/git-changelog-plugin/pull/52) Hacktoberfest - Rename jenkins/jnlp-slave -&gt; jenkins/inbound-agent    *hacktoberfest-accepted*  
    
@@ -25,9 +43,34 @@ Changelog of Git Changelog Plugin.
 
  
   
+   
+   
+### Jira changelog-3   
+   
+  
+  
+
+  
+**[maven-release-plugin] prepare release git-changelog-3.1**
+
+
+
+[7d17141e9491e51](https://github.com/jenkinsci/git-changelog-plugin/commit/7d17141e9491e51) Tomas Bjerre *2021-01-18 17:36:30*
+
+  
+
+ 
+  
   
 ### No issue
   
+
+  
+**Removing default ignore filter on message**
+
+
+
+[2a318eb88506081](https://github.com/jenkinsci/git-changelog-plugin/commit/2a318eb88506081) Tomas Bjerre *2021-01-18 17:35:02*
 
   
 **Cleanup**
