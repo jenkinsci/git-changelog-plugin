@@ -75,19 +75,19 @@ public class GitChangelogStep extends Step implements Serializable {
   private List<ExtendedVariableConfig> extendedVariables = new ArrayList<>();
 
   public List<ExtendedVariableConfig> getExtendedVariables() {
-    return extendedVariables;
+    return this.extendedVariables;
   }
 
   public String getRepo() {
-    return repo;
+    return this.repo;
   }
 
   public RefConfig getFrom() {
-    return from;
+    return this.from;
   }
 
   public RefConfig getTo() {
-    return to;
+    return this.to;
   }
 
   @DataBoundSetter
@@ -122,7 +122,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public GitLabConfig getGitLab() {
-    return gitLab;
+    return this.gitLab;
   }
 
   @DataBoundSetter
@@ -131,7 +131,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public String getIgnoreTagsIfNameMatches() {
-    return ignoreTagsIfNameMatches;
+    return this.ignoreTagsIfNameMatches;
   }
 
   @DataBoundSetter
@@ -140,7 +140,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public String getIgnoreCommitsIfMessageMatches() {
-    return ignoreCommitsIfMessageMatches;
+    return this.ignoreCommitsIfMessageMatches;
   }
 
   @DataBoundSetter
@@ -149,7 +149,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public String getIgnoreCommitsIfOlderThan() {
-    return ignoreCommitsIfOlderThan;
+    return this.ignoreCommitsIfOlderThan;
   }
 
   @DataBoundSetter
@@ -158,7 +158,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public String getUntaggedName() {
-    return untaggedName;
+    return this.untaggedName;
   }
 
   @DataBoundSetter
@@ -172,11 +172,11 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public String getTemplate() {
-    return template;
+    return this.template;
   }
 
   public String getReadableTagName() {
-    return readableTagName;
+    return this.readableTagName;
   }
 
   @DataBoundSetter
@@ -185,7 +185,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public String getDateFormat() {
-    return dateFormat;
+    return this.dateFormat;
   }
 
   @DataBoundSetter
@@ -194,7 +194,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public String getNoIssueName() {
-    return noIssueName;
+    return this.noIssueName;
   }
 
   @DataBoundSetter
@@ -203,7 +203,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public String getTimeZone() {
-    return timeZone;
+    return this.timeZone;
   }
 
   @DataBoundSetter
@@ -212,7 +212,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public boolean isRemoveIssueFromMessage() {
-    return removeIssueFromMessage != null && removeIssueFromMessage;
+    return this.removeIssueFromMessage != null && this.removeIssueFromMessage;
   }
 
   @DataBoundSetter
@@ -234,7 +234,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public JiraConfig getJira() {
-    return jira;
+    return this.jira;
   }
 
   @DataBoundSetter
@@ -250,7 +250,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public GitHubConfig getGitHub() {
-    return gitHub;
+    return this.gitHub;
   }
 
   @DataBoundSetter
@@ -259,11 +259,11 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public RETURN_TYPE getReturnType() {
-    return returnType;
+    return this.returnType;
   }
 
   public List<CustomIssueConfig> getCustomIssues() {
-    return customIssues;
+    return this.customIssues;
   }
 
   @DataBoundSetter
@@ -277,7 +277,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public boolean isIgnoreCommitsWithoutIssue() {
-    return ignoreCommitsWithoutIssue != null && ignoreCommitsWithoutIssue;
+    return this.ignoreCommitsWithoutIssue != null && this.ignoreCommitsWithoutIssue;
   }
 
   @DataBoundSetter
@@ -319,7 +319,7 @@ public class GitChangelogStep extends Step implements Serializable {
 
               @Override
               public Object call() throws Exception {
-                return perform(workspace);
+                return GitChangelogStep.this.perform(workspace);
               }
             };
 
@@ -331,79 +331,79 @@ public class GitChangelogStep extends Step implements Serializable {
   private Object perform(final FilePath workspace)
       throws ParseException, GitChangelogRepositoryException {
     Date ignoreCommitsIfOlderThanDate = null;
-    if (!isNullOrEmpty(ignoreCommitsIfOlderThan)) {
+    if (!isNullOrEmpty(this.ignoreCommitsIfOlderThan)) {
       final DateFormat format = new SimpleDateFormat(DEFAULT_DATEFORMAT, ENGLISH);
-      ignoreCommitsIfOlderThanDate = format.parse(ignoreCommitsIfOlderThan);
+      ignoreCommitsIfOlderThanDate = format.parse(this.ignoreCommitsIfOlderThan);
     }
-    final String remoteRepo = workspace.getRemote() + "/" + nullToEmpty(repo);
+    final String remoteRepo = workspace.getRemote() + "/" + nullToEmpty(this.repo);
     final GitChangelogApi b =
         gitChangelogApiBuilder() //
             .withFromRepo(remoteRepo) //
-            .withDateFormat(dateFormat) //
+            .withDateFormat(this.dateFormat) //
             .withIgnoreCommitsOlderThan(ignoreCommitsIfOlderThanDate) //
-            .withIgnoreCommitsWithMessage(nullToEmpty(ignoreCommitsIfMessageMatches)) //
+            .withIgnoreCommitsWithMessage(nullToEmpty(this.ignoreCommitsIfMessageMatches)) //
             .withIgnoreCommitsWithoutIssue(
-                ignoreCommitsWithoutIssue != null && ignoreCommitsWithoutIssue) //
-            .withIgnoreTagsIfNameMatches(ignoreTagsIfNameMatches) //
-            .withNoIssueName(noIssueName) //
-            .withReadableTagName(readableTagName) //
+                this.ignoreCommitsWithoutIssue != null && this.ignoreCommitsWithoutIssue) //
+            .withIgnoreTagsIfNameMatches(this.ignoreTagsIfNameMatches) //
+            .withNoIssueName(this.noIssueName) //
+            .withReadableTagName(this.readableTagName) //
             .withRemoveIssueFromMessageArgument(
-                removeIssueFromMessage != null && removeIssueFromMessage) //
-            .withTimeZone(timeZone) //
-            .withUntaggedName(untaggedName);
-    if (extendedVariables != null) {
+                this.removeIssueFromMessage != null && this.removeIssueFromMessage) //
+            .withTimeZone(this.timeZone) //
+            .withUntaggedName(this.untaggedName);
+    if (this.extendedVariables != null) {
       final Map<String, Object> extendedVariablesMap = new HashMap<>();
-      for (final ExtendedVariableConfig e : extendedVariables) {
+      for (final ExtendedVariableConfig e : this.extendedVariables) {
         extendedVariablesMap.put(e.getName(), e.getValue());
       }
       b.withExtendedVariables(extendedVariablesMap);
     }
-    if (from != null && from.getType() == COMMIT) {
-      b.withFromCommit(from.getValue());
+    if (this.from != null && this.from.getType() == COMMIT) {
+      b.withFromCommit(this.from.getValue());
     }
-    if (from != null && from.getType() == REF) {
-      b.withFromRef(from.getValue());
+    if (this.from != null && this.from.getType() == REF) {
+      b.withFromRef(this.from.getValue());
     }
-    if (to != null && to.getType() == COMMIT) {
-      b.withToCommit(to.getValue());
+    if (this.to != null && this.to.getType() == COMMIT) {
+      b.withToCommit(this.to.getValue());
     }
-    if (to != null && to.getType() == REF) {
-      b.withToRef(to.getValue());
+    if (this.to != null && this.to.getType() == REF) {
+      b.withToRef(this.to.getValue());
     }
-    for (final CustomIssueConfig issue : customIssues) {
+    for (final CustomIssueConfig issue : this.customIssues) {
       b.withCustomIssue(
           issue.getName(), issue.getIssuePattern(), issue.getLink(), issue.getTitle());
     }
-    if (gitHub != null) {
+    if (this.gitHub != null) {
       b //
-          .withGitHubApi(gitHub.getApi()) //
-          .withGitHubIssuePattern(gitHub.getIssuePattern()) //
-          .withGitHubToken(gitHub.getToken());
+          .withGitHubApi(this.gitHub.getApi()) //
+          .withGitHubIssuePattern(this.gitHub.getIssuePattern()) //
+          .withGitHubToken(this.gitHub.getToken());
     }
-    if (gitLab != null) {
+    if (this.gitLab != null) {
       b //
-          .withGitLabIssuePattern(gitLab.getIssuePattern()) //
-          .withGitLabProjectName(gitLab.getProjectName()) //
-          .withGitLabServer(gitLab.getServer()) //
-          .withGitLabToken(gitLab.getToken());
+          .withGitLabIssuePattern(this.gitLab.getIssuePattern()) //
+          .withGitLabProjectName(this.gitLab.getProjectName()) //
+          .withGitLabServer(this.gitLab.getServer()) //
+          .withGitLabToken(this.gitLab.getToken());
     }
 
-    if (jira != null) {
+    if (this.jira != null) {
 
       b //
-          .withJiraIssuePattern(jira.getIssuePattern()) //
-          .withJiraServer(jira.getServer()) //
-          .withJiraUsername(jira.getUsername()) //
-          .withJiraPassword(jira.getPassword())
-          .withJiraBasicAuthString(jira.getBasicAuthString());
+          .withJiraIssuePattern(this.jira.getIssuePattern()) //
+          .withJiraServer(this.jira.getServer()) //
+          .withJiraUsername(this.jira.getUsername()) //
+          .withJiraPassword(this.jira.getPassword())
+          .withJiraBasicAuthString(this.jira.getBasicAuthString());
     }
-    if (returnType == CONTEXT) {
-      return b.getChangelog(true);
+    if (this.returnType == CONTEXT) {
+      return b.getChangelog();
     } else {
-      if (isNullOrEmpty(template)) {
+      if (isNullOrEmpty(this.template)) {
         throw new RuntimeException("No template specified");
       }
-      return b.withTemplateContent(template) //
+      return b.withTemplateContent(this.template) //
           .render();
     }
   }
