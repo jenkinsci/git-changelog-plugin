@@ -1,6 +1,17 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.2
+### Jira JENKINS-65252   
+
+**pretty printing output JENKINS-65252**
+
+ * Avoiding additional linebreaks and whitepsaces:
+ * https://github.com/tomasbjerre/git-changelog-lib/commit/bea18ab90db148c
+
+[ca1221a23a65946](https://github.com/jenkinsci/git-changelog-plugin/commit/ca1221a23a65946) Tomas Bjerre *2021-03-29 15:52:06*
+
+
 ## 3.1
 ### GitHub [#52](https://github.com/jenkinsci/git-changelog-plugin/pull/52) Hacktoberfest - Rename jenkins/jnlp-slave -&gt; jenkins/inbound-agent    *hacktoberfest-accepted*  
 
