@@ -13,9 +13,9 @@
         <findbugs.failOnError>false</findbugs.failOnError>
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <violations.version>1.42</violations.version>
-        <changelog-lib>1.95</changelog-lib>
-        <changelog-plugin>1.67</changelog-plugin>
+        <violations.version>1.43</violations.version>
+        <changelog-lib>1.96</changelog-lib>
+        <changelog-plugin>1.68</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
@@ -61,6 +61,7 @@
                             <gitHubApi>https://api.github.com/repos/jenkinsci/git-changelog-plugin</gitHubApi>
                             <gitHubToken>${GITHUB_OAUTH2TOKEN}</gitHubToken>
                             <gitHubIssuePattern>#([0-9]*)</gitHubIssuePattern>
+                            <ignoreCommitsIfMessageMatches>^\[maven-release-plugin\].*</ignoreCommitsIfMessageMatches>
                             <templateContent>
                                 <![CDATA[
 # Changelog
