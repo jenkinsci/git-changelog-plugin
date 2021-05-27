@@ -14,7 +14,7 @@
 		 <f:entry>
 		  <f:textarea field="template" style="width: 100%; height: 300px"/>
 		  <f:description>
-		   The Mustache template that is rendered with the context from Git. The template and the context is documented <a href="https://github.com/tomasbjerre/git-changelog-lib" target="_blank">here</a>.
+		   The Handlebars template that is rendered with the context from Git. The template and the context is documented <a href="https://github.com/tomasbjerre/git-changelog-lib" target="_blank">here</a>.
 		  </f:description>
 		 </f:entry>
         </f:entry>
@@ -29,8 +29,28 @@
       </f:entry>
 
     </f:section>
-
-
+     
+    <!--f:optionalBlock checked="${!empty instance.repo}" title="Supply helpers to use with Handlebars template" inline="true">
+     <f:entry title="Helpers (Javascript)">
+      <f:textarea field="javascriptHelper" style="width: 100%; height: 300px"/>
+      <f:description>
+	      Custom Javascript helpers to use in Handlebars template, <a href="https://github.com/tomasbjerre/git-changelog-lib" target="_blank">documented here</a>.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock //-->
+    
+    <f:optionalBlock checked="${!empty instance.semanticMajorPattern}" title="Return semantic version" inline="true">
+     <f:entry title="Major version pattern">
+      <f:textbox field="semanticMajorPattern"/>
+     </f:entry>
+     <f:entry title="Minor version pattern">
+      <f:textbox field="semanticMinorPattern"/>
+      <f:description>
+	      Regular expression. If any commit since last release (highest semantic version Git tag) matches, plugin will step version.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+	     
     <f:section title="From">
      <f:entry>
       <f:property field="from"/>

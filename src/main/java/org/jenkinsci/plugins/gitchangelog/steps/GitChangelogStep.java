@@ -13,6 +13,7 @@ import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_DATEFOR
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.util.ListBoxModel;
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -73,6 +74,10 @@ public class GitChangelogStep extends Step implements Serializable {
   private List<CustomIssueConfig> customIssues = new ArrayList<>();
 
   private List<ExtendedVariableConfig> extendedVariables = new ArrayList<>();
+
+  private String javascriptHelper;
+  private String semanticMajorPattern;
+  private String semanticMinorPattern;
 
   public List<ExtendedVariableConfig> getExtendedVariables() {
     return this.extendedVariables;
@@ -211,6 +216,33 @@ public class GitChangelogStep extends Step implements Serializable {
     this.timeZone = emptyToNull(timeZone);
   }
 
+  public String getJavascriptHelper() {
+    return this.javascriptHelper;
+  }
+
+  @DataBoundSetter
+  public void setJavascriptHelper(final String javascriptHelper) {
+    this.javascriptHelper = emptyToNull(javascriptHelper);
+  }
+
+  public String getSemanticMajorPattern() {
+    return this.semanticMajorPattern;
+  }
+
+  @DataBoundSetter
+  public void setSemanticMajorPattern(final String semanticMajorPattern) {
+    this.semanticMajorPattern = emptyToNull(semanticMajorPattern);
+  }
+
+  public String getSemanticMinorPattern() {
+    return this.semanticMinorPattern;
+  }
+
+  @DataBoundSetter
+  public void setSemanticMinorPattern(final String semanticMinorPattern) {
+    this.semanticMinorPattern = emptyToNull(semanticMinorPattern);
+  }
+
   public boolean isRemoveIssueFromMessage() {
     return this.removeIssueFromMessage != null && this.removeIssueFromMessage;
   }
@@ -329,7 +361,7 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   private Object perform(final FilePath workspace)
-      throws ParseException, GitChangelogRepositoryException {
+      throws ParseException, GitChangelogRepositoryException, IOException {
     Date ignoreCommitsIfOlderThanDate = null;
     if (!isNullOrEmpty(this.ignoreCommitsIfOlderThan)) {
       final DateFormat format = new SimpleDateFormat(DEFAULT_DATEFORMAT, ENGLISH);
@@ -351,6 +383,15 @@ public class GitChangelogStep extends Step implements Serializable {
                 this.removeIssueFromMessage != null && this.removeIssueFromMessage) //
             .withTimeZone(this.timeZone) //
             .withUntaggedName(this.untaggedName);
+    if (this.javascriptHelper != null) {
+      b.withHandlebarsHelper(this.javascriptHelper);
+    }
+    if (emptyToNull(this.semanticMajorPattern) != null
+        && emptyToNull(this.semanticMinorPattern) != null) {
+      b //
+          .withSemanticMajorVersionPattern(this.semanticMajorPattern) //
+          .withSemanticMinorVersionPattern(this.semanticMinorPattern);
+    }
     if (this.extendedVariables != null) {
       final Map<String, Object> extendedVariablesMap = new HashMap<>();
       for (final ExtendedVariableConfig e : this.extendedVariables) {
@@ -396,6 +437,10 @@ public class GitChangelogStep extends Step implements Serializable {
           .withJiraUsername(this.jira.getUsername()) //
           .withJiraPassword(this.jira.getPassword())
           .withJiraBasicAuthString(this.jira.getBasicAuthString());
+    }
+    if (emptyToNull(this.semanticMajorPattern) != null
+        && emptyToNull(this.semanticMinorPattern) != null) {
+      return b.getNextSemanticVersion();
     }
     if (this.returnType == CONTEXT) {
       return b.getChangelog();
