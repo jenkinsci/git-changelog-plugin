@@ -1,6 +1,20 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.3
+### No issue
+
+**doc: add conventional commits to description**
+
+
+[867b695fa605dd1](https://github.com/jenkinsci/git-changelog-plugin/commit/867b695fa605dd1) Tomas Bjerre *2021-05-27 19:04:44*
+
+**feat: support conventional commits**
+
+
+[a90ee202c98da56](https://github.com/jenkinsci/git-changelog-plugin/commit/a90ee202c98da56) Tomas Bjerre *2021-05-27 18:57:46*
+
+
 ## 3.2
 ### Jira JENKINS-65252   
 
