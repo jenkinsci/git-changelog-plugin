@@ -24,7 +24,7 @@
     <packaging>hpi</packaging>
 
     <name>Git Changelog</name>
-    <description>Creates a changelog, or release notes, based on Git commits between 2 revisions</description>
+    <description>Creates a changelog, or release notes, based on Git commits between 2 revisions. Supports conventional commits and semantic versioning.</description>
     <url>https://github.com/jenkinsci/git-changelog-plugin</url>
 
     <ciManagement>
