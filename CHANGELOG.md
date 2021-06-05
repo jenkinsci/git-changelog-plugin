@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.5
+### No issue
+
+**feat: more helpers**
+
+
+[11949614b228831](https://github.com/jenkinsci/git-changelog-plugin/commit/11949614b228831) Tomas Bjerre *2021-06-05 04:15:12*
+
+
 ## 3.3
 ### No issue
 
