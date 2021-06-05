@@ -20,7 +20,7 @@
 
     <groupId>de.wellnerbou.jenkins</groupId>
     <artifactId>git-changelog</artifactId>
-    <version>3.4-SNAPSHOT</version>
+    <version>3.4</version>
     <packaging>hpi</packaging>
 
     <name>Git Changelog</name>
@@ -162,7 +162,7 @@ Changelog of Git Changelog Plugin.
         <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
         <url>git@github.com:jenkinsci/${project.artifactId}-plugin</url>
-        <tag>HEAD</tag>
+        <tag>git-changelog-3.4</tag>
     </scm>
 
     <repositories>
