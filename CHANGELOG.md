@@ -1,8 +1,13 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 3.6
 ### No issue
+
+**fix: NPE when given file has no parent**
+
+
+[de484ffbcfb0614](https://github.com/jenkinsci/git-changelog-plugin/commit/de484ffbcfb0614) Tomas Bjerre *2021-06-09 14:53:52*
 
 **fix: NPE when given file has no parent**
 
