@@ -14,8 +14,8 @@
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>1.43</violations.version>
-        <changelog-lib>1.152.1</changelog-lib>
-        <changelog-plugin>1.73</changelog-plugin>
+        <changelog-lib>1.153.0</changelog-lib>
+        <changelog-plugin>1.74</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
