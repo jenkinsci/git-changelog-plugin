@@ -3,7 +3,6 @@ package org.jenkinsci.plugins.gitchangelog.config;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.logging.Level.SEVERE;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_DATEFORMAT;
-import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_FILE;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_GITHUB_ISSUE_PATTERN;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_IGNORE_COMMITS_REGEXP;
 import static se.bjurr.gitchangelog.api.GitChangelogApiConstants.DEFAULT_JIRA_ISSUE_PATTEN;
@@ -41,7 +40,6 @@ public class GitChangelogConfigHelper {
 
   public static GitChangelogConfig createNewConfig() {
     final GitChangelogConfig config = new GitChangelogConfig();
-    config.setConfigFile(DEFAULT_FILE);
     config.setDateFormat(DEFAULT_DATEFORMAT);
     config.setSubDirectory("");
     config.setFile("CHANGELOG.html");
