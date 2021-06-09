@@ -1,8 +1,13 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 3.7
 ### No issue
+
+**fix: semantic version stepping**
+
+
+[13b944095404eb3](https://github.com/jenkinsci/git-changelog-plugin/commit/13b944095404eb3) Tomas Bjerre *2021-06-09 17:18:30*
 
 **fix: semantic version stepping**
 
