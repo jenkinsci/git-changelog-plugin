@@ -1,6 +1,20 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### No issue
+
+**fix: NPE when given file has no parent**
+
+
+[38cce00da0b8104](https://github.com/jenkinsci/git-changelog-plugin/commit/38cce00da0b8104) Tomas Bjerre *2021-06-09 14:47:55*
+
+**fix: when file was in a new folder, it created folder**
+
+
+[80f92d95bbc25b8](https://github.com/jenkinsci/git-changelog-plugin/commit/80f92d95bbc25b8) Tomas Bjerre *2021-06-09 14:40:31*
+
+
 ## 3.5
 ### No issue
 
