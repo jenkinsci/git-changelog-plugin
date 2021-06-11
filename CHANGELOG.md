@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.8
+### GitHub [#58](https://github.com/jenkinsci/git-changelog-plugin/issues/58) Since upgrading to 3.5 and then 3.7, the create file feature is not working.    *bug*  
+
+**fix: adding default changelog template jenkinsci/git-changelog-plugin#58**
+
+
+[b0caf1bbdda6135](https://github.com/jenkinsci/git-changelog-plugin/commit/b0caf1bbdda6135) Tomas Bjerre *2021-06-11 18:24:24*
+
+
 ## 3.7
 ### No issue
 
