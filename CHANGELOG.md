@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.9
+### GitHub [#60](https://github.com/jenkinsci/git-changelog-plugin/issues/60) ParseException: Unexpected End Of File    *bug*  
+
+**chore: more logging from Jira client (refs #60)**
+
+
+[d749274cb79b319](https://github.com/jenkinsci/git-changelog-plugin/commit/d749274cb79b319) Tomas Bjerre *2021-06-16 16:33:04*
+
+
 ## 3.8
 ### GitHub [#58](https://github.com/jenkinsci/git-changelog-plugin/issues/58) Since upgrading to 3.5 and then 3.7, the create file feature is not working.    *bug*  
 
