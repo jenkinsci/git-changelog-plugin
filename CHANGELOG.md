@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.10
+### No issue
+
+**fix: read template from file**
+
+
+[b115c8e51bb7cd5](https://github.com/jenkinsci/git-changelog-plugin/commit/b115c8e51bb7cd5) Tomas Bjerre *2021-06-17 16:41:30*
+
+
 ## 3.9
 ### GitHub [#60](https://github.com/jenkinsci/git-changelog-plugin/issues/60) ParseException: Unexpected End Of File    *bug*  
 
