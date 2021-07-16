@@ -107,11 +107,17 @@ node {
 By giving the plugin patterns, to match against commits, it can calculate next semantic version to use. This can be part of a release-pipeline, to automate version stepping. It will find the previous highest semantic Git tag and step it depending of matched patterns.
 
 ```groovy
-def nextVersion = gitChangelog semanticMajorPattern: '^[Bb]reaking.*', semanticMinorPattern: '^[Ff]eature.*'
+def nextVersion = getNextSemanticVersion()
 println "Next version:" + nextVersion.toString();
 println " Major:" + nextVersion.getMajor();
 println " Minor:" + nextVersion.getMinor();
 println " Patch:" + nextVersion.getPatch();
+```
+
+You can also specify custom regexp to match against commits:
+
+```groovy
+def nextVersion = getNextSemanticVersion majorPattern: '^[Bb]reaking.*', minorPattern: '^[Ff]eature.*'
 ```
 
 ### Templates

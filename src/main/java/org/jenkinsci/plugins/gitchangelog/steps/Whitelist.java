@@ -63,6 +63,10 @@ public class Whitelist extends ProxyWhitelist {
             "method se.bjurr.gitchangelog.api.model.Tag isHasTagTime",
             "method se.bjurr.gitchangelog.api.model.interfaces.IAuthors getAuthors",
             "method se.bjurr.gitchangelog.api.model.interfaces.ICommits getCommits",
-            "method se.bjurr.gitchangelog.api.model.interfaces.IIssues getIssues"));
+            "method se.bjurr.gitchangelog.api.model.interfaces.IIssues getIssues",
+            "method se.bjurr.gitchangelog.internal.semantic.SemanticVersion getMajor",
+            "method se.bjurr.gitchangelog.internal.semantic.SemanticVersion getMinor",
+            "method se.bjurr.gitchangelog.internal.semantic.SemanticVersion getPatch",
+            "method se.bjurr.gitchangelog.internal.semantic.SemanticVersion toString"));
   }
 }

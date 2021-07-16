@@ -9,3 +9,4 @@ se.bjurr.gitchangelog.api.model.IssueType
 se.bjurr.gitchangelog.api.model.Tag
 net.minidev.json.JSONArray
 net.sf.json.JSONArray
+se.bjurr.gitchangelog.internal.semantic.SemanticVersion

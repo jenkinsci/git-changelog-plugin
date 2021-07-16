@@ -76,8 +76,6 @@ public class GitChangelogStep extends Step implements Serializable {
   private List<ExtendedVariableConfig> extendedVariables = new ArrayList<>();
 
   private String javascriptHelper;
-  private String semanticMajorPattern;
-  private String semanticMinorPattern;
 
   public List<ExtendedVariableConfig> getExtendedVariables() {
     return this.extendedVariables;
@@ -225,24 +223,6 @@ public class GitChangelogStep extends Step implements Serializable {
     this.javascriptHelper = emptyToNull(javascriptHelper);
   }
 
-  public String getSemanticMajorPattern() {
-    return this.semanticMajorPattern;
-  }
-
-  @DataBoundSetter
-  public void setSemanticMajorPattern(final String semanticMajorPattern) {
-    this.semanticMajorPattern = emptyToNull(semanticMajorPattern);
-  }
-
-  public String getSemanticMinorPattern() {
-    return this.semanticMinorPattern;
-  }
-
-  @DataBoundSetter
-  public void setSemanticMinorPattern(final String semanticMinorPattern) {
-    this.semanticMinorPattern = emptyToNull(semanticMinorPattern);
-  }
-
   public boolean isRemoveIssueFromMessage() {
     return this.removeIssueFromMessage != null && this.removeIssueFromMessage;
   }
@@ -386,12 +366,6 @@ public class GitChangelogStep extends Step implements Serializable {
     if (this.javascriptHelper != null) {
       b.withHandlebarsHelper(this.javascriptHelper);
     }
-    if (emptyToNull(this.semanticMajorPattern) != null
-        && emptyToNull(this.semanticMinorPattern) != null) {
-      b //
-          .withSemanticMajorVersionPattern(this.semanticMajorPattern) //
-          .withSemanticMinorVersionPattern(this.semanticMinorPattern);
-    }
     if (this.extendedVariables != null) {
       final Map<String, Object> extendedVariablesMap = new HashMap<>();
       for (final ExtendedVariableConfig e : this.extendedVariables) {
@@ -437,10 +411,6 @@ public class GitChangelogStep extends Step implements Serializable {
           .withJiraUsername(this.jira.getUsername()) //
           .withJiraPassword(this.jira.getPassword())
           .withJiraBasicAuthString(this.jira.getBasicAuthString());
-    }
-    if (emptyToNull(this.semanticMajorPattern) != null
-        && emptyToNull(this.semanticMinorPattern) != null) {
-      return b.getNextSemanticVersion();
     }
     if (this.returnType == CONTEXT) {
       return b.getChangelog();

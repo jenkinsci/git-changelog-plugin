@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+
+    <f:optionalBlock checked="${!empty instance.majorPattern}" title="Major version pattern" inline="true">
+     <f:entry title="Major version pattern">
+      <f:textbox field="majorPattern"/>
+     </f:entry>
+     <f:description>
+      Optional regular expression. If any commit since last release (highest semantic version Git tag) matches, plugin will step version.
+     </f:description>
+    </f:optionalBlock>
+	     
+    <f:optionalBlock checked="${!empty instance.majorPattern}" title="Minor version pattern" inline="true">
+     <f:entry title="Minor version pattern">
+      <f:textbox field="minorPattern"/>
+     </f:entry>
+     <f:description>
+      Optional regular expression. If any commit since last release (highest semantic version Git tag) matches, plugin will step version.
+     </f:description>
+    </f:optionalBlock>
+	     
+    <f:optionalBlock checked="${!empty instance.from}" title="Specify from" inline="true">
+    <f:section title="From">
+     <f:entry>
+      <f:property field="from"/>
+     </f:entry>
+     <f:description>
+      Parse Git commits from this reference or commit.
+     </f:description>
+    </f:section>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.to}" title="Specify to" inline="true">
+    <f:section title="To">
+     <f:entry>
+      <f:property field="to"/>
+     </f:entry>
+     <f:description>
+      Parse Git commits to this reference or commit.
+     </f:description>
+    </f:section>
+    </f:optionalBlock>
+
+    <f:optionalBlock checked="${!empty instance.repo}" title="Specify repo location" inline="true">
+     <f:entry title="Repo">
+      <f:textbox field="repo"/>
+      <f:description>
+       Specifies where to look for a Git repo. Defaults to current directory.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+</j:jelly>
