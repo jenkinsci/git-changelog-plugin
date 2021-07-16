@@ -1,13 +1,13 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 3.11
 ### No issue
 
 **feat: getNextSemanticVersionStep**
 
 
-[7ee905ef9e435ee](https://github.com/jenkinsci/git-changelog-plugin/commit/7ee905ef9e435ee) Tomas Bjerre *2021-07-16 07:16:36*
+[f7bd0dbd91d669f](https://github.com/jenkinsci/git-changelog-plugin/commit/f7bd0dbd91d669f) Tomas Bjerre *2021-07-16 07:17:52*
 
 
 ## 3.10
