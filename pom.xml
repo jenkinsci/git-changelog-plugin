@@ -13,8 +13,8 @@
         <findbugs.failOnError>false</findbugs.failOnError>
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <violations.version>1.43</violations.version>
-        <changelog-lib>1.157.1</changelog-lib>
+        <violations.version>1.48</violations.version>
+        <changelog-lib>1.157.2</changelog-lib>
         <changelog-plugin>1.78</changelog-plugin>
     </properties>
 
