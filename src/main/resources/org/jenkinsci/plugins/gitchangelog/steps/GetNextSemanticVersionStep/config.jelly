@@ -11,7 +11,7 @@
      </f:description>
     </f:optionalBlock>
 	     
-    <f:optionalBlock checked="${!empty instance.majorPattern}" title="Minor version pattern" inline="true">
+    <f:optionalBlock checked="${!empty instance.minorPattern}" title="Minor version pattern" inline="true">
      <f:entry title="Minor version pattern">
       <f:textbox field="minorPattern"/>
      </f:entry>
@@ -20,6 +20,15 @@
      </f:description>
     </f:optionalBlock>
 	     
+    <f:optionalBlock checked="${!empty instance.patchPattern}" title="Patch version pattern" inline="true">
+     <f:entry title="Patch version pattern">
+      <f:textbox field="patchPattern"/>
+     </f:entry>
+     <f:description>
+      Optional regular expression. If any commit since last release (highest semantic version Git tag) matches, plugin will step version.
+     </f:description>
+    </f:optionalBlock>
+
     <f:optionalBlock checked="${!empty instance.from}" title="Specify from" inline="true">
     <f:section title="From">
      <f:entry>

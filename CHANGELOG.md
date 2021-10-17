@@ -29,7 +29,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 3.9
-### GitHub #60   
+### GitHub #60 ParseException: Unexpected End Of File    *bug*  
 
 **chore: more logging from Jira client (refs #60)**
 
@@ -38,7 +38,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 3.8
-### GitHub #58   
+### GitHub #58 Since upgrading to 3.5 and then 3.7, the create file feature is not working.    *bug*  
 
 **fix: adding default changelog template jenkinsci/git-changelog-plugin#58**
 
@@ -114,7 +114,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 3.1
-### GitHub #52   
+### GitHub #52 Hacktoberfest - Rename jenkins/jnlp-slave -&gt; jenkins/inbound-agent    *hacktoberfest-accepted*  
 
 **Merge pull request #52 from nwton/fixup_docker_images**
 
@@ -142,7 +142,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 3.0
-### GitHub #41   
+### GitHub #41 not compatible jGIT 5 (latest git client plug ins)  
 
 **removing git-changelog #41**
 
@@ -150,7 +150,7 @@ Changelog of Git Changelog Plugin.
 [19adf92d004aa3b](https://github.com/jenkinsci/git-changelog-plugin/commit/19adf92d004aa3b) Tomas Bjerre *2020-05-27 14:33:14*
 
 
-### GitHub #47   
+### GitHub #47 Removing git changelog  
 
 **Merge pull request #47 from jenkinsci/feature/removing-git-changelog**
 
@@ -160,7 +160,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.23
-### GitHub #42   
+### GitHub #42 add support for jira api token  
 
 **Correcting regression from #42 reported in #44**
 
@@ -168,7 +168,7 @@ Changelog of Git Changelog Plugin.
 [45a547887c386f8](https://github.com/jenkinsci/git-changelog-plugin/commit/45a547887c386f8) Tomas Bjerre *2020-04-21 17:09:55*
 
 
-### GitHub #44   
+### GitHub #44 Unable to save job config when GIT Changelog plugin is used  
 
 **Correcting regression from #42 reported in #44**
 
@@ -177,7 +177,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.22
-### GitHub #42   
+### GitHub #42 add support for jira api token  
 
 **Merge pull request #42 from nemui/JiraApiToken**
 
@@ -205,7 +205,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.21
-### GitHub #38   
+### GitHub #38 Build log exposes Jira credentials which was not the case in previous version.  
 
 **Removing Jira credentials from log #38**
 
@@ -214,7 +214,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.20
-### GitHub #36   
+### GitHub #36 Taking care of some SCA findings  
 
 **Merge pull request #36 from jenkinsci/feature/taking-care-of-some-sca**
 
@@ -271,7 +271,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.17
-### GitHub #34   
+### GitHub #34 please fix needed JAXB dependency for openjdk11    *bug*  
 
 **Removing dependency on javax.xml #34**
 
@@ -280,7 +280,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.16
-### GitHub #32   
+### GitHub #32 JEP-200 net.minidev.json.JSONArray    *bug*  
 
 **Allowing JSONArray #32**
 
@@ -297,7 +297,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.15
-### GitHub #30   
+### GitHub #30 Code Improvements  
 
 **Merge pull request #30 from darxriggs/code-cleanup**
 
@@ -393,7 +393,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.11
-### GitHub #29   
+### GitHub #29 Latest version is not rendering html on the build page    *bug*  
 
 **Re-enabling HTML on summary page #29**
 
@@ -420,7 +420,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.10
-### GitHub #27   
+### GitHub #27 Using Context in scripted pipeline requires script security approvals    *enhancement*  
 
 **Whitelisting context methods #27**
 
@@ -446,7 +446,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.8
-### GitHub #24   
+### GitHub #24 Wrong info for {{ownerName}} and {{repoName}} when Repo name has &#x27;.&#x27; in it    *bug*  
 
 **Correcting ownerName when dot in repo name #24**
 
@@ -463,7 +463,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.7
-### GitHub #11   
+### GitHub #11 Html incorrectly rendered in summary on job page  
 
 **Escaping HTML to avoid XSS**
 
@@ -481,7 +481,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.6
-### GitHub #22   
+### GitHub #22 JIRA issues in branch name not showing up in changelog  
 
 **Not ignoring commits, unless pattern supplied #22**
 
@@ -499,7 +499,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.4
-### GitHub #21   
+### GitHub #21 CustomIssue not working in Pipeline  
 
 **Correcting snippet generator for custom issues #21**
 
@@ -517,7 +517,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.2
-### GitHub #20   
+### GitHub #20 gitChangelog step not working with slaves  
 
 **Second correction file path on remote agents #20**
 
@@ -526,7 +526,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.1
-### GitHub #20   
+### GitHub #20 gitChangelog step not working with slaves  
 
 **Correct file path on remote agents #20**
 
@@ -535,7 +535,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 2.0
-### GitHub #18   
+### GitHub #18 Pipeline/Job DSL configuration is confusing    *enhancement*  
 
 **Adding steps #18**
 
@@ -592,7 +592,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.54
-### GitHub #15   
+### GitHub #15 Plugin holding open files? Unable to delete windows workspace due to busy git pack file    *bug*  
 
 **Closing RevWalk JENKINS-19994 #15**
 
@@ -694,7 +694,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.48
-### GitHub #11   
+### GitHub #11 Html incorrectly rendered in summary on job page  
 
 **Not escaping HTML in symmary #11**
 
@@ -770,7 +770,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.41
-### GitHub #9   
+### GitHub #9 Choose git ref or commit using job DSL  
 
 **Merge pull request #9 from Jerbell/bugfix/chooseFromReferenceAndToReference**
 
@@ -824,7 +824,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.34
-### GitHub #7   
+### GitHub #7 Pipeline and job-dsl compatibility    *enhancement*  
 
 **Making it compatible with Job DSL and Pipeline Plugins #7**
 
@@ -911,7 +911,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.23
-### GitHub #4   
+### GitHub #4 add the ability to do a changelog in a subdirectory of the workspace  
 
 **Merge pull request #4 from s3r3n3-1/master**
 
@@ -1117,7 +1117,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.4
-### GitHub #5   
+### GitHub #5 Add support for getting changelog between two commit ids    *bug*  
 
 **Added variables: messageTitle, messageBody, messageItems #5**
 
@@ -1134,7 +1134,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.3
-### GitHub #2   
+### GitHub #2 JENKINS-32111 Making changelog task applicable for all project types  
 
 **Merge pull request #2 from tomasbjerre/master**
 
@@ -1173,7 +1173,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.2
-### GitHub #1   
+### GitHub #1 Git Changelog Lib 1.18    *enhancement*  
 
 **Merge pull request #1 from tomasbjerre/master**
 
@@ -1206,7 +1206,7 @@ Changelog of Git Changelog Plugin.
 
 
 ## 1.1
-### GitHub #1   
+### GitHub #1 Git Changelog Lib 1.18    *enhancement*  
 
 **Merge pull request #2 from paulwellnerbou/bugfix-jenkins-slave**
 
@@ -1230,7 +1230,7 @@ Changelog of Git Changelog Plugin.
 [735fac36b0871ef](https://github.com/jenkinsci/git-changelog-plugin/commit/735fac36b0871ef) Paul Wellner Bou *2015-10-01 10:56:19*
 
 
-### GitHub #2   
+### GitHub #2 JENKINS-32111 Making changelog task applicable for all project types  
 
 **Merge pull request #2 from paulwellnerbou/bugfix-jenkins-slave**
 

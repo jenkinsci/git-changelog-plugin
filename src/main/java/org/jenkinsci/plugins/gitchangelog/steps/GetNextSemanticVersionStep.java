@@ -34,6 +34,7 @@ public class GetNextSemanticVersionStep extends Step implements Serializable {
 
   private String majorPattern;
   private String minorPattern;
+  private String patchPattern;
 
   public String getRepo() {
     return this.repo;
@@ -88,6 +89,15 @@ public class GetNextSemanticVersionStep extends Step implements Serializable {
     this.minorPattern = emptyToNull(minorPattern);
   }
 
+  public String getPatchPattern() {
+    return this.patchPattern;
+  }
+
+  @DataBoundSetter
+  public void setPatchPattern(final String patchPattern) {
+    this.patchPattern = emptyToNull(patchPattern);
+  }
+
   @DataBoundConstructor
   public GetNextSemanticVersionStep() {}
 
@@ -136,6 +146,9 @@ public class GetNextSemanticVersionStep extends Step implements Serializable {
     }
     if (emptyToNull(this.minorPattern) != null) {
       b.withSemanticMinorVersionPattern(this.minorPattern);
+    }
+    if (emptyToNull(this.patchPattern) != null) {
+      b.withSemanticPatchVersionPattern(this.patchPattern);
     }
     if (this.from != null && this.from.getType() == COMMIT) {
       b.withFromCommit(this.from.getValue());

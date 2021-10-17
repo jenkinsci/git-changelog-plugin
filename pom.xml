@@ -14,7 +14,7 @@
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>1.48</violations.version>
-        <changelog-lib>1.157.2</changelog-lib>
+        <changelog-lib>1.158.4</changelog-lib>
         <changelog-plugin>1.78</changelog-plugin>
     </properties>
 
@@ -58,8 +58,6 @@
                         </goals>
                         <configuration>
                             <readableTagName>-([^-]+?)$</readableTagName>
-                            <gitHubApi>https://api.github.com/repos/jenkinsci/git-changelog-plugin</gitHubApi>
-                            <gitHubToken>${GITHUB_OAUTH2TOKEN}</gitHubToken>
                             <gitHubIssuePattern>#([0-9]*)</gitHubIssuePattern>
                             <ignoreCommitsIfMessageMatches>^\[maven-release-plugin\].*</ignoreCommitsIfMessageMatches>
                             <templateContent>
@@ -71,12 +69,7 @@ Changelog of Git Changelog Plugin.
 ## {{name}}
  {{#issues}}
   {{#hasIssue}}
-   {{#hasLink}}
-### {{name}} [{{issue}}]({{link}}) {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
-   {{/hasLink}}
-   {{^hasLink}}
 ### {{name}} {{issue}} {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
-   {{/hasLink}}
   {{/hasIssue}}
   {{^hasIssue}}
 ### {{name}}

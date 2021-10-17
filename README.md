@@ -117,7 +117,9 @@ println " Patch:" + nextVersion.getPatch();
 You can also specify custom regexp to match against commits:
 
 ```groovy
-def nextVersion = getNextSemanticVersion majorPattern: '^[Bb]reaking.*', minorPattern: '^[Ff]eature.*'
+def nextVersion = getNextSemanticVersion majorPattern: '^[Bb]reaking.*',
+    minorPattern: '^[Ff]eature.*',
+    patchPattern: '^[Ff]ix.*'
 ```
 
 ### Templates
