@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.13
+### No issue
+
+**feat: only step patch if matching pattern**
+
+
+[a78a06f23bf6b44](https://github.com/jenkinsci/git-changelog-plugin/commit/a78a06f23bf6b44) Tomas Bjerre *2021-10-17 15:30:09*
+
+
 ## 3.12
 ### No issue
 
