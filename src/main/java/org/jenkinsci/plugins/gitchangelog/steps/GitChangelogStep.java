@@ -411,6 +411,7 @@ public class GitChangelogStep extends Step implements Serializable {
           .withJiraUsername(this.jira.getUsername()) //
           .withJiraPassword(this.jira.getPassword())
           .withJiraBasicAuthString(this.jira.getBasicAuthString());
+          .withJiraBearer(this.jira.getBearer());
     }
     if (this.returnType == CONTEXT) {
       return b.getChangelog();
