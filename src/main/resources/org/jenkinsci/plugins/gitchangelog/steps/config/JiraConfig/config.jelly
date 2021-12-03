@@ -28,4 +28,10 @@
       <f:password field="basicAuthString"/>
     </f:entry>
 
+    <f:entry title="Personal Access Token">
+      <f:password field="bearer"/>
+      <f:description>
+       Bearer authorization token
+      </f:description>
+    </f:entry>
 </j:jelly>

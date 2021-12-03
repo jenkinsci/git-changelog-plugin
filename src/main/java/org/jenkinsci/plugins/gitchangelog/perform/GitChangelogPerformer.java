@@ -79,8 +79,17 @@ public class GitChangelogPerformer {
       } else {
         configExpanded.setJiraBasicAuthString(secretString);
       }
+
+      final String getBearerCredentialsId = configExpanded.getJiraBearerCredentialsId();
+      final String secretBearerString = findSecretString(getBearerCredentialsId).orElse(null);
+      if (secretBearerString == null) {
+        listener.getLogger().println("Jira Bearer auth, credential not found!");
+      } else {
+        configExpanded.setJiraBearer(secretBearerString);
+      }
     }
   }
+
   /** Makes sure any Jenkins variable, used in the configuration fields, are evaluated. */
   private static GitChangelogConfig expand(
       final GitChangelogConfig config, final EnvVars environment) {
@@ -108,6 +117,7 @@ public class GitChangelogPerformer {
         environment.expand(config.getJiraBasicAuthStringCredentialsId()));
     c.setJiraUsernamePasswordCredentialsId(
         environment.expand(config.getJiraUsernamePasswordCredentialsId()));
+    c.setJiraBearerCredentialsId(environment.expand(config.getJiraBearerCredentialsId()));
 
     c.setUseGitHub(config.isUseGitHub());
     c.setGitHubApi(environment.expand(config.getGitHubApi()));

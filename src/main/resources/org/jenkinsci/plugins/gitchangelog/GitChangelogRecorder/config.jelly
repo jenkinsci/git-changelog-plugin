@@ -232,6 +232,10 @@
         <f:entry title="Basic Auth String" field="jiraBasicAuthStringCredentialsId">
           <c:select default="${config.jiraBasicAuthStringCredentialsId}" />
         </f:entry>
+
+        <f:entry title="Personal Access Token" field="jiraBearerCredentialsId">
+          <c:select default="${config.jiraBearerCredentialsId}" />
+        </f:entry>
         
       </f:optionalBlock>
       <f:description>
