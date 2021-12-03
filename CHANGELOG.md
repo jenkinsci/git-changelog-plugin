@@ -1,7 +1,7 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
-## Unreleased
+## 3.14
 ### GitHub #64 feat: Support bearer authorization to Jira  
 
 **Merge pull request #64 from rimuln/feature/13**
@@ -12,6 +12,11 @@ Changelog of Git Changelog Plugin.
 
 
 ### No issue
+
+**stepping lib version**
+
+
+[665850a85c3a0e8](https://github.com/jenkinsci/git-changelog-plugin/commit/665850a85c3a0e8) Tomas Bjerre *2021-12-03 17:34:43*
 
 **feat: Support bearer authorization to Jira**
 
