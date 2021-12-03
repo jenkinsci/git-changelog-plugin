@@ -1,6 +1,30 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## Unreleased
+### GitHub #64 feat: Support bearer authorization to Jira  
+
+**Merge pull request #64 from rimuln/feature/13**
+
+ * feat: Support bearer authorization to Jira
+
+[834defbcaec2582](https://github.com/jenkinsci/git-changelog-plugin/commit/834defbcaec2582) Tomas Bjerre *2021-12-03 17:31:02*
+
+
+### No issue
+
+**feat: Support bearer authorization to Jira**
+
+ * -fixed compile error after revert formating
+
+[65aeab5eb2526ca](https://github.com/jenkinsci/git-changelog-plugin/commit/65aeab5eb2526ca) Lumír Návrat *2021-12-01 23:58:56*
+
+**feat: Support bearer authorization to Jira**
+
+
+[72de260b3f68850](https://github.com/jenkinsci/git-changelog-plugin/commit/72de260b3f68850) Lumír Návrat *2021-12-01 23:35:27*
+
+
 ## 3.13
 ### No issue
 
