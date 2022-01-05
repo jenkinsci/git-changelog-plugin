@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.15
+### GitHub #65 Issue duplication    *bug*  
+
+**fix: only parse enabled issues (refs #65)**
+
+
+[6bf43275ae2285a](https://github.com/jenkinsci/git-changelog-plugin/commit/6bf43275ae2285a) Tomas Bjerre *2022-01-05 15:43:59*
+
+
 ## 3.14
 ### GitHub #64 feat: Support bearer authorization to Jira  
 
