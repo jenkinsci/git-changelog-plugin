@@ -14,8 +14,8 @@
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>1.48</violations.version>
-        <changelog-lib>1.162.0</changelog-lib>
-        <changelog-plugin>1.81</changelog-plugin>
+        <changelog-lib>1.163.3</changelog-lib>
+        <changelog-plugin>1.84</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
@@ -58,6 +58,8 @@
                         </goals>
                         <configuration>
                             <readableTagName>-([^-]+?)$</readableTagName>
+                            <jiraEnabled>true</jiraEnabled>
+                            <gitHubEnabled>true</gitHubEnabled>
                             <gitHubIssuePattern>#([0-9]*)</gitHubIssuePattern>
                             <ignoreCommitsIfMessageMatches>^\[maven-release-plugin\].*</ignoreCommitsIfMessageMatches>
                             <templateContent>

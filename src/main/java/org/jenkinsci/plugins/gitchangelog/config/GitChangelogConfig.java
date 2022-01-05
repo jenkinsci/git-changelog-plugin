@@ -220,11 +220,11 @@ public class GitChangelogConfig implements Serializable {
   }
 
   public String getJiraBasicAuthStringCredentialsId() {
-    return jiraBasicAuthStringCredentialsId;
+    return this.jiraBasicAuthStringCredentialsId;
   }
 
   public String getJiraBearerCredentialsId() {
-    return jiraBearerCredentialsId;
+    return this.jiraBearerCredentialsId;
   }
 
   public String getJiraServer() {
@@ -404,19 +404,19 @@ public class GitChangelogConfig implements Serializable {
   }
 
   public boolean isUseGitLab() {
-    return useGitLab;
+    return this.useGitLab;
   }
 
   public String getGitLabProjectName() {
-    return gitLabProjectName;
+    return this.gitLabProjectName;
   }
 
   public String getGitLabServer() {
-    return gitLabServer;
+    return this.gitLabServer;
   }
 
   public String getGitLabToken() {
-    return gitLabToken;
+    return this.gitLabToken;
   }
 
   @DataBoundSetter
@@ -450,12 +450,12 @@ public class GitChangelogConfig implements Serializable {
   }
 
   @DataBoundSetter
-  public void setJiraBasicAuthStringCredentialsId(String jiraBasicAuthStringCredentialsId) {
+  public void setJiraBasicAuthStringCredentialsId(final String jiraBasicAuthStringCredentialsId) {
     this.jiraBasicAuthStringCredentialsId = jiraBasicAuthStringCredentialsId;
   }
 
   @DataBoundSetter
-  public void setJiraBearerCredentialsId(String jiraBearerCredentialsId) {
+  public void setJiraBearerCredentialsId(final String jiraBearerCredentialsId) {
     this.jiraBearerCredentialsId = jiraBearerCredentialsId;
   }
 
@@ -470,21 +470,21 @@ public class GitChangelogConfig implements Serializable {
   }
 
   @DataBoundSetter
-  public void setJiraBasicAuthString(String jiraBasicAuthString) {
+  public void setJiraBasicAuthString(final String jiraBasicAuthString) {
     this.jiraBasicAuthString = jiraBasicAuthString;
   }
 
   public String getJiraBasicAuthString() {
-    return jiraBasicAuthString;
+    return this.jiraBasicAuthString;
   }
 
   @DataBoundSetter
-  public void setJiraBearer(String jiraBearer) {
+  public void setJiraBearer(final String jiraBearer) {
     this.jiraBearer = jiraBearer;
   }
 
   public String getJiraBearer() {
-    return jiraBearer;
+    return this.jiraBearer;
   }
 
   @DataBoundSetter
@@ -591,11 +591,11 @@ public class GitChangelogConfig implements Serializable {
   }
 
   public String getGitHubApiTokenCredentialsId() {
-    return gitHubApiTokenCredentialsId;
+    return this.gitHubApiTokenCredentialsId;
   }
 
   public String getGitLabApiTokenCredentialsId() {
-    return gitLabApiTokenCredentialsId;
+    return this.gitLabApiTokenCredentialsId;
   }
 
   @DataBoundSetter
@@ -614,107 +614,107 @@ public class GitChangelogConfig implements Serializable {
   }
 
   public String getJiraUsernamePasswordCredentialsId() {
-    return jiraUsernamePasswordCredentialsId;
+    return this.jiraUsernamePasswordCredentialsId;
   }
 
   @Override
   public String toString() {
     return "GitChangelogConfig [configFile="
-        + configFile
+        + this.configFile
         + ", createFileTemplateContent="
-        + createFileTemplateContent
+        + this.createFileTemplateContent
         + ", createFileTemplateFile="
-        + createFileTemplateFile
+        + this.createFileTemplateFile
         + ", createFileUseTemplateContent="
-        + createFileUseTemplateContent
+        + this.createFileUseTemplateContent
         + ", createFileUseTemplateFile="
-        + createFileUseTemplateFile
+        + this.createFileUseTemplateFile
         + ", customIssues="
-        + customIssues
+        + this.customIssues
         + ", dateFormat="
-        + dateFormat
+        + this.dateFormat
         + ", file="
-        + file
+        + this.file
         + ", fromReference="
-        + fromReference
+        + this.fromReference
         + ", fromType="
-        + fromType
+        + this.fromType
         + ", gitHubApi="
-        + gitHubApi
+        + this.gitHubApi
         + ", gitHubIssuePattern="
-        + gitHubIssuePattern
+        + this.gitHubIssuePattern
         + ", gitHubToken="
-        + gitHubToken
+        + this.gitHubToken
         + ", gitLabServer="
-        + gitLabServer
+        + this.gitLabServer
         + ", gitLabProjectName="
-        + gitLabProjectName
+        + this.gitLabProjectName
         + ", gitLabToken="
-        + gitLabToken
+        + this.gitLabToken
         + ", useGitLab="
-        + useGitLab
+        + this.useGitLab
         + ", ignoreCommitsIfMessageMatches="
-        + ignoreCommitsIfMessageMatches
+        + this.ignoreCommitsIfMessageMatches
         + ", ignoreCommitsWithoutIssue="
-        + ignoreCommitsWithoutIssue
+        + this.ignoreCommitsWithoutIssue
         + ", ignoreTagsIfNameMatches="
-        + ignoreTagsIfNameMatches
+        + this.ignoreTagsIfNameMatches
         + ", jiraIssuePattern="
-        + jiraIssuePattern
+        + this.jiraIssuePattern
         + ", jiraPassword="
-        + jiraPassword
+        + this.jiraPassword
         + ", jiraBasicAuthStringCredentialsId="
-        + jiraBasicAuthStringCredentialsId
+        + this.jiraBasicAuthStringCredentialsId
         + ", jiraBearerCredentialsId="
-        + jiraBearerCredentialsId
+        + this.jiraBearerCredentialsId
         + ", jiraServer="
-        + jiraServer
+        + this.jiraServer
         + ", jiraUsername="
-        + jiraUsername
+        + this.jiraUsername
         + ", jiraUsernamePasswordCredentialsId="
-        + jiraUsernamePasswordCredentialsId
+        + this.jiraUsernamePasswordCredentialsId
         + ", noIssueName="
-        + noIssueName
+        + this.noIssueName
         + ", readableTagName="
-        + readableTagName
+        + this.readableTagName
         + ", showSummary="
-        + showSummary
+        + this.showSummary
         + ", showSummaryTemplateContent="
-        + showSummaryTemplateContent
+        + this.showSummaryTemplateContent
         + ", showSummaryTemplateFile="
-        + showSummaryTemplateFile
+        + this.showSummaryTemplateFile
         + ", showSummaryUseTemplateContent="
-        + showSummaryUseTemplateContent
+        + this.showSummaryUseTemplateContent
         + ", showSummaryUseTemplateFile="
-        + showSummaryUseTemplateFile
+        + this.showSummaryUseTemplateFile
         + ", subDirectory="
-        + subDirectory
+        + this.subDirectory
         + ", timeZone="
-        + timeZone
+        + this.timeZone
         + ", toReference="
-        + toReference
+        + this.toReference
         + ", toType="
-        + toType
+        + this.toType
         + ", untaggedName="
-        + untaggedName
+        + this.untaggedName
         + ", useConfigFile="
-        + useConfigFile
+        + this.useConfigFile
         + ", useFile="
-        + useFile
+        + this.useFile
         + ", useGitHub="
-        + useGitHub
+        + this.useGitHub
         + ", useIgnoreTagsIfNameMatches="
-        + useIgnoreTagsIfNameMatches
+        + this.useIgnoreTagsIfNameMatches
         + ", useJira="
-        + useJira
+        + this.useJira
         + ", useReadableTagName="
-        + useReadableTagName
+        + this.useReadableTagName
         + ", useSubDirectory="
-        + useSubDirectory
+        + this.useSubDirectory
         + ", gitHubApiTokenCredentialsId="
-        + gitHubApiTokenCredentialsId
+        + this.gitHubApiTokenCredentialsId
         + ", gitLabApiTokenCredentialsId="
-        + gitLabApiTokenCredentialsId
+        + this.gitLabApiTokenCredentialsId
         + "]";
   }
 }

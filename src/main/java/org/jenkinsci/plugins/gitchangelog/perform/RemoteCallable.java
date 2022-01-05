@@ -74,6 +74,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
       if (this.config.isUseJira()) {
         gitChangelogApiBuilder //
+            .withJiraEnabled(true)
             .withJiraServer(this.config.getJiraServer()) //
             .withJiraIssuePattern(this.config.getJiraIssuePattern()) //
             .withJiraUsername(this.config.getJiraUsername()) //
@@ -84,6 +85,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
       if (this.config.isUseGitHub()) {
         gitChangelogApiBuilder //
+            .withGitHubEnabled(true)
             .withGitHubApi(this.config.getGitHubApi()) //
             .withGitHubIssuePattern(this.config.getGitHubIssuePattern()) //
             .withGitHubToken(this.config.getGitHubToken());
@@ -91,6 +93,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
 
       if (this.config.isUseGitLab()) {
         gitChangelogApiBuilder //
+            .withGitLabEnabled(true)
             .withGitLabServer(this.config.getGitLabServer()) //
             .withGitLabProjectName(this.config.getGitLabProjectName()) //
             .withGitLabToken(this.config.getGitLabToken());

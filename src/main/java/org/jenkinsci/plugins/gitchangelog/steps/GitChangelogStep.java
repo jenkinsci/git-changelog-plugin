@@ -391,12 +391,14 @@ public class GitChangelogStep extends Step implements Serializable {
     }
     if (this.gitHub != null) {
       b //
+          .withGitHubEnabled(true)
           .withGitHubApi(this.gitHub.getApi()) //
           .withGitHubIssuePattern(this.gitHub.getIssuePattern()) //
           .withGitHubToken(this.gitHub.getToken());
     }
     if (this.gitLab != null) {
       b //
+          .withGitLabEnabled(true)
           .withGitLabIssuePattern(this.gitLab.getIssuePattern()) //
           .withGitLabProjectName(this.gitLab.getProjectName()) //
           .withGitLabServer(this.gitLab.getServer()) //
@@ -404,8 +406,8 @@ public class GitChangelogStep extends Step implements Serializable {
     }
 
     if (this.jira != null) {
-
       b //
+          .withJiraEnabled(true)
           .withJiraIssuePattern(this.jira.getIssuePattern()) //
           .withJiraServer(this.jira.getServer()) //
           .withJiraUsername(this.jira.getUsername()) //
