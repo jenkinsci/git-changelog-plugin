@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.18
+### No issue
+
+**fix: parsing scopes**
+
+
+[935bfff78608ac7](https://github.com/jenkinsci/git-changelog-plugin/commit/935bfff78608ac7) Tomas Bjerre *2022-01-20 15:23:16*
+
+
 ## 3.16
 ### No issue
 
