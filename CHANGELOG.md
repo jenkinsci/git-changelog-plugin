@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.19
+### GitHub #66   
+
+**feat: getHighestSemanticVersion (refs #66)**
+
+
+[e876d7748dbd25d](https://github.com/jenkinsci/git-changelog-plugin/commit/e876d7748dbd25d) Tomas Bjerre *2022-02-12 06:20:18*
+
+
 ## 3.18
 ### No issue
 
