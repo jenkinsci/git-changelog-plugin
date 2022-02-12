@@ -122,6 +122,19 @@ def nextVersion = getNextSemanticVersion majorPattern: '^[Bb]reaking.*',
     patchPattern: '^[Ff]ix.*'
 ```
 
+### Determine highest version from commit messages
+
+The plugin can find the previous highest semantic Git tag and provide major/minor/path numbers as well as the tag.
+
+```groovy
+def highestVersion = getHighestSemanticVersion()
+println "Highest version:" + highestVersion.toString();
+println " Major:" + highestVersion.getMajor();
+println " Minor:" + highestVersion.getMinor();
+println " Patch:" + highestVersion.getPatch();
+println " Git tag:" + highestVersion.findTag().orElse("");
+```
+
 ### Templates
 
 The template and context is [documented here](https://github.com/tomasbjerre/git-changelog-lib).
