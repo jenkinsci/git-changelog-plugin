@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.20
+### No issue
+
+**fix: include tag on first commit**
+
+
+[5f8e833d2979540](https://github.com/jenkinsci/git-changelog-plugin/commit/5f8e833d2979540) Tomas Bjerre *2022-02-15 16:45:03*
+
+
 ## 3.19
 ### GitHub #66   
 
