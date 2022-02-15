@@ -14,7 +14,7 @@
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>1.48</violations.version>
-        <changelog-lib>1.164.3</changelog-lib>
+        <changelog-lib>1.164.4</changelog-lib>
         <changelog-plugin>1.88</changelog-plugin>
     </properties>
 
