@@ -99,6 +99,16 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
             .withGitLabToken(this.config.getGitLabToken());
       }
 
+      if (this.config.isUseRedmine()) {
+        gitChangelogApiBuilder //
+                .withRedmineEnabled(true)
+                .withRedmineServer(this.config.getRedmineServer()) //
+                .withRedmineIssuePattern(this.config.getRedmineIssuePattern()) //
+                .withRedmineUsername(this.config.getRedmineUsername()) //
+                .withRedminePassword(this.config.getRedminePassword())
+                .withRedmineToken(this.config.getRedmineToken());
+      }
+
       if (this.config.isUseReadableTagName() && !isNullOrEmpty(this.config.getReadableTagName())) {
         gitChangelogApiBuilder.withReadableTagName(this.config.getReadableTagName());
       }

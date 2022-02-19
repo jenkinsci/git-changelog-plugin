@@ -84,6 +84,15 @@
       Integrate with GitHub to get titles of issues.
      </f:description>
     </f:optionalBlock>
+
+    <f:optionalBlock checked="${!empty instance.redmine}" title="Redmine" inline="true">
+        <f:entry>
+            <f:property field="redmine"/>
+        </f:entry>
+        <f:description>
+            Integrate with Redmine to get titles of issues.
+        </f:description>
+    </f:optionalBlock>
     
      <f:entry title="Custom Issues">
         <f:repeatableProperty field="customIssues">

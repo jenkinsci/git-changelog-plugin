@@ -38,6 +38,13 @@ public class GitChangelogConfig implements Serializable {
   private transient String jiraBasicAuthString;
   private String jiraBearerCredentialsId;
   private transient String jiraBearer;
+  private String redmineIssuePattern;
+  private transient String redminePassword;
+  private transient String redmineToken;
+  private String redmineServer;
+  private String redmineUsername;
+  private String redmineUserNamePasswordCredentialsId;
+  private String redmineTokenCredentialsId;
   private String noIssueName;
   private String readableTagName;
   private boolean showSummary;
@@ -55,6 +62,7 @@ public class GitChangelogConfig implements Serializable {
   private boolean useGitHub;
   private boolean useIgnoreTagsIfNameMatches;
   private boolean useJira;
+  private boolean useRedmine;
   private boolean useReadableTagName;
   private boolean useSubDirectory;
   private String gitHubApiTokenCredentialsId;
@@ -92,6 +100,13 @@ public class GitChangelogConfig implements Serializable {
       final String jiraUsernamePasswordCredentialsId,
       final String jiraBasicAuthStringCredentialsId,
       final String jiraBearerCredentialsId,
+      final String redmineIssuePattern,
+      final String redminePassword,
+      final String redmineToken,
+      final String redmineServer,
+      final String redmineUsername,
+      final String redmineUserNamePasswordCredentialsId,
+      final String redmineTokenCredentialsId,
       final String noIssueName,
       final String readableTagName,
       final boolean showSummary,
@@ -109,6 +124,7 @@ public class GitChangelogConfig implements Serializable {
       final boolean useGitHub,
       final boolean useIgnoreTagsIfNameMatches,
       final boolean useJira,
+      final boolean useRedmine,
       final boolean useReadableTagName,
       final boolean useSubDirectory,
       final String gitHubApiTokenCredentialsId,
@@ -136,6 +152,11 @@ public class GitChangelogConfig implements Serializable {
     this.jiraUsernamePasswordCredentialsId = jiraUsernamePasswordCredentialsId;
     this.jiraBasicAuthStringCredentialsId = jiraBasicAuthStringCredentialsId;
     this.jiraBearerCredentialsId = jiraBearerCredentialsId;
+    this.redmineIssuePattern = redmineIssuePattern;
+    this.redminePassword = redminePassword;
+    this.redmineServer = redmineServer;
+    this.redmineUserNamePasswordCredentialsId= redmineUserNamePasswordCredentialsId;
+    this.redmineTokenCredentialsId = redmineTokenCredentialsId;
     this.noIssueName = noIssueName;
     this.readableTagName = readableTagName;
     this.showSummary = showSummary;
@@ -153,10 +174,76 @@ public class GitChangelogConfig implements Serializable {
     this.useGitHub = useGitHub;
     this.useIgnoreTagsIfNameMatches = useIgnoreTagsIfNameMatches;
     this.useJira = useJira;
+    this.useRedmine = useRedmine;
     this.useReadableTagName = useReadableTagName;
     this.useSubDirectory = useSubDirectory;
     this.gitHubApiTokenCredentialsId = gitHubApiTokenCredentialsId;
     this.gitLabApiTokenCredentialsId = gitLabApiTokenCredentialsId;
+  }
+
+  public String getRedmineIssuePattern() {
+    return redmineIssuePattern;
+  }
+  @DataBoundSetter
+  public void setRedmineIssuePattern(String redmineIssuePattern) {
+    this.redmineIssuePattern = redmineIssuePattern;
+  }
+
+  public String getRedminePassword() {
+    return redminePassword;
+  }
+  @DataBoundSetter
+  public void setRedminePassword(String redminePassword) {
+    this.redminePassword = redminePassword;
+  }
+
+  public String getRedmineToken() {
+    return redmineToken;
+  }
+  @DataBoundSetter
+  public void setRedmineToken(String redmineToken) {
+    this.redmineToken = redmineToken;
+  }
+
+  public String getRedmineServer() {
+    return redmineServer;
+  }
+  @DataBoundSetter
+  public void setRedmineServer(String redmineServer) {
+    this.redmineServer = redmineServer;
+  }
+
+  public String getRedmineUsername() {
+    return redmineUsername;
+  }
+  @DataBoundSetter
+  public void setRedmineUsername(String redmineUsername) {
+    this.redmineUsername = redmineUsername;
+  }
+
+  public String getRedmineUserNamePasswordCredentialsId() {
+    return redmineUserNamePasswordCredentialsId;
+  }
+
+  @DataBoundSetter
+  public void setRedmineUserNamePasswordCredentialsId(String redmineUserNamePasswordCredentialsId) {
+    this.redmineUserNamePasswordCredentialsId = redmineUserNamePasswordCredentialsId;
+  }
+
+  public String getRedmineTokenCredentialsId() {
+    return redmineTokenCredentialsId;
+  }
+  @DataBoundSetter
+  public void setRedmineTokenCredentialsId(String redmineTokenCredentialsId) {
+    this.redmineTokenCredentialsId = redmineTokenCredentialsId;
+  }
+
+  public boolean isUseRedmine() {
+    return useRedmine;
+  }
+  @DataBoundSetter
+  public void setUseRedmine(boolean useRedmine) {
+    this.useRedmine = useRedmine;
   }
 
   public String getConfigFile() {
@@ -619,102 +706,65 @@ public class GitChangelogConfig implements Serializable {
 
   @Override
   public String toString() {
-    return "GitChangelogConfig [configFile="
-        + this.configFile
-        + ", createFileTemplateContent="
-        + this.createFileTemplateContent
-        + ", createFileTemplateFile="
-        + this.createFileTemplateFile
-        + ", createFileUseTemplateContent="
-        + this.createFileUseTemplateContent
-        + ", createFileUseTemplateFile="
-        + this.createFileUseTemplateFile
-        + ", customIssues="
-        + this.customIssues
-        + ", dateFormat="
-        + this.dateFormat
-        + ", file="
-        + this.file
-        + ", fromReference="
-        + this.fromReference
-        + ", fromType="
-        + this.fromType
-        + ", gitHubApi="
-        + this.gitHubApi
-        + ", gitHubIssuePattern="
-        + this.gitHubIssuePattern
-        + ", gitHubToken="
-        + this.gitHubToken
-        + ", gitLabServer="
-        + this.gitLabServer
-        + ", gitLabProjectName="
-        + this.gitLabProjectName
-        + ", gitLabToken="
-        + this.gitLabToken
-        + ", useGitLab="
-        + this.useGitLab
-        + ", ignoreCommitsIfMessageMatches="
-        + this.ignoreCommitsIfMessageMatches
-        + ", ignoreCommitsWithoutIssue="
-        + this.ignoreCommitsWithoutIssue
-        + ", ignoreTagsIfNameMatches="
-        + this.ignoreTagsIfNameMatches
-        + ", jiraIssuePattern="
-        + this.jiraIssuePattern
-        + ", jiraPassword="
-        + this.jiraPassword
-        + ", jiraBasicAuthStringCredentialsId="
-        + this.jiraBasicAuthStringCredentialsId
-        + ", jiraBearerCredentialsId="
-        + this.jiraBearerCredentialsId
-        + ", jiraServer="
-        + this.jiraServer
-        + ", jiraUsername="
-        + this.jiraUsername
-        + ", jiraUsernamePasswordCredentialsId="
-        + this.jiraUsernamePasswordCredentialsId
-        + ", noIssueName="
-        + this.noIssueName
-        + ", readableTagName="
-        + this.readableTagName
-        + ", showSummary="
-        + this.showSummary
-        + ", showSummaryTemplateContent="
-        + this.showSummaryTemplateContent
-        + ", showSummaryTemplateFile="
-        + this.showSummaryTemplateFile
-        + ", showSummaryUseTemplateContent="
-        + this.showSummaryUseTemplateContent
-        + ", showSummaryUseTemplateFile="
-        + this.showSummaryUseTemplateFile
-        + ", subDirectory="
-        + this.subDirectory
-        + ", timeZone="
-        + this.timeZone
-        + ", toReference="
-        + this.toReference
-        + ", toType="
-        + this.toType
-        + ", untaggedName="
-        + this.untaggedName
-        + ", useConfigFile="
-        + this.useConfigFile
-        + ", useFile="
-        + this.useFile
-        + ", useGitHub="
-        + this.useGitHub
-        + ", useIgnoreTagsIfNameMatches="
-        + this.useIgnoreTagsIfNameMatches
-        + ", useJira="
-        + this.useJira
-        + ", useReadableTagName="
-        + this.useReadableTagName
-        + ", useSubDirectory="
-        + this.useSubDirectory
-        + ", gitHubApiTokenCredentialsId="
-        + this.gitHubApiTokenCredentialsId
-        + ", gitLabApiTokenCredentialsId="
-        + this.gitLabApiTokenCredentialsId
-        + "]";
+    return "GitChangelogConfig{" +
+            "configFile='" + configFile + '\'' +
+            ", createFileTemplateContent='" + createFileTemplateContent + '\'' +
+            ", createFileTemplateFile='" + createFileTemplateFile + '\'' +
+            ", createFileUseTemplateContent=" + createFileUseTemplateContent +
+            ", createFileUseTemplateFile=" + createFileUseTemplateFile +
+            ", customIssues=" + customIssues +
+            ", dateFormat='" + dateFormat + '\'' +
+            ", file='" + file + '\'' +
+            ", fromReference='" + fromReference + '\'' +
+            ", fromType='" + fromType + '\'' +
+            ", gitHubApi='" + gitHubApi + '\'' +
+            ", gitHubIssuePattern='" + gitHubIssuePattern + '\'' +
+            ", gitHubToken='" + gitHubToken + '\'' +
+            ", gitLabServer='" + gitLabServer + '\'' +
+            ", gitLabProjectName='" + gitLabProjectName + '\'' +
+            ", gitLabToken='" + gitLabToken + '\'' +
+            ", useGitLab=" + useGitLab +
+            ", ignoreCommitsIfMessageMatches='" + ignoreCommitsIfMessageMatches + '\'' +
+            ", ignoreCommitsWithoutIssue=" + ignoreCommitsWithoutIssue +
+            ", ignoreTagsIfNameMatches='" + ignoreTagsIfNameMatches + '\'' +
+            ", jiraIssuePattern='" + jiraIssuePattern + '\'' +
+            ", jiraPassword='" + jiraPassword + '\'' +
+            ", jiraServer='" + jiraServer + '\'' +
+            ", jiraUsername='" + jiraUsername + '\'' +
+            ", jiraUsernamePasswordCredentialsId='" + jiraUsernamePasswordCredentialsId + '\'' +
+            ", jiraBasicAuthStringCredentialsId='" + jiraBasicAuthStringCredentialsId + '\'' +
+            ", jiraBasicAuthString='" + jiraBasicAuthString + '\'' +
+            ", jiraBearerCredentialsId='" + jiraBearerCredentialsId + '\'' +
+            ", jiraBearer='" + jiraBearer + '\'' +
+            ", redmineIssuePattern='" + redmineIssuePattern + '\'' +
+            ", redminePassword='" + redminePassword + '\'' +
+            ", redmineToken='" + redmineToken + '\'' +
+            ", redmineServer='" + redmineServer + '\'' +
+            ", redmineUsername='" + redmineUsername + '\'' +
+            ", redmineUserNamePasswordCredentialsId='" + redmineUserNamePasswordCredentialsId + '\'' +
+            ", redmineTokenCredentialsId='" + redmineTokenCredentialsId + '\'' +
+            ", noIssueName='" + noIssueName + '\'' +
+            ", readableTagName='" + readableTagName + '\'' +
+            ", showSummary=" + showSummary +
+            ", showSummaryTemplateContent='" + showSummaryTemplateContent + '\'' +
+            ", showSummaryTemplateFile='" + showSummaryTemplateFile + '\'' +
+            ", showSummaryUseTemplateContent=" + showSummaryUseTemplateContent +
+            ", showSummaryUseTemplateFile=" + showSummaryUseTemplateFile +
+            ", subDirectory='" + subDirectory + '\'' +
+            ", timeZone='" + timeZone + '\'' +
+            ", toReference='" + toReference + '\'' +
+            ", toType='" + toType + '\'' +
+            ", untaggedName='" + untaggedName + '\'' +
+            ", useConfigFile=" + useConfigFile +
+            ", useFile=" + useFile +
+            ", useGitHub=" + useGitHub +
+            ", useIgnoreTagsIfNameMatches=" + useIgnoreTagsIfNameMatches +
+            ", useJira=" + useJira +
+            ", useRedmine=" + useRedmine +
+            ", useReadableTagName=" + useReadableTagName +
+            ", useSubDirectory=" + useSubDirectory +
+            ", gitHubApiTokenCredentialsId='" + gitHubApiTokenCredentialsId + '\'' +
+            ", gitLabApiTokenCredentialsId='" + gitLabApiTokenCredentialsId + '\'' +
+            '}';
   }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+
+    <f:entry title="Server">
+      <f:textbox field="server"/>
+      <f:description>
+       URL to Redmine, like <b>https://redmineserver/redmine</b>.
+      </f:description>
+    </f:entry>
+
+    <f:entry title="Issue Pattern">
+      <f:textbox field="issuePattern"/>
+      <f:description>
+       Pattern to recognize REDMINE:s, like <b>\b[a-zA-Z]([a-zA-Z]+)-([0-9]+)\b</b>.
+      </f:description>
+    </f:entry>
+
+    <f:entry title="Username">
+      <f:textbox field="username"/>
+    </f:entry>
+
+    <f:entry title="Password">
+      <f:password field="password"/>
+    </f:entry>
+
+    <f:entry title="API token">
+      <f:password field="token"/>
+    </f:entry>
+
+</j:jelly>
