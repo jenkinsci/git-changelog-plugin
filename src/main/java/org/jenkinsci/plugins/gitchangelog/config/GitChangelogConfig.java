@@ -153,7 +153,6 @@ public class GitChangelogConfig implements Serializable {
     this.jiraBasicAuthStringCredentialsId = jiraBasicAuthStringCredentialsId;
     this.jiraBearerCredentialsId = jiraBearerCredentialsId;
     this.redmineIssuePattern = redmineIssuePattern;
-    this.redminePassword = redminePassword;
     this.redmineServer = redmineServer;
     this.redmineUserNamePasswordCredentialsId = redmineUserNamePasswordCredentialsId;
     this.redmineTokenCredentialsId = redmineTokenCredentialsId;
