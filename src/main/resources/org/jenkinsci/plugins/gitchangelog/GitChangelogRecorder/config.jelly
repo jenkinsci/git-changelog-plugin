@@ -1,359 +1,418 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core"
-  xmlns:d="jelly:define"
-  xmlns:f="/lib/form"
-  xmlns:l="/lib/layout"
-  xmlns:st="jelly:stapler"
-  xmlns:t="/lib/hudson"
-  xmlns:c="/lib/credentials">
+         xmlns:f="/lib/form"
+         xmlns:c="/lib/credentials">
 
-  <j:set var="dollar" value="$"/>
+    <j:set var="dollar" value="$"/>
 
-  <j:set var="config" value="${descriptor.newConfig}"/>
-  <j:if test="${instance != null}">
-    <j:set var="config" value="${instance.config}"/>
-  </j:if>
-  
-  <f:entry>
-    <table>
-      <tr>
-        <td>
-          Git Changelog
-        </td>
-      </tr>
-    </table>
-  </f:entry>
+    <j:set var="config" value="${descriptor.newConfig}"/>
+    <j:if test="${instance != null}">
+        <j:set var="config" value="${instance.config}"/>
+    </j:if>
 
-  <f:entry name="fromType" title="Choose 'from' reference" field="fromType">
-    <select name="fromType">
-        <f:option value="firstCommit" selected="${config.fromType == 'firstCommit'}">First commit in repo</f:option>
-        <f:option value="ref" selected="${config.fromType == 'ref'}">A branch or tag (Enter below)</f:option>
-        <f:option value="commit" selected="${config.fromType == 'commit'}">Specific commit (Enter below)</f:option>
-    </select>
-  </f:entry>
+    <f:entry>
+        <table>
+            <tr>
+                <td>
+                    Git Changelog
+                </td>
+            </tr>
+        </table>
+    </f:entry>
 
-  <f:entry title="From reference" field="fromReference">
-    <f:textbox field="fromReference" value="${config.fromReference}"/>
-    <f:description>
-     Optional, depending on choice above.
-    </f:description>
-  </f:entry>
+    <f:entry name="fromType" title="Choose 'from' reference" field="fromType">
+        <select name="fromType">
+            <f:option value="firstCommit" selected="${config.fromType == 'firstCommit'}">First commit in repo</f:option>
+            <f:option value="ref" selected="${config.fromType == 'ref'}">A branch or tag (Enter below)</f:option>
+            <f:option value="commit" selected="${config.fromType == 'commit'}">Specific commit (Enter below)</f:option>
+        </select>
+    </f:entry>
 
-  <f:entry name="toType" title="Choose 'to' reference" field="goalType">
-    <select name="toType">
-        <option value="master" selected="${config.toType == 'master'}">refs/heads/master</option>
-        <f:option value="ref" selected="${config.toType == 'ref'}">A branch or tag (Enter below)</f:option>
-        <f:option value="commit" selected="${config.toType == 'commit'}">Specific commit (Enter below)</f:option>
-    </select>
-  </f:entry>
+    <f:entry title="From reference" field="fromReference">
+        <f:textbox field="fromReference" value="${config.fromReference}"/>
+        <f:description>
+            Optional, depending on choice above.
+        </f:description>
+    </f:entry>
 
-  <f:entry title="To reference" field="toRefeference">
-    <f:textbox field="toReference" value="${config.toReference}" />
-    <f:description>
-     Optional, depending on choice above.
-    </f:description>
-  </f:entry>
+    <f:entry name="toType" title="Choose 'to' reference" field="goalType">
+        <select name="toType">
+            <option value="master" selected="${config.toType == 'master'}">refs/heads/master</option>
+            <f:option value="ref" selected="${config.toType == 'ref'}">A branch or tag (Enter below)</f:option>
+            <f:option value="commit" selected="${config.toType == 'commit'}">Specific commit (Enter below)</f:option>
+        </select>
+    </f:entry>
 
-<f:optionalBlock checked="${config.useSubDirectory}" name="useSubDirectory" title="Use a subdirectory relative to the workspace" inline="true">
+    <f:entry title="To reference" field="toRefeference">
+        <f:textbox field="toReference" value="${config.toReference}"/>
+        <f:description>
+            Optional, depending on choice above.
+        </f:description>
+    </f:entry>
+
+    <f:optionalBlock checked="${config.useSubDirectory}" name="useSubDirectory"
+                     title="Use a subdirectory relative to the workspace" inline="true">
         <f:entry title="SubDirectory">
-          <f:textbox name="subDirectory" value="${config.subDirectory}"/>
+            <f:textbox name="subDirectory" value="${config.subDirectory}"/>
         </f:entry>
-      </f:optionalBlock>
-      <f:description>
-       If you have checked out the source code to a subdirectory configure it here. Relative to workspace.
-      </f:description>
-
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.useConfigFile}" name="useConfigFile" title="Use a configuration file from workspace" inline="true">
-        <f:entry title="Filename">
-          <f:textbox name="configFile" value="${config.configFile}"/>
-        </f:entry>
-      </f:optionalBlock>
-      <f:description>
-       If you have a config file in source control, you may point it out here. Relative to workspace.
-      </f:description>
-    </table>
-  </f:block>
-
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.useReadableTagName}" name="useReadableTagName" title="Use a regular expression to match readable part of tag name" inline="true">
-        <f:entry title="Pattern">
-          <f:textbox name="readableTagName" value="${config.readableTagName}"/>
-          <f:description>
-           A regular expression applied to tag name to extract a readable name.<br/>
-           Example: tag named /refs/tags/1.0 and regular expression /([^/]+?)${dollar} will result in 1.0.
-          </f:description>
-        </f:entry>
-      </f:optionalBlock>
-    </table>
-  </f:block>
-
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.useIgnoreTagsIfNameMatches}" name="useIgnoreTagsIfNameMatches" title="Use a regular expression to ignore tags" inline="true">
-        <f:entry title="Pattern">
-          <f:textbox name="ignoreTagsIfNameMatches" value="${config.ignoreTagsIfNameMatches}"/>
-          <f:description>
-           A regular expression applied to tag name to ignore any tag matching.<br/>
-           Example: tag named /refs/tags/1.0-rc1 can be ignored with .*rc1${dollar}.
-          </f:description>
-        </f:entry>
-      </f:optionalBlock>
-    </table>
-  </f:block>
-
-  <f:entry title="Date format">
-    <f:textbox name="dateFormat" value="${config.dateFormat}"/>
-  </f:entry>
-  <f:description>
-    <a target="_blank" href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">Simple Date Format</a>.
-  </f:description>
-
-  <f:entry title="Time zone">
-    <f:textbox name="timeZone" value="${config.timeZone}"/>
-  </f:entry>
-  <f:description>
-    Will use default if not set.
-  </f:description>
- 
-  <f:entry title="Pattern">
-    <f:textbox name="ignoreCommitsIfMessageMatches" value="${config.ignoreCommitsIfMessageMatches}"/>
-  </f:entry>
-  <f:description>
-   Add a regular expression here to ignore commits with matching comment.<br/>
-   Example: <i>^\[maven-release-plugin\].*|^\[Gradle Release Plugin\].*|^Merge.*</i>
-  </f:description>
-
-  <f:entry title="No issue name">
-    <f:textbox name="noIssueName" value="${config.noIssueName}"/>
+    </f:optionalBlock>
     <f:description>
-     If commit cannot be matched to any issue, this will be the name of a "virtual" issue.
+        If you have checked out the source code to a subdirectory configure it here. Relative to workspace.
     </f:description>
-  </f:entry>
 
-  <f:entry title="Ignore commits without issue">
-    <f:checkbox name="ignoreCommitsWithoutIssue" checked="${config.ignoreCommitsWithoutIssue}"/>
+    <f:block>
+        <table>
+            <f:optionalBlock checked="${config.useConfigFile}" name="useConfigFile"
+                             title="Use a configuration file from workspace" inline="true">
+                <f:entry title="Filename">
+                    <f:textbox name="configFile" value="${config.configFile}"/>
+                </f:entry>
+            </f:optionalBlock>
+            <f:description>
+                If you have a config file in source control, you may point it out here. Relative to workspace.
+            </f:description>
+        </table>
+    </f:block>
+
+    <f:block>
+        <table>
+            <f:optionalBlock checked="${config.useReadableTagName}" name="useReadableTagName"
+                             title="Use a regular expression to match readable part of tag name" inline="true">
+                <f:entry title="Pattern">
+                    <f:textbox name="readableTagName" value="${config.readableTagName}"/>
+                    <f:description>
+                        A regular expression applied to tag name to extract a readable name.
+                        <br/>
+                        Example: tag named /refs/tags/1.0 and regular expression /([^/]+?)${dollar} will result in 1.0.
+                    </f:description>
+                </f:entry>
+            </f:optionalBlock>
+        </table>
+    </f:block>
+
+    <f:block>
+        <table>
+            <f:optionalBlock checked="${config.useIgnoreTagsIfNameMatches}" name="useIgnoreTagsIfNameMatches"
+                             title="Use a regular expression to ignore tags" inline="true">
+                <f:entry title="Pattern">
+                    <f:textbox name="ignoreTagsIfNameMatches" value="${config.ignoreTagsIfNameMatches}"/>
+                    <f:description>
+                        A regular expression applied to tag name to ignore any tag matching.
+                        <br/>
+                        Example: tag named /refs/tags/1.0-rc1 can be ignored with .*rc1${dollar}.
+                    </f:description>
+                </f:entry>
+            </f:optionalBlock>
+        </table>
+    </f:block>
+
+    <f:entry title="Date format">
+        <f:textbox name="dateFormat" value="${config.dateFormat}"/>
+    </f:entry>
     <f:description>
-     If commit cannot be matched to any issue, it can be ignored and not included in the changelog.
+        <a target="_blank" href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">Simple Date
+            Format</a>.
     </f:description>
-  </f:entry>
 
-  <f:entry title="Name">
-    <f:textbox name="untaggedName" value="${config.untaggedName}"/>
-  </f:entry>
-  <f:description>
-   If commit is not included in any tag, this will be the name of a virtual tag.
-  </f:description>
+    <f:entry title="Time zone">
+        <f:textbox name="timeZone" value="${config.timeZone}"/>
+    </f:entry>
+    <f:description>
+        Will use default if not set.
+    </f:description>
 
+    <f:entry title="Pattern">
+        <f:textbox name="ignoreCommitsIfMessageMatches" value="${config.ignoreCommitsIfMessageMatches}"/>
+    </f:entry>
+    <f:description>
+        Add a regular expression here to ignore commits with matching comment.
+        <br/>
+        Example:
+        <i>^\[maven-release-plugin\].*|^\[Gradle Release Plugin\].*|^Merge.*</i>
+    </f:description>
 
-<f:section title="Create file">
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.useFile}" name="useFile" title="Create file" inline="true">
-        <f:entry title="Filename">
-          <f:textbox name="file" value="${config.file}"/>
-        </f:entry>
+    <f:entry title="No issue name">
+        <f:textbox name="noIssueName" value="${config.noIssueName}"/>
         <f:description>
-          Name of file to create, relative to workspace.
+            If commit cannot be matched to any issue, this will be the name of a "virtual" issue.
         </f:description>
-        <f:optionalBlock checked="${config.createFileUseTemplateFile}" name="createFileUseTemplateFile" title="Use a template file from workspace" inline="true">
-          <f:entry title="Filename">
-            <f:textbox name="createFileTemplateFile" value="${config.createFileTemplateFile}"/>
-          </f:entry>
-          <f:description>
-            If you template is in source control, you may point it out here. Relative to workspace.
-          </f:description>
-        </f:optionalBlock>
-        <f:optionalBlock checked="${config.createFileUseTemplateContent}" name="createFileUseTemplateContent" title="Configure template here" inline="true">
-          <f:entry title="Content">
-            <f:textarea name="createFileTemplateContent" value="${config.createFileTemplateContent}" style="width: 500px; height: 200px"/>
-          </f:entry>
-          <f:description>
-            Context is documented <a target="_blank" href="https://github.com/tomasbjerre/git-changelog-lib">here</a>.
-          </f:description>
-        </f:optionalBlock>
-      </f:optionalBlock>
-    </table>
-  </f:block>
-</f:section>
-  
+    </f:entry>
 
-<f:section title="Print on job summary page">
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.showSummary}" name="showSummary" title="Show summary on job page" inline="true">
-        <f:optionalBlock checked="${config.showSummaryUseTemplateFile}" name="showSummaryUseTemplateFile" title="Use a template file from workspace" inline="true">
-          <f:entry title="Filename">
-            <f:textbox name="showSummaryTemplateFile" value="${config.showSummaryTemplateFile}"/>
-          </f:entry>
-           <f:description>
-            If you template is in source control, you may point it out here. Relative to workspace.
-           </f:description>
-        </f:optionalBlock>
-
-        <f:optionalBlock checked="${config.showSummaryUseTemplateContent}" name="showSummaryUseTemplateContent" title="Configure template here" inline="true">
-          <f:entry title="Content">
-            <f:textarea name="showSummaryTemplateContent" value="${config.showSummaryTemplateContent}" style="width: 500px; height: 200px"/>
-          </f:entry>
-          <f:description>
-            Context is documented <a target="_blank" href="https://github.com/tomasbjerre/git-changelog-lib">here</a>.
-          </f:description>
-        </f:optionalBlock>
-      </f:optionalBlock>
-    </table>
-  </f:block>
-</f:section>
-
-<f:section title="Jira">
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.useJira}" name="useJira" title="Use Jira" inline="true">
-        <f:entry title="Server root URL">
-          <f:textbox name="jiraServer" value="${config.jiraServer}"/>
-        </f:entry>
+    <f:entry title="Ignore commits without issue">
+        <f:checkbox name="ignoreCommitsWithoutIssue" checked="${config.ignoreCommitsWithoutIssue}"/>
         <f:description>
-         If you have one, will populate the <i>link</i> attribute of <i>issue</i>.
+            If commit cannot be matched to any issue, it can be ignored and not included in the changelog.
         </f:description>
-        
-        <f:entry title="Issue pattern">
-          <f:textbox name="jiraIssuePattern" value="${config.jiraIssuePattern}"/>
-        </f:entry>
-        <f:description>
-         Leave blank to use default.
-        </f:description>
+    </f:entry>
 
-        <f:entry title="Credential" field="jiraUsernamePasswordCredentialsId">
-          <c:select default="${config.jiraUsernamePasswordCredentialsId}" />
-        </f:entry>
+    <f:entry title="Name">
+        <f:textbox name="untaggedName" value="${config.untaggedName}"/>
+    </f:entry>
+    <f:description>
+        If commit is not included in any tag, this will be the name of a virtual tag.
+    </f:description>
 
-        <f:entry title="Basic Auth String" field="jiraBasicAuthStringCredentialsId">
-          <c:select default="${config.jiraBasicAuthStringCredentialsId}" />
-        </f:entry>
 
-        <f:entry title="Personal Access Token" field="jiraBearerCredentialsId">
-          <c:select default="${config.jiraBearerCredentialsId}" />
-        </f:entry>
-        
-      </f:optionalBlock>
-      <f:description>
-       With Jira credentials you can have the {{title}} variable populated with title from Jira issues.
-      </f:description>
-    </table>
-  </f:block>
-</f:section>
+    <f:section title="Create file">
+        <f:block>
+            <table>
+                <f:optionalBlock checked="${config.useFile}" name="useFile" title="Create file" inline="true">
+                    <f:entry title="Filename">
+                        <f:textbox name="file" value="${config.file}"/>
+                    </f:entry>
+                    <f:description>
+                        Name of file to create, relative to workspace.
+                    </f:description>
+                    <f:optionalBlock checked="${config.createFileUseTemplateFile}" name="createFileUseTemplateFile"
+                                     title="Use a template file from workspace" inline="true">
+                        <f:entry title="Filename">
+                            <f:textbox name="createFileTemplateFile" value="${config.createFileTemplateFile}"/>
+                        </f:entry>
+                        <f:description>
+                            If you template is in source control, you may point it out here. Relative to workspace.
+                        </f:description>
+                    </f:optionalBlock>
+                    <f:optionalBlock checked="${config.createFileUseTemplateContent}"
+                                     name="createFileUseTemplateContent" title="Configure template here" inline="true">
+                        <f:entry title="Content">
+                            <f:textarea name="createFileTemplateContent" value="${config.createFileTemplateContent}"
+                                        style="width: 500px; height: 200px"/>
+                        </f:entry>
+                        <f:description>
+                            Context is documented <a target="_blank"
+                                                     href="https://github.com/tomasbjerre/git-changelog-lib">here</a>.
+                        </f:description>
+                    </f:optionalBlock>
+                </f:optionalBlock>
+            </table>
+        </f:block>
+    </f:section>
 
-<f:section title="GitHub">
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.useGitHub}" name="useGitHub" title="Use GitHub" inline="true">
-        <f:entry title="GitHub API">
-          <f:textbox name="gitHubApi" value="${config.gitHubApi}"/>
-        </f:entry>
-        <f:description>
-          Something like: https://api.github.com/repos/REPO/PROJECT
-        </f:description>
 
-        <f:entry title="API token Credential" field="gitHubApiTokenCredentialsId">
-          <c:select default="${config.gitHubApiTokenCredentialsId}" />
-        </f:entry>
-        <f:description>
-          This will allow more requests on the API. You can get a token with curl like this: curl -u 'yourgithubuser' -d '{"note":"Git Changelog Lib"}' https://api.github.com/authorizations
-        </f:description>
+    <f:section title="Print on job summary page">
+        <f:block>
+            <table>
+                <f:optionalBlock checked="${config.showSummary}" name="showSummary" title="Show summary on job page"
+                                 inline="true">
+                    <f:optionalBlock checked="${config.showSummaryUseTemplateFile}" name="showSummaryUseTemplateFile"
+                                     title="Use a template file from workspace" inline="true">
+                        <f:entry title="Filename">
+                            <f:textbox name="showSummaryTemplateFile" value="${config.showSummaryTemplateFile}"/>
+                        </f:entry>
+                        <f:description>
+                            If you template is in source control, you may point it out here. Relative to workspace.
+                        </f:description>
+                    </f:optionalBlock>
 
-        <f:entry title="Issue pattern">
-          <f:textbox name="gitHubIssuePattern" value="${config.gitHubIssuePattern}"/>
-        </f:entry>
-        <f:description>
-          This will identify issues mentioned in commits. You probably want something like: #([0-9]+)
-        </f:description>
-      </f:optionalBlock>
-      <f:description>
-       With GitHub specified you can have the {{title}} variable populated with title from GitHub issues.
-      </f:description>
-    </table>
-  </f:block>
-</f:section>
+                    <f:optionalBlock checked="${config.showSummaryUseTemplateContent}"
+                                     name="showSummaryUseTemplateContent" title="Configure template here" inline="true">
+                        <f:entry title="Content">
+                            <f:textarea name="showSummaryTemplateContent" value="${config.showSummaryTemplateContent}"
+                                        style="width: 500px; height: 200px"/>
+                        </f:entry>
+                        <f:description>
+                            Context is documented <a target="_blank"
+                                                     href="https://github.com/tomasbjerre/git-changelog-lib">here</a>.
+                        </f:description>
+                    </f:optionalBlock>
+                </f:optionalBlock>
+            </table>
+        </f:block>
+    </f:section>
 
-<f:section title="GitLab">
-  <f:block>
-    <table>
-      <f:optionalBlock checked="${config.useGitLab}" name="useGitLab" title="Use GitLab" inline="true">
-        <f:entry title="GitLab Server">
-          <f:textbox name="gitLabServer" value="${config.gitLabServer}"/>
-        </f:entry>
-        <f:description>
-          Example: https://gitlab.com/
-        </f:description>
-        <f:entry title="GitLab Project Name">
-          <f:textbox name="gitLabProjectName" value="${config.gitLabProjectName}"/>
-        </f:entry>
-        <f:description>
-          In https://gitlab.com/tomas.bjerre85/violations-test, that would be violations-test.
-        </f:description>
+    <f:section title="Jira">
+        <f:block>
+            <table>
+                <f:optionalBlock checked="${config.useJira}" name="useJira" title="Use Jira" inline="true">
+                    <f:entry title="Server root URL">
+                        <f:textbox name="jiraServer" value="${config.jiraServer}"/>
+                    </f:entry>
+                    <f:description>
+                        If you have one, will populate the <i>link</i> attribute of <i>issue</i>.
+                    </f:description>
 
-        <f:entry title="API token Credential" field="gitLabApiTokenCredentialsId">
-          <c:select default="${config.gitLabApiTokenCredentialsId}" />
+                    <f:entry title="Issue pattern">
+                        <f:textbox name="jiraIssuePattern" value="${config.jiraIssuePattern}"/>
+                    </f:entry>
+                    <f:description>
+                        Leave blank to use default.
+                    </f:description>
+
+                    <f:entry title="Credential" field="jiraUsernamePasswordCredentialsId">
+                        <c:select default="${config.jiraUsernamePasswordCredentialsId}"/>
+                    </f:entry>
+
+                    <f:entry title="Basic Auth String" field="jiraBasicAuthStringCredentialsId">
+                        <c:select default="${config.jiraBasicAuthStringCredentialsId}"/>
+                    </f:entry>
+
+                    <f:entry title="Personal Access Token" field="jiraBearerCredentialsId">
+                        <c:select default="${config.jiraBearerCredentialsId}"/>
+                    </f:entry>
+
+                </f:optionalBlock>
+                <f:description>
+                    With Jira credentials you can have the {{title}} variable populated with title from Jira issues.
+                </f:description>
+            </table>
+        </f:block>
+    </f:section>
+
+    <f:section title="Redmine">
+        <f:block>
+            <table>
+                <f:optionalBlock checked="${config.useRedmine}" name="useRedmine" title="Use Redmine" inline="true">
+                    <f:entry title="Server root URL">
+                        <f:textbox name="redmineServer" value="${config.redmineServer}"/>
+                    </f:entry>
+                    <f:description>
+                        If you have one, will populate the <i>link</i> attribute of <i>issue</i>.
+                    </f:description>
+
+                    <f:entry title="Issue pattern">
+                        <f:textbox name="redmineIssuePattern" value="${config.redmineIssuePattern}"/>
+                    </f:entry>
+                    <f:description>
+                        Leave blank to use default.
+                    </f:description>
+
+                    <f:entry title="Credential" field="redmineUsernamePasswordCredentialsId">
+                        <c:select default="${config.redmineUsernamePasswordCredentialsId}"/>
+                    </f:entry>
+
+                    <f:entry title="Redmine Token" field="redmineTokenCredentialsId">
+                        <c:select default="${config.redmineTokenCredentialsId}"/>
+                    </f:entry>
+
+                </f:optionalBlock>
+                <f:description>
+                    With Redmine credentials you can have the {{title}} variable populated with title from redmine issues.
+                </f:description>
+            </table>
+        </f:block>
+    </f:section>
+
+    <f:section title="GitHub">
+        <f:block>
+            <table>
+                <f:optionalBlock checked="${config.useGitHub}" name="useGitHub" title="Use GitHub" inline="true">
+                    <f:entry title="GitHub API">
+                        <f:textbox name="gitHubApi" value="${config.gitHubApi}"/>
+                    </f:entry>
+                    <f:description>
+                        Something like: https://api.github.com/repos/REPO/PROJECT
+                    </f:description>
+
+                    <f:entry title="API token Credential" field="gitHubApiTokenCredentialsId">
+                        <c:select default="${config.gitHubApiTokenCredentialsId}"/>
+                    </f:entry>
+                    <f:description>
+                        This will allow more requests on the API. You can get a token with curl like this: curl -u
+                        'yourgithubuser' -d '{"note":"Git Changelog Lib"}' https://api.github.com/authorizations
+                    </f:description>
+
+                    <f:entry title="Issue pattern">
+                        <f:textbox name="gitHubIssuePattern" value="${config.gitHubIssuePattern}"/>
+                    </f:entry>
+                    <f:description>
+                        This will identify issues mentioned in commits. You probably want something like: #([0-9]+)
+                    </f:description>
+                </f:optionalBlock>
+                <f:description>
+                    With GitHub specified you can have the {{title}} variable populated with title from GitHub issues.
+                </f:description>
+            </table>
+        </f:block>
+    </f:section>
+
+    <f:section title="GitLab">
+        <f:block>
+            <table>
+                <f:optionalBlock checked="${config.useGitLab}" name="useGitLab" title="Use GitLab" inline="true">
+                    <f:entry title="GitLab Server">
+                        <f:textbox name="gitLabServer" value="${config.gitLabServer}"/>
+                    </f:entry>
+                    <f:description>
+                        Example: https://gitlab.com/
+                    </f:description>
+                    <f:entry title="GitLab Project Name">
+                        <f:textbox name="gitLabProjectName" value="${config.gitLabProjectName}"/>
+                    </f:entry>
+                    <f:description>
+                        In https://gitlab.com/tomas.bjerre85/violations-test, that would be violations-test.
+                    </f:description>
+
+                    <f:entry title="API token Credential" field="gitLabApiTokenCredentialsId">
+                        <c:select default="${config.gitLabApiTokenCredentialsId}"/>
+                    </f:entry>
+                    <f:description>
+                        You can create one in the project settings.
+                    </f:description>
+
+                </f:optionalBlock>
+                <f:description>
+                    With GitLab specified you can have the {{title}} variable populated with title from GitLab issues.
+                </f:description>
+            </table>
+        </f:block>
+    </f:section>
+
+    <f:section title="Custom issues">
+        <f:entry title="Custom issues">
+            <table>
+                <tr>
+                    <td align="left" colspan="4">
+                        <b>Custom issues</b>
+                        You can use patterns with groups. The value of each group is available in variables
+                        (${dollar}{PATTERN_GROUP}, ${dollar}{PATTERN_GROUP_0}, ${dollar}{PATTERN_GROUP_1} ...) for
+                        constructing the link. The pattern may be:
+                        <ul>
+                            <li>
+                                <i>#bug</i>
+                                to match any commit with "#bug" in the message.
+                            </li>
+                            <li>
+                                <i>INC([0-9]+)</i>
+                                enables you to use links like:
+                                <i>https://server/issues/${dollar}{PATTERN_GROUP_1}</i>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="left" width="150">
+                        Name
+                    </th>
+                    <th align="left" width="150">
+                        Pattern
+                    </th>
+                    <th align="left" width="150">
+                        Link
+                    </th>
+                    <th align="left" width="150">
+                        Title
+                    </th>
+                </tr>
+                <j:forEach var="customIssue" items="${config.customIssues}" indexVar="i">
+                    <tr>
+                        <td>
+                            <f:textbox name="descriptor.config.customIssues[${i}].name" value="${customIssue.name}"/>
+                        </td>
+                        <td>
+                            <f:textbox name="descriptor.config.customIssues[${i}].pattern"
+                                       value="${customIssue.pattern}"/>
+                        </td>
+                        <td>
+                            <f:textbox name="descriptor.config.customIssues[${i}].link" value="${customIssue.link}"/>
+                        </td>
+                        <td>
+                            <f:textbox name="descriptor.config.customIssues[${i}].title" value="${customIssue.title}"/>
+                        </td>
+                    </tr>
+                </j:forEach>
+            </table>
         </f:entry>
-        <f:description>
-         You can create one in the project settings.
-        </f:description>
-
-      </f:optionalBlock>
-      <f:description>
-       With GitLab specified you can have the {{title}} variable populated with title from GitLab issues.
-      </f:description>
-    </table>
-  </f:block>
-</f:section>
-
-<f:section title="Custom issues">
-  <f:entry title="Custom issues">
-   <table>
-    <tr>
-      <td align="left" colspan="4">
-        <b>Custom issues</b>
-        You can use patterns with groups. The value of each group is available in variables (${dollar}{PATTERN_GROUP}, ${dollar}{PATTERN_GROUP_0}, ${dollar}{PATTERN_GROUP_1} ...) for constructing the link. The pattern may be:
-        <ul>
-          <li><i>#bug</i> to match any commit with "#bug" in the message.</li>
-          <li><i>INC([0-9]+)</i> enables you to use links like: <i>https://server/issues/${dollar}{PATTERN_GROUP_1}</i></li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <th align="left" width="150">
-        Name
-      </th>
-      <th align="left" width="150">
-        Pattern
-      </th>
-      <th align="left" width="150">
-        Link
-      </th>
-      <th align="left" width="150">
-        Title
-      </th>
-    </tr>
-      <j:forEach var="customIssue" items="${config.customIssues}" indexVar="i">
-      <tr>
-        <td>
-          <f:textbox name="descriptor.config.customIssues[${i}].name" value="${customIssue.name}" />
-        </td>
-        <td>
-          <f:textbox name="descriptor.config.customIssues[${i}].pattern" value="${customIssue.pattern}" />
-        </td>
-        <td>
-          <f:textbox name="descriptor.config.customIssues[${i}].link" value="${customIssue.link}" />
-        </td>
-        <td>
-          <f:textbox name="descriptor.config.customIssues[${i}].title" value="${customIssue.title}" />
-        </td>
-      </tr>
-  </j:forEach>
-   </table>
-  </f:entry>
-</f:section>
+    </f:section>
 
 </j:jelly>

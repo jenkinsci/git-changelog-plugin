@@ -24,13 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import jenkins.security.MasterToSlaveCallable;
-import org.jenkinsci.plugins.gitchangelog.steps.config.CustomIssueConfig;
-import org.jenkinsci.plugins.gitchangelog.steps.config.ExtendedVariableConfig;
-import org.jenkinsci.plugins.gitchangelog.steps.config.GitHubConfig;
-import org.jenkinsci.plugins.gitchangelog.steps.config.GitLabConfig;
-import org.jenkinsci.plugins.gitchangelog.steps.config.JiraConfig;
-import org.jenkinsci.plugins.gitchangelog.steps.config.RETURN_TYPE;
-import org.jenkinsci.plugins.gitchangelog.steps.config.RefConfig;
+import org.jenkinsci.plugins.gitchangelog.steps.config.*;
 import org.jenkinsci.plugins.workflow.steps.Step;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
@@ -68,6 +62,8 @@ public class GitChangelogStep extends Step implements Serializable {
   private JiraConfig jira;
 
   private GitHubConfig gitHub;
+
+  private RedmineConfig redmine;
 
   private GitLabConfig gitLab;
 
@@ -249,6 +245,22 @@ public class GitChangelogStep extends Step implements Serializable {
     return this.jira;
   }
 
+  public RedmineConfig getRedmine() {
+    return redmine;
+  }
+
+  @DataBoundSetter
+  public void setRedmine(RedmineConfig redmine) {
+    if (redmine == null
+        || isNullOrEmpty(redmine.getIssuePattern())
+            && isNullOrEmpty(redmine.getServer())
+            && isNullOrEmpty(redmine.getToken())) {
+      this.redmine = null;
+    } else {
+      this.redmine = redmine;
+    }
+  }
+
   @DataBoundSetter
   public void setGitHub(final GitHubConfig gitHub) {
     if (gitHub == null
@@ -414,6 +426,16 @@ public class GitChangelogStep extends Step implements Serializable {
           .withJiraPassword(this.jira.getPassword())
           .withJiraBasicAuthString(this.jira.getBasicAuthString())
           .withJiraBearer(this.jira.getBearer());
+    }
+    if (this.redmine != null) {
+      b //
+          .withRedmineEnabled(true)
+          .withUseIntegrations(true)
+          .withRedmineIssuePattern(this.redmine.getIssuePattern()) //
+          .withRedmineServer(this.redmine.getServer()) //
+          .withRedmineUsername(this.redmine.getUsername()) //
+          .withRedminePassword(this.redmine.getPassword())
+          .withRedmineToken(this.redmine.getToken());
     }
     if (this.returnType == CONTEXT) {
       return b.getChangelog();

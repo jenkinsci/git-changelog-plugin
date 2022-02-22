@@ -88,6 +88,26 @@ public class GitChangelogPerformer {
         configExpanded.setJiraBearer(secretBearerString);
       }
     }
+
+    if (configExpanded.isUseRedmine()) {
+      final String getApiTokenCredentialsId = configExpanded.getRedmineTokenCredentialsId();
+      final StandardUsernamePasswordCredentials token =
+          findSecretUsernamePassword(getApiTokenCredentialsId).orElse(null);
+      if (token == null) {
+        listener.getLogger().println("Redmine, credential not found!");
+      } else {
+        configExpanded.setRedmineUsername(token.getUsername());
+        configExpanded.setRedminePassword(token.getPassword().getPlainText());
+      }
+
+      final String getBasicAuthCredentialsId = configExpanded.getRedmineToken();
+      final String secretString = findSecretString(getBasicAuthCredentialsId).orElse(null);
+      if (secretString == null) {
+        listener.getLogger().println("Redmine token, credential not found!");
+      } else {
+        configExpanded.setRedmineToken(secretString);
+      }
+    }
   }
 
   /** Makes sure any Jenkins variable, used in the configuration fields, are evaluated. */
@@ -118,6 +138,15 @@ public class GitChangelogPerformer {
     c.setJiraUsernamePasswordCredentialsId(
         environment.expand(config.getJiraUsernamePasswordCredentialsId()));
     c.setJiraBearerCredentialsId(environment.expand(config.getJiraBearerCredentialsId()));
+
+    c.setUseRedmine(config.isUseRedmine());
+    c.setRedmineServer(environment.expand(config.getRedmineServer()));
+    c.setRedmineIssuePattern(environment.expand(config.getRedmineIssuePattern()));
+    c.setRedmineUsername(environment.expand(config.getRedmineUsername()));
+    c.setRedminePassword(environment.expand(config.getRedminePassword()));
+    c.setRedmineTokenCredentialsId(environment.expand(config.getRedmineTokenCredentialsId()));
+    c.setRedmineUserNamePasswordCredentialsId(
+        environment.expand(config.getRedmineUserNamePasswordCredentialsId()));
 
     c.setUseGitHub(config.isUseGitHub());
     c.setGitHubApi(environment.expand(config.getGitHubApi()));

@@ -37,6 +37,14 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     return CredentialsHelper.doFillUserNamePasswordCredentialsIdItems();
   }
 
+  public ListBoxModel doFillRedmineUsernamePasswordCredentialsIdItems() {
+    return CredentialsHelper.doFillUserNamePasswordCredentialsIdItems();
+  }
+
+  public ListBoxModel doFillRedmineTokenCredentialsIdItems() {
+    return CredentialsHelper.doFillApiTokenCredentialsIdItems();
+  }
+
   public ListBoxModel doFillJiraBasicAuthStringCredentialsIdItems() {
     return CredentialsHelper.doFillApiTokenCredentialsIdItems();
   }
@@ -90,6 +98,13 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setJiraUsernamePasswordCredentialsId(formData.getString("jiraUsernamePasswordCredentialsId"));
     c.setJiraBasicAuthStringCredentialsId(formData.getString("jiraBasicAuthStringCredentialsId"));
     c.setJiraBearerCredentialsId(formData.getString("jiraBearerCredentialsId"));
+
+    c.setUseRedmine(formData.getBoolean("useRedmine"));
+    c.setRedmineServer(formData.getString("redmineServer"));
+    c.setRedmineIssuePattern(formData.getString("redmineIssuePattern"));
+    c.setRedmineUserNamePasswordCredentialsId(
+        formData.getString("redmineUsernamePasswordCredentialsId"));
+    c.setRedmineTokenCredentialsId(formData.getString("redmineTokenCredentialsId"));
 
     c.setUseGitHub(formData.getBoolean("useGitHub"));
     c.setGitHubApi(formData.getString("gitHubApi"));
