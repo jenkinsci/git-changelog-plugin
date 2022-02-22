@@ -92,7 +92,7 @@ public class GitChangelogPerformer {
     if (configExpanded.isUseRedmine()) {
       final String getApiTokenCredentialsId = configExpanded.getRedmineTokenCredentialsId();
       final StandardUsernamePasswordCredentials token =
-              findSecretUsernamePassword(getApiTokenCredentialsId).orElse(null);
+          findSecretUsernamePassword(getApiTokenCredentialsId).orElse(null);
       if (token == null) {
         listener.getLogger().println("Redmine, credential not found!");
       } else {
@@ -144,10 +144,9 @@ public class GitChangelogPerformer {
     c.setRedmineIssuePattern(environment.expand(config.getRedmineIssuePattern()));
     c.setRedmineUsername(environment.expand(config.getRedmineUsername()));
     c.setRedminePassword(environment.expand(config.getRedminePassword()));
-    c.setRedmineTokenCredentialsId(
-            environment.expand(config.getRedmineTokenCredentialsId()));
+    c.setRedmineTokenCredentialsId(environment.expand(config.getRedmineTokenCredentialsId()));
     c.setRedmineUserNamePasswordCredentialsId(
-            environment.expand(config.getRedmineUserNamePasswordCredentialsId()));
+        environment.expand(config.getRedmineUserNamePasswordCredentialsId()));
 
     c.setUseGitHub(config.isUseGitHub());
     c.setGitHubApi(environment.expand(config.getGitHubApi()));

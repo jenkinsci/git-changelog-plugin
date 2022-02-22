@@ -102,7 +102,8 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
     c.setUseRedmine(formData.getBoolean("useRedmine"));
     c.setRedmineServer(formData.getString("redmineServer"));
     c.setRedmineIssuePattern(formData.getString("redmineIssuePattern"));
-    c.setRedmineUserNamePasswordCredentialsId(formData.getString("redmineUsernamePasswordCredentialsId"));
+    c.setRedmineUserNamePasswordCredentialsId(
+        formData.getString("redmineUsernamePasswordCredentialsId"));
     c.setRedmineTokenCredentialsId(formData.getString("redmineTokenCredentialsId"));
 
     c.setUseGitHub(formData.getBoolean("useGitHub"));

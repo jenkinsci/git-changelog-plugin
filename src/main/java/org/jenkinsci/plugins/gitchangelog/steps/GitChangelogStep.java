@@ -252,7 +252,7 @@ public class GitChangelogStep extends Step implements Serializable {
   @DataBoundSetter
   public void setRedmine(RedmineConfig redmine) {
     if (redmine == null
-            || isNullOrEmpty(redmine.getIssuePattern())
+        || isNullOrEmpty(redmine.getIssuePattern())
             && isNullOrEmpty(redmine.getServer())
             && isNullOrEmpty(redmine.getToken())) {
       this.redmine = null;
@@ -429,12 +429,13 @@ public class GitChangelogStep extends Step implements Serializable {
     }
     if (this.redmine != null) {
       b //
-              .withRedmineEnabled(true)
-              .withRedmineIssuePattern(this.redmine.getIssuePattern()) //
-              .withRedmineServer(this.redmine.getServer()) //
-              .withRedmineUsername(this.redmine.getUsername()) //
-              .withRedminePassword(this.redmine.getPassword())
-              .withRedmineToken(this.redmine.getToken());
+          .withRedmineEnabled(true)
+          .withUseIntegrations(true)
+          .withRedmineIssuePattern(this.redmine.getIssuePattern()) //
+          .withRedmineServer(this.redmine.getServer()) //
+          .withRedmineUsername(this.redmine.getUsername()) //
+          .withRedminePassword(this.redmine.getPassword())
+          .withRedmineToken(this.redmine.getToken());
     }
     if (this.returnType == CONTEXT) {
       return b.getChangelog();
