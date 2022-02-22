@@ -1,6 +1,34 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.21
+### GitHub #69   
+
+**Merge pull request #69 from MaartenDCrius/feature/add-redmine-integration**
+
+ * Feature/add redmine integration
+
+[8595614873eaf99](https://github.com/jenkinsci/git-changelog-plugin/commit/8595614873eaf99) Tomas Bjerre *2022-02-22 17:06:06*
+
+
+### No issue
+
+**Fix for SpotBugs**
+
+
+[d3c1493d38985f5](https://github.com/jenkinsci/git-changelog-plugin/commit/d3c1493d38985f5) Maarten *2022-02-22 13:41:14*
+
+**Added Redmine integration**
+
+
+[0a9cbd36518b387](https://github.com/jenkinsci/git-changelog-plugin/commit/0a9cbd36518b387) Maarten *2022-02-22 11:53:53*
+
+**Added Redmine integration**
+
+
+[88d232345a0038d](https://github.com/jenkinsci/git-changelog-plugin/commit/88d232345a0038d) Maarten *2022-02-19 11:18:02*
+
+
 ## 3.20
 ### No issue
 
