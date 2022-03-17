@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.22
+### No issue
+
+**feat: fall back on HEAD and MASTER if no toRef is given**
+
+
+[68ab71f3446fbd9](https://github.com/jenkinsci/git-changelog-plugin/commit/68ab71f3446fbd9) Tomas Bjerre *2022-03-17 19:18:17*
+
+
 ## 3.21
 ### GitHub #69   
 
