@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.23
+### No issue
+
+**fix: avoid looking for master if HEAD found**
+
+
+[ddda80c49116c6b](https://github.com/jenkinsci/git-changelog-plugin/commit/ddda80c49116c6b) Tomas Bjerre *2022-03-17 19:29:35*
+
+
 ## 3.22
 ### No issue
 
