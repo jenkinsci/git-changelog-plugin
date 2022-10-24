@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.24
+### Jira CVE-2022   
+
+**fix: stepping dependencies to fix CVE-2022-42889**
+
+
+[a7cc063f7f5b555](https://github.com/jenkinsci/git-changelog-plugin/commit/a7cc063f7f5b555) Tomas Bjerre *2022-10-24 17:44:00*
+
+
 ## 3.23
 ### No issue
 
@@ -1473,5 +1482,10 @@ Changelog of Git Changelog Plugin.
 
 
 [333eccf5a64ff86](https://github.com/jenkinsci/git-changelog-plugin/commit/333eccf5a64ff86) Paul Wellner Bou *2015-06-23 14:38:30*
+
+**Initial commit**
+
+
+[44c98a744c23437](https://github.com/jenkinsci/git-changelog-plugin/commit/44c98a744c23437) Paul Wellner Bou *2015-06-23 14:36:40*
 
 
