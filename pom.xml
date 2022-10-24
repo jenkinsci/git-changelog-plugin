@@ -13,9 +13,9 @@
         <findbugs.failOnError>false</findbugs.failOnError>
         <java.level>8</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <violations.version>1.48</violations.version>
-        <changelog-lib>1.165.2</changelog-lib>
-        <changelog-plugin>1.88</changelog-plugin>
+        <violations.version>1.50.4</violations.version>
+        <changelog-lib>1.168.4</changelog-lib>
+        <changelog-plugin>1.95.2</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
