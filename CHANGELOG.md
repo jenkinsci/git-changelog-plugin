@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.25
+### GitHub #72   
+
+**fix: issue integrations not working (refs #72)**
+
+
+[96975f15ec5d322](https://github.com/jenkinsci/git-changelog-plugin/commit/96975f15ec5d322) Tomas Bjerre *2022-11-13 16:53:02*
+
+
 ## 3.24
 ### Jira CVE-2022   
 
