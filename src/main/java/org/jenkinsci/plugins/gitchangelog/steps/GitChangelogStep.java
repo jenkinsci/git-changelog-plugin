@@ -24,7 +24,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import jenkins.security.MasterToSlaveCallable;
-import org.jenkinsci.plugins.gitchangelog.steps.config.*;
+import org.jenkinsci.plugins.gitchangelog.steps.config.CustomIssueConfig;
+import org.jenkinsci.plugins.gitchangelog.steps.config.ExtendedVariableConfig;
+import org.jenkinsci.plugins.gitchangelog.steps.config.GitHubConfig;
+import org.jenkinsci.plugins.gitchangelog.steps.config.GitLabConfig;
+import org.jenkinsci.plugins.gitchangelog.steps.config.JiraConfig;
+import org.jenkinsci.plugins.gitchangelog.steps.config.RETURN_TYPE;
+import org.jenkinsci.plugins.gitchangelog.steps.config.RedmineConfig;
+import org.jenkinsci.plugins.gitchangelog.steps.config.RefConfig;
 import org.jenkinsci.plugins.workflow.steps.Step;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
@@ -246,11 +253,11 @@ public class GitChangelogStep extends Step implements Serializable {
   }
 
   public RedmineConfig getRedmine() {
-    return redmine;
+    return this.redmine;
   }
 
   @DataBoundSetter
-  public void setRedmine(RedmineConfig redmine) {
+  public void setRedmine(final RedmineConfig redmine) {
     if (redmine == null
         || isNullOrEmpty(redmine.getIssuePattern())
             && isNullOrEmpty(redmine.getServer())
@@ -403,6 +410,7 @@ public class GitChangelogStep extends Step implements Serializable {
     }
     if (this.gitHub != null) {
       b //
+          .withUseIntegrations(true)
           .withGitHubEnabled(true)
           .withGitHubApi(this.gitHub.getApi()) //
           .withGitHubIssuePattern(this.gitHub.getIssuePattern()) //
@@ -410,6 +418,7 @@ public class GitChangelogStep extends Step implements Serializable {
     }
     if (this.gitLab != null) {
       b //
+          .withUseIntegrations(true)
           .withGitLabEnabled(true)
           .withGitLabIssuePattern(this.gitLab.getIssuePattern()) //
           .withGitLabProjectName(this.gitLab.getProjectName()) //
@@ -419,6 +428,7 @@ public class GitChangelogStep extends Step implements Serializable {
 
     if (this.jira != null) {
       b //
+          .withUseIntegrations(true)
           .withJiraEnabled(true)
           .withJiraIssuePattern(this.jira.getIssuePattern()) //
           .withJiraServer(this.jira.getServer()) //
@@ -429,8 +439,8 @@ public class GitChangelogStep extends Step implements Serializable {
     }
     if (this.redmine != null) {
       b //
-          .withRedmineEnabled(true)
           .withUseIntegrations(true)
+          .withRedmineEnabled(true)
           .withRedmineIssuePattern(this.redmine.getIssuePattern()) //
           .withRedmineServer(this.redmine.getServer()) //
           .withRedmineUsername(this.redmine.getUsername()) //
