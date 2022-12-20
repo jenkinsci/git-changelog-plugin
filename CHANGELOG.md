@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.26
+### No issue
+
+**fix: making semantic version match not greedy**
+
+
+[1ee1ef53865e8ea](https://github.com/jenkinsci/git-changelog-plugin/commit/1ee1ef53865e8ea) Tomas Bjerre *2022-12-20 07:59:24*
+
+
 ## 3.25
 ### GitHub #72   
 
