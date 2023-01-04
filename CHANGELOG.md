@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.27
+### No issue
+
+**fix: allow space before : in commit message**
+
+
+[0bd578b18b5d4db](https://github.com/jenkinsci/git-changelog-plugin/commit/0bd578b18b5d4db) Tomas Bjerre *2023-01-04 16:08:53*
+
+
 ## 3.26
 ### No issue
 
