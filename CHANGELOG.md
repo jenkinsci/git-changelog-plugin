@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.28
+### No issue
+
+**fix: parsing newest commits first**
+
+
+[828719d28173877](https://github.com/jenkinsci/git-changelog-plugin/commit/828719d28173877) Tomas Bjerre *2023-02-16 20:24:02*
+
+
 ## 3.27
 ### No issue
 
