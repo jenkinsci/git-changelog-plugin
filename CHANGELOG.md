@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.29
+### No issue
+
+**fix: avoiding stuck execution**
+
+
+[2df003d69c3c90e](https://github.com/jenkinsci/git-changelog-plugin/commit/2df003d69c3c90e) Tomas Bjerre *2023-03-12 07:01:08*
+
+
 ## 3.28
 ### No issue
 
