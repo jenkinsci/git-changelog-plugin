@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.30
+### No issue
+
+**feat: stringHelpers**
+
+
+[3d022cd87060e6b](https://github.com/jenkinsci/git-changelog-plugin/commit/3d022cd87060e6b) Tomas Bjerre *2023-04-22 11:56:33*
+
+
 ## 3.29
 ### No issue
 
