@@ -1,6 +1,15 @@
 # Changelog
 Changelog of Git Changelog Plugin.
 
+## 3.31
+### GitHub #84   
+
+**feat: add from/to config to getHighestSemanticVersion step (refs #84)**
+
+
+[7239986985ae081](https://github.com/jenkinsci/git-changelog-plugin/commit/7239986985ae081) Tomas Bjerre *2023-07-09 16:14:32*
+
+
 ## 3.30
 ### No issue
 
