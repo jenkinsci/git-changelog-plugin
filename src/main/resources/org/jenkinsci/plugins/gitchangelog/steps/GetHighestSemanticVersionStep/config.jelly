@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+
+    <f:optionalBlock checked="${!empty instance.from}" title="Specify from" inline="true">
+    <f:section title="From">
+     <f:entry>
+      <f:property field="from"/>
+     </f:entry>
+     <f:description>
+      Parse Git commits from this reference or commit.
+     </f:description>
+    </f:section>
+    </f:optionalBlock>
+    
+    <f:optionalBlock checked="${!empty instance.to}" title="Specify to" inline="true">
+    <f:section title="To">
+     <f:entry>
+      <f:property field="to"/>
+     </f:entry>
+     <f:description>
+      Parse Git commits to this reference or commit.
+     </f:description>
+    </f:section>
+    </f:optionalBlock>
+
+    <f:optionalBlock checked="${!empty instance.repo}" title="Specify repo location" inline="true">
+     <f:entry title="Repo">
+      <f:textbox field="repo"/>
+      <f:description>
+       Specifies where to look for a Git repo. Defaults to current directory.
+      </f:description>
+     </f:entry>
+    </f:optionalBlock>
+    
+</j:jelly>
