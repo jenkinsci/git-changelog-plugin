@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>3.25</version>
+        <version>4.70</version>
     </parent>
 
     <properties>
-        <jenkins.version>2.32.3</jenkins.version>
+        <jenkins.version>2.361.4</jenkins.version>
         <findbugs.failOnError>false</findbugs.failOnError>
-        <java.level>8</java.level>
+        <java.level>11</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>1.50.8</violations.version>
         <changelog-lib>1.170.1</changelog-lib>
@@ -58,40 +58,7 @@
                         </goals>
                         <configuration>
                             <readableTagName>-([^-]+?)$</readableTagName>
-                            <jiraEnabled>true</jiraEnabled>
-                            <gitHubEnabled>true</gitHubEnabled>
-                            <gitHubIssuePattern>#([0-9]*)</gitHubIssuePattern>
                             <ignoreCommitsIfMessageMatches>^\[maven-release-plugin\].*</ignoreCommitsIfMessageMatches>
-                            <templateContent>
-                                <![CDATA[
-# Changelog
-Changelog of Git Changelog Plugin.
-
-{{#tags}}
-## {{name}}
- {{#issues}}
-  {{#hasIssue}}
-### {{name}} {{issue}} {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
-  {{/hasIssue}}
-  {{^hasIssue}}
-### {{name}}
-  {{/hasIssue}}
-
-  {{#commits}}
-**{{{messageTitle}}}**
-
-{{#messageBodyItems}}
- * {{.}}
-{{/messageBodyItems}}
-
-[{{hash}}](https://github.com/{{ownerName}}/{{repoName}}/commit/{{hash}}) {{authorName}} *{{commitTime}}*
-
-  {{/commits}}
-
- {{/issues}}
-{{/tags}}
-]]>
-                            </templateContent>
                         </configuration>
                     </execution>
                 </executions>
@@ -178,7 +145,6 @@ Changelog of Git Changelog Plugin.
         <dependency>
             <artifactId>guava</artifactId>
             <groupId>com.google.guava</groupId>
-            <version>14.0</version>
         </dependency>
         <dependency>
             <groupId>se.bjurr.gitchangelog</groupId>
@@ -202,56 +168,54 @@ Changelog of Git Changelog Plugin.
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>token-macro</artifactId>
-            <version>1.10</version>
+            <version>1.12.1</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>git</artifactId>
-            <version>2.3.5</version>
+            <version>2.6.5</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>credentials</artifactId>
-            <version>2.1.4</version>
+            <version>2.6.2</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>plain-credentials</artifactId>
-            <version>1.2</version>
+            <version>1.8</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-step-api</artifactId>
-            <version>2.14</version>
+            <version>2.24</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>script-security</artifactId>
-            <version>1.46</version>
+            <version>1.78.1</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>antisamy-markup-formatter</artifactId>
-            <version>1.5</version>
+            <version>1.8</version>
         </dependency>
 
         <!-- test // -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>2.1.0</version>
+            <version>2.9.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>4.1.6.RELEASE</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
