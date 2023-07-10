@@ -2,6 +2,13 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.32 (2023-07-10)
+
+### Bug Fixes
+
+-  stepping dependencies ([c6698](https://github.com/jenkinsci/git-changelog-plugin/commit/c6698ca05accd1e) Tomas Bjerre)  
+-  step jackson 2.5.3 to 2.15.2 ([aeb78](https://github.com/jenkinsci/git-changelog-plugin/commit/aeb78f5b7c18709) Tomas Bjerre)  [#80](https://github.com/jenkinsci/git-changelog-plugin/issues/80)  
+
 ## 3.31 (2023-07-09)
 
 ### Features
