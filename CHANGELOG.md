@@ -2,6 +2,12 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.33 (2023-08-31)
+
+### Features
+
+-  prioritizing commits semantically when adding to tags ([895a3](https://github.com/jenkinsci/git-changelog-plugin/commit/895a347e036b5b1) Tomas Bjerre)  
+
 ## 3.32 (2023-07-10)
 
 ### Bug Fixes
