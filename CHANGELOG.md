@@ -2,6 +2,12 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.34 (2023-09-11)
+
+### Features
+
+-  add filtering for footer tokens ([75340](https://github.com/jenkinsci/git-changelog-plugin/commit/75340dc53aec36e) Tomas Bjerre)  
+
 ## 3.33 (2023-08-31)
 
 ### Features
