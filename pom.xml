@@ -143,6 +143,7 @@
         <dependency>
             <artifactId>guava</artifactId>
             <groupId>com.google.guava</groupId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>se.bjurr.gitchangelog</groupId>
