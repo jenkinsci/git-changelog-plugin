@@ -10,8 +10,6 @@
 
     <properties>
         <jenkins.version>2.361.4</jenkins.version>
-        <findbugs.failOnError>false</findbugs.failOnError>
-        <java.level>11</java.level>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>1.50.8</violations.version>
         <changelog-lib>1.173.0</changelog-lib>
