@@ -2,6 +2,93 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.35 (2023-10-22)
+
+### Features
+
+-  test with Java 21, simplify dependencies ([21d25](https://github.com/jenkinsci/git-changelog-plugin/commit/21d253800501252) Tomas Bjerre)  
+
+### Other changes
+
+**Remove use of commons-lang3**
+
+
+[95301](https://github.com/jenkinsci/git-changelog-plugin/commit/95301a12bb63702) Mark Waite *2023-10-21 02:38:25*
+
+**Use parent pom 4.74**
+
+* Needed for Java 21 test and development 
+
+[f4e7c](https://github.com/jenkinsci/git-changelog-plugin/commit/f4e7c1f8dea65d7) Mark Waite *2023-10-21 02:13:57*
+
+**Test with Java 21**
+
+* Java 21 was released Sep 19, 2023. We want to announce full support 
+* for Java 21 in early October and would like the most used plugins to be 
+* compiled and tested with Java 21. 
+* The acceptance test harness and plugin bill of materials tests are already 
+* passing with Java 21. This is a further step to improve plugin readiness 
+* for use with Java 21 and for development with Java 21. 
+* The change intentionally tests only two Java configurations, Java 17 
+* and Java 21 because we believe that the risk of a regression that only 
+* affects Java 11 is low. We generate Java 11 byte code with the Java 17 
+* and the Java 21 builds, so we&#x27;re already testing Java 11 byte code. 
+
+[c1efc](https://github.com/jenkinsci/git-changelog-plugin/commit/c1efcfe9067e808) Mark Waite *2023-10-21 02:13:57*
+
+**Use the spotify fmt-maven-plugin**
+
+* https://github.com/spotify/fmt-maven-plugin#fmt-maven-plugin notes that 
+* as of 2022-02-14 the fmt-maven-plugin has moved from the coveoss GitHub 
+* organization to the spotify GitHub organization. 
+* Could also consider switching to the automated formatter that is now 
+* included in the plugin parent pom. 
+
+[afe0c](https://github.com/jenkinsci/git-changelog-plugin/commit/afe0cb13d4bc428) Mark Waite *2023-10-21 02:13:57*
+
+**Use Maven 3.9.5, not 3.8.1**
+
+* ci.jenkins.io and others use 3.9.5 
+
+[a1637](https://github.com/jenkinsci/git-changelog-plugin/commit/a16374641cc06d6) Mark Waite *2023-10-21 02:13:57*
+
+**Use assertj 3.24.2 (latest release)**
+
+
+[104fb](https://github.com/jenkinsci/git-changelog-plugin/commit/104fbc336ef4bb0) Mark Waite *2023-10-21 02:13:57*
+
+**Simplify version management of dependencies with plugin BOM**
+
+* Plugin bill of materials provides the versions for many of the plugins 
+* that are managed in the BOM. 
+* Use API plugins for Jackson, okhttp, and JGit (git client) 
+* Reduces the dependencies bundled inside the plugin by relying on the 
+* Jenkins API plugins that provide those libraries. 
+
+[0efa9](https://github.com/jenkinsci/git-changelog-plugin/commit/0efa9c7fc8264e3) Mark Waite *2023-10-21 02:13:41*
+
+**Rely on the guava version provided by Jenkins**
+
+
+[3db6e](https://github.com/jenkinsci/git-changelog-plugin/commit/3db6e4a5f8468f0) Mark Waite *2023-10-21 01:27:07*
+
+**Use https:// instead of git:// protocol for SCM in maven**
+
+* GitHub has stopped supporting the unauthenticated git:// protocol. 
+
+[d52de](https://github.com/jenkinsci/git-changelog-plugin/commit/d52de7caccade19) Mark Waite *2023-10-21 01:26:04*
+
+**Use git-changelog latest release 1.174.2**
+
+
+[22c55](https://github.com/jenkinsci/git-changelog-plugin/commit/22c554c200164d8) Mark Waite *2023-10-21 01:25:35*
+
+**Remove deprecated properties for java.level and spotbugs**
+
+
+[8a196](https://github.com/jenkinsci/git-changelog-plugin/commit/8a196c8da3dc23f) Mark Waite *2023-10-21 01:24:40*
+
+
 ## 3.34 (2023-09-11)
 
 ### Features
