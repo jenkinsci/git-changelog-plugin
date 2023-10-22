@@ -14,10 +14,11 @@ import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.StringWriter;
 import java.net.URISyntaxException;
 import jenkins.security.MasterToSlaveCallable;
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE;
@@ -182,7 +183,10 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         write(gitChangelogApiBuilder.render(), toFile, UTF_8);
       }
     } catch (final Throwable e) {
-      logString.append(ExceptionUtils.getStackTrace(e));
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      e.printStackTrace(pw);
+      logString.append(sw.toString());
     }
     remoteResult.setLog(logString.toString());
     return remoteResult;
