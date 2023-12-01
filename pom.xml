@@ -12,7 +12,7 @@
         <jenkins.version>2.361.4</jenkins.version>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>1.50.9</violations.version>
-        <changelog-lib>1.174.2</changelog-lib>
+        <changelog-lib>1.175.2</changelog-lib>
         <changelog-plugin>1.100.6</changelog-plugin>
     </properties>
 
