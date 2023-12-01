@@ -2,6 +2,12 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.36 (2023-12-01)
+
+### Bug Fixes
+
+-  mapping commits to lowest possible semantic tag ([5a018](https://github.com/jenkinsci/git-changelog-plugin/commit/5a01837da328ebf) Tomas Bjerre)  
+
 ## 3.35 (2023-10-22)
 
 ### Features
