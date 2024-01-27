@@ -2,6 +2,12 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.37 (2024-01-27)
+
+### Breaking changes
+
+-  JGit 6 and Java 11 ([0126c](https://github.com/jenkinsci/git-changelog-plugin/commit/0126c68fa8b0fbd) Tomas Bjerre)  
+
 ## 3.36 (2023-12-01)
 
 ### Bug Fixes
