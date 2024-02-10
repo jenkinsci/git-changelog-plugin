@@ -2,6 +2,12 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.38 (2024-02-10)
+
+### Features
+
+-  **conventional-commits**  allow whitespace, colon and comma as separator in scope ([11f55](https://github.com/jenkinsci/git-changelog-plugin/commit/11f55f1dbe63c26) Tomas Bjerre)  
+
 ## 3.37 (2024-01-27)
 
 ### Breaking changes
