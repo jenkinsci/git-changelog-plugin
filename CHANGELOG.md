@@ -2,6 +2,26 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.39 (2024-09-18)
+
+### Bug Fixes
+
+-  using JGit 7 ([e5f3e](https://github.com/jenkinsci/git-changelog-plugin/commit/e5f3e23faad20ae) Tomas Bjerre)  [#88](https://github.com/jenkinsci/git-changelog-plugin/issues/88)  
+
+### Other changes
+
+**Merge pull request #87 from strangelookingnerd/patch-1**
+
+* Enable Jenkins Security Scan 
+
+[94398](https://github.com/jenkinsci/git-changelog-plugin/commit/943988a64d1705c) Tomas Bjerre *2024-08-09 16:03:34*
+
+**Enable Jenkins Security Scan**
+
+
+[0f534](https://github.com/jenkinsci/git-changelog-plugin/commit/0f534c38128347a) strangelookingnerd *2024-08-09 07:03:53*
+
+
 ## 3.38 (2024-02-10)
 
 ### Features
