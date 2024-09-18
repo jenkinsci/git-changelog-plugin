@@ -9,7 +9,7 @@
     </parent>
 
     <properties>
-        <jenkins.version>2.462.1</jenkins.version>
+        <jenkins.version>2.463</jenkins.version>
         <maven.compiler.release>17</maven.compiler.release>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>2.1.0</violations.version>
