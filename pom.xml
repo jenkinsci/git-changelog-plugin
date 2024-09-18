@@ -5,14 +5,15 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>4.74</version>
+        <version>4.87</version>
     </parent>
 
     <properties>
-        <jenkins.version>2.361.4</jenkins.version>
+        <jenkins.version>2.462.1</jenkins.version>
+        <maven.compiler.release>17</maven.compiler.release>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <violations.version>2.0.0</violations.version>
-        <changelog-lib>2.1.0</changelog-lib>
+        <violations.version>2.1.0</violations.version>
+        <changelog-lib>2.2.0</changelog-lib>
         <changelog-plugin>2.1.0</changelog-plugin>
     </properties>
 
@@ -257,8 +258,8 @@
         <dependencies>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.361.x</artifactId>
-                <version>2102.v854b_fec19c92</version>
+                <artifactId>bom-2.462.x</artifactId>
+                <version>3358.vea_fa_1f41504d</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
