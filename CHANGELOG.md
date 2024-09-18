@@ -2,6 +2,12 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.40 (2024-09-18)
+
+### Bug Fixes
+
+-  building for Jenkins 2.463 to show that it requires Java 17 ([2770c](https://github.com/jenkinsci/git-changelog-plugin/commit/2770c46c26bc2da) Tomas Bjerre)  [#88](https://github.com/jenkinsci/git-changelog-plugin/issues/88)  
+
 ## 3.39 (2024-09-18)
 
 ### Bug Fixes
