@@ -19,7 +19,7 @@
 
     <groupId>de.wellnerbou.jenkins</groupId>
     <artifactId>git-changelog</artifactId>
-    <version>3.40-SNAPSHOT</version>
+    <version>3.40</version>
     <packaging>hpi</packaging>
 
     <name>Git Changelog</name>
@@ -123,7 +123,7 @@
         <connection>scm:git:https://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
         <url>git@github.com:jenkinsci/${project.artifactId}-plugin</url>
-        <tag>HEAD</tag>
+        <tag>git-changelog-3.40</tag>
     </scm>
 
     <repositories>
