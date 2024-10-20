@@ -2,6 +2,11 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.41 (2024-10-20)
+
+### Dependency updates
+
+- git-changelog-lib 2.4.1 ([f59a5](https://github.com/jenkinsci/git-changelog-plugin/commit/f59a5098a2debd5) Tomas Bjerre)  
 ## 3.40 (2024-09-18)
 
 ### Bug Fixes
@@ -347,6 +352,9 @@ Changelog of git-changelog-plugin.
 ### Features
 
 -  support conventional commits ([a90ee](https://github.com/jenkinsci/git-changelog-plugin/commit/a90ee202c98da56) Tomas Bjerre)  
+
+### Other changes
+
 
 ## 3.2 (2021-03-29)
 
