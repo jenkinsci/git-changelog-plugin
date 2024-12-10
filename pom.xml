@@ -6,6 +6,7 @@
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
         <version>4.87</version>
+        <relativePath />
     </parent>
 
     <properties>
