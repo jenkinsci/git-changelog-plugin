@@ -11,7 +11,7 @@
 
     <properties>
         <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
-        <jenkins.baseline>2.463</jenkins.baseline>
+        <jenkins.baseline>2.462</jenkins.baseline>
         <jenkins.version>${jenkins.baseline}.1</jenkins.version>
         <maven.compiler.release>17</maven.compiler.release>
         <maven.javadoc.skip>true</maven.javadoc.skip>
