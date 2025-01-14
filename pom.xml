@@ -10,7 +10,9 @@
     </parent>
 
     <properties>
-        <jenkins.version>2.463</jenkins.version>
+        <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
+        <jenkins.baseline>2.463</jenkins.baseline>
+        <jenkins.version>${jenkins.baseline}.1</jenkins.version>
         <maven.compiler.release>17</maven.compiler.release>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>2.2.0</violations.version>
@@ -259,7 +261,7 @@
         <dependencies>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.462.x</artifactId>
+                <artifactId>bom-${jenkins.baseline}.x</artifactId>
                 <version>3358.vea_fa_1f41504d</version>
                 <scope>import</scope>
                 <type>pom</type>
