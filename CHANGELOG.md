@@ -2,6 +2,45 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.42 (2025-01-18)
+
+### Dependency updates
+
+- git-changelog-maven-plugin 2.2.2 ([893da](https://github.com/jenkinsci/git-changelog-plugin/commit/893daeeb56f7327) Tomas Bjerre)  
+### Other changes
+
+**Use global MarkupFormatter for changelog summary**
+
+
+[88dc7](https://github.com/jenkinsci/git-changelog-plugin/commit/88dc75ef6bd45e2) strangelookingnerd *2025-01-18 08:25:20*
+
+**Use `jenkins.baseline` to reduce bom update mistakes**
+
+
+[f100f](https://github.com/jenkinsci/git-changelog-plugin/commit/f100ffda648c62e) strangelookingnerd *2025-01-18 07:32:18*
+
+**Use `jenkins.baseline` to reduce bom update mistakes**
+
+
+[10417](https://github.com/jenkinsci/git-changelog-plugin/commit/104171ecd4663c3) strangelookingnerd *2025-01-18 07:32:18*
+
+**Replace unreleased changelog plugin 2.2.1 with 2.2.0**
+
+* Builds on the ci.jenkins.io master branch fail with the message: 
+* &gt; Could not find artifact se.bjurr.gitchangelog:git-changelog-maven-plugin:jar:2.2.1 
+* https://mvnrepository.com/artifact/se.bjurr.gitchangelog/git-changelog-maven-plugin 
+* reports that the most recent release is 2.2.0, not 2.2.1. 
+* Switch to 2.2.0 instead of 2.2.1 
+
+[49683](https://github.com/jenkinsci/git-changelog-plugin/commit/496839f64c0e941) Mark Waite *2024-12-25 07:23:22*
+
+**Disable local resolution of parent pom**
+
+* This is part of archetype also : https://github.com/jenkinsci/archetypes/blob/master/hello-world/src/main/resources/archetype-resources/pom.xml#L9 
+
+[0eb55](https://github.com/jenkinsci/git-changelog-plugin/commit/0eb55d51d450a9c) Valentin Delaye *2024-12-10 15:02:17*
+
+
 ## 3.41 (2024-10-20)
 
 ### Dependency updates
