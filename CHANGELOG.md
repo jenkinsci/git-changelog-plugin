@@ -2,6 +2,12 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.43 (2025-01-26)
+
+### Bug Fixes
+
+-  reverse order in eachUrlPart ([e2bce](https://github.com/jenkinsci/git-changelog-plugin/commit/e2bce7541d5bf10) Tomas Bjerre)  
+
 ## 3.42 (2025-01-18)
 
 ### Dependency updates
