@@ -16,8 +16,8 @@
         <maven.compiler.release>17</maven.compiler.release>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <violations.version>2.2.0</violations.version>
-        <changelog-lib>2.4.1</changelog-lib>
-        <changelog-plugin>2.2.2</changelog-plugin>
+        <changelog-lib>2.5.1</changelog-lib>
+        <changelog-plugin>2.2.4</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
