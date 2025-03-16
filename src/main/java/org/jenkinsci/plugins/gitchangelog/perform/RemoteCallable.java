@@ -11,7 +11,6 @@ import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper
 import static org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE.ref;
 import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,7 +40,6 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
   }
 
   @Override
-  @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
   public RemoteResult call() throws IOException {
     final RemoteResult remoteResult = new RemoteResult();
     final StringBuilder logString = new StringBuilder();
@@ -179,7 +177,9 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         logString.append("Creating changelog ").append(this.config.toFile());
 
         final File toFile = new File(this.workspacePath + "/" + this.config.toFile());
-        new File(toFile.getParent()).mkdirs();
+        if (!(new File(toFile.getParent()).mkdirs())) {
+          logString.append("Did not create directory ").append(toFile.getParent());
+        }
         write(gitChangelogApiBuilder.render(), toFile, UTF_8);
       }
     } catch (final Throwable e) {
