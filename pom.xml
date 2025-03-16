@@ -22,7 +22,7 @@
 
     <groupId>de.wellnerbou.jenkins</groupId>
     <artifactId>git-changelog</artifactId>
-    <version>3.44</version>
+    <version>3.45-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
     <name>Git Changelog</name>

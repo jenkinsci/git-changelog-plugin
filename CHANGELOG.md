@@ -2,6 +2,11 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.44 (2025-03-16)
+
+### Dependency updates
+
+- git-changelog-lib ([a17c4](https://github.com/jenkinsci/git-changelog-plugin/commit/a17c48bf27d360b) Tomas Bjerre)  
 ## 3.43 (2025-01-26)
 
 ### Bug Fixes
