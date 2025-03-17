@@ -241,19 +241,19 @@
         <dependency>
             <groupId>io.jenkins.plugins.mina-sshd-api</groupId>
             <artifactId>mina-sshd-api-common</artifactId>
-            <version>2.15.0-156.v48eb_e3c5a_805</version>
+            <version>2.15.0-158.vc368a_4a_d8a_9a_</version>
         </dependency>
         <!-- TODO Remove when included in plugin BOM -->
         <dependency>
             <groupId>io.jenkins.plugins.mina-sshd-api</groupId>
             <artifactId>mina-sshd-api-core</artifactId>
-            <version>2.15.0-156.v48eb_e3c5a_805</version>
+            <version>2.15.0-158.vc368a_4a_d8a_9a_</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>git-client</artifactId>
             <!-- TODO Remove when included in plugin BOM -->
-            <version>6.2.0-rc3710.111f814fdc4b_</version>
+            <version>6.2.0-rc3719.5104b_a_9a_0111</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
