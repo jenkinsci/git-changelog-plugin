@@ -5,13 +5,14 @@ import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
 import hudson.util.ListBoxModel;
+import java.io.Serial;
 import java.io.Serializable;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class RefConfig extends AbstractDescribableImpl<RefConfig> implements Serializable {
-  private static final long serialVersionUID = -7003493790467059304L;
+  @Serial private static final long serialVersionUID = -7003493790467059304L;
   private final REF_TYPE type;
   private final String value;
 

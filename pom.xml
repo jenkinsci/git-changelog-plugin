@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <revision>3.45</revision>
+        <revision>3.46</revision>
         <changelist>-SNAPSHOT</changelist>
         <gitHubRepo>jenkinsci/git-changelog-plugin</gitHubRepo>
         <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
@@ -112,7 +112,7 @@
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>http://opensource.org/licenses/MIT</url>
+            <url>https://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
 
@@ -201,6 +201,18 @@
                     <!-- because of maven-enforcer -->
                     <groupId>commons-io</groupId>
                     <artifactId>commons-io</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.ow2.asm</groupId>
+                    <artifactId>asm-tree</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.ow2.asm</groupId>
+                    <artifactId>asm-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.ow2.asm</groupId>
+                    <artifactId>asm-commons</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -293,7 +305,7 @@
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
                 <artifactId>bom-${jenkins.baseline}.x</artifactId>
-                <version>4228.v0a_71308d905b_</version>
+                <version>4440.v39a_9eb_b_c6b_4d</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>

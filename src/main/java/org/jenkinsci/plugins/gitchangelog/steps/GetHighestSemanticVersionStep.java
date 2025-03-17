@@ -10,6 +10,7 @@ import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
 import hudson.Extension;
 import hudson.FilePath;
 import java.io.IOException;
+import java.io.Serial;
 import java.io.Serializable;
 import java.text.ParseException;
 import jenkins.security.MasterToSlaveCallable;
@@ -25,7 +26,7 @@ import se.bjurr.gitchangelog.api.exceptions.GitChangelogRepositoryException;
 
 public class GetHighestSemanticVersionStep extends Step implements Serializable {
 
-  private static final long serialVersionUID = 795555442767777209L;
+  @Serial private static final long serialVersionUID = 795555442767777209L;
   private String repo;
 
   private RefConfig from;
@@ -81,17 +82,17 @@ public class GetHighestSemanticVersionStep extends Step implements Serializable 
 
   @Override
   public StepExecution start(final StepContext context) {
-    return new SynchronousNonBlockingStepExecution<Object>(context) {
+    return new SynchronousNonBlockingStepExecution<>(context) {
 
-      private static final long serialVersionUID = 1L;
+      @Serial private static final long serialVersionUID = 1L;
 
       @Override
       protected Object run() throws Exception {
         final FilePath workspace = context.get(FilePath.class);
 
         final MasterToSlaveCallable<Object, Exception> callable =
-            new MasterToSlaveCallable<Object, Exception>() {
-              private static final long serialVersionUID = 1L;
+            new MasterToSlaveCallable<>() {
+              @Serial private static final long serialVersionUID = 1L;
 
               @Override
               public Object call() throws Exception {

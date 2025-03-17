@@ -14,10 +14,12 @@ import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
 import jenkins.security.MasterToSlaveCallable;
+import org.apache.commons.io.FileUtils;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfigHelper.FROMTYPE;
@@ -27,7 +29,7 @@ import se.bjurr.gitchangelog.api.GitChangelogApi;
 public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOException>
     implements Serializable {
 
-  private static final long serialVersionUID = -2489061314794088231L;
+  @Serial private static final long serialVersionUID = -2489061314794088231L;
   private final GitChangelogConfig config;
   private String path = "";
 
@@ -177,16 +179,14 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
         logString.append("Creating changelog ").append(this.config.toFile());
 
         final File toFile = new File(this.workspacePath + "/" + this.config.toFile());
-        if (!(new File(toFile.getParent()).mkdirs())) {
-          logString.append("Did not create directory ").append(toFile.getParent());
-        }
+        FileUtils.forceMkdir(new File(toFile.getParent()));
         write(gitChangelogApiBuilder.render(), toFile, UTF_8);
       }
     } catch (final Throwable e) {
       StringWriter sw = new StringWriter();
       PrintWriter pw = new PrintWriter(sw);
       e.printStackTrace(pw);
-      logString.append(sw.toString());
+      logString.append(sw);
     }
     remoteResult.setLog(logString.toString());
     return remoteResult;
