@@ -229,6 +229,14 @@
             <groupId>io.jenkins.plugins</groupId>
             <artifactId>asm-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.jenkins.plugins</groupId>
+            <artifactId>commons-lang3-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jenkins.plugins</groupId>
+            <artifactId>commons-text-api</artifactId>
+        </dependency>
         <!-- TODO Remove when included in plugin BOM -->
         <dependency>
             <groupId>io.jenkins.plugins.mina-sshd-api</groupId>
