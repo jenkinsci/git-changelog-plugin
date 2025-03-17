@@ -4,12 +4,15 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
+
+import java.io.Serial;
 import java.io.Serializable;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
 public class CustomIssueConfig extends AbstractDescribableImpl<CustomIssueConfig>
     implements Serializable {
+  @Serial
   private static final long serialVersionUID = 8842918044772949798L;
   private final String name;
   private final String issuePattern;
