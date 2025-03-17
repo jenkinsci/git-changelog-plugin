@@ -4,10 +4,13 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
+
+import java.io.Serial;
 import java.io.Serializable;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class GitLabConfig extends AbstractDescribableImpl<GitLabConfig> implements Serializable {
+  @Serial
   private static final long serialVersionUID = -8851592658630679192L;
   private final String server;
   private final String token;

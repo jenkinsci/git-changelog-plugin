@@ -1,9 +1,11 @@
 package org.jenkinsci.plugins.gitchangelog.config;
 
+import java.io.Serial;
 import java.io.Serializable;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class CustomIssue implements Serializable {
+  @Serial
   private static final long serialVersionUID = -6202256680695752956L;
   private String link;
   private String name;

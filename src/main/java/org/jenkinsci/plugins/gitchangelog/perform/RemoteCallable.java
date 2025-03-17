@@ -14,6 +14,7 @@ import static se.bjurr.gitchangelog.api.GitChangelogApi.gitChangelogApiBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
@@ -28,6 +29,7 @@ import se.bjurr.gitchangelog.api.GitChangelogApi;
 public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOException>
     implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = -2489061314794088231L;
   private final GitChangelogConfig config;
   private String path = "";
@@ -185,7 +187,7 @@ public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOExcept
       StringWriter sw = new StringWriter();
       PrintWriter pw = new PrintWriter(sw);
       e.printStackTrace(pw);
-      logString.append(sw.toString());
+      logString.append(sw);
     }
     remoteResult.setLog(logString.toString());
     return remoteResult;

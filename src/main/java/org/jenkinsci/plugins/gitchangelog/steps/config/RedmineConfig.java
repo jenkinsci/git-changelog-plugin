@@ -4,10 +4,13 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
+
+import java.io.Serial;
 import java.io.Serializable;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class RedmineConfig extends AbstractDescribableImpl<RedmineConfig> implements Serializable {
+  @Serial
   private static final long serialVersionUID = 1038551646703386319L;
   private final String server;
   private final String issuePattern;
