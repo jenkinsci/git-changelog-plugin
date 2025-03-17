@@ -12,7 +12,7 @@ import net.sf.json.JSONObject;
 import org.jenkinsci.plugins.gitchangelog.config.CredentialsHelper;
 import org.jenkinsci.plugins.gitchangelog.config.CustomIssue;
 import org.jenkinsci.plugins.gitchangelog.config.GitChangelogConfig;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 
 public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher> {
   private GitChangelogConfig config;
@@ -75,7 +75,7 @@ public final class GitChangelogDescriptor extends BuildStepDescriptor<Publisher>
   }
 
   @Override
-  public Publisher newInstance(final StaplerRequest req, final JSONObject formData)
+  public Publisher newInstance(final StaplerRequest2 req, final JSONObject formData)
       throws hudson.model.Descriptor.FormException {
     final GitChangelogConfig c = new GitChangelogConfig();
     c.setUseConfigFile(formData.getBoolean("useConfigFile"));
