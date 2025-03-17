@@ -26,8 +26,7 @@ import se.bjurr.gitchangelog.api.exceptions.GitChangelogRepositoryException;
 
 public class GetHighestSemanticVersionStep extends Step implements Serializable {
 
-  @Serial
-  private static final long serialVersionUID = 795555442767777209L;
+  @Serial private static final long serialVersionUID = 795555442767777209L;
   private String repo;
 
   private RefConfig from;
@@ -85,26 +84,24 @@ public class GetHighestSemanticVersionStep extends Step implements Serializable 
   public StepExecution start(final StepContext context) {
     return new SynchronousNonBlockingStepExecution<>(context) {
 
-        @Serial
-        private static final long serialVersionUID = 1L;
+      @Serial private static final long serialVersionUID = 1L;
 
-        @Override
-        protected Object run() throws Exception {
-            final FilePath workspace = context.get(FilePath.class);
+      @Override
+      protected Object run() throws Exception {
+        final FilePath workspace = context.get(FilePath.class);
 
-            final MasterToSlaveCallable<Object, Exception> callable =
-                    new MasterToSlaveCallable<>() {
-                        @Serial
-                        private static final long serialVersionUID = 1L;
+        final MasterToSlaveCallable<Object, Exception> callable =
+            new MasterToSlaveCallable<>() {
+              @Serial private static final long serialVersionUID = 1L;
 
-                        @Override
-                        public Object call() throws Exception {
-                            return GetHighestSemanticVersionStep.this.perform(workspace);
-                        }
-                    };
+              @Override
+              public Object call() throws Exception {
+                return GetHighestSemanticVersionStep.this.perform(workspace);
+              }
+            };
 
-            return workspace.act(callable);
-        }
+        return workspace.act(callable);
+      }
     };
   }
 

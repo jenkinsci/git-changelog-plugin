@@ -29,8 +29,7 @@ import se.bjurr.gitchangelog.api.GitChangelogApi;
 public class RemoteCallable extends MasterToSlaveCallable<RemoteResult, IOException>
     implements Serializable {
 
-  @Serial
-  private static final long serialVersionUID = -2489061314794088231L;
+  @Serial private static final long serialVersionUID = -2489061314794088231L;
   private final GitChangelogConfig config;
   private String path = "";
 

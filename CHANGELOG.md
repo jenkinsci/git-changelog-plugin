@@ -2,6 +2,27 @@
 
 Changelog of git-changelog-plugin.
 
+## 3.45 (2025-03-17)
+
+### Other changes
+
+**Merge pull request #94 from strangelookingnerd/mirgate**
+
+* Require Jenkins 2.479.1 or newer and Jakarta EE 9 
+
+[a4848](https://github.com/jenkinsci/git-changelog-plugin/commit/a4848aba31f38b5) Tomas Bjerre *2025-03-17 17:22:38*
+
+**Use Java 17 features and cleanup**
+
+
+[29186](https://github.com/jenkinsci/git-changelog-plugin/commit/29186d8d520e5df) strangelookingnerd *2025-03-17 10:07:40*
+
+**Require 2.479.1 or newer**
+
+
+[96d8e](https://github.com/jenkinsci/git-changelog-plugin/commit/96d8ea6109c435e) strangelookingnerd *2025-03-17 10:03:52*
+
+
 ## 3.44 (2025-03-16)
 
 ### Dependency updates

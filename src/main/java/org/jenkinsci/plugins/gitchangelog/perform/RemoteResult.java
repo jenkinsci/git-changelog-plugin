@@ -5,8 +5,7 @@ import java.io.Serializable;
 
 public class RemoteResult implements Serializable {
 
-  @Serial
-  private static final long serialVersionUID = 8363216067945804103L;
+  @Serial private static final long serialVersionUID = 8363216067945804103L;
   private String leftSideTitle;
   private String leftSideUrl;
   private String log;

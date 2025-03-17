@@ -9,8 +9,7 @@ import org.kohsuke.stapler.DataBoundSetter;
 
 public class GitChangelogConfig implements Serializable {
 
-  @Serial
-  private static final long serialVersionUID = -6715117454282183133L;
+  @Serial private static final long serialVersionUID = -6715117454282183133L;
   private String configFile;
   private String createFileTemplateContent;
   private String createFileTemplateFile;

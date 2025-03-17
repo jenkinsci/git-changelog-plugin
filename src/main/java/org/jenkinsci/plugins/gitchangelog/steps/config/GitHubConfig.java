@@ -4,15 +4,13 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
-
 import java.io.Serial;
 import java.io.Serializable;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class GitHubConfig extends AbstractDescribableImpl<GitHubConfig> implements Serializable {
 
-  @Serial
-  private static final long serialVersionUID = 6697975254396703929L;
+  @Serial private static final long serialVersionUID = 6697975254396703929L;
   private final String api;
   private final String token;
   private final String issuePattern;
