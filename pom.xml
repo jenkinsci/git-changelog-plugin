@@ -14,9 +14,9 @@
         <jenkins.baseline>2.479</jenkins.baseline>
         <jenkins.version>${jenkins.baseline}.3</jenkins.version>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <violations.version>2.2.0</violations.version>
-        <changelog-lib>2.6.0</changelog-lib>
-        <changelog-plugin>2.2.5</changelog-plugin>
+        <violations.version>2.2.8</violations.version>
+        <changelog-lib>2.6.1</changelog-lib>
+        <changelog-plugin>2.2.11</changelog-plugin>
     </properties>
 
     <groupId>de.wellnerbou.jenkins</groupId>
